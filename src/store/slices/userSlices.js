@@ -1,25 +1,44 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import axios from '../../axios'
 
 const initialState = {
-    userName: '',
-    role: null,
-    testNum: 1,
+    account: null,
     isLoggedIn: false
 }
 
-const reducers = {
-    increment: (state) => {
-        state.testNum++
-    },
-    decrement: (state) => {
-        state.testNum--
+export const loginUser = createAsyncThunk(
+    'user/login',
+    async (account, { rejectWithValue }) => {
+        try {
+            const data = await axios.post(
+                '/api/login-partner',
+                {
+                    userName: account.userName, password: account.password
+                }
+            )
+            return data
+        } catch (error) {
+            return rejectWithValue(error.response.data)
+        }
     }
-}
+)
+
 
 export const userSlice = createSlice({
     name: 'user',
     initialState,
-    reducers: reducers
+    reducers: {
+
+    },
+    extraReducers: (builder) => {
+        builder.addCase(loginUser.fulfilled, (state, action) => {
+            if (action.payload) {
+                state.isLoggedIn = true
+            }
+        }).addCase(loginUser.rejected, (state, action) => {
+            throw action.payload
+        })
+    }
 })
 
 export const { increment, decrement } = userSlice.actions

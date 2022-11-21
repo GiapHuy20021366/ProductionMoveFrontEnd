@@ -1,11 +1,13 @@
 import React from "react"
 import { Navigate, Route, Switch } from 'react-router-dom';
 
-const Home = (probs) => {
+const System = (probs) => {
     console.log(probs)
     return (
-        <div>This is Home</div>
+        <>
+            <div>System</div>
+        </>
     )
 }
 
-export default Home
+export default System

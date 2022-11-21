@@ -1,6 +1,6 @@
 import React from "react"
 
-const About = (probs) => {
+const About = () => {
     return (
         <div>
             About
