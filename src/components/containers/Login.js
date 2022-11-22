@@ -8,6 +8,7 @@ const Login = (probs) => {
     const userNameRef = useRef()
     const passwordRef = useRef()
     const [errMess, setErrMess] = useState('')
+    const [isLogging, setIsLogging] = useState(false)
     const dispatch = useDispatch()
 
     const onCLickLoginButton = () => {

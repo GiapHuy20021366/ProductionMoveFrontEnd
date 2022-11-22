@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { storeAuthentication } from '../../untils/authenticate'
 import axios from '../../axios'
+import { saveItem } from '../../untils/localStorageUntils'
 
 const initialState = {
     account: null,
@@ -28,12 +30,23 @@ export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
+        userNotLogin: (state, action) => {
+            state.isLoggedIn = false
+        },
+        userIsLogin: (state, action) => {
+            state.isLoggedIn = true
+        }
 
     },
     extraReducers: (builder) => {
         builder.addCase(loginUser.fulfilled, (state, action) => {
             if (action.payload) {
+                const data = action.payload.data
+                storeAuthentication(data.token)
                 state.isLoggedIn = true
+                delete data.token
+                state.account = { ...data }
+                saveItem('accountInformation', data)
             }
         }).addCase(loginUser.rejected, (state, action) => {
             throw action.payload
@@ -41,5 +54,5 @@ export const userSlice = createSlice({
     }
 })
 
-export const { increment, decrement } = userSlice.actions
+export const { userNotLogin, userIsLogin } = userSlice.actions
 export default userSlice.reducer
