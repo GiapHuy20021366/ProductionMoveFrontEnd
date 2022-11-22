@@ -10,16 +10,15 @@ import { updateToken } from './../untils/authenticate';
 import { toast, ToastContainer } from 'react-toastify';
 import ToastUtil from '../untils/toastUtil';
 import 'react-toastify/dist/ReactToastify.css';
-import { connectServer } from '../socket';
+import { connectServer, authenticate, socket } from '../socket';
 import { useRef } from 'react';
 const App = () => {
-  const socket = useRef()
   useEffect(async () => {
-    const auth = await updateToken()
-    if (auth) {
-      socket.current = connectServer()
+    const token = await updateToken()
+    if (token) {
+      authenticate(token)
     }
-    console.log("Render")
+
   }, [])
 
   return (

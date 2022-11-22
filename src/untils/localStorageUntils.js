@@ -13,3 +13,7 @@ export const getItem = (name) => {
     }
     return null
 }
+
+export const dropItem = (name) => {
+    localStorage.removeItem(name)
+}

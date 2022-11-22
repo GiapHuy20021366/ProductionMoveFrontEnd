@@ -4,14 +4,19 @@ import ToastUtil from "../../untils/toastUtil";
 import { useEffect } from "react";
 import { connectServer } from "../../socket";
 import { useRef } from 'react';
+import { useDispatch } from 'react-redux';
+import { userLogout } from "../../store/slices/userSlices";
 const System = (probs) => {
-    const socket = useRef()
     useEffect(() => {
         ToastUtil.success("Wellcome back", 1500)
-        socket.current = connectServer()
     }, [])
+    const dispatch = useDispatch()
+    const onClickLogout = () => {
+        dispatch(userLogout())
+    }
     return (
         <>
+            <button onClick={() => onClickLogout()}>Logout</button>
             <div>System</div>
         </>
     )
