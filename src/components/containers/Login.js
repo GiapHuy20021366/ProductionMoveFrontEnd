@@ -22,29 +22,35 @@ const Login = (probs) => {
     }
 
     return (
-        <div className="login-container">
-            <div className="input-container">
-                <label htmlFor='userName'><b>Username:</b></label>
-                <input
-                    type='text'
-                    placeholder="Enter Username"
-                    name='userName'
-                    ref={userNameRef} required>
-                </input>
-            </div>
-
-            <div className="input-container">
-                <label htmlFor='password'><b>Password:</b></label>
-                <input
-                    type='password'
-                    placeholder="Enter Password"
-                    name='password'
-                    ref={passwordRef} required>
-                </input>
-            </div>
-            <div>{errMess}</div>
-            <button onClick={() => onCLickLoginButton()}>Login</button>
-        </div>
+        
+            <div className="page-white">
+                    <div className="login">
+                        <span className="text">Login!</span>
+                        <form action="" method="post" class="login-form">
+                            <div class="input-container">
+                                <input
+                                    type="text"
+                                    className="input-box"
+                                    placeholder="Username"
+                                    ref={userNameRef} required
+                                />
+                            </div>
+                            <div class="input-container">
+                                <input
+                                    type="password"
+                                    className="input-box"
+                                    placeholder="Password"
+                                    ref={passwordRef} required
+                                />
+                            </div>
+                            <span>{errMess}</span>
+                            <div class="button-container">
+                                <input type="submit" content="Login" value="Login" onClick={() => onCLickLoginButton()}/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+        
     )
 }
 
