@@ -11,7 +11,9 @@ const Login = (probs) => {
     const [isLogging, setIsLogging] = useState(false)
     const dispatch = useDispatch()
 
-    const onCLickLoginButton = () => {
+    const onCLickLoginButton = (e) => {
+        e.preventDefault()
+        console.log("heyyy")
         setErrMess('')
         dispatch(loginUser({
             userName: userNameRef.current.value,
@@ -25,7 +27,7 @@ const Login = (probs) => {
         <div className="page-white">
             <div className="login">
                 <span className="text">Login!</span>
-                <form action="" method="post" className="login-form">
+                <form className="login-form">
                     <div className="input-container">
                         <input
                             type="text"
@@ -44,7 +46,7 @@ const Login = (probs) => {
                     </div>
                     <span>{errMess}</span>
                     <div className="button-container">
-                        <input type="submit" content="Login" value="Login" onClick={() => onCLickLoginButton()} />
+                        <input type="submit" content="Login" value="Login" onClick={(e) => onCLickLoginButton(e)} />
                     </div>
                 </form>
             </div>
