@@ -22,12 +22,11 @@ const Login = (probs) => {
     }
 
     return (
-
         <div className="page-white">
             <div className="login">
                 <span className="text">Login!</span>
-                <form class="login-form">
-                    <div class="input-container">
+                <form action="" method="post" className="login-form">
+                    <div className="input-container">
                         <input
                             type="text"
                             className="input-box"
@@ -35,7 +34,7 @@ const Login = (probs) => {
                             ref={userNameRef} required
                         />
                     </div>
-                    <div class="input-container">
+                    <div className="input-container">
                         <input
                             type="password"
                             className="input-box"
@@ -44,7 +43,7 @@ const Login = (probs) => {
                         />
                     </div>
                     <span>{errMess}</span>
-                    <div class="button-container">
+                    <div className="button-container">
                         <input type="submit" content="Login" value="Login" onClick={() => onCLickLoginButton()} />
                     </div>
                 </form>

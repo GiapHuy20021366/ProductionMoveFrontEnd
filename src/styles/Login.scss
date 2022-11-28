@@ -33,8 +33,10 @@ p {
 }
 
 .page-white {
-    width: 98vw;
-    height: 50vh;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .login {
@@ -53,9 +55,9 @@ p {
     max-height: 550px;
 }
 
-.login {
-    transform: translateY(50%);
-}
+// .login {
+//     transform: translateY(50%);
+// }
 
 .login-form {
     padding: 0 60px
