@@ -22,35 +22,35 @@ const Login = (probs) => {
     }
 
     return (
-        
-            <div className="page-white">
-                    <div className="login">
-                        <span className="text">Login!</span>
-                        <form action="" method="post" class="login-form">
-                            <div class="input-container">
-                                <input
-                                    type="text"
-                                    className="input-box"
-                                    placeholder="Username"
-                                    ref={userNameRef} required
-                                />
-                            </div>
-                            <div class="input-container">
-                                <input
-                                    type="password"
-                                    className="input-box"
-                                    placeholder="Password"
-                                    ref={passwordRef} required
-                                />
-                            </div>
-                            <span>{errMess}</span>
-                            <div class="button-container">
-                                <input type="submit" content="Login" value="Login" onClick={() => onCLickLoginButton()}/>
-                            </div>
-                        </form>
+
+        <div className="page-white">
+            <div className="login">
+                <span className="text">Login!</span>
+                <form class="login-form">
+                    <div class="input-container">
+                        <input
+                            type="text"
+                            className="input-box"
+                            placeholder="Username"
+                            ref={userNameRef} required
+                        />
                     </div>
-                </div>
-        
+                    <div class="input-container">
+                        <input
+                            type="password"
+                            className="input-box"
+                            placeholder="Password"
+                            ref={passwordRef} required
+                        />
+                    </div>
+                    <span>{errMess}</span>
+                    <div class="button-container">
+                        <input type="submit" content="Login" value="Login" onClick={() => onCLickLoginButton()} />
+                    </div>
+                </form>
+            </div>
+        </div>
+
     )
 }
 
