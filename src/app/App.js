@@ -12,6 +12,7 @@ import ToastUtil from '../untils/toastUtil';
 import 'react-toastify/dist/ReactToastify.css';
 import { connectServer, authenticate, socket } from '../socket';
 import { useRef } from 'react';
+import TestApi from '../components/containers/TestApi';
 const App = () => {
   useEffect(async () => {
     const token = await updateToken()
@@ -21,8 +22,10 @@ const App = () => {
 
   }, [])
 
+
   return (
     <Fragment>
+      <TestApi />
       <BrowserRouter>
         <Switch>
           <Route exact path={paths.HOME} component={Home} />
