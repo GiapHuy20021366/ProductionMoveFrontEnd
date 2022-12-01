@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+// ***********************************
+.homeContainer {
+    .center {
+        // position:relative; //dad
+        position:absolute;
+        top: 0; bottom: 0; left: 0; right: 0;
+        margin: auto;
+        height: 20px; /*requires explicit height*/
+    }
+
+    .title {
+        font-size: 24px;
+    }
+    
+    .logo {
+        max-height: 35px;
+        width: auto;
+    }
+    
+    .navBar, .bannerContainer, .featureContainer, .footerContainer {
+        margin-bottom: 24px;
+    }
+
+    .navBar {
+        width: 100%;
+        height: 70px;
+    
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    
+        position: fixed;
+        z-index: 0;
+        
+        .loginBtn {
+            width: 110px;
+            height: 35px;
+            left: 15px;
+            top: 17px;
+        }
+    }
+
+    .bannerContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    
+        .banner {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            top: 10px;
+        }
+    }
+    
+    .featureContainer {
+        position: relative;
+    }
+    
+    .footerContainer {
+        background-color: #ccc;
+    }
+}
+

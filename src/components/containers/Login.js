@@ -13,7 +13,7 @@ const Login = (probs) => {
 
     const onCLickLoginButton = (e) => {
         e.preventDefault()
-        console.log("heyyy")
+        console.log("I'm running");
         setErrMess('')
         dispatch(loginUser({
             userName: userNameRef.current.value,
@@ -21,13 +21,14 @@ const Login = (probs) => {
         })).catch((mess) => {
             setErrMess(mess.message)
         })
+        console.log("I'm running 2");
     }
 
     return (
         <div className="page-white">
             <div className="login">
                 <span className="text">Login!</span>
-                <form className="login-form">
+                <form action="" method="post" className="login-form">
                     <div className="input-container">
                         <input
                             type="text"
@@ -46,7 +47,7 @@ const Login = (probs) => {
                     </div>
                     <span>{errMess}</span>
                     <div className="button-container">
-                        <input type="submit" content="Login" value="Login" onClick={(e) => onCLickLoginButton(e)} />
+                        <input type="submit" content="Login" value="Login" onClick={() => onCLickLoginButton()} />
                     </div>
                 </form>
             </div>

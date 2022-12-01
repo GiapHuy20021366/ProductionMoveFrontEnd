@@ -1,9 +1,8 @@
 const express = require('express');
 const path = require('path');
-const cors = require('cors')
 
 const app = express();
-app.use(cors())
+app.use(cors());
 
 const buildDir = path.join(__dirname, '../build');
 console.log('Using files in ' + buildDir);
