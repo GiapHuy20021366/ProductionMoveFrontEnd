@@ -47,7 +47,7 @@ const Login = (probs) => {
                     </div>
                     <span>{errMess}</span>
                     <div className="button-container">
-                        <input type="submit" content="Login" value="Login" onClick={() => onCLickLoginButton()} />
+                        <input type="submit" content="Login" value="Login" onClick={(e) => onCLickLoginButton(e)} />
                     </div>
                 </form>
             </div>

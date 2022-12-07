@@ -13,6 +13,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { connectServer, authenticate, socket } from '../socket';
 import { useRef } from 'react';
 import TestApi from '../components/containers/TestApi';
+import SocketConnector from '../components/untils/SocketConnector';
+import MessageLoader from '../components/untils/MessageLoader';
+
 const App = () => {
   useEffect(async () => {
     const token = await updateToken()
@@ -26,6 +29,8 @@ const App = () => {
   return (
     <Fragment>
       <TestApi />
+      <SocketConnector />
+      <MessageLoader />
       <BrowserRouter>
         <Switch>
           <Route exact path={paths.HOME} component={Home} />
