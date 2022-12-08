@@ -11,3 +11,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+html {
+  /* khử răng cưa đồ họa */
+  -webkit-font-smoothing: antialiased; 
+}
