@@ -9,7 +9,7 @@ const Home = (probs) => {
     function Feature({img, title, desc}) {
         return (
             <div className="feature">
-                <img src={img}/>
+                <img src={img} />
                 <span className="feature-title center">{title}</span>
                 <p className="feature-description">{desc}</p>
             </div>
@@ -20,9 +20,9 @@ const Home = (probs) => {
         <div className="homeContainer">
             <div className="navBar">
                 <span className="home title">BigCorp</span>
-                
+
                 <div className="logoContainer">
-                    <img className="logo" src="/logo.png" alt="BigCorp Logo"/>
+                    <img className="logo" src="/logo.png" alt="BigCorp Logo" />
                 </div>
 
                 <TruckBtn/>
@@ -34,7 +34,7 @@ const Home = (probs) => {
 
             <div className="featureContainer">
                 <span className="title center">Our features</span>
-                <Feature 
+                <Feature
                     className="one"
                     img="/banner/1642.jpg"
                     title="Outstanding design"
@@ -46,23 +46,20 @@ const Home = (probs) => {
                     title=""
                     desc=""
                 />
-                <Feature/>
-                <Feature/>
+                <Feature />
+                <Feature />
 
-                <Feature/>
-                <Feature/>
-                <Feature/>
-                <Feature/>
-                
+                <Feature />
+                <Feature />
+                <Feature />
+                <Feature />
+
             </div>
 
             <div className="footerContainer">
-
-                <div className="left column">
+                <div className="left">
                     <div className="left-info">
-                        <div className="logoContainer">
-                            <img className="logo" src="/logo.png" alt="BigCorp Logo"/>
-                        </div>
+                        <img className="logo" src="/logo.png" alt="BigCorp Logo" />
                         <span className="home title">BigCorp</span>
                         <div className="copyright">Copyright (C) 2022. All rights reserved.</div>
                     </div>
@@ -84,7 +81,7 @@ const Home = (probs) => {
 
 
             </div>
-        </div>
+        </div >
     )
 }
 
