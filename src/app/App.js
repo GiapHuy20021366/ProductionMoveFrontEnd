@@ -7,30 +7,29 @@ import { paths } from '../untils/constant';
 import { userIsAuthenticated, userIsNotAuthenticated } from '../components/hoc/authentication'
 import System from '../components/containers/System';
 import { updateToken } from './../untils/authenticate';
-import { toast, ToastContainer } from 'react-toastify';
-import ToastUtil from '../untils/toastUtil';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { connectServer, authenticate, socket } from '../socket';
-import { useRef } from 'react';
 import TestApi from '../components/containers/TestApi';
-import SocketConnector from '../components/untils/SocketConnector';
-import MessageLoader from '../components/untils/MessageLoader';
+import SocketConnector from '../components/until_components/SocketConnector';
+import MessageLoader from '../components/until_components/MessageLoader';
 
 const App = () => {
   useEffect(async () => {
     const token = await updateToken()
-    if (token) {
-      authenticate(token)
-    }
+    // if (token) {
+    //   authenticate(token)
+    // }
 
   }, [])
 
 
   return (
     <Fragment>
-      <TestApi />
+      {/* Here some until Component for system */}
+      {/* <TestApi /> */}
       <SocketConnector />
       <MessageLoader />
+      {/*  */}
       <BrowserRouter>
         <Switch>
           <Route exact path={paths.HOME} component={Home} />

@@ -1,12 +1,10 @@
 import React from "react"
-import { Navigate, Route, Switch } from 'react-router-dom';
+import { Navigate, Route, Switch, useHistory } from 'react-router-dom';
 import { gsap } from "gsap";
 import '../../styles/Home.scss'
 
 const Home = (probs) => {
-    // const history = useHistory()
-    // history.push(paths.LOGIN)
-    console.log(probs)
+    const history = useHistory()
 
     function onClickLogin(e) {
         let button = e.target.parentNode;
@@ -108,7 +106,7 @@ const Home = (probs) => {
     }
 
     function redirectToLoginPage() {
-        probs.history.push('/login')
+        history.push('/login')
     }
 
     function Feature({ img, title, desc }) {
@@ -177,7 +175,7 @@ const Home = (probs) => {
 
             <div className="footerContainer">
                 <div className="left">
-                    <div class="left-info">
+                    <div className="left-info">
                         <img className="logo" src="/logo.png" alt="BigCorp Logo" />
                         <span className="home title">BigCorp</span>
                         <div className="copyright">Copyright (C) 2022. All rights reserved.</div>
@@ -200,7 +198,7 @@ const Home = (probs) => {
 
 
             </div>
-        </div>
+        </div >
     )
 }
 
