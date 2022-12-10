@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Login from '../components/containers/Login';
 import Home from '../components/containers/Home';
+import Dashboard from '../components/containers/Dashboard';
 import '../styles/App.scss';
 import { paths } from '../untils/constant';
 import { userIsAuthenticated, userIsNotAuthenticated } from '../components/hoc/authentication'
@@ -28,6 +29,8 @@ const App = () => {
           <Route exact path={paths.HOME} component={Home} />
           <Route path={paths.LOGIN} component={userIsNotAuthenticated(Login)} />
           <Route path={paths.SYSTEM} component={userIsAuthenticated(System)} />
+          <Route path={paths.DASHBOARD} component={userIsAuthenticated(Dashboard)} />
+          
         </Switch>
       </BrowserRouter>
       <ToastContainer />
