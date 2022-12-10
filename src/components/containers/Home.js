@@ -57,7 +57,7 @@ const Home = (probs) => {
             </div>
 
             <div className="footerContainer">
-                <div className="left">
+                <div className="left column">
                     <div className="left-info">
                         <img className="logo" src="/logo.png" alt="BigCorp Logo" />
                         <span className="home title">BigCorp</span>
@@ -65,7 +65,7 @@ const Home = (probs) => {
                     </div>
 
                     <div className="left-subcribe">
-                        <span class="subscribe-text">Subscribe to our newsletter</span>
+                        <span className="subscribe-text">Subscribe to our newsletter</span>
                         <input type="text" placeholder="Email Address" className="email"></input>
                         <label htmlFor="email" className=""></label>
                     </div>

@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { loginUser } from "../../store/slices/userSlices"
 import '../../styles/Login.scss'
-
+import {paths} from '../../untils/constant'
 
 const Login = (probs) => {
     const userNameRef = useRef()
@@ -13,7 +13,6 @@ const Login = (probs) => {
 
     const onCLickLoginButton = (e) => {
         e.preventDefault()
-        console.log("I'm running");
         setErrMess('')
         dispatch(loginUser({
             userName: userNameRef.current.value,
@@ -21,14 +20,17 @@ const Login = (probs) => {
         })).catch((mess) => {
             setErrMess(mess.message)
         })
-        console.log("I'm running 2");
+    }
+
+    function turnBack() {
+        probs.history.push(paths.HOME)
     }
 
     return (
         <div className="page-white">
             <div className="login">
-                <span className="text">Login!</span>
-                <form action="" method="post" className="login-form">
+                <form className="login-form" action="" method="post">
+                    <h1 className="text">Welcome</h1>
                     <div className="input-container">
                         <input
                             type="text"
@@ -49,6 +51,9 @@ const Login = (probs) => {
                     <div className="button-container">
                         <input type="submit" content="Login" value="Login" onClick={(e) => onCLickLoginButton(e)} />
                     </div>
+                    <button class="backBtn" onClick={() => turnBack()}>
+                        <img src="/backBtn.png" alt="return" />
+                    </button>
                 </form>
             </div>
         </div>
