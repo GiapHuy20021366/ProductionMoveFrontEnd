@@ -9,7 +9,7 @@ import System from '../components/containers/System';
 import { updateToken } from './../untils/authenticate';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import TestApi from '../components/containers/TestApi';
+import TestApi from '../components/until_components/TestApi';
 import SocketConnector from '../components/until_components/SocketConnector';
 import MessageLoader from '../components/until_components/MessageLoader';
 
@@ -26,7 +26,7 @@ const App = () => {
   return (
     <Fragment>
       {/* Here some until Component for system */}
-      {/* <TestApi /> */}
+      <TestApi />
       <SocketConnector />
       <MessageLoader />
       {/*  */}
