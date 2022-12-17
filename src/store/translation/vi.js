@@ -27,6 +27,10 @@ const vi = {
     account_status: 'Trạng thái',
     account_status_enable: 'Khả dụng',
     account_status_disable: 'Không khả dụng',
-    admin_accounts: 'Các tài khoản'
+    admin_accounts: 'Các tài khoản',
+    accounts_new_account: 'Thêm tài khoản mới',
+    account_userName: 'Tài khoản',
+    account_password: 'Mật khẩu',
+    account_create_success: 'Tạo Tài Khoản Mới Thành Công'
 }
 export default vi

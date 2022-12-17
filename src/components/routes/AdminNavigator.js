@@ -27,9 +27,9 @@ const AdminNavigator = (probs) => {
                     className="nav-link collapsed"
                     href="#"
                     data-toggle="collapse"
-                    data-target="#collapseLanguage"
+                    data-target="#collapseAccounts"
                     aria-expanded="true"
-                    aria-controls="collapseLanguage"
+                    aria-controls="collapseAccounts"
                     onClick={() => onClickAccounts()}
                 >
                     <i className="fas fa-fw fa-wrench"></i>

@@ -27,8 +27,11 @@ const en = {
     account_status: 'Status',
     account_status_enable: 'Enable',
     account_status_disable: 'Disable',
-    admin_accounts: 'Accounts'
-
+    admin_accounts: 'Accounts',
+    accounts_new_account: 'Add new account',
+    account_userName: 'UserName',
+    account_password: 'Password',
+    account_create_success: 'Create Account Successful!'
 }
 
 export default en
