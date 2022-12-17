@@ -1,8 +1,11 @@
 .homeContainer {
-    margin    : 0;
-    padding   : 0;
-    box-sizing: border-box;
-    font-size : 24px;
+
+    * {
+        margin    : 0;
+        padding   : 0;
+        box-sizing: border-box;
+        font-size : 24px;
+    }
 
     // general
     .center {
@@ -12,7 +15,7 @@
     }
 
     .title {
-        font-size: 1rem;
+        font-size: 1.5rem;
     }
 
     .logo {
@@ -109,12 +112,12 @@
             }
 
             .feature-title {
-                font-size  : 0.7rem;
+                font-size  : 1.05rem;
                 padding-top: 4px;
             }
 
             .feature-description {
-                font-size  : 0.5rem;
+                font-size  : 0.75rem;
                 padding-top: 7px;
                 text-align : justify;
             }
@@ -126,15 +129,15 @@
 
         * {
             .title {
-                font-size: 1rem;
+                font-size: 1.5rem;
             }
 
             .subscribe-text,
             .column.right>* {
-                font-size: 0.7rem;
+                font-size: 1.05rem;
             }
 
-            font-size: 0.5rem;
+            font-size: 0.75rem;
         }
 
         .column {
@@ -158,7 +161,7 @@
                     padding: 12px 0;
 
                     >* {
-                        font-size: 0.7rem;
+                        font-size: 1.05rem;
                     }
                 }
             }
@@ -169,7 +172,7 @@
 
                 >* {
                     display  : block;
-                    font-size: 0.7rem;
+                    font-size: 1.05rem;
                 }
             }
 
