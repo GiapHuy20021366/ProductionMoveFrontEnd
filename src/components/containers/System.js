@@ -16,6 +16,7 @@ import Dashboard from "./DashBoard";
 import Account from "./Account";
 import Home from "./Home";
 import HomeSystem from "./HomeSystem";
+import AdminAccounts from "./AdminAccounts";
 
 const System = (probs) => {
   // useEffect(() => {
@@ -36,6 +37,7 @@ const System = (probs) => {
               <Switch>
                 <Route exact path={paths.SYSTEM} component={HomeSystem} />
                 <Route path={paths.ACCOUNT} component={Account} />
+                <Route path={paths.ADMIN_ACCOUNTs} component={AdminAccounts} />
               </Switch>
             </div>
             {/* <footer className="sticky-footer bg-white">

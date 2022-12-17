@@ -26,6 +26,7 @@ const vi = {
     account_birth: 'Sinh nhật',
     account_status: 'Trạng thái',
     account_status_enable: 'Khả dụng',
-    account_status_disable: 'Không khả dụng'
+    account_status_disable: 'Không khả dụng',
+    admin_accounts: 'Các tài khoản'
 }
 export default vi

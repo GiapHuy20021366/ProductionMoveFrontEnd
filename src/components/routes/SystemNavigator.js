@@ -9,6 +9,7 @@ import "../../styles/font.css";
 import LanguageChooser from "../sub_components/LanguageChooser";
 import { useHistory } from "react-router";
 import { paths } from "../../untils/constant";
+import AdminNavigator from "./AdminNavigator";
 
 
 
@@ -16,20 +17,28 @@ import { paths } from "../../untils/constant";
 const SystemNagivator = (probs) => {
   const lang = useSelector(state => state.lang)
   const history = useHistory()
+  const account = useSelector(state => state.user.account)
+
   const onClickHome = () => {
+    history.push(paths.HOME)
+  }
+
+  const onClickHomeSystem = () => {
     history.push(paths.SYSTEM)
   }
+
   const onClickAccount = () => {
     history.push(paths.ACCOUNT)
   }
+
   return (
     <ul
       className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
       id="accordionSidebar"
     >
       <a
-        className="sidebar-brand d-flex align-items-center justify-content-center"
-        href="index.html"
+        className="sidebar-brand d-flex align-items-center justify-content-center pointer"
+        onClick={() => onClickHome()}
       >
         <div className="sidebar-brand-icon ">
           <img
@@ -44,7 +53,7 @@ const SystemNagivator = (probs) => {
       <hr className="sidebar-divider my-0" />
 
       <li className={`nav-item ${history.location.pathname === paths.SYSTEM ? 'active' : ''}`}>
-        <a className="nav-link pointer" onClick={() => onClickHome()}>
+        <a className="nav-link pointer" onClick={() => onClickHomeSystem()}>
           <i className="fas fa-fw fa-tachometer-alt"></i>
           <span>{lang.system_home}</span>
         </a>
@@ -56,6 +65,12 @@ const SystemNagivator = (probs) => {
           <span>{lang.system_account}</span>
         </a>
       </li>
+
+      {
+        account?.role === 1 ?
+          <AdminNavigator /> :
+          <></>
+      }
 
       <hr className="sidebar-divider" />
 

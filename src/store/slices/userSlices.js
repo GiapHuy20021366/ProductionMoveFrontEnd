@@ -5,7 +5,7 @@ import { saveItem, dropItem } from '../../untils/localStorageUntils'
 
 const initialState = {
     account: null,
-    isLoggedIn: false
+    isLoggedIn: false,
 }
 
 export const loginUser = createAsyncThunk(

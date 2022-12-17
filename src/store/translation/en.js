@@ -27,6 +27,7 @@ const en = {
     account_status: 'Status',
     account_status_enable: 'Enable',
     account_status_disable: 'Disable',
+    admin_accounts: 'Accounts'
 
 }
 

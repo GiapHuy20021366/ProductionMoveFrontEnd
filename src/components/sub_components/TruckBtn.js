@@ -17,6 +17,9 @@ const TruckBtn = (probs) => {
         if (user.isLoggedIn) {
             history.push(paths.SYSTEM)
             return
+        } else {
+            history.push(paths.LOGIN)
+            return
         }
 
         let box = button.querySelector('.box'),

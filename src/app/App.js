@@ -36,8 +36,6 @@ const App = () => {
           <Route exact path={paths.HOME} component={Home} />
           <Route path={paths.LOGIN} component={userIsNotAuthenticated(Login)} />
           <Route path={paths.SYSTEM} component={userIsAuthenticated(System)} />
-          <Route path={paths.DASHBOARD} component={userIsAuthenticated(Dashboard)} />
-
         </Switch>
       </BrowserRouter>
       <ToastContainer />

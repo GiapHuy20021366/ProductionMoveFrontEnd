@@ -2,7 +2,8 @@ export const paths = {
     HOME: '/',
     LOGIN: '/login',
     SYSTEM: '/system',
-    ACCOUNT: '/system/account'
+    ACCOUNT: '/system/account',
+    ADMIN_ACCOUNTs: '/system/admin/accounts'
 }
 
 export const messageTitles = {
