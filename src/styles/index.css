@@ -20,3 +20,8 @@ html {
 .pointer {
   cursor: pointer;
 }
+
+ol,
+li {
+  list-style: none;
+}
