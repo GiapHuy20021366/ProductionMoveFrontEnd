@@ -1,7 +1,8 @@
 export const paths = {
     HOME: '/',
     LOGIN: '/login',
-    SYSTEM: '/system'
+    SYSTEM: '/system',
+    ACCOUNT: '/system/account'
 }
 
 export const messageTitles = {

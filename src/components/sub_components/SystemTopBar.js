@@ -18,6 +18,9 @@ const SystemTopBar = () => {
         history.push(paths.HOME);
         dispatch(userLogout());
     };
+    const onClickAccount = () => {
+        history.push(paths.ACCOUNT)
+    }
     const account = useSelector(state => state.user.account)
     return (
         <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -52,12 +55,25 @@ const SystemTopBar = () => {
                             href="#"
                             data-toggle="modal"
                             onClick={() => {
+                                onClickAccount();
+                            }}
+                        >
+                            <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                            {lang.system_topbar_account}
+                        </a>
+
+                        <a
+                            className="dropdown-item"
+                            href="#"
+                            data-toggle="modal"
+                            onClick={() => {
                                 onClickLogout();
                             }}
                         >
                             <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                             {lang.logout}
                         </a>
+
                     </div>
                 </li>
             </ul>

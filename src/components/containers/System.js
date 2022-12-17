@@ -13,6 +13,9 @@ import "../../vendor/bootstrap/js/bootstrap.bundle.min";
 import "../../styles/sb-admin-2.min.css";
 import "../../styles/font.css";
 import Dashboard from "./DashBoard";
+import Account from "./Account";
+import Home from "./Home";
+import HomeSystem from "./HomeSystem";
 
 const System = (probs) => {
   // useEffect(() => {
@@ -31,7 +34,8 @@ const System = (probs) => {
               <SystemTopBar />
               {/* Redirect depend on path */}
               <Switch>
-                <Route exact path={paths.SYSTEM} component={Dashboard} />
+                <Route exact path={paths.SYSTEM} component={HomeSystem} />
+                <Route path={paths.ACCOUNT} component={Account} />
               </Switch>
             </div>
             {/* <footer className="sticky-footer bg-white">

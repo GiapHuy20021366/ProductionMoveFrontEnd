@@ -9,6 +9,9 @@ const vi = {
     login_userName: 'Tài khoản',
     login_password: 'Mật khẩu',
     login_wellcome: 'Chào mừng',
-    login_login: 'ĐĂNG NHẬP'
+    login_login: 'ĐĂNG NHẬP',
+    system_topbar_account: 'Tài khoản',
+    system_home: 'Nhà',
+    system_display: 'Hiển thị'
 }
 export default vi
