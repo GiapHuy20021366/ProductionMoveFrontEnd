@@ -19,6 +19,9 @@ const SystemNagivator = (probs) => {
   const onClickHome = () => {
     history.push(paths.SYSTEM)
   }
+  const onClickAccount = () => {
+    history.push(paths.ACCOUNT)
+  }
   return (
     <ul
       className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
@@ -44,6 +47,13 @@ const SystemNagivator = (probs) => {
         <a className="nav-link pointer" onClick={() => onClickHome()}>
           <i className="fas fa-fw fa-tachometer-alt"></i>
           <span>{lang.system_home}</span>
+        </a>
+      </li>
+
+      <li className={`nav-item ${history.location.pathname === paths.ACCOUNT ? 'active' : ''}`}>
+        <a className="nav-link pointer" onClick={() => onClickAccount()}>
+          <i className="fas fa-fw fa-tachometer-alt"></i>
+          <span>{lang.system_account}</span>
         </a>
       </li>
 

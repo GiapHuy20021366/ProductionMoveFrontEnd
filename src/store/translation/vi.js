@@ -12,6 +12,20 @@ const vi = {
     login_login: 'ĐĂNG NHẬP',
     system_topbar_account: 'Tài khoản',
     system_home: 'Nhà',
-    system_display: 'Hiển thị'
+    system_display: 'Hiển thị',
+    system_account: 'Tài khoản',
+    account_name: 'Tên',
+    account_admin: 'Quản trị viên',
+    account_dealer: 'Đại lý',
+    account_factory: 'Nhà máy',
+    account_maintain_center: 'Trung tâm BH',
+    account_role: 'Vai trò',
+    account_email: 'Email',
+    account_phone: 'Số điện thoại',
+    account_address: 'Địa chỉ',
+    account_birth: 'Sinh nhật',
+    account_status: 'Trạng thái',
+    account_status_enable: 'Khả dụng',
+    account_status_disable: 'Không khả dụng'
 }
 export default vi
