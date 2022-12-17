@@ -26,7 +26,7 @@ const App = () => {
   return (
     <Fragment>
       {/* Here some until Component for system */}
-      <TestApi />
+      {/* <TestApi /> */}
       <SocketConnector />
       <MessageLoader />
       {/*  */}
