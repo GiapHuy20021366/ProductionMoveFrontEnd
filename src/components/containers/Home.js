@@ -1,115 +1,12 @@
 import React from "react"
-import { Navigate, Route, Switch, useHistory } from 'react-router-dom';
-import { gsap } from "gsap";
+import { Navigate, Route, Switch } from 'react-router-dom';
+import TruckBtn from './TruckBtn'
 import '../../styles/Home.scss'
 
 const Home = (probs) => {
-    const history = useHistory()
+    console.log(probs)
 
-    function onClickLogin(e) {
-        let button = e.target.parentNode;
-
-        e.preventDefault();
-
-        let box = button.querySelector('.box'),
-            truck = button.querySelector('.truck');
-
-        if (!button.classList.contains('done')) {
-
-            if (!button.classList.contains('animation')) {
-
-                button.classList.add('animation');
-
-                gsap.to(button, {
-                    '--box-s': 1,
-                    '--box-o': 1,
-                    duration: .3,
-                    delay: .5
-                });
-
-                gsap.to(box, {
-                    x: 0,
-                    duration: .4,
-                    delay: .7
-                });
-
-                gsap.to(button, {
-                    '--hx': -5,
-                    '--bx': 50,
-                    duration: .18,
-                    delay: .92
-                });
-
-                gsap.to(box, {
-                    y: 0,
-                    duration: .1,
-                    delay: 1.15
-                });
-
-                gsap.set(button, {
-                    '--truck-y': 0,
-                    '--truck-y-n': -26
-                });
-
-                gsap.to(button, {
-                    '--truck-y': 1,
-                    '--truck-y-n': -25,
-                    duration: .2,
-                    delay: 1.25,
-                    onComplete() {
-                        gsap.timeline({
-                            onComplete() {
-                                button.classList.add('done');
-                                button.style.background = 'none';
-                                redirectToLoginPage()
-                            }
-                        }).to(truck, {
-                            x: 0,
-                            duration: .4
-                        }).to(truck, {
-                            x: 40,
-                            duration: 1
-                        }).to(truck, {
-                            x: 20,
-                            duration: .6
-                        }).to(truck, {
-                            x: 96,
-                            duration: .4
-                        });
-                        gsap.to(button, {
-                            '--progress': 1,
-                            duration: 2.4,
-                            ease: "power2.in"
-                        });
-                    }
-                });
-            }
-        } else {
-            button.classList.remove('animation', 'done');
-            gsap.set(truck, {
-                x: 4
-            });
-            gsap.set(button, {
-                '--progress': 0,
-                '--hx': 0,
-                '--bx': 0,
-                '--box-s': .5,
-                '--box-o': 0,
-                '--truck-y': 0,
-                '--truck-y-n': -26
-            });
-            gsap.set(box, {
-                x: -24,
-                y: -6
-            });
-        }
-    }
-
-    function redirectToLoginPage() {
-        history.push('/login')
-    }
-
-    function Feature({ img, title, desc }) {
+    function Feature({img, title, desc}) {
         return (
             <div className="feature">
                 <img src={img} />
@@ -128,21 +25,7 @@ const Home = (probs) => {
                     <img className="logo" src="/logo.png" alt="BigCorp Logo" />
                 </div>
 
-                <button className="truck-button loginBtn" onClick={onClickLogin}>
-                    <span className="default">Login</span>
-                    <span className="success">
-                        Success
-                        <svg viewBox="0 0 12 10">
-                            <polyline points="1.5 6 4.5 9 10.5 1"></polyline>
-                        </svg>
-                    </span>
-                    <div className="truck">
-                        <div className="wheel"></div>
-                        <div className="back"></div>
-                        <div className="front"></div>
-                        <div className="box"></div>
-                    </div>
-                </button>
+                <TruckBtn/>
             </div>
 
             <div className="bannerContainer">
@@ -174,7 +57,7 @@ const Home = (probs) => {
             </div>
 
             <div className="footerContainer">
-                <div className="left">
+                <div className="left column">
                     <div className="left-info">
                         <img className="logo" src="/logo.png" alt="BigCorp Logo" />
                         <span className="home title">BigCorp</span>
@@ -182,7 +65,7 @@ const Home = (probs) => {
                     </div>
 
                     <div className="left-subcribe">
-                        <span id="subcribe-text">Subcribe to our newsletter</span>
+                        <span className="subscribe-text">Subscribe to our newsletter</span>
                         <input type="text" placeholder="Email Address" className="email"></input>
                         <label htmlFor="email" className=""></label>
                     </div>
