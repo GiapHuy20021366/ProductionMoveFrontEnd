@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { loginUser } from "../../store/slices/userSlices"
 import '../../styles/Login.scss'
-import {paths} from '../../untils/constant'
+import { paths } from '../../untils/constant'
 
 const Login = (probs) => {
     const userNameRef = useRef()
@@ -22,6 +22,39 @@ const Login = (probs) => {
         })
     }
 
+    const onFocusInput = (e) => {
+        setErrMess('')
+        const target = e.target
+        const length = target.value.length
+        target.setSelectionRange(0, length)
+    }
+
+    const onPressKeyDown = (e) => {
+        switch (e.code) {
+            case 'Enter':
+                if (e.target === userNameRef.current) {
+                    passwordRef.current.focus()
+                    return
+                }
+                if (e.target === passwordRef.current) {
+                    onCLickLoginButton(e)
+                }
+                break
+            case 'ArrowUp':
+                if (e.target === passwordRef.current) {
+                    userNameRef.current.focus()
+                }
+                break
+            case 'ArrowDown':
+                if (e.target === userNameRef.current) {
+
+                    passwordRef.current.focus()
+                }
+                break
+        }
+
+    }
+
     function turnBack() {
         probs.history.push(paths.HOME)
     }
@@ -37,6 +70,8 @@ const Login = (probs) => {
                             className="input-box"
                             placeholder="Username"
                             ref={userNameRef} required
+                            onKeyDown={(e) => onPressKeyDown(e)}
+                            onFocus={(e) => onFocusInput(e)}
                         />
                     </div>
                     <div className="input-container">
@@ -45,13 +80,15 @@ const Login = (probs) => {
                             className="input-box"
                             placeholder="Password"
                             ref={passwordRef} required
+                            onKeyDown={(e) => onPressKeyDown(e)}
+                            onFocus={(e) => onFocusInput(e)}
                         />
                     </div>
                     <span>{errMess}</span>
                     <div className="button-container">
                         <input type="submit" content="Login" value="Login" onClick={(e) => onCLickLoginButton(e)} />
                     </div>
-                    <button class="backBtn" onClick={() => turnBack()}>
+                    <button className="backBtn" onClick={() => turnBack()}>
                         <img src="/backBtn.png" alt="return" />
                     </button>
                 </form>
