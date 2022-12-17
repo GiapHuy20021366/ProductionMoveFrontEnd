@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import '../../styles/Dashboard.css'
 import "../../js/sb-admin-2.min";
 import "../../vendor/jquery/jquery.min";
@@ -13,10 +13,12 @@ import { userLogout } from "../../store/slices/userSlices";
 const SystemTopBar = () => {
     const history = useHistory();
     const dispatch = useDispatch()
+    const lang = useSelector(state => state.lang)
     const onClickLogout = () => {
         history.push(paths.HOME);
         dispatch(userLogout());
     };
+    const account = useSelector(state => state.user.account)
     return (
         <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
             <ul className="navbar-nav ml-auto">
@@ -33,7 +35,7 @@ const SystemTopBar = () => {
                         aria-expanded="false"
                     >
                         <span className="mr-2 d-none d-lg-inline text-gray-600 small">
-                            Douglas McGee
+                            {account.name}
                         </span>
                         <img
                             className="img-profile rounded-circle"
@@ -54,7 +56,7 @@ const SystemTopBar = () => {
                             }}
                         >
                             <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                            Logout
+                            {lang.logout}
                         </a>
                     </div>
                 </li>

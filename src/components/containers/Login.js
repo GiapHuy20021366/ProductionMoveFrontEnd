@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { loginUser } from "../../store/slices/userSlices"
 import '../../styles/Login.scss'
 import { paths } from '../../untils/constant'
@@ -10,6 +10,7 @@ const Login = (probs) => {
     const [errMess, setErrMess] = useState('')
     const [isLogging, setIsLogging] = useState(false)
     const dispatch = useDispatch()
+    const lang = useSelector(state => state.lang)
 
     const onCLickLoginButton = (e) => {
         e.preventDefault()
@@ -32,6 +33,7 @@ const Login = (probs) => {
     const onPressKeyDown = (e) => {
         switch (e.code) {
             case 'Enter':
+                e.preventDefault()
                 if (e.target === userNameRef.current) {
                     passwordRef.current.focus()
                     return
@@ -63,12 +65,12 @@ const Login = (probs) => {
         <div className="page-white">
             <div className="login">
                 <form className="login-form" action="" method="post">
-                    <h1 className="text">Welcome</h1>
+                    <h1 className="text">{lang.login_wellcome}</h1>
                     <div className="input-container">
                         <input
                             type="text"
                             className="input-box"
-                            placeholder="Username"
+                            placeholder={lang.login_userName}
                             ref={userNameRef} required
                             onKeyDown={(e) => onPressKeyDown(e)}
                             onFocus={(e) => onFocusInput(e)}
@@ -78,7 +80,7 @@ const Login = (probs) => {
                         <input
                             type="password"
                             className="input-box"
-                            placeholder="Password"
+                            placeholder={lang.login_password}
                             ref={passwordRef} required
                             onKeyDown={(e) => onPressKeyDown(e)}
                             onFocus={(e) => onFocusInput(e)}
@@ -86,7 +88,7 @@ const Login = (probs) => {
                     </div>
                     <span>{errMess}</span>
                     <div className="button-container">
-                        <input type="submit" content="Login" value="Login" onClick={(e) => onCLickLoginButton(e)} />
+                        <input type="submit" content="Login" value={lang.login_login} onClick={(e) => onCLickLoginButton(e)} />
                     </div>
                     <button className="backBtn" onClick={() => turnBack()}>
                         <img src="/backBtn.png" alt="return" />

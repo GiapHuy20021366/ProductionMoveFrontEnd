@@ -6,6 +6,7 @@ import "../../vendor/jquery/jquery.min";
 import "../../vendor/bootstrap/js/bootstrap.bundle.min";
 import "../../styles/sb-admin-2.min.css";
 import "../../styles/font.css";
+import LanguageChooser from "../sub_components/LanguageChooser";
 
 
 
@@ -107,6 +108,8 @@ const SystemNagivator = (probs) => {
           </div>
         </div>
       </li>
+
+      <LanguageChooser />
 
       <hr className="sidebar-divider" />
 

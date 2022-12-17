@@ -1,12 +1,14 @@
 import React from "react"
 import { Navigate, Route, Switch } from 'react-router-dom';
-import TruckBtn from './TruckBtn'
+import TruckBtn from '../sub_components/TruckBtn'
 import '../../styles/Home.scss'
+import { useSelector } from 'react-redux';
+
 
 const Home = (probs) => {
-    console.log(probs)
+    const lang = useSelector(state => state.lang)
 
-    function Feature({img, title, desc}) {
+    function Feature({ img, title, desc }) {
         return (
             <div className="feature">
                 <img src={img} />
@@ -25,7 +27,7 @@ const Home = (probs) => {
                     <img className="logo" src="/logo.png" alt="BigCorp Logo" />
                 </div>
 
-                <TruckBtn/>
+                <TruckBtn />
             </div>
 
             <div className="bannerContainer">
