@@ -52,6 +52,7 @@ export const messageSlice = createSlice({
         builder.addCase(getMessages.fulfilled, (state, action) => {
             const listMessages = action.payload.data.rows
             listMessages.forEach(message => {
+                // console.log(message.content)
                 message.content = JSON.parse(message.content)
             });
             listMessages.forEach(message => {

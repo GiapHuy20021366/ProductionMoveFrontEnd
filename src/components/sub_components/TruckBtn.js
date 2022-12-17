@@ -1,22 +1,33 @@
 import React from 'react';
-import {useHistory} from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import '../../styles/TruckBtn.scss'
 import { gsap } from "gsap";
+import { useSelector } from 'react-redux';
+import { paths } from '../../untils/constant';
 
 const TruckBtn = (probs) => {
     const history = useHistory()
-    
+    const lang = useSelector(state => state.lang)
+    const user = useSelector(state => state.user)
     function onClickLogin(e) {
         let button = e.target.parentNode;
-        
+
         e.preventDefault();
-        
+
+        if (user.isLoggedIn) {
+            history.push(paths.SYSTEM)
+            return
+        } else {
+            history.push(paths.LOGIN)
+            return
+        }
+
         let box = button.querySelector('.box'),
             truck = button.querySelector('.truck');
-        
-        if(!button.classList.contains('done')) {
-            
-            if(!button.classList.contains('animation')) {
+
+        if (!button.classList.contains('done')) {
+
+            if (!button.classList.contains('animation')) {
 
                 button.classList.add('animation');
 
@@ -106,12 +117,12 @@ const TruckBtn = (probs) => {
     }
 
     function redirectToLoginPage() {
-        history.push('/login')
+        history.push(paths.LOGIN)
     }
 
     return (
         <button className="truck-button loginBtn" onClick={onClickLogin}>
-            <span className="default">Login</span>
+            <span className="default">{user.isLoggedIn ? lang.system : lang.login}</span>
             <span className="success">
                 Success
                 <svg viewBox="0 0 12 10">
