@@ -90,9 +90,9 @@ const Login = (probs) => {
                     <div className="button-container">
                         <input type="submit" content="Login" value={lang.login_login} onClick={(e) => onCLickLoginButton(e)} />
                     </div>
-                    <button className="backBtn" onClick={() => turnBack()}>
-                        <img src="/backBtn.png" alt="return" />
-                    </button>
+                    <div className="backBtn">
+                        <img src="/backBtn.png" alt="return" onClick={() => turnBack()}/>
+                    </div>
                 </form>
             </div>
         </div>
