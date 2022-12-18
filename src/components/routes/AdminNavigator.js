@@ -15,7 +15,6 @@ const AdminNavigator = (probs) => {
     const history = probs.history
     const onClickAccounts = () => {
         history.push(paths.ADMIN_ACCOUNTs)
-        console.log(history)
     }
     return (
         <>
