@@ -1,8 +1,8 @@
 import React, { useRef, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { loginUser } from "../../store/slices/userSlices"
 import '../../styles/Login.scss'
-
+import { paths } from '../../untils/constant'
 
 const Login = (probs) => {
     const userNameRef = useRef()
@@ -10,10 +10,10 @@ const Login = (probs) => {
     const [errMess, setErrMess] = useState('')
     const [isLogging, setIsLogging] = useState(false)
     const dispatch = useDispatch()
+    const lang = useSelector(state => state.lang)
 
     const onCLickLoginButton = (e) => {
         e.preventDefault()
-        console.log("I'm running");
         setErrMess('')
         dispatch(loginUser({
             userName: userNameRef.current.value,
@@ -21,34 +21,78 @@ const Login = (probs) => {
         })).catch((mess) => {
             setErrMess(mess.message)
         })
-        console.log("I'm running 2");
+    }
+
+    const onFocusInput = (e) => {
+        setErrMess('')
+        const target = e.target
+        const length = target.value.length
+        target.setSelectionRange(0, length)
+    }
+
+    const onPressKeyDown = (e) => {
+        switch (e.code) {
+            case 'Enter':
+                e.preventDefault()
+                if (e.target === userNameRef.current) {
+                    passwordRef.current.focus()
+                    return
+                }
+                if (e.target === passwordRef.current) {
+                    onCLickLoginButton(e)
+                }
+                break
+            case 'ArrowUp':
+                if (e.target === passwordRef.current) {
+                    userNameRef.current.focus()
+                }
+                break
+            case 'ArrowDown':
+                if (e.target === userNameRef.current) {
+
+                    passwordRef.current.focus()
+                }
+                break
+        }
+
+    }
+
+    function turnBack() {
+        probs.history.push(paths.HOME)
     }
 
     return (
         <div className="page-white">
             <div className="login">
-                <span className="text">Login!</span>
-                <form action="" method="post" className="login-form">
+                <form className="login-form" action="" method="post">
+                    <h1 className="text">{lang.login_wellcome}</h1>
                     <div className="input-container">
                         <input
                             type="text"
                             className="input-box"
-                            placeholder="Username"
+                            placeholder={lang.login_userName}
                             ref={userNameRef} required
+                            onKeyDown={(e) => onPressKeyDown(e)}
+                            onFocus={(e) => onFocusInput(e)}
                         />
                     </div>
                     <div className="input-container">
                         <input
                             type="password"
                             className="input-box"
-                            placeholder="Password"
+                            placeholder={lang.login_password}
                             ref={passwordRef} required
+                            onKeyDown={(e) => onPressKeyDown(e)}
+                            onFocus={(e) => onFocusInput(e)}
                         />
                     </div>
                     <span>{errMess}</span>
                     <div className="button-container">
-                        <input type="submit" content="Login" value="Login" onClick={(e) => onCLickLoginButton(e)} />
+                        <input type="submit" content="Login" value={lang.login_login} onClick={(e) => onCLickLoginButton(e)} />
                     </div>
+                    <button className="backBtn" onClick={() => turnBack()}>
+                        <img src="/backBtn.png" alt="return" />
+                    </button>
                 </form>
             </div>
         </div>

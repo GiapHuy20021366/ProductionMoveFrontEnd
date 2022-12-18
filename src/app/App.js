@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Login from '../components/containers/Login';
 import Home from '../components/containers/Home';
+import Dashboard from '../components/routes/SystemNavigator';
 import '../styles/App.scss';
 import { paths } from '../untils/constant';
 import { userIsAuthenticated, userIsNotAuthenticated } from '../components/hoc/authentication'
@@ -9,7 +10,7 @@ import System from '../components/containers/System';
 import { updateToken } from './../untils/authenticate';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import TestApi from '../components/containers/TestApi';
+import TestApi from '../components/until_components/TestApi';
 import SocketConnector from '../components/until_components/SocketConnector';
 import MessageLoader from '../components/until_components/MessageLoader';
 

@@ -9,7 +9,7 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
-:root {
+ :root {
     --blue: #4e73df;
     --indigo: #6610f2;
     --purple: #6f42c1;
@@ -125,34 +125,6 @@ ul {
     margin-top: 0;
     margin-bottom: 1rem
 }
-
-
-.react-bootstrap-table-pagination {
-    width: inherit;
-}
-
-
-
-.dropdown ul li {
-    padding: 0;
-    margin: 0;
-  }
-  
-  .dropdown ul li a:link, .dropdown ul li a:visited {
-    display: inline-block;
-    padding: 10px 0.8rem;
-    width: 100%;
-    box-sizing: border-box;
-    
-    color: var(--dropdown-color);
-    text-decoration: none;
-  }
-  
-  .dropdown ul li a:hover {
-    background-color: var(--dropdown-highlight);
-    color: var(--dropdown-background);
-  }
-  
 
 ol ol,
 ol ul,
