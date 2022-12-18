@@ -1,16 +1,22 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import BootstrapTable from 'react-bootstrap-table-next';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import '../../styles/Dashboard.css'
 import "../../js/sb-admin-2.min";
 import "../../vendor/jquery/jquery.min";
 import "../../vendor/bootstrap/js/bootstrap.bundle.min";
 import "../../styles/sb-admin-2.min.css";
 import "../../styles/font.css";
+import "../../vendor/datatables/dataTables.bootstrap4.min.css";
 import { Redirect } from "react-router";
 import { paths } from "../../untils/constant";
 import axios from '../../axios'
 import AccountCreater from "../sub_components/AccountCreater";
+import TableBase from "../sub_components/Table"
 import ToastUtil from "../../untils/toastUtil";
+import paginationFactory from 'react-bootstrap-table2-paginator';
 
 
 const AdminAccounts = () => {
@@ -21,7 +27,9 @@ const AdminAccounts = () => {
     const [errorMessage, setErrorMessage] = useState('')
     const [createAccountVisible, setCreateAccountVisible] = useState(false)
     const [statusCreateAccount, setStatusCreateAccount] = useState('')
+ 
 
+ 
     const handleResultCreateAccount = (newAccount) => {
         console.log(newAccount)
         const listCopy = { ...listPartners }
@@ -81,6 +89,22 @@ const AdminAccounts = () => {
         setCreateAccountVisible(!createAccountVisible)
     }
 
+
+    const columns = [
+        { dataField: 'id', text: 'Id' },
+        { dataField: 'name', text: lang.account_name },
+        { dataField: 'email', text: lang.account_email },
+        { dataField: 'phone', text: lang.account_phone },
+        { dataField: 'address', text:  lang.account_address},
+        { dataField: 'role', text: lang.account_role }
+    ]
+
+    const arrayPartners = Object.values(listPartners)
+    for (var i = 0; i < arrayPartners.length; i++) {
+        arrayPartners[i].role = getRole(arrayPartners[i].role)
+    }
+
+    
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -93,44 +117,11 @@ const AdminAccounts = () => {
                 <AccountCreater handleResult={handleResultCreateAccount} />
             }
 
-            <div className="row">
-                <div className="account_inf-container col-12 ml-5">
-                    {
-                        partnersloading &&
-                        <div>Loading...</div>
-                    }
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>{lang.account_name}</th>
-                                <th>{lang.account_email}</th>
-                                <th>{lang.account_phone}</th>
-                                <th>{lang.account_address}</th>
-                                <th>{lang.account_role}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                                Object.keys(listPartners).map((partnerId) => {
-                                    const partner = listPartners[partnerId]
-                                    const role = getRole(partner.role)
-                                    return (
-                                        <tr key={partner.id}>
-                                            <td>{partner.id}</td>
-                                            <td>{partner.name}</td>
-                                            <td>{partner.email}</td>
-                                            <td>{partner.phone}</td>
-                                            <td>{partner.address}</td>
-                                            <td>{role}</td>
-                                        </tr>
-                                    )
-                                })
-                            }
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <TableBase
+                arrayPartners = {arrayPartners}
+                columns = {columns}
+                partnersloading = {partnersloading}
+            />
         </div>
     )
 }
