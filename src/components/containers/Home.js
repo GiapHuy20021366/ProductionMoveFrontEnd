@@ -13,15 +13,30 @@ const Home = (probs) => {
         return (
             <div className="feature">
                 <img src={img} />
-                <span className="feature-title center">{title}</span>
+                <span className="feature-name center">{title}</span>
                 <p className="feature-description">{desc}</p>
             </div>
         )
     }
 
+    function onScroll() {
+        let scrollTrigger = 60;
+        window.onscroll = function () {
+            // We add pageYOffset for compatibility with IE.
+            if (window.scrollY >= scrollTrigger || window.pageYOffset >= scrollTrigger) {
+                document.querySelector(".navBar").classList.add("onscroll");
+                console.log();
+            } else {
+                document.querySelector(".navBar").classList.remove("onscroll");
+            }
+        };
+    }
+
+    onScroll();
+
     return (
         <div className="homeContainer">
-            <div className="navBar">
+            <div className="navBar" onChange={(e) => onScrollNavBar(e)}>
                 <span className="home title">BigCorp</span>
 
                 <div className="logoContainer">
@@ -37,26 +52,32 @@ const Home = (probs) => {
 
             <div className="featureContainer">
                 <span className="title center">Our features</span>
-                <Feature
-                    className="one"
-                    img="/banner/1642.jpg"
-                    title="Outstanding design"
-                    desc="Designed to be flexible according to all your needs. Create your site with all module position."
-                />
-                <Feature
-                    className="two"
-                    img=""
-                    title=""
-                    desc=""
-                />
-                <Feature />
-                <Feature />
-
-                <Feature />
-                <Feature />
-                <Feature />
-                <Feature />
-
+                <div className="featureDescription">
+                    <Feature
+                        className="one"
+                        img="/car.png"
+                        title="Outstanding design"
+                        desc="Designed to be flexible according to all your needs. Create your site with all module position."
+                    />
+                    <Feature
+                        className="two"
+                        img="/electric-car.png"
+                        title="Outstanding design"
+                        desc="Designed to be flexible according to all your needs. Create your site with all module position."
+                    />
+                    <Feature
+                        className="three"
+                        img="/maintenance.png"
+                        title="Outstanding design"
+                        desc="Designed to be flexible according to all your needs. Create your site with all module position."
+                    />
+                    <Feature
+                        className="two"
+                        img="/electric-car.png"
+                        title="Outstanding design"
+                        desc="Designed to be flexible according to all your needs. Create your site with all module position."
+                    />
+                </div>
             </div>
 
             <div className="footerContainer">
@@ -67,12 +88,7 @@ const Home = (probs) => {
                         <div className="copyright">Copyright (C) 2022. All rights reserved.</div>
                     </div>
 
-                    <div className="left-subcribe">
-                        <span className="subscribe-text">Subscribe to our newsletter</span>
-                        <input type="text" placeholder="Email Address" className="email"></input>
-                        <label htmlFor="email" className=""></label>
-                    </div>
-                </div>
+        //     </div>
 
                 <div className="right column">
                     <span>About</span>
