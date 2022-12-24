@@ -7,6 +7,13 @@ import "../../vendor/bootstrap/js/bootstrap.bundle.min";
 import "../../styles/sb-admin-2.min.css";
 import "../../styles/font.css";
 
+import "../../vendor/datatables/jquery.dataTables.min"
+import "../../vendor/datatables/dataTables.bootstrap4.min"
+// import "../../js/demo/datatables-demo"
+
+
+
+
 const Account = () => {
     const lang = useSelector(state => state.lang)
     const account = useSelector(state => state.user.account)

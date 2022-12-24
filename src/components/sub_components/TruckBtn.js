@@ -17,7 +17,8 @@ const TruckBtn = (probs) => {
         if (user.isLoggedIn) {
             history.push(paths.SYSTEM)
             return
-        } else {
+        } else 
+        {
             history.push(paths.LOGIN)
             return
         }
