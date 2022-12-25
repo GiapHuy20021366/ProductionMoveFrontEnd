@@ -32,15 +32,17 @@ body {
 
     .backBtn {
         background: none;
-        border: none;
-        cursor: pointer;
-        
+        border: none;     
+        position: relative;
+        top: 10px;
+
         & img {
+            cursor: pointer;
             width: 40px;
             height: auto;
-            // display: flex;
-            // justify-content: flex-end;
-            // align-items: flex-end;    
+            
+            position: absolute;
+            right: 0;
         }
     }
 
@@ -60,7 +62,7 @@ body {
         max-height: 550px;
         
         .login-form {
-            padding: 0 60px;
+            padding: 30px 60px;
     
             .text {
                 display: block;
@@ -163,11 +165,11 @@ body {
             position: relative;
             display: inline-block;
             cursor: pointer;
-            text-align: center
+            text-align: center;
+            top: 7px;
         }
         
         input[type=submit]:hover {
-            // background-color: #329dd5;
             background-color: #71c562;
             -webkit-transition: all .2s ease;
             transition: all .2s ease

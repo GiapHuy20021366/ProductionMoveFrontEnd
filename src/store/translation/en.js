@@ -8,7 +8,7 @@ const en = {
     language: 'Language',
     login_userName: 'Username',
     login_password: 'Password',
-    login_wellcome: 'Wellcome',
+    login_wellcome: 'Welcome',
     login_login: 'LOGIN',
     system_topbar_account: 'Account',
     system_home: 'Home',
