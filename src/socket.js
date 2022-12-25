@@ -34,7 +34,7 @@ export const authenticate = (token) => {
     if (socket) {
         socket.on(messageTitles.AUTHENTICATE_RESPONSE, (message) => {
             if (message.status === 'SUCCESS') {
-                console.log("Authed")
+                // console.log("Authed")
                 // store.dispatch(socketSlice.socketIsAuthenticated())
             } else {
                 // store.dispatch(socketSlice.socketIsNotAuthenticated())

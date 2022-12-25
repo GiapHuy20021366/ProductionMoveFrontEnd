@@ -4,17 +4,20 @@ import axios from '../axios'
 import { store } from '../store/store';
 import { getItem } from './localStorageUntils';
 
+const _30_MINUTES = 1800000
+const _60_MINUTES = 3600000
+
 export const updateToken = async () => {
     if (localStorage.authenticate) {
         const authenticate = JSON.parse(localStorage.authenticate)
-        if (Date.now() < authenticate.expired - 30 * 60 * 1000) {
+        if (Date.now() < authenticate.expired - _30_MINUTES) {
             store.dispatch(userIsLogin({
                 token: authenticate.token,
                 account: getItem('accountInformation')
             }))
             return authenticate.token
         }
-        if (Date.now() > authenticate.expired - 30 * 60 * 1000 && Date.now() < authenticate.expired) {
+        if (Date.now() > authenticate.expired - _30_MINUTES && Date.now() < authenticate.expired) {
             const responseMessage = await axios.get(
                 'api/refresh-token',
                 { headers: { Authorization: authenticate.token } }
@@ -38,7 +41,7 @@ export const updateToken = async () => {
 export const storeAuthentication = (token) => {
     const authenticate = {
         token: token,
-        expired: Date.now() + 1 * 60 * 60 * 1000
+        expired: Date.now() + _60_MINUTES
     }
     localStorage.setItem('authenticate', JSON.stringify(authenticate))
     return authenticate

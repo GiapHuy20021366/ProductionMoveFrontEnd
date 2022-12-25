@@ -1,18 +1,11 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-size: 16px;
-}
-
 .homeContainer {
     color: rgb(247, 247, 247);
 
     // general
     .center {
-        display: flex;
+        display        : flex;
         justify-content: center;
-        align-items: center;
+        align-items    : center;
     }
 
     .title {
@@ -21,7 +14,7 @@
 
     .logo {
         max-width: 35px;
-        height: auto;
+        height   : auto;
     }
 
     // components
@@ -32,29 +25,29 @@
     }
 
     .navBar {
-        width: 100%;
+        width : 100%;
         height: 70px;
 
-        display: flex;
+        display        : flex;
         justify-content: space-between;
-        align-items: center;
+        align-items    : center;
 
-        padding: 10px;
+        padding    : 10px;
         padding-top: 50px;
 
         position: fixed;
-        z-index: 0;
+        z-index : 0;
 
         .home,
         .logoContainer,
         .loginBtn {
-            display: flex;
+            display        : flex;
             justify-content: center;
-            align-items: center;
-            width: 120px;
+            align-items    : center;
+            width          : 120px;
         }
 
-        .home { 
+        .home {
             &:hover {
                 cursor: default;
             }
@@ -62,7 +55,7 @@
 
         .logoContainer {
             &>.logo:hover {
-                filter: drop-shadow(0 0 0.75rem white);
+                filter   : drop-shadow(0 0 0.75rem white);
                 transform: scale(1.5);
             }
         }
@@ -73,31 +66,31 @@
             width: 100px;
 
             &:hover {
-                color: rgba(255, 255, 255, 1);
+                color     : rgba(255, 255, 255, 1);
                 box-shadow: 0 5px 15px rgba(217, 219, 232, 0.4);
             }
         }
     }
 
     .onscroll {
-        transition: all 1s ease;
-        padding-top: 0;
-        border-radius: 4px;
-        backdrop-filter: blur(10px);
+        transition      : all 1s ease;
+        padding-top     : 0;
+        border-radius   : 4px;
+        backdrop-filter : blur(10px);
         background-color: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        box-shadow      : rgba(0, 0, 0, 0.16) 0px 1px 4px;
     }
 
     .bannerContainer {
-        display: flex;
-        align-items: center;
+        display        : flex;
+        align-items    : center;
         justify-content: center;
 
         .banner {
-            width: 100%;
-            height: auto;
+            width        : 100%;
+            height       : auto;
             border-radius: 8px;
-            top: 10px;
+            top          : 10px;
         }
     }
 
@@ -110,35 +103,35 @@
 
         .feature {
             display: inline-block;
-            width: 50%;
+            width  : 50%;
             padding: 0 24px;
 
             img {
-                display: block;
-                margin: 0 auto;
+                display      : block;
+                margin       : 0 auto;
                 border-radius: 50%;
-                width: 150px;
-                height: auto;
+                width        : 150px;
+                height       : auto;
             }
 
             .feature-name {
-                font-size: 0.9rem;
+                font-size  : 0.9rem;
                 padding-top: 4px;
             }
 
             .feature-description {
-                font-size: 0.65rem;
+                font-size  : 0.65rem;
                 padding-top: 7px;
-                text-align: justify;
+                text-align : justify;
             }
         }
     }
-    
+
     @media screen and (min-width: 800px) {
         .featureContainer {
-            min-height: 500px;
-            display: flex;
-            flex-direction: column;
+            min-height     : 500px;
+            display        : flex;
+            flex-direction : column;
             justify-content: space-evenly;
 
             .feature {
@@ -153,11 +146,11 @@
         .column {
             display: inline-block;
             padding: 20px;
-            margin: 10px;
+            margin : 10px;
 
             &.left {
                 .left-info {
-                    display: flex;
+                    display       : flex;
                     flex-direction: column;
 
                     &>* {
@@ -172,18 +165,18 @@
                 }
 
                 input {
-                    display: block;
+                    display      : block;
                     border-radius: 4px;
-                    padding: 4px;
-                    margin-top: 4px;
-                    border: #fff;
-                    width: 260px;
+                    padding      : 4px;
+                    margin-top   : 4px;
+                    border       : #fff;
+                    width        : 260px;
                 }
             }
 
             &.right {
                 position: absolute;
-                right: 5%;
+                right   : 5%;
 
                 >* {
                     display: block;

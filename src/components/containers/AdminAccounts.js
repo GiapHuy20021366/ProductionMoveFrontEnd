@@ -27,11 +27,9 @@ const AdminAccounts = () => {
     const [errorMessage, setErrorMessage] = useState('')
     const [createAccountVisible, setCreateAccountVisible] = useState(false)
     const [statusCreateAccount, setStatusCreateAccount] = useState('')
- 
+    const [arrayPartners, setArrayPartners] = useState([])
 
- 
     const handleResultCreateAccount = (newAccount) => {
-        console.log(newAccount)
         const listCopy = { ...listPartners }
         listCopy[newAccount.id] = newAccount
         setListPartners(listCopy)
@@ -95,16 +93,22 @@ const AdminAccounts = () => {
         { dataField: 'name', text: lang.account_name },
         { dataField: 'email', text: lang.account_email },
         { dataField: 'phone', text: lang.account_phone },
-        { dataField: 'address', text:  lang.account_address},
+        { dataField: 'address', text: lang.account_address },
         { dataField: 'role', text: lang.account_role }
     ]
 
-    const arrayPartners = Object.values(listPartners)
-    for (var i = 0; i < arrayPartners.length; i++) {
-        arrayPartners[i].role = getRole(arrayPartners[i].role)
-    }
+    useEffect(() => {
+        const transPartners = []
+        Object.values(listPartners).forEach((partner) => {
+            transPartners.push({
+                ...partner,
+                role: getRole(partner.role)
+            })
+        })
+        setArrayPartners(transPartners)
+    }, [lang, listPartners])
 
-    
+
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -118,9 +122,9 @@ const AdminAccounts = () => {
             }
 
             <TableBase
-                arrayPartners = {arrayPartners}
-                columns = {columns}
-                partnersloading = {partnersloading}
+                arrayPartners={arrayPartners}
+                columns={columns}
+                partnersloading={partnersloading}
             />
         </div>
     )

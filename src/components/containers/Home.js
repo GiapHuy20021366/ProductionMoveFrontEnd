@@ -21,7 +21,7 @@ const Home = (probs) => {
 
     function onScroll() {
         let scrollTrigger = 60;
-        window.onscroll = function() {
+        window.onscroll = function () {
             // We add pageYOffset for compatibility with IE.
             if (window.scrollY >= scrollTrigger || window.pageYOffset >= scrollTrigger) {
                 document.querySelector(".navBar").classList.add("onscroll");
@@ -65,17 +65,17 @@ const Home = (probs) => {
                         title="Outstanding design"
                         desc="Designed to be flexible according to all your needs. Create your site with all module position."
                     />
-                    <Feature 
+                    <Feature
                         className="three"
                         img="/maintenance.png"
                         title="Outstanding design"
-                        desc="Designed to be flexible according to all your needs. Create your site with all module position."  
+                        desc="Designed to be flexible according to all your needs. Create your site with all module position."
                     />
-                    <Feature 
+                    <Feature
                         className="two"
                         img="/electric-car.png"
                         title="Outstanding design"
-                        desc="Designed to be flexible according to all your needs. Create your site with all module position."  
+                        desc="Designed to be flexible according to all your needs. Create your site with all module position."
                     />
                 </div>
             </div>

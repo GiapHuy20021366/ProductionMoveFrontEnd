@@ -33,7 +33,7 @@ export const userSlice = createSlice({
     reducers: {
         userIsLogin: (state, action) => {
             state.isLoggedIn = true
-            state.account = action.payload.account
+            state.account = { ...action.payload.account }
             state.account.token = action.payload.token
         },
         userLogout: (state, action) => {
