@@ -10,6 +10,7 @@ import LanguageChooser from "../sub_components/LanguageChooser";
 import { useHistory } from "react-router";
 import { paths } from "../../untils/constant";
 import AdminNavigator from "./AdminNavigator";
+import FactoryNavigator from "./FactoryNavigator";
 
 
 
@@ -50,7 +51,10 @@ const SystemNagivator = (probs) => {
         <div className="sidebar-brand-text mx-3">ProductMove</div>
       </a>
 
+      {/* **************************************************************** */}
+      <hr className="sidebar-divider" />
       <hr className="sidebar-divider my-0" />
+      <div className="sidebar-heading">General</div>
 
       <li className={`nav-item ${history.location.pathname === paths.SYSTEM ? 'active' : ''}`}>
         <a className="nav-link pointer" onClick={() => onClickHomeSystem()}>
@@ -66,17 +70,42 @@ const SystemNagivator = (probs) => {
         </a>
       </li>
 
+      <LanguageChooser />
+
+      <hr className="sidebar-divider" />
+
+      {/* **************************************************************** */}
       {
         account?.role === 1 ?
           <AdminNavigator /> :
           <></>
       }
 
-      <hr className="sidebar-divider" />
+      {/* **************************************************************** */}
+      {
+        account?.role === 2 ?
+          <FactoryNavigator /> :
+          <></>
+      }
 
-      <div className="sidebar-heading">Menu</div>
+      {/* **************************************************************** */}
+      {
+        account?.role === 3 ?
+          <AgencyNavigator /> :
+          <></>
+      }
 
-      <li className="nav-item">
+      {/* **************************************************************** */}
+      {
+        account?.role === 4 ?
+          <MaintenanceCenterNavigator /> :
+          <></>
+      }
+
+
+      {/* <div className="sidebar-heading">Menu</div> */}
+
+      {/* <li className="nav-item">
         <a
           className="nav-link collapsed"
           href="#"
@@ -104,9 +133,9 @@ const SystemNagivator = (probs) => {
             </a>
           </div>
         </div>
-      </li>
+      </li> */}
 
-      <li className="nav-item">
+      {/* <li className="nav-item">
         <a
           className="nav-link collapsed"
           href="#"
@@ -118,6 +147,7 @@ const SystemNagivator = (probs) => {
           <i className="fas fa-fw fa-wrench"></i>
           <span>Utilities</span>
         </a>
+
         <div
           id="collapseUtilities"
           className="collapse"
@@ -140,14 +170,7 @@ const SystemNagivator = (probs) => {
             </a>
           </div>
         </div>
-      </li>
-
-      <hr className="sidebar-divider" />
-
-      <div className="sidebar-heading">{subLang.display}</div>
-
-      <LanguageChooser />
-
+      </li> */}
     </ul>
   );
 };

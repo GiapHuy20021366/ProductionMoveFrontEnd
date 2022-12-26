@@ -36,6 +36,9 @@ const AdminProducts = () => {
         await useCallApi(
             apiUrls.GET_PRODUCTS_BY_QUERY,
             {
+                pageOffset: {
+                    limit: 700
+                },
                 associates: {
                     model: { factory: true }
                 }

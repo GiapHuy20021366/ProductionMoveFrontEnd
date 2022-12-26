@@ -10,7 +10,7 @@ import "../../styles/font.css";
 import "../../vendor/datatables/jquery.dataTables.min"
 import "../../vendor/datatables/dataTables.bootstrap4.min"
 // import "../../js/demo/datatables-demo"
-
+import '../../styles/AccountInfo.scss';
 
 
 
