@@ -9,6 +9,7 @@ import "../../styles/font.css";
 import LanguageChooser from "../sub_components/LanguageChooser";
 import { useHistory, withRouter } from "react-router";
 import { paths } from "../../untils/constant";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AdminNavigator = (probs) => {
     const lang = useSelector(state => state.lang)
@@ -23,12 +24,7 @@ const AdminNavigator = (probs) => {
 
             <li className={`nav-item ${history.location.pathname === paths.ADMIN_ACCOUNTs ? 'active' : ''}`}>
                 <a
-                    className="nav-link collapsed"
-                    href="#"
-                    data-toggle="collapse"
-                    data-target="#collapseAccounts"
-                    aria-expanded="true"
-                    aria-controls="collapseAccounts"
+                    className="nav-link pointer"
                     onClick={() => onClickAccounts()}
                 >
                     <i className="fas fa-fw fa-wrench"></i>

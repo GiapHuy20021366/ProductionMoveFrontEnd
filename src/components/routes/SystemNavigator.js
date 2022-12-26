@@ -42,7 +42,7 @@ const SystemNagivator = (probs) => {
       >
         <div className="sidebar-brand-icon ">
           <img
-            src="./img/z3948374885974_77bdf19764ef16c7dd1237d9644e22a0.png"
+            src="/logo.png"
             alt=""
             style={{ height: "35px" }}
           />
@@ -54,14 +54,12 @@ const SystemNagivator = (probs) => {
 
       <li className={`nav-item ${history.location.pathname === paths.SYSTEM ? 'active' : ''}`}>
         <a className="nav-link pointer" onClick={() => onClickHomeSystem()}>
-          <i className="fas fa-fw fa-tachometer-alt"></i>
           <span>{lang.system_home}</span>
         </a>
       </li>
 
       <li className={`nav-item ${history.location.pathname === paths.ACCOUNT ? 'active' : ''}`}>
         <a className="nav-link pointer" onClick={() => onClickAccount()}>
-          <i className="fas fa-fw fa-tachometer-alt"></i>
           <span>{lang.system_account}</span>
         </a>
       </li>
@@ -74,9 +72,8 @@ const SystemNagivator = (probs) => {
 
       <hr className="sidebar-divider" />
 
-      <div className="sidebar-heading">Menu</div>
 
-      <li className="nav-item">
+      {/* <li className="nav-item">
         <a
           className="nav-link collapsed"
           href="#"
@@ -104,9 +101,9 @@ const SystemNagivator = (probs) => {
             </a>
           </div>
         </div>
-      </li>
+      </li> */}
 
-      <li className="nav-item">
+      {/* <li className="nav-item">
         <a
           className="nav-link collapsed"
           href="#"
@@ -140,7 +137,7 @@ const SystemNagivator = (probs) => {
             </a>
           </div>
         </div>
-      </li>
+      </li> */}
 
       <hr className="sidebar-divider" />
 
