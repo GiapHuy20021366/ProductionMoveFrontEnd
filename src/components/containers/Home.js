@@ -107,9 +107,6 @@ const Home = (probs) => {
             </div>
         </div >
         // <Redirect to={paths.SYSTEM} />
-            </div>
-        </div >
-        // <Redirect to={paths.SYSTEM} />
     )
 }
 
