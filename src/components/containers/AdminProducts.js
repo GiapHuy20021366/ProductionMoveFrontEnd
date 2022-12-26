@@ -13,28 +13,18 @@ import "../../vendor/datatables/dataTables.bootstrap4.min.css";
 import { Redirect } from "react-router";
 import { paths } from "../../untils/constant";
 import axios from '../../axios'
-import AccountCreater from "../sub_components/AccountCreater";
 import TableBase from "../sub_components/Table"
 import ToastUtil from "../../untils/toastUtil";
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
 
-const AdminAccounts = () => {
+const AdminModels = () => {
     const account = useSelector(state => state.user.account)
     const lang = useSelector(state => state.lang)
     const [listPartners, setListPartners] = useState({})
     const [partnersloading, setPartnersLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
-    const [createAccountVisible, setCreateAccountVisible] = useState(false)
-    const [statusCreateAccount, setStatusCreateAccount] = useState('')
  
-    const handleResultCreateAccount = (newAccount) => {
-        console.log(newAccount)
-        const listCopy = { ...listPartners }
-        listCopy[newAccount.id] = newAccount
-        setListPartners(listCopy)
-    }
-
     if (account?.role !== 1) {
         return (
             <Redirect to={paths.SYSTEM} />
@@ -60,7 +50,7 @@ const AdminAccounts = () => {
         setErrorMessage('')
         setPartnersLoading(true)
         const data = await axios.post(
-            '/api/get-partners-by-query', // path of API
+            '/api/get-models-by-query',
             {},
             {
                 headers: {
@@ -80,15 +70,11 @@ const AdminAccounts = () => {
             })
         }).catch((error) => {
             setErrorMessage('Some error occur, please try again!')
+            console.log(error)
         })
     }, [])
 
-    const onClickCreateNewAccount = () => {
-        setCreateAccountVisible(!createAccountVisible)
-    }
-
-
-    const columns = [
+    const tableColumns = [
         { dataField: 'id', text: 'Id' },
         { dataField: 'name', text: lang.account_name },
         { dataField: 'email', text: lang.account_email },
@@ -102,26 +88,19 @@ const AdminAccounts = () => {
         arrayPartners[i].role = getRole(arrayPartners[i].role)
     }
 
-    
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 className="h3 mb-0 text-gray-800">{lang.admin_accounts}</h1>
+                <h1 className="h3 mb-0 text-gray-800">{lang.admin_models}</h1>
             </div>
-            {/* Account Create */}
-            <button onClick={() => onClickCreateNewAccount()}>{lang.accounts_new_account}</button>
-            {
-                createAccountVisible &&
-                <AccountCreater handleResult={handleResultCreateAccount} />
-            }
-
+            <h1>TEST lorem dolor </h1>
             <TableBase
                 arrayPartners = {arrayPartners}
-                columns = {columns}
+                columns = {tableColumns}
                 partnersloading = {partnersloading}
             />
         </div>
     )
 }
 
-export default AdminAccounts
+export default AdminModels

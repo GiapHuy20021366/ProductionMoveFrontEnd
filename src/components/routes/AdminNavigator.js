@@ -17,6 +17,30 @@ const AdminNavigator = (probs) => {
         history.push(paths.ADMIN_ACCOUNTs)
         console.log(history)
     }
+    const onClickModels = () => {
+        history.push(paths.ADMIN_MODELs)
+        console.log(history)
+    }
+
+    function NavItem({pathname, onClickFunc}) {
+        return (
+            <li className={`nav-item ${history.location.pathname === pathname ? 'active' : ''}`}>
+                <a
+                        className="nav-link collapsed"
+                        href="#"
+                        data-toggle="collapse"
+                        data-target="#collapseAccounts"
+                        aria-expanded="true"
+                        aria-controls="collapseAccounts"
+                        onClick={() => onClickFunc()}
+                    >
+                        <i className="fas fa-fw fa-wrench"></i>
+                        <span>{lang.admin_models}</span>
+                    </a>
+            </li>
+        )
+    }
+
     return (
         <>
             <hr className="sidebar-divider" />
@@ -60,6 +84,14 @@ const AdminNavigator = (probs) => {
                     </div>
                 </div> */}
             </li>
+            <NavItem
+                pathname = {paths.ADMIN_MODELs}
+                onClickFunc = {onClickModels}
+            />
+            <NavItem
+                pathname = {paths.ADMIN_PRODUCTs}
+                onClickFunc = {onClickModels}
+            />
         </>
     )
 }
