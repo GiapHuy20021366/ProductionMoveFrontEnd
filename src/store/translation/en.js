@@ -16,9 +16,9 @@ const en = {
     system_account: 'Account',
     account_name: 'Name',
     account_admin: 'Admin',
-    account_dealer: 'Dealer',
     account_factory: 'Factory',
-    account_maintain_center: 'Maintain Center',
+    account_agency: 'Agency',
+    account_maintenanceCenter: 'Maintenance Center',
     account_role: 'Role',
     account_email: 'Email',
     account_phone: 'Phone',
@@ -28,12 +28,16 @@ const en = {
     account_status_enable: 'Enable',
     account_status_disable: 'Disable',
     admin_accounts: 'Users Accounts',
+    
     admin_models: 'Models',
     admin_products: 'Products',
+
     accounts_new_account: 'Add new account',
     account_userName: 'UserName',
     account_password: 'Password',
     account_create_success: 'Create Account Successful!'
+
+    
 }
 
 export default en

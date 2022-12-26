@@ -51,7 +51,11 @@ const AdminModels = () => {
         setPartnersLoading(true)
         const data = await axios.post(
             '/api/get-models-by-query',
-            {},
+            {
+                pageOffset: {
+                    // limit: 700,
+                }
+            },
             {
                 headers: {
                     Authorization: account.token

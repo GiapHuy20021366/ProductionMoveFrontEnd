@@ -52,6 +52,9 @@ const AdminProducts = () => {
         const data = await axios.post(
             '/api/get-products-by-query',
             {
+                pageOffset: {
+                    limit: 700
+                },
                 associates: {
                     model: {
                         factory: true
