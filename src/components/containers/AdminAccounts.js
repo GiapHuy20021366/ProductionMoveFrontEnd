@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import BootstrapTable from 'react-bootstrap-table-next';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import '../../styles/Dashboard.css'
@@ -12,16 +12,15 @@ import "../../styles/font.css";
 import "../../vendor/datatables/dataTables.bootstrap4.min.css";
 import { Redirect } from "react-router";
 import { paths } from "../../untils/constant";
-import axios from '../../axios'
 import AccountCreater from "../sub_components/AccountCreater";
 import TableBase from "../sub_components/Table"
-import ToastUtil from "../../untils/toastUtil";
-import paginationFactory from 'react-bootstrap-table2-paginator';
+import useCallApi from "../../untils/fetch";
+import { apiUrls } from '../../untils/constant'
 
 
 const AdminAccounts = () => {
     const account = useSelector(state => state.user.account)
-    const lang = useSelector(state => state.lang)
+    const subLang = useSelector(state => state.lang.AdminAccounts)
     const [listPartners, setListPartners] = useState({})
     const [partnersloading, setPartnersLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
@@ -44,13 +43,13 @@ const AdminAccounts = () => {
     const getRole = (roleId) => {
         switch (roleId) {
             case 1:
-                return lang.account_admin
+                return subLang.admin
             case 2:
-                return lang.account_factory
+                return subLang.factory
             case 3:
-                return lang.account_dealer
+                return subLang.dealer
             case 4:
-                return lang.account_maintain_center
+                return subLang.maintain_center
             default:
                 return 'Unknown'
         }
@@ -59,14 +58,8 @@ const AdminAccounts = () => {
     useEffect(async () => {
         setErrorMessage('')
         setPartnersLoading(true)
-        const data = await axios.post(
-            '/api/get-partners-by-query', // path of API
-            {},
-            {
-                headers: {
-                    Authorization: account.token
-                }
-            }
+        const data = await useCallApi(
+            apiUrls.GET_PARTNERS_BY_QUERY
         ).then((data) => {
             setPartnersLoading(false)
             const partnersRequest = data.data.rows
@@ -90,11 +83,11 @@ const AdminAccounts = () => {
 
     const columns = [
         { dataField: 'id', text: 'Id' },
-        { dataField: 'name', text: lang.account_name },
-        { dataField: 'email', text: lang.account_email },
-        { dataField: 'phone', text: lang.account_phone },
-        { dataField: 'address', text: lang.account_address },
-        { dataField: 'role', text: lang.account_role }
+        { dataField: 'name', text: subLang.name },
+        { dataField: 'email', text: subLang.email },
+        { dataField: 'phone', text: subLang.phone },
+        { dataField: 'address', text: subLang.address },
+        { dataField: 'role', text: subLang.role }
     ]
 
     useEffect(() => {
@@ -106,22 +99,23 @@ const AdminAccounts = () => {
             })
         })
         setArrayPartners(transPartners)
-    }, [lang, listPartners])
+    }, [subLang, listPartners])
 
 
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 className="h3 mb-0 text-gray-800">{lang.admin_accounts}</h1>
+                <h1 className="h3 mb-0 text-gray-800">{subLang.accounts}</h1>
             </div>
             {/* Account Create */}
-            <button onClick={() => onClickCreateNewAccount()}>{lang.accounts_new_account}</button>
+            <button onClick={() => onClickCreateNewAccount()}>{subLang.add_new_account}</button>
             {
                 createAccountVisible &&
                 <AccountCreater handleResult={handleResultCreateAccount} />
             }
 
             <TableBase
+                title={`${subLang.sumary_re(arrayPartners.length)}`}
                 arrayPartners={arrayPartners}
                 columns={columns}
                 partnersloading={partnersloading}

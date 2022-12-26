@@ -15,18 +15,18 @@ import "../../vendor/datatables/dataTables.bootstrap4.min"
 
 
 const Account = () => {
-    const lang = useSelector(state => state.lang)
+    const subLang = useSelector(state => state.lang.Account)
     const account = useSelector(state => state.user.account)
     const getRole = (roleId) => {
         switch (roleId) {
             case 1:
-                return lang.account_admin
+                return subLang.admin
             case 2:
-                return lang.account_factory
+                return subLang.factory
             case 3:
-                return lang.account_dealer
+                return subLang.dealer
             case 4:
-                return lang.account_maintain_center
+                return subLang.maintain_center
             default:
                 return 'Unknown'
         }
@@ -34,38 +34,38 @@ const Account = () => {
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 className="h3 mb-0 text-gray-800">{lang.system_topbar_account}</h1>
+                <h1 className="h3 mb-0 text-gray-800">{subLang.system_topbar_account}</h1>
             </div>
             <div className="row">
-                <div className="account_inf-container col-12 ml-5">
+                <div className="inf-container col-12 ml-5">
                     <ul>
                         <li>
-                            <label>{lang.account_name}: </label>
+                            <label>{subLang.name}: </label>
                             <span>{account.name}</span>
                         </li>
                         <li>
-                            <label>{lang.account_role}: </label>
+                            <label>{subLang.role}: </label>
                             <span>{getRole(account.role)}</span>
                         </li>
                         <li>
-                            <label>{lang.account_email}: </label>
+                            <label>{subLang.email}: </label>
                             <span>{account.email}</span>
                         </li>
                         <li>
-                            <label>{lang.account_phone}: </label>
+                            <label>{subLang.phone}: </label>
                             <span>{account.phone}</span>
                         </li>
                         <li>
-                            <label>{lang.account_address}: </label>
+                            <label>{subLang.address}: </label>
                             <span>{account.address}</span>
                         </li>
                         <li>
-                            <label>{lang.account_birth}: </label>
+                            <label>{subLang.birth}: </label>
                             <span>{account.birth ? account.birth : 'None'}</span>
                         </li>
                         <li>
-                            <label>{lang.account_status}: </label>
-                            <span>{account.status == 2 ? lang.account_status_enable : lang.account_status_disable}</span>
+                            <label>{subLang.status}: </label>
+                            <span>{account.status == 2 ? subLang.status_enable : subLang.status_disable}</span>
                         </li>
                     </ul>
                 </div>

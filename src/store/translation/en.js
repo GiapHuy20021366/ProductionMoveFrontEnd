@@ -1,39 +1,107 @@
-const en = {
-    _NAME_: 'EN',
+const langOfTruckBtn = {
     login: 'Login',
-    logout: 'Logout',
+    system: 'System'
+}
+
+const langOfLogin = {
+    welcome: 'Welcome',
+    userName: 'Username',
+    password: 'Password',
+    login: 'LOGIN'
+}
+
+
+const langOfAccount = {
+    name: 'Name',
+    userName: 'Username',
+    password: 'Password',
+    admin: 'Admin',
+    dealer: 'Dealer',
+    factory: 'Factory',
+    maintain_center: 'Maintain Center',
+    role: 'Role',
+    email: 'Email',
+    phone: 'Phone',
+    address: 'Address',
+    birth: 'Birthday',
+    status: 'Status',
+    status_enable: 'Enable',
+    status_disable: 'Disable',
+}
+
+const langOfAdminAccounts = {
+    ...langOfAccount,
+    accounts: 'User Accounts',
+    add_new_account: 'Add new account',
+    sumary_re: count => `Total of ${count} ${count <= 1 ? 'account' : 'accounts'}`
+}
+
+const langOfHomeSystem = {
+    home: 'Home'
+}
+
+const langOfAccountCreater = {
+    ...langOfAccount,
+    create_success: 'Create Account Successful!',
+    add_account: 'Add Account'
+}
+
+const langOfSystemTopBar = {
+    account: 'Account',
+    logout: 'Logout'
+}
+
+const langOfLanguageChooser = {
+    _NAME_: 'EN',
+    language: 'Language',
     vietnamese: 'Vietnamese',
     english: 'English',
-    system: 'System',
-    language: 'Language',
-    login_userName: 'Username',
-    login_password: 'Password',
-    login_wellcome: 'Welcome',
-    login_login: 'LOGIN',
-    system_topbar_account: 'Account',
-    system_home: 'Home',
-    system_display: 'Display',
-    system_account: 'Account',
-    account_name: 'Name',
-    account_admin: 'Admin',
-    account_dealer: 'Dealer',
-    account_factory: 'Factory',
-    account_maintain_center: 'Maintain Center',
-    account_role: 'Role',
-    account_email: 'Email',
-    account_phone: 'Phone',
-    account_address: 'Address',
-    account_birth: 'Birthday',
-    account_status: 'Status',
-    account_status_enable: 'Enable',
-    account_status_disable: 'Disable',
-    admin_accounts: 'Users Accounts',
-    admin_models: 'Models',
-    admin_products: 'Products',
-    accounts_new_account: 'Add new account',
-    account_userName: 'UserName',
-    account_password: 'Password',
-    account_create_success: 'Create Account Successful!'
+}
+
+const langOfAdminNavigator = {
+    admin: 'ADMIN',
+    manage_accounts: 'Manage Accounts',
+    manage_models: 'Manage Models',
+    manage_products: 'Manage Products',
+}
+
+const langOfSystemNavigator = {
+    home: 'Home',
+    account: 'Account',
+    display: 'Display'
+}
+
+const langOfAdminModels = {
+    name: 'Name',
+    sign_name: 'Sign Name',
+    generation: 'Generation',
+    produced_factory: 'Produced Factory',
+    birth: 'Birthday',
+    series: 'Series',
+    trim: 'Trim',
+    length: 'Length',
+    width: 'Width',
+    height: 'Height',
+    body_type: 'Body Type',
+    engine_type: 'Engine Type',
+    max_speed: 'Max Speed',
+    acceleration: 'Acceleration',
+    city_fuel: 'City Fuel'
+}
+
+const en = {
+    _NAME_: 'EN',
+    TruckBtn: langOfTruckBtn,
+    Login: langOfLogin,
+    Account: langOfAccount,
+    HomeSystem: langOfHomeSystem,
+    AdminAccounts: langOfAdminAccounts,
+    AccountCreater: langOfAccountCreater,
+    SystemTopBar: langOfSystemTopBar,
+    LanguageChooser: langOfLanguageChooser,
+    AdminNavigator: langOfAdminNavigator,
+    SystemNagivator: langOfSystemNavigator,
+    AdminModels: langOfAdminModels
 }
 
 export default en

@@ -14,41 +14,25 @@ import { Redirect } from "react-router";
 import { paths } from "../../untils/constant";
 import axios from '../../axios'
 import TableBase from "../sub_components/Table"
-import ToastUtil from "../../untils/toastUtil";
-import paginationFactory from 'react-bootstrap-table2-paginator';
 
 
 const AdminModels = () => {
     const account = useSelector(state => state.user.account)
-    const lang = useSelector(state => state.lang)
-    const [listPartners, setListPartners] = useState({})
-    const [partnersloading, setPartnersLoading] = useState(false)
+    const subLang = useSelector(state => state.lang.AdminModels)
+    const [listModels, setListModels] = useState({})
+    const [modelsLoading, setModelsLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
- 
+    const [arrayModels, setArrayModels] = useState([])
+
     if (account?.role !== 1) {
         return (
             <Redirect to={paths.SYSTEM} />
         )
     }
 
-    const getRole = (roleId) => {
-        switch (roleId) {
-            case 1:
-                return lang.account_admin
-            case 2:
-                return lang.account_factory
-            case 3:
-                return lang.account_dealer
-            case 4:
-                return lang.account_maintain_center
-            default:
-                return 'Unknown'
-        }
-    }
-
     useEffect(async () => {
         setErrorMessage('')
-        setPartnersLoading(true)
+        setModelsLoading(true)
         const data = await axios.post(
             '/api/get-models-by-query',
             {},
@@ -58,15 +42,15 @@ const AdminModels = () => {
                 }
             }
         ).then((data) => {
-            setPartnersLoading(false)
-            const partnersRequest = data.data.rows
-            const partners = {}
-            for (const partner of partnersRequest) {
-                partners[partner.id] = partner
+            setModelsLoading(false)
+            const modelsRequest = data.data.rows
+            const models = {}
+            for (const model of modelsRequest) {
+                models[model.id] = model
             }
-            setListPartners({
-                ...listPartners,
-                ...partners
+            setListModels({
+                ...listModels,
+                ...models
             })
         }).catch((error) => {
             setErrorMessage('Some error occur, please try again!')
@@ -75,37 +59,42 @@ const AdminModels = () => {
 
     const tableColumns = [
         { dataField: 'id', text: 'Id' },
-        { dataField: 'name', text: lang.model_name },
-        { dataField: 'signName', text: lang.model_signName },
-        { dataField: 'generation', text: lang.model_generation },
-        { dataField: 'produced_factory', text: lang.account_factoryId },
-        { dataField: 'birthday', text:  lang.model_birthday},
-        { dataField: 'series', text: lang.model_series },
-        { dataField: 'trim', text: lang.model_trim }, //?
-        { dataField: 'length', text: lang.model_length }, 
-        { dataField: 'width', text: lang.model_width }, 
-        { dataField: 'height', text: lang.model_height }, 
-        { dataField: 'bodyType', text: lang.model_bodyType }, //material?
-        { dataField: 'engineType', text: lang.model_engineType }, 
-        { dataField: 'maxSpeed', text: lang.model_maxSpeed }, 
-        { dataField: 'acceleration', text: lang.model_acceleration }, 
-        { dataField: 'cityFuel', text: lang.model_cityFuel }
+        { dataField: 'name', text: subLang.name },
+        { dataField: 'signName', text: subLang.sign_name },
+        { dataField: 'generation', text: subLang.generation },
+        { dataField: 'factory', text: subLang.produced_factory },
+        { dataField: 'birth', text: subLang.birth },
+        { dataField: 'series', text: subLang.series },
+        { dataField: 'trim', text: subLang.trim }, //?
+        { dataField: 'length', text: subLang.length },
+        { dataField: 'width', text: subLang.width },
+        { dataField: 'height', text: subLang.height },
+        { dataField: 'bodyType', text: subLang.body_type }, //material?
+        { dataField: 'engineType', text: subLang.engine_type },
+        { dataField: 'maxSpeed', text: subLang.max_speed },
+        { dataField: 'acceleration', text: subLang.acceleration },
+        { dataField: 'cityFuel', text: subLang.city_fuel }
     ]
 
-    const arrayPartners = Object.values(listPartners)
-    for (var i = 0; i < arrayPartners.length; i++) {
-        arrayPartners[i].role = getRole(arrayPartners[i].role)
-    }
+    useEffect(() => {
+        const transModels = []
+        Object.values(listModels).forEach((model) => {
+            transModels.push({
+                ...model
+            })
+        })
+        setArrayModels(transModels)
+    }, [subLang, listModels])
 
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 className="h3 mb-0 text-gray-800">{lang.admin_models}</h1>
+                <h1 className="h3 mb-0 text-gray-800">{subLang.admin_models}</h1>
             </div>
             <TableBase
-                arrayPartners = {arrayPartners}
-                columns = {tableColumns}
-                partnersloading = {partnersloading}
+                arraymodels={arrayModels}
+                columns={tableColumns}
+                modelsloading={modelsLoading}
             />
         </div>
     )

@@ -20,7 +20,7 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 
 
 
-const TableBase = (probs) => {
+const TableBase = ({ partnersloading, arrayPartners, columns, title }) => {
 
 
     const pagination = paginationFactory({
@@ -29,31 +29,31 @@ const TableBase = (probs) => {
         nextPageText: '>',
         prePageText: '<',
         alwaysShowAllBtns: false,
-        onPageChange: function (page, sizePerPage) {
-          console.log('page', page);
-          console.log('sizePerPage', sizePerPage);
-        },
-        onSizePerPageChange: function (page, sizePerPage) {
-          console.log('page', page);
-          console.log('sizePerPage', sizePerPage);
-        }
-      });
+        // onPageChange: function (page, sizePerPage) {
+        //   console.log('page', page);
+        //   console.log('sizePerPage', sizePerPage);
+        // },
+        // onSizePerPageChange: function (page, sizePerPage) {
+        //   console.log('page', page);
+        //   console.log('sizePerPage', sizePerPage);
+        // }
+    });
     return (
         <div className="card shadow mb-4">
             <div className="card-header py-3">
-                <h6 className="m-0 font-weight-bold text-primary">Account</h6>
+                <h6 className="m-0 font-weight-bold text-primary">{title}</h6>
             </div>
             <div className="card-body">
                 <div className="table-responsive">
-                {probs.partnersloading && <div>Loading...</div>}
+                    {partnersloading && <div>Loading...</div>}
 
-                <BootstrapTable
-                    keyField="id"
-                    hover
-                    data={probs.arrayPartners}
-                    columns={probs.columns}
-                    pagination={pagination}
-                />
+                    <BootstrapTable
+                        keyField="id"
+                        hover
+                        data={arrayPartners}
+                        columns={columns}
+                        pagination={pagination}
+                    />
                 </div>
             </div>
         </div>

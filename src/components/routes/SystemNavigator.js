@@ -15,7 +15,7 @@ import AdminNavigator from "./AdminNavigator";
 
 
 const SystemNagivator = (probs) => {
-  const lang = useSelector(state => state.lang)
+  const subLang = useSelector(state => state.lang.SystemNagivator)
   const history = useHistory()
   const account = useSelector(state => state.user.account)
 
@@ -55,14 +55,14 @@ const SystemNagivator = (probs) => {
       <li className={`nav-item ${history.location.pathname === paths.SYSTEM ? 'active' : ''}`}>
         <a className="nav-link pointer" onClick={() => onClickHomeSystem()}>
           <i className="fas fa-fw fa-tachometer-alt"></i>
-          <span>{lang.system_home}</span>
+          <span>{subLang.home}</span>
         </a>
       </li>
 
       <li className={`nav-item ${history.location.pathname === paths.ACCOUNT ? 'active' : ''}`}>
         <a className="nav-link pointer" onClick={() => onClickAccount()}>
           <i className="fas fa-fw fa-tachometer-alt"></i>
-          <span>{lang.system_account}</span>
+          <span>{subLang.account}</span>
         </a>
       </li>
 
@@ -144,7 +144,7 @@ const SystemNagivator = (probs) => {
 
       <hr className="sidebar-divider" />
 
-      <div className="sidebar-heading">{lang.system_display}</div>
+      <div className="sidebar-heading">{subLang.display}</div>
 
       <LanguageChooser />
 

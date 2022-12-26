@@ -7,7 +7,7 @@ import { paths } from '../../untils/constant';
 
 const TruckBtn = (probs) => {
     const history = useHistory()
-    const lang = useSelector(state => state.lang)
+    const subLang = useSelector(state => state.lang.TruckBtn)
     const user = useSelector(state => state.user)
     function onClickLogin(e) {
         let button = e.target.parentNode;
@@ -17,8 +17,7 @@ const TruckBtn = (probs) => {
         if (user.isLoggedIn) {
             history.push(paths.SYSTEM)
             return
-        } else 
-        {
+        } else {
             history.push(paths.LOGIN)
             return
         }
@@ -123,7 +122,7 @@ const TruckBtn = (probs) => {
 
     return (
         <button className="truck-button loginBtn" onClick={onClickLogin}>
-            <span className="default">{user.isLoggedIn ? lang.system : lang.login}</span>
+            <span className="default">{user.isLoggedIn ? subLang.system : subLang.login}</span>
             <span className="success">
                 Success
                 <svg viewBox="0 0 12 10">

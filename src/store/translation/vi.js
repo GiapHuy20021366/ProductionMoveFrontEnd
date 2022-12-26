@@ -1,37 +1,106 @@
-const vi = {
-    _NAME_: 'VI',
+const langOfTruckBtn = {
     login: 'Đăng nhập',
-    logout: 'Đăng xuất',
+    system: 'Hệ thống'
+}
+
+const langOfLogin = {
+    welcome: 'Chào mừng',
+    userName: 'Tài khoản',
+    password: 'Mật khẩu',
+    login: 'ĐĂNG NHẬP'
+}
+
+const langOfHomeSystem = {
+    home: 'Nhà'
+}
+
+const langOfAccount = {
+    name: 'Tên',
+    userName: 'Tài khoản',
+    password: 'Mật khẩu',
+    admin: 'Quản trị viên',
+    dealer: 'Đại lý',
+    factory: 'Nhà máy',
+    maintain_center: 'TTBH',
+    role: 'Vai trò',
+    email: 'Email',
+    phone: 'Điện thoại',
+    address: 'Địa chỉ',
+    birth: 'Ngày sinh',
+    status: 'Trạng thái',
+    status_enable: 'Kích hoạt',
+    status_disable: 'Vô hiệu',
+}
+
+const langOfAdminAccounts = {
+    ...langOfAccount,
+    accounts: 'Các tài khoản người dùng',
+    add_new_account: 'Thêm tài khoản mới',
+    sumary_re: count => `Tổng số ${count} tài khoản`
+}
+
+const langOfAccountCreater = {
+    ...langOfAccount,
+    create_success: 'Tạo Tài Khoản Mới Thành Công',
+    add_account: 'Thêm tài khoản',
+
+}
+
+const langOfSystemTopBar = {
+    account: 'Tài khoản',
+    logout: 'Đăng xuất'
+}
+
+const langOfLanguageChooser = {
+    _NAME_: 'VI',
+    language: 'Ngôn ngữ',
     vietnamese: 'Tiếng Việt',
     english: 'Tiếng Anh',
-    system: 'Hệ thống',
-    language: 'Ngôn ngữ',
-    login_userName: 'Tài khoản',
-    login_password: 'Mật khẩu',
-    login_wellcome: 'Chào mừng',
-    login_login: 'ĐĂNG NHẬP',
-    system_topbar_account: 'Tài khoản',
-    system_home: 'Nhà',
-    system_display: 'Hiển thị',
-    system_account: 'Tài khoản',
-    account_name: 'Tên',
-    account_admin: 'Quản trị viên',
-    account_dealer: 'Đại lý',
-    account_factory: 'Nhà máy',
-    account_maintain_center: 'Trung tâm BH',
-    account_role: 'Vai trò',
-    account_email: 'Email',
-    account_phone: 'Số điện thoại',
-    account_address: 'Địa chỉ',
-    account_birth: 'Sinh nhật',
-    account_status: 'Trạng thái',
-    account_status_enable: 'Khả dụng',
-    account_status_disable: 'Không khả dụng',
-    admin_accounts: 'Tài khoản người dùng',
-    admin_models: 'Các dòng sản phẩm',
-    accounts_new_account: 'Thêm tài khoản mới',
-    account_userName: 'Tài khoản',
-    account_password: 'Mật khẩu',
-    account_create_success: 'Tạo Tài Khoản Mới Thành Công'
+}
+
+const langOfAdminNavigator = {
+    admin: 'Quản trị viên',
+    manage_accounts: 'Quản lý tài khoản',
+    manage_models: 'Quản lý dòng sản phẩm',
+    manage_products: 'Quản lý sản phẩm'
+}
+
+const langOfSystemNavigator = {
+    home: 'Nhà',
+    account: 'Tài khoản',
+    display: 'Hiển thị'
+}
+
+const langOfAdminModels = {
+    name: 'Name',
+    sign_name: 'Sign Name',
+    generation: 'Generation',
+    produced_factory: 'Produced Factory',
+    birth: 'Birthday',
+    series: 'Series',
+    trim: 'Trim',
+    length: 'Length',
+    width: 'Width',
+    height: 'Height',
+    body_type: 'Body Type',
+    engine_type: 'Engine Type',
+    max_speed: 'Max Speed',
+    acceleration: 'Acceleration',
+    city_fuel: 'City Fuel'
+}
+
+const vi = {
+    _NAME_: 'VI',
+    TruckBtn: langOfTruckBtn,
+    Login: langOfLogin,
+    Account: langOfAccount,
+    HomeSystem: langOfHomeSystem,
+    AdminAccounts: langOfAdminAccounts,
+    AccountCreater: langOfAccountCreater,
+    SystemTopBar: langOfSystemTopBar,
+    LanguageChooser: langOfLanguageChooser,
+    AdminNavigator: langOfAdminNavigator,
+    SystemNagivator: langOfSystemNavigator,
+    AdminModels: langOfAdminModels
 }
 export default vi
