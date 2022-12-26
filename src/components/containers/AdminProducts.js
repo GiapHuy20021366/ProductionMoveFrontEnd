@@ -18,7 +18,7 @@ import ToastUtil from "../../untils/toastUtil";
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
 
-const AdminModels = () => {
+const AdminProducts = () => {
     const account = useSelector(state => state.user.account)
     const lang = useSelector(state => state.lang)
     const [listPartners, setListPartners] = useState({})
@@ -50,8 +50,14 @@ const AdminModels = () => {
         setErrorMessage('')
         setPartnersLoading(true)
         const data = await axios.post(
-            '/api/get-models-by-query',
-            {},
+            '/api/get-products-by-query',
+            {
+                associates: {
+                    model: {
+                        factory: true
+                    }
+                }
+            },
             {
                 headers: {
                     Authorization: account.token
@@ -68,19 +74,18 @@ const AdminModels = () => {
                 ...listPartners,
                 ...partners
             })
+            console.log(partnersRequest)
         }).catch((error) => {
             setErrorMessage('Some error occur, please try again!')
-            console.log(error)
         })
     }, [])
 
     const tableColumns = [
         { dataField: 'id', text: 'Id' },
-        { dataField: 'name', text: lang.account_name },
-        { dataField: 'email', text: lang.account_email },
-        { dataField: 'phone', text: lang.account_phone },
-        { dataField: 'address', text:  lang.account_address},
-        { dataField: 'role', text: lang.account_role }
+        { dataField: 'modelId', text: lang.products_modelId },
+        { dataField: 'name', text: lang.products_modelName },
+        { dataField: 'factoryId', text: lang.products_factoryId },
+        { dataField: 'birth', text:  lang.products_MFG} // Manufacturing Date
     ]
 
     const arrayPartners = Object.values(listPartners)
@@ -91,9 +96,8 @@ const AdminModels = () => {
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 className="h3 mb-0 text-gray-800">{lang.admin_models}</h1>
+                <h1 className="h3 mb-0 text-gray-800">{lang.admin_products}</h1>
             </div>
-            <h1>TEST lorem dolor </h1>
             <TableBase
                 arrayPartners = {arrayPartners}
                 columns = {tableColumns}
@@ -103,4 +107,4 @@ const AdminModels = () => {
     )
 }
 
-export default AdminModels
+export default AdminProducts

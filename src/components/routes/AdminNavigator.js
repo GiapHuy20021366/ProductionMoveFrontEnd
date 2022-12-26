@@ -20,8 +20,12 @@ const AdminNavigator = (probs) => {
         history.push(paths.ADMIN_MODELs)
         console.log(history)
     }
+    const onClickProducts = () => {
+        history.push(paths.ADMIN_PRODUCTs)
+        console.log(history)
+    }
 
-    function NavItem({pathname, onClickFunc}) {
+    function NavItem({pathname, onClickFunc, title}) {
         return (
             <li className={`nav-item ${history.location.pathname === pathname ? 'active' : ''}`}>
                 <a
@@ -34,7 +38,7 @@ const AdminNavigator = (probs) => {
                         onClick={() => onClickFunc()}
                     >
                         <i className="fas fa-fw fa-wrench"></i>
-                        <span>{lang.admin_models}</span>
+                        <span>{title}</span>
                     </a>
             </li>
         )
@@ -45,51 +49,20 @@ const AdminNavigator = (probs) => {
             <hr className="sidebar-divider" />
             <div className="sidebar-heading">{lang.account_admin}</div>
 
-            <li className={`nav-item ${history.location.pathname === paths.ADMIN_ACCOUNTs ? 'active' : ''}`}>
-                <a
-                    className="nav-link collapsed"
-                    href="#"
-                    data-toggle="collapse"
-                    data-target="#collapseAccounts"
-                    aria-expanded="true"
-                    aria-controls="collapseAccounts"
-                    onClick={() => onClickAccounts()}
-                >
-                    <i className="fas fa-fw fa-wrench"></i>
-                    <span>{lang.admin_accounts}</span>
-                </a>
-                {/* <div
-                    id="collapseLanguage"
-                    className="collapse"
-                    aria-labelledby="headingLanguage"
-                    data-parent="#accordionSidebar"
-                >
-                    <div className="bg-white py-2 collapse-inner rounded">
-                        <h6 className="collapse-header">Custom Utilities:</h6>
-                        <a
-                            className={`collapse-item language-area ${lang._NAME_ === 'VI' ? "language-active" : ""}`}
-                            onClick={(e) => onClickLanguage(e)}
-                            ref={vietnameseRef}
-                        >
-                            {lang.vietnamese}
-                        </a>
-                        <a
-                            className={`collapse-item language-area ${lang._NAME_ === 'EN' ? "language-active" : ""}`}
-                            onClick={(e) => onClickLanguage(e)}
-                            ref={englishRef}
-                        >
-                            {lang.english}
-                        </a>
-                    </div>
-                </div> */}
-            </li>
+            <NavItem
+                pathname = {paths.ADMIN_ACCOUNTs}
+                onClickFunc = {onClickAccounts}
+                title = {lang.admin_accounts}
+            />
             <NavItem
                 pathname = {paths.ADMIN_MODELs}
                 onClickFunc = {onClickModels}
+                title = {lang.admin_models}
             />
             <NavItem
                 pathname = {paths.ADMIN_PRODUCTs}
-                onClickFunc = {onClickModels}
+                onClickFunc = {onClickProducts}
+                title = {lang.admin_products}
             />
         </>
     )

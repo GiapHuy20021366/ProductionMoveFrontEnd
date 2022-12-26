@@ -68,7 +68,6 @@ const AdminModels = () => {
                 ...listPartners,
                 ...partners
             })
-            console.log(partnersRequest)
         }).catch((error) => {
             setErrorMessage('Some error occur, please try again!')
         })
@@ -103,7 +102,6 @@ const AdminModels = () => {
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 className="h3 mb-0 text-gray-800">{lang.admin_models}</h1>
             </div>
-            <h1>TEST lorem dolor </h1>
             <TableBase
                 arrayPartners = {arrayPartners}
                 columns = {tableColumns}

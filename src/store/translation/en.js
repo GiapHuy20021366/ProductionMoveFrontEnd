@@ -29,6 +29,7 @@ const en = {
     account_status_disable: 'Disable',
     admin_accounts: 'Users Accounts',
     admin_models: 'Models',
+    admin_products: 'Products',
     accounts_new_account: 'Add new account',
     account_userName: 'UserName',
     account_password: 'Password',
