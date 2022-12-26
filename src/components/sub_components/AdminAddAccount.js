@@ -72,9 +72,9 @@ const AccountCreater = ({ handleResult }) => {
             case 2:
                 return lang.account_factory
             case 3:
-                return lang.account_dealer
+                return lang.account_agency
             case 4:
-                return lang.account_maintain_center
+                return lang.account_maintenance
             default:
                 return 'Unknown'
         }

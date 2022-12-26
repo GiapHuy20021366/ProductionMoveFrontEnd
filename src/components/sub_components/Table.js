@@ -13,7 +13,7 @@ import "../../vendor/datatables/dataTables.bootstrap4.min.css";
 import { Redirect } from "react-router";
 import { paths } from "../../untils/constant";
 import axios from '../../axios'
-import AccountCreater from "../sub_components/AccountCreater";
+import AccountCreater from "./AdminAddAccount";
 import Table from "../sub_components/Table"
 import ToastUtil from "../../untils/toastUtil";
 import paginationFactory from 'react-bootstrap-table2-paginator';

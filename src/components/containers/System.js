@@ -13,7 +13,7 @@ import "../../vendor/bootstrap/js/bootstrap.bundle.min";
 import "../../styles/sb-admin-2.min.css";
 import "../../styles/font.css";
 import Dashboard from "./DashBoard";
-import Account from "./Account";
+import AccountInfo from "./AccountInfo";
 import Home from "./Home";
 import HomeSystem from "./HomeSystem";
 import AdminAccounts from "./AdminAccounts";
@@ -38,7 +38,7 @@ const System = (probs) => {
               {/* Redirect depend on path */}
               <Switch>
                 <Route exact path={paths.SYSTEM} component={HomeSystem} />
-                <Route path={paths.ACCOUNT} component={Account} />
+                <Route path={paths.ACCOUNT} component={AccountInfo} />
                 <Route path={paths.ADMIN_ACCOUNTs} component={AdminAccounts} />
                 <Route path={paths.ADMIN_MODELs} component={AdminModels} />
                 <Route path={paths.ADMIN_PRODUCTs} component={AdminProducts} />

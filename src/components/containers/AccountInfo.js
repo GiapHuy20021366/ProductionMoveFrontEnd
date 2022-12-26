@@ -14,7 +14,7 @@ import '../../styles/AccountInfo.scss';
 
 
 
-const Account = () => {
+const AccountInfo = () => {
     const lang = useSelector(state => state.lang)
     const account = useSelector(state => state.user.account)
     const getRole = (roleId) => {
@@ -74,4 +74,4 @@ const Account = () => {
     )
 }
 
-export default Account
+export default AccountInfo
