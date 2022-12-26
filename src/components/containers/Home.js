@@ -19,7 +19,7 @@ const Home = (probs) => {
         )
     }
 
-    function onScroll() {
+    (() => {
         let scrollTrigger = 60;
         window.onscroll = function () {
             // We add pageYOffset for compatibility with IE.
@@ -30,9 +30,7 @@ const Home = (probs) => {
                 document.querySelector(".navBar").classList.remove("onscroll");
             }
         };
-    }
-
-    onScroll();
+    })();
 
     return (
         <div className="homeContainer">
