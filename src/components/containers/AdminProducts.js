@@ -36,9 +36,9 @@ const AdminProducts = () => {
         await useCallApi(
             apiUrls.GET_PRODUCTS_BY_QUERY,
             {
-                pageOffset: {
-                    limit: 700
-                },
+                // pageOffset: {
+                //     limit: 700
+                // },
                 associates: {
                     model: { factory: true }
                 }
@@ -83,9 +83,10 @@ const AdminProducts = () => {
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 className="h3 mb-0 text-gray-800">{subLang.admin_products}</h1>
+                <h1 className="h3 mb-0 text-gray-800">{subLang.manage_products}</h1>
             </div>
             <TableBase
+                title={subLang.sumary_re(arrayProducts.length)}
                 data={arrayProducts}
                 columns={tableColumns}
                 isLoading={productsLoading}

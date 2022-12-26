@@ -93,9 +93,11 @@ const langOfAdminModels = {
 
 const langOfAdminProducts = {
     model: 'Dòng sản phẩm',
+    manage_products: 'Quản lý các sản phẩm',
     produced_factory: 'Nhà máy sản xuất',
     birth: 'Ngày sản xuất',
-    location: 'Vị trí'
+    location: 'Vị trí',
+    sumary_re: count => `Tổng số ${count} sản phẩm`,
 }
 
 const vi = {

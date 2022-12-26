@@ -94,8 +94,10 @@ const langOfAdminModels = {
 const langOfAdminProducts = {
     model: 'Model',
     produced_factory: 'Produced Factory',
+    manage_products: 'Manage Products',
     birth: 'Birth',
-    location: 'Location'
+    location: 'Location',
+    sumary_re: count => `Total of ${count} ${count <= 1 ? 'product' : 'products'}`,
 }
 
 const en = {
