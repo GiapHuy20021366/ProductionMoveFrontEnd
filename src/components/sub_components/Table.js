@@ -20,7 +20,7 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 
 
 
-const TableBase = ({ partnersloading, arrayPartners, columns, title }) => {
+const TableBase = ({ isLoading, data, columns, title }) => {
 
 
     const pagination = paginationFactory({
@@ -45,12 +45,12 @@ const TableBase = ({ partnersloading, arrayPartners, columns, title }) => {
             </div>
             <div className="card-body">
                 <div className="table-responsive">
-                    {partnersloading && <div>Loading...</div>}
+                    {isLoading && <div>Loading...</div>}
 
                     <BootstrapTable
                         keyField="id"
                         hover
-                        data={arrayPartners}
+                        data={data}
                         columns={columns}
                         pagination={pagination}
                     />

@@ -12,9 +12,9 @@ import "../../styles/font.css";
 import "../../vendor/datatables/dataTables.bootstrap4.min.css";
 import { Redirect } from "react-router";
 import { paths } from "../../untils/constant";
-import axios from '../../axios'
 import TableBase from "../sub_components/Table"
-
+import useCallApi from "../../untils/fetch";
+import { apiUrls } from '../../untils/constant'
 
 const AdminModels = () => {
     const account = useSelector(state => state.user.account)
@@ -33,12 +33,11 @@ const AdminModels = () => {
     useEffect(async () => {
         setErrorMessage('')
         setModelsLoading(true)
-        const data = await axios.post(
-            '/api/get-models-by-query',
-            {},
+        await useCallApi(
+            apiUrls.GET_MODELS_BY_QUERY,
             {
-                headers: {
-                    Authorization: account.token
+                associates: {
+                    factory: true
                 }
             }
         ).then((data) => {
@@ -72,16 +71,16 @@ const AdminModels = () => {
         { dataField: 'bodyType', text: subLang.body_type }, //material?
         { dataField: 'engineType', text: subLang.engine_type },
         { dataField: 'maxSpeed', text: subLang.max_speed },
-        { dataField: 'acceleration', text: subLang.acceleration },
+        { dataField: 'accceleration', text: subLang.acceleration },
         { dataField: 'cityFuel', text: subLang.city_fuel }
     ]
 
     useEffect(() => {
         const transModels = []
         Object.values(listModels).forEach((model) => {
-            transModels.push({
-                ...model
-            })
+            const modelCopy = { ...model }
+            modelCopy.factory = model?.factory.name
+            transModels.push(modelCopy)
         })
         setArrayModels(transModels)
     }, [subLang, listModels])
@@ -89,12 +88,13 @@ const AdminModels = () => {
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 className="h3 mb-0 text-gray-800">{subLang.admin_models}</h1>
+                <h1 className="h3 mb-0 text-gray-800">{subLang.manage_models}</h1>
             </div>
             <TableBase
-                arraymodels={arrayModels}
+                title={`${subLang.sumary_re(arrayModels.length)}`}
+                data={arrayModels}
                 columns={tableColumns}
-                modelsloading={modelsLoading}
+                isLoading={modelsLoading}
             />
         </div>
     )

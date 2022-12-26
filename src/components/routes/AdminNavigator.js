@@ -45,7 +45,7 @@ const AdminNavigator = (probs) => {
     return (
         <>
             <hr className="sidebar-divider" />
-            <div className="sidebar-heading">{subLang.account_admin}</div>
+            <div className="sidebar-heading">{subLang.admin}</div>
 
             <NavItem
                 pathname={paths.ADMIN_ACCOUNTs}

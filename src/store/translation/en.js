@@ -31,7 +31,7 @@ const langOfAccount = {
 
 const langOfAdminAccounts = {
     ...langOfAccount,
-    accounts: 'User Accounts',
+    manage_accounts: 'Manage Accounts',
     add_new_account: 'Add new account',
     sumary_re: count => `Total of ${count} ${count <= 1 ? 'account' : 'accounts'}`
 }
@@ -86,7 +86,16 @@ const langOfAdminModels = {
     engine_type: 'Engine Type',
     max_speed: 'Max Speed',
     acceleration: 'Acceleration',
-    city_fuel: 'City Fuel'
+    city_fuel: 'City Fuel',
+    sumary_re: count => `Total of ${count} ${count <= 1 ? 'model' : 'models'}`,
+    manage_models: 'Manage Models'
+}
+
+const langOfAdminProducts = {
+    model: 'Model',
+    produced_factory: 'Produced Factory',
+    birth: 'Birth',
+    location: 'Location'
 }
 
 const en = {
@@ -101,7 +110,8 @@ const en = {
     LanguageChooser: langOfLanguageChooser,
     AdminNavigator: langOfAdminNavigator,
     SystemNagivator: langOfSystemNavigator,
-    AdminModels: langOfAdminModels
+    AdminModels: langOfAdminModels,
+    AdminProducts: langOfAdminProducts
 }
 
 export default en

@@ -34,7 +34,7 @@ const langOfAccount = {
 
 const langOfAdminAccounts = {
     ...langOfAccount,
-    accounts: 'Các tài khoản người dùng',
+    manage_accounts: 'Quản lý các tài khoản',
     add_new_account: 'Thêm tài khoản mới',
     sumary_re: count => `Tổng số ${count} tài khoản`
 }
@@ -86,7 +86,16 @@ const langOfAdminModels = {
     engine_type: 'Engine Type',
     max_speed: 'Max Speed',
     acceleration: 'Acceleration',
-    city_fuel: 'City Fuel'
+    city_fuel: 'City Fuel',
+    sumary_re: count => `Tổng số ${count} dòng sản phẩm`,
+    manage_models: 'Quản lý các dòng sản phẩm'
+}
+
+const langOfAdminProducts = {
+    model: 'Dòng sản phẩm',
+    produced_factory: 'Nhà máy sản xuất',
+    birth: 'Ngày sản xuất',
+    location: 'Vị trí'
 }
 
 const vi = {
@@ -101,6 +110,7 @@ const vi = {
     LanguageChooser: langOfLanguageChooser,
     AdminNavigator: langOfAdminNavigator,
     SystemNagivator: langOfSystemNavigator,
-    AdminModels: langOfAdminModels
+    AdminModels: langOfAdminModels,
+    AdminProducts: langOfAdminProducts
 }
 export default vi

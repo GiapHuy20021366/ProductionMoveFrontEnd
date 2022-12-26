@@ -105,7 +105,7 @@ const AdminAccounts = () => {
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 className="h3 mb-0 text-gray-800">{subLang.accounts}</h1>
+                <h1 className="h3 mb-0 text-gray-800">{subLang.manage_accounts}</h1>
             </div>
             {/* Account Create */}
             <button onClick={() => onClickCreateNewAccount()}>{subLang.add_new_account}</button>
@@ -116,9 +116,9 @@ const AdminAccounts = () => {
 
             <TableBase
                 title={`${subLang.sumary_re(arrayPartners.length)}`}
-                arrayPartners={arrayPartners}
+                data={arrayPartners}
                 columns={columns}
-                partnersloading={partnersloading}
+                isLoading={partnersloading}
             />
         </div>
     )
