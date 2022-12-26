@@ -140,6 +140,19 @@
         }
     }
 
+    @media screen and (min-width: 800px) {
+        .featureContainer {
+            min-height     : 500px;
+            display        : flex;
+            flex-direction : column;
+            justify-content: space-evenly;
+
+            .feature {
+                width: 25%;
+            }
+        }
+    }
+
     .footerContainer {
         background-color: #ccc;
 

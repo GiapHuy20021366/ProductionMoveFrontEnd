@@ -3,7 +3,9 @@ export const paths = {
     LOGIN: '/login',
     SYSTEM: '/system',
     ACCOUNT: '/system/account',
-    ADMIN_ACCOUNTs: '/system/admin/accounts'
+    ADMIN_ACCOUNTs: '/system/admin/accounts',
+    ADMIN_MODELs: '/system/admin/models',
+    ADMIN_PRODUCTs: '/system/admin/products'
 }
 
 export const messageTitles = {

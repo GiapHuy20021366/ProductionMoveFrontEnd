@@ -117,7 +117,7 @@ const AccountCreater = ({ handleResult }) => {
                     </select>
                 </li>
             </ul>
-            <div>{errorMessage}</div>
+            <div class="errorMsg">{errorMessage}</div>
             <button onClick={() => onClickAddAccount()}>Add Account</button>
         </div>
     )
