@@ -10,11 +10,17 @@ const langOfLogin = {
     login: 'ĐĂNG NHẬP'
 }
 
-const langOfHomeSystem = {
-    home: 'Nhà'
+const langOfSystemTopBar = {
+    account: 'Tài khoản',
+    logout: 'Đăng xuất'
 }
 
-const langOfAccount = {
+const langOfSystemHome = {
+    home: 'Trang chủ'
+}
+
+const langOfAccountInfo = {
+    account_info: 'Thông tin tài khoản',
     name: 'Tên',
     userName: 'Tài khoản',
     password: 'Mật khẩu',
@@ -32,30 +38,17 @@ const langOfAccount = {
     status_disable: 'Vô hiệu',
 }
 
-const langOfAdminAccounts = {
-    ...langOfAccount,
-    manage_accounts: 'Quản lý các tài khoản',
-    add_new_account: 'Thêm tài khoản mới',
-    sumary_re: count => `Tổng số ${count} tài khoản`
-}
-
-const langOfAccountCreater = {
-    ...langOfAccount,
-    create_success: 'Tạo Tài Khoản Mới Thành Công',
-    add_account: 'Thêm tài khoản',
-
-}
-
-const langOfSystemTopBar = {
-    account: 'Tài khoản',
-    logout: 'Đăng xuất'
-}
-
 const langOfLanguageChooser = {
     _NAME_: 'VI',
     language: 'Ngôn ngữ',
     vietnamese: 'Tiếng Việt',
     english: 'Tiếng Anh',
+}
+
+const langOfSystemNavigator = {
+    home: 'Trang chủ',
+    account: 'Tài khoản',
+    display: 'Hiển thị'
 }
 
 const langOfAdminNavigator = {
@@ -65,10 +58,18 @@ const langOfAdminNavigator = {
     manage_products: 'Quản lý sản phẩm'
 }
 
-const langOfSystemNavigator = {
-    home: 'Nhà',
-    account: 'Tài khoản',
-    display: 'Hiển thị'
+const langOfAdminAddAccount = {
+    ...langOfAccountInfo,
+    create_success: 'Tạo Tài Khoản Mới Thành Công',
+    add_new_account: 'Add new account',
+    add_account: 'Thêm tài khoản'
+}
+
+const langOfAdminAccounts = {
+    ...langOfAccountInfo,
+    manage_accounts: 'Quản lý các tài khoản',
+    add_new_account: 'Thêm tài khoản mới',
+    sumary_re: count => `Tổng số ${count} tài khoản`
 }
 
 const langOfAdminModels = {
@@ -109,16 +110,20 @@ const vi = {
     _NAME_: 'VI',
     TruckBtn: langOfTruckBtn,
     Login: langOfLogin,
-    Account: langOfAccount,
-    HomeSystem: langOfHomeSystem,
-    AdminAccounts: langOfAdminAccounts,
-    AccountCreater: langOfAccountCreater,
+
     SystemTopBar: langOfSystemTopBar,
+    SystemHome: langOfSystemHome,
+    AccountInfo: langOfAccountInfo,
     LanguageChooser: langOfLanguageChooser,
-    AdminNavigator: langOfAdminNavigator,
+    
     SystemNagivator: langOfSystemNavigator,
+    AdminNavigator: langOfAdminNavigator,
+    
+    AdminAddAccount: langOfAdminAddAccount,
+    AdminAccounts: langOfAdminAccounts,
     AdminModels: langOfAdminModels,
     AdminProducts: langOfAdminProducts,
     ModelDisplay: langOfModelDisplay
 }
+
 export default vi

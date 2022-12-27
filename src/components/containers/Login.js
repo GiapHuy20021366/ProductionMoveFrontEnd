@@ -100,7 +100,6 @@ const Login = (probs) => {
                 </form>
             </div>
         </div>
-
     )
 }
 

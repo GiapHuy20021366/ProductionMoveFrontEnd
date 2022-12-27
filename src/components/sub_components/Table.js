@@ -1,6 +1,5 @@
-import React from "react";
-// import BootstrapTable from 'react-bootstrap-table-next';
-import BootstrapTable from "react-bootstrap-table-next";
+import React, { useEffect, useRef, useState } from "react";
+import BootstrapTable from 'react-bootstrap-table-next';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import '../../styles/Dashboard.css'

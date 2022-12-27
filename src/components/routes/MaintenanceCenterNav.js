@@ -11,7 +11,7 @@ import { useHistory, withRouter } from "react-router";
 import { paths } from "../../untils/constant";
 
 const MaintenanceNavigator = (probs) => {
-    const lang = useSelector(state => state.lang)
+    const subLang = useSelector(state => state.lang)
     const history = probs.history
     const onClickProducts = () => {
         history.push(paths.MAINTENANCE_PRODUCTs)

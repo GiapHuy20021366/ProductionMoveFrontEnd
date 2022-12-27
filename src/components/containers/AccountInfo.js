@@ -9,13 +9,10 @@ import "../../styles/font.css";
 
 import "../../vendor/datatables/jquery.dataTables.min"
 import "../../vendor/datatables/dataTables.bootstrap4.min"
-// import "../../js/demo/datatables-demo"
 import '../../styles/AccountInfo.scss';
 
-
-
-const Account = () => {
-    const subLang = useSelector(state => state.lang.Account)
+const AccountInfo = () => {
+    const subLang = useSelector(state => state.lang.AccountInfo)
     const account = useSelector(state => state.user.account)
     const getRole = (roleId) => {
         switch (roleId) {
@@ -24,7 +21,7 @@ const Account = () => {
             case 2:
                 return subLang.factory
             case 3:
-                return subLang.dealer
+                return subLang.agency
             case 4:
                 return subLang.maintain_center
             default:
@@ -34,7 +31,7 @@ const Account = () => {
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 className="h3 mb-0 text-gray-800">{subLang.system_topbar_account}</h1>
+                <h1 className="h3 mb-0 text-gray-800">{subLang.account_info}</h1>
             </div>
             <div className="row">
                 <div className="inf-container col-12 ml-5">
@@ -74,4 +71,4 @@ const Account = () => {
     )
 }
 
-export default Account
+export default AccountInfo

@@ -7,7 +7,7 @@ import { paths } from './../../untils/constant';
 
 
 const Home = (probs) => {
-    const lang = useSelector(state => state.lang)
+    const subLang = useSelector(state => state.lang)
 
     function Feature({ img, title, desc }) {
         return (
@@ -100,8 +100,6 @@ const Home = (probs) => {
                     <span>Team</span>
                     <span>Careers</span>
                 </div>
-
-
             </div>
         </div >
         // <Redirect to={paths.SYSTEM} />

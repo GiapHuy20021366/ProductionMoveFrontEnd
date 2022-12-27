@@ -10,15 +10,24 @@ const langOfLogin = {
     login: 'LOGIN'
 }
 
+const langOfSystemTopBar = {
+    account: 'Account',
+    logout: 'Logout'
+}
 
-const langOfAccount = {
+const langOfSystemHome = {
+    home: 'Home'
+}
+
+const langOfAccountInfo = {
+    account_info: 'Account Infomation',
     name: 'Name',
     userName: 'Username',
     password: 'Password',
     admin: 'Admin',
-    dealer: 'Dealer',
+    agency: 'Agency',
     factory: 'Factory',
-    maintain_center: 'Maintain Center',
+    maintain_center: 'Maintenance Center',
     role: 'Role',
     email: 'Email',
     phone: 'Phone',
@@ -29,33 +38,17 @@ const langOfAccount = {
     status_disable: 'Disable',
 }
 
-const langOfAdminAccounts = {
-    ...langOfAccount,
-    manage_accounts: 'Manage Accounts',
-    add_new_account: 'Add new account',
-    sumary_re: count => `Total of ${count} ${count <= 1 ? 'account' : 'accounts'}`
-}
-
-const langOfHomeSystem = {
-    home: 'Home'
-}
-
-const langOfAccountCreater = {
-    ...langOfAccount,
-    create_success: 'Create Account Successful!',
-    add_account: 'Add Account'
-}
-
-const langOfSystemTopBar = {
-    account: 'Account',
-    logout: 'Logout'
-}
-
 const langOfLanguageChooser = {
     _NAME_: 'EN',
     language: 'Language',
     vietnamese: 'Vietnamese',
     english: 'English',
+}
+
+const langOfSystemNavigator = {
+    home: 'Home',
+    account: 'Account Info',
+    display: 'Display'
 }
 
 const langOfAdminNavigator = {
@@ -65,10 +58,19 @@ const langOfAdminNavigator = {
     manage_products: 'Manage Products',
 }
 
-const langOfSystemNavigator = {
-    home: 'Home',
-    account: 'Account',
-    display: 'Display'
+
+const langOfAdminAddAccount = {
+    ...langOfAccountInfo,
+    create_success: 'Create Account Successful!',
+    add_new_account: 'Add new account',
+    add_account: 'Add Account'
+}
+
+const langOfAdminAccounts = {
+    ...langOfAccountInfo,
+    manage_accounts: 'Manage Accounts',
+    add_new_account: 'Add new account',
+    sumary_re: count => `Total of ${count} ${count <= 1 ? 'account' : 'accounts'}`
 }
 
 const langOfAdminModels = {
@@ -109,14 +111,17 @@ const en = {
     _NAME_: 'EN',
     TruckBtn: langOfTruckBtn,
     Login: langOfLogin,
-    Account: langOfAccount,
-    HomeSystem: langOfHomeSystem,
-    AdminAccounts: langOfAdminAccounts,
-    AccountCreater: langOfAccountCreater,
+    
     SystemTopBar: langOfSystemTopBar,
+    SystemHome: langOfSystemHome,
+    AccountInfo: langOfAccountInfo,
     LanguageChooser: langOfLanguageChooser,
-    AdminNavigator: langOfAdminNavigator,
+    
     SystemNagivator: langOfSystemNavigator,
+    AdminNavigator: langOfAdminNavigator,
+    
+    AdminAddAccount: langOfAdminAddAccount,
+    AdminAccounts: langOfAdminAccounts,
     AdminModels: langOfAdminModels,
     AdminProducts: langOfAdminProducts,
     ModelDisplay: langOfModelDisplay

@@ -16,6 +16,8 @@ import TableBase from "../sub_components/Table";
 import { textFilter, selectFilter } from "react-bootstrap-table2-filter";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
+import ToastUtil from "../../untils/toastUtil";
+import '../../styles/AccountCreater.scss'
 import { useHistory } from 'react-router-dom';
 
 
@@ -26,12 +28,11 @@ const AdminAccounts = () => {
     const [listPartners, setListPartners] = useState({})
     const [partnersloading, setPartnersLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
-    const [createAccountVisible, setCreateAccountVisible] = useState(false)
-    const [statusCreateAccount, setStatusCreateAccount] = useState('')
     const [arrayPartners, setArrayPartners] = useState([])
+    const [showModal, setShowModal] = useState(false)
 
 
-    const handleResultCreateAccount = (newAccount) => {
+    const handleResult = (newAccount) => {
         const listCopy = { ...listPartners }
         listCopy[newAccount.id] = newAccount
         setListPartners(listCopy)
@@ -50,7 +51,7 @@ const AdminAccounts = () => {
             case 2:
                 return subLang.factory
             case 3:
-                return subLang.dealer
+                return subLang.agency
             case 4:
                 return subLang.maintain_center
             default:
@@ -124,17 +125,25 @@ const AdminAccounts = () => {
         setArrayPartners(transPartners)
     }, [subLang, listPartners])
 
+    const onClickAddNewAccount = () => {
+        setShowModal(true)
+    }
+    const handleClose = (e) => {
+        setShowModal(false)
+        window.document.body.querySelector('.modal-backdrop').remove()
+    }
 
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 className="h3 mb-0 text-gray-800">{subLang.manage_accounts}</h1>
             </div>
-            {/* Account Create */}
-            <button onClick={() => onClickCreateNewAccount()}>{subLang.add_new_account}</button>
+            {/* Button Create Account */}
+            <button className="btn btn-primary" data-toggle="modal" data-target="#logoutModal" onClick={() => onClickAddNewAccount()}>{subLang.add_new_account}</button>
+
+            {/* Popup Form **************************************************************** */}
             {
-                createAccountVisible &&
-                <AccountCreater handleResult={handleResultCreateAccount} />
+                showModal && <AdminAddAccount handleResult={handleResult} handleClose={handleClose} />
             }
 
             <TableBase
