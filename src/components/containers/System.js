@@ -17,6 +17,7 @@ import SystemHome from "./SystemHome";
 import AdminAccounts from "./AdminAccounts";
 import AdminModels from "./AdminModels";
 import AdminProducts from "./AdminProducts";
+import ModelDisplay from "./ModelDisplay";
 
 const System = (probs) => {
   return (
@@ -34,8 +35,11 @@ const System = (probs) => {
                 <Route exact path={paths.SYSTEM} component={SystemHome} />
                 <Route path={paths.ACCOUNT} component={AccountInfo} />
                 <Route path={paths.ADMIN_ACCOUNTs} component={AdminAccounts} />
-                <Route path={paths.ADMIN_MODELs} component={AdminModels} />
                 <Route path={paths.ADMIN_PRODUCTs} component={AdminProducts} />
+                <Route path={paths.ADMIN_MODELs} >
+                  <Route path={paths.ADMIN_MODELS_SHOW_ONE} component={ModelDisplay} />
+                  <Route exact path={paths.ADMIN_MODELs} component={AdminModels} />
+                </Route>
               </Switch>
             </div>
             {/* <footer className="sticky-footer bg-white">

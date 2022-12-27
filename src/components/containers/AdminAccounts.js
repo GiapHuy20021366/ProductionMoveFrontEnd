@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import '../../styles/Dashboard.css'
@@ -12,9 +11,8 @@ import "../../styles/font.css";
 import "../../vendor/datatables/dataTables.bootstrap4.min.css";
 import { Redirect } from "react-router";
 import { paths } from "../../untils/constant";
-import axios from '../../axios'
-import AdminAddAccount from "../sub_components/AdminAddAccount";
-import TableBase from "../sub_components/Table"
+import TableBase from "../sub_components/Table";
+import { textFilter, selectFilter } from "react-bootstrap-table2-filter";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import ToastUtil from "../../untils/toastUtil";
@@ -22,12 +20,13 @@ import ToastUtil from "../../untils/toastUtil";
 const AdminAccounts = () => {
     const account = useSelector(state => state.user.account)
     const subLang = useSelector(state => state.lang.AdminAccounts)
+    const deviceType = useSelector(state => state.device.type)
     const [listPartners, setListPartners] = useState({})
     const [partnersloading, setPartnersLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const [arrayPartners, setArrayPartners] = useState([])
     const [showModal, setShowModal] = useState(false)
- 
+
 
     const handleResult = (newAccount) => {
         const listCopy = { ...listPartners }
@@ -59,7 +58,7 @@ const AdminAccounts = () => {
     useEffect(async () => {
         setErrorMessage('')
         setPartnersLoading(true)
-        const data = await useCallApi(
+        await useCallApi(
             apiUrls.GET_PARTNERS_BY_QUERY
         ).then((data) => {
             setPartnersLoading(false)
@@ -77,6 +76,40 @@ const AdminAccounts = () => {
         })
     }, [])
 
+    const onClickCreateNewAccount = () => {
+        setCreateAccountVisible(!createAccountVisible)
+    }
+
+    const columns = (() => {
+        const options = {
+            id: { dataField: 'id', text: 'Id' },
+            name: { dataField: 'name', text: subLang.name, filter: textFilter() },
+            email: { dataField: 'email', text: subLang.email, filter: textFilter() },
+            phone: { dataField: 'phone', text: subLang.phone, filter: textFilter() },
+            address: { dataField: 'address', text: subLang.address, filter: textFilter() },
+            role: {
+                dataField: 'role', text: subLang.role,
+                // formatter: cell => selectOptions[cell],
+                // filter: selectFilter({
+                //     options: selectOptions
+                // })
+            }
+        }
+
+        const { id, name, email, phone, address, role } = options
+
+        if (deviceType.isMobie) {
+            return [id, name, role]
+        }
+        if (deviceType.isTablet) {
+            return [id, name, role, address]
+        }
+        if (deviceType.isDesktop) {
+            return Object.values(options)
+        }
+    })()
+
+
     useEffect(() => {
         const transPartners = []
         Object.values(listPartners).forEach((partner) => {
@@ -87,23 +120,17 @@ const AdminAccounts = () => {
         })
         setArrayPartners(transPartners)
     }, [subLang, listPartners])
- 
+
     const onClickAddNewAccount = () => {
         setShowModal(true)
     }
     const handleClose = (e) => {
         setShowModal(false)
         window.document.body.querySelector('.modal-backdrop').remove()
+        window.document.body.classList.remove('modal-open')
+        window.document.body.style = null
+
     }
-    
-    const columns = [
-        { dataField: 'id', text: 'Id' },
-        { dataField: 'name', text: subLang.name },
-        { dataField: 'email', text: subLang.email },
-        { dataField: 'phone', text: subLang.phone },
-        { dataField: 'address', text: subLang.address },
-        { dataField: 'role', text: subLang.role }
-    ]
 
     return (
         <div className="container-fluid">
@@ -112,10 +139,10 @@ const AdminAccounts = () => {
             </div>
             {/* Button Create Account */}
             <button className="btn btn-primary" data-toggle="modal" data-target="#logoutModal" onClick={() => onClickAddNewAccount()}>{subLang.add_new_account}</button>
-            
+
             {/* Popup Form **************************************************************** */}
             {
-                showModal && <AdminAddAccount handleResult={handleResult} handleClose={handleClose}/>
+                showModal && <AdminAddAccount handleResult={handleResult} handleClose={handleClose} />
             }
 
             <TableBase

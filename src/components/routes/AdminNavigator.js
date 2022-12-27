@@ -9,6 +9,7 @@ import "../../styles/font.css";
 
 import { useHistory } from "react-router";
 import { paths } from "../../untils/constant";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AdminNavigator = (probs) => {
     const subLang = useSelector(state => state.lang.AdminNavigator)
@@ -25,7 +26,7 @@ const AdminNavigator = (probs) => {
 
     function NavItem({ pathname, onClickFunc, title }) {
         return (
-            <li className={`nav-item ${history.location.pathname === pathname ? 'active' : ''}`}>
+            <li className={`nav-item ${history.location.pathname.startsWith(pathname) ? 'active' : ''}`}>
                 <a
                     className="nav-link collapsed"
                     href="#"

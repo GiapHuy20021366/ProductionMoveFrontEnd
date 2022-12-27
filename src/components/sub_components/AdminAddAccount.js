@@ -39,7 +39,7 @@ const AdminAddAccount = ({ handleResult, handleClose }) => {
                 nameRef.current.value = ''
                 addressRef.current.value = ''
                 phoneRef.current.value = ''
-    
+
                 ToastUtil.success(subLang.create_success, 1000);
                 handleClose && handleClose(e)
             }).catch((error) => {
@@ -48,30 +48,31 @@ const AdminAddAccount = ({ handleResult, handleClose }) => {
             })
         }
 
-        await useCallApi(
-            apiUrls.CREATE_PARTNER,
-            newAcc
-        ).then((data) => {
-            handleResult && handleResult({
-                ...newAcc,
-                id: data.data.id
-            })
+        testAPI()
+        // await useCallApi(
+        //     apiUrls.CREATE_PARTNER,
+        //     newAcc
+        // ).then((data) => {
+        //     handleResult && handleResult({
+        //         ...newAcc,
+        //         id: data.data.id
+        //     })
 
-            userNameRef.current.value = ''
-            passwordRef.current.value = ''
-            emailRef.current.value = ''
-            nameRef.current.value = ''
-            addressRef.current.value = ''
-            phoneRef.current.value = ''
+        //     userNameRef.current.value = ''
+        //     passwordRef.current.value = ''
+        //     emailRef.current.value = ''
+        //     nameRef.current.value = ''
+        //     addressRef.current.value = ''
+        //     phoneRef.current.value = ''
 
-            ToastUtil.success(subLang.create_success, 1000);
-            handleClose && handleClose(e)
-            // console.log(data)
-        }).catch((error) => {
-            // console.log(error)
-            const messageResponse = error.response.data.message
-            setErrorMessage(messageResponse)
-        })
+        //     ToastUtil.success(subLang.create_success, 1000);
+        //     handleClose && handleClose(e)
+        //     // console.log(data)
+        // }).catch((error) => {
+        //     // console.log(error)
+        //     const messageResponse = error.response.data.message
+        //     setErrorMessage(messageResponse)
+        // })
 
     }
 

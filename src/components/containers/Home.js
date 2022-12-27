@@ -25,7 +25,7 @@ const Home = (probs) => {
             // We add pageYOffset for compatibility with IE.
             if (window.scrollY >= scrollTrigger || window.pageYOffset >= scrollTrigger) {
                 document.querySelector(".navBar").classList.add("onscroll");
-                console.log();
+
             } else {
                 document.querySelector(".navBar").classList.remove("onscroll");
             }

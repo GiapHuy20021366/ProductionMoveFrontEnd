@@ -103,6 +103,11 @@ const langOfAdminProducts = {
     sumary_re: count => `Tổng số ${count} sản phẩm`,
 }
 
+const langOfModelDisplay = {
+    ...langOfAdminModels,
+    model_details: 'Thông tin dòng sản phẩm'
+}
+
 const vi = {
     _NAME_: 'VI',
     TruckBtn: langOfTruckBtn,
@@ -119,7 +124,8 @@ const vi = {
     AdminAddAccount: langOfAdminAddAccount,
     AdminAccounts: langOfAdminAccounts,
     AdminModels: langOfAdminModels,
-    AdminProducts: langOfAdminProducts
+    AdminProducts: langOfAdminProducts,
+    ModelDisplay: langOfModelDisplay
 }
 
 export default vi

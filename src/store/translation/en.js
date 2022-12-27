@@ -104,6 +104,11 @@ const langOfAdminProducts = {
     sumary_re: count => `Total of ${count} ${count <= 1 ? 'product' : 'products'}`,
 }
 
+const langOfModelDisplay = {
+    ...langOfAdminModels,
+    model_details: 'Model details'
+}
+
 const en = {
     _NAME_: 'EN',
     TruckBtn: langOfTruckBtn,
@@ -120,7 +125,8 @@ const en = {
     AdminAddAccount: langOfAdminAddAccount,
     AdminAccounts: langOfAdminAccounts,
     AdminModels: langOfAdminModels,
-    AdminProducts: langOfAdminProducts
+    AdminProducts: langOfAdminProducts,
+    ModelDisplay: langOfModelDisplay
 }
 
 export default en

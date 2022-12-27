@@ -43,7 +43,7 @@ const SystemNagivator = (probs) => {
       >
         <div className="sidebar-brand-icon ">
           <img
-            src="./img/z3948374885974_77bdf19764ef16c7dd1237d9644e22a0.png"
+            src="/logo.png"
             alt=""
             style={{ height: "35px" }}
           />
