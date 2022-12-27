@@ -64,7 +64,7 @@ const AdminModels = () => {
         { dataField: 'factory', text: subLang.produced_factory },
         { dataField: 'birth', text: subLang.birth },
         { dataField: 'series', text: subLang.series },
-        { dataField: 'trim', text: subLang.trim }, //?
+        // { dataField: 'trim', text: subLang.trim },
         { dataField: 'length', text: subLang.length },
         { dataField: 'width', text: subLang.width },
         { dataField: 'height', text: subLang.height },

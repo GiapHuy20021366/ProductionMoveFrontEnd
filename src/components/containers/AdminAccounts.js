@@ -18,7 +18,6 @@ import TableBase from "../sub_components/Table"
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import ToastUtil from "../../untils/toastUtil";
-import '../../styles/AccountCreater.scss'
 
 const AdminAccounts = () => {
     const account = useSelector(state => state.user.account)

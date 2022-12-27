@@ -25,8 +25,8 @@ const langOfAccountInfo = {
     userName: 'Username',
     password: 'Password',
     admin: 'Admin',
-    agency: 'Agency',
     factory: 'Factory',
+    agency: 'Agency',
     maintain_center: 'Maintenance Center',
     role: 'Role',
     email: 'Email',
@@ -46,6 +46,7 @@ const langOfLanguageChooser = {
 }
 
 const langOfSystemNavigator = {
+    system: 'GENERAL',
     home: 'Home',
     account: 'Account Info',
     display: 'Display'
@@ -63,7 +64,8 @@ const langOfAdminAddAccount = {
     ...langOfAccountInfo,
     create_success: 'Create Account Successful!',
     add_new_account: 'Add new account',
-    add_account: 'Add Account'
+    cancel: 'Cancel',
+    submit: 'Submit',
 }
 
 const langOfAdminAccounts = {
@@ -78,7 +80,7 @@ const langOfAdminModels = {
     sign_name: 'Sign Name',
     generation: 'Generation',
     produced_factory: 'Produced Factory',
-    birth: 'Birthday',
+    birth: 'Launch Date',
     series: 'Series',
     trim: 'Trim',
     length: 'Length',

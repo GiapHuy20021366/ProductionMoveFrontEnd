@@ -54,7 +54,7 @@ const SystemNagivator = (probs) => {
       {/* **************************************************************** */}
       <hr className="sidebar-divider" />
       <hr className="sidebar-divider my-0" />
-      <div className="sidebar-heading">General</div>
+      <div className="sidebar-heading">{subLang.system}</div>
 
       <li className={`nav-item ${history.location.pathname === paths.SYSTEM ? 'active' : ''}`}>
         <a className="nav-link pointer" onClick={() => onClickHomeSystem()}>
