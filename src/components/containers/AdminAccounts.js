@@ -42,6 +42,16 @@ const AdminAccounts = () => {
         )
     }
 
+    const selectOptions = {
+        options: {
+            "Admin": subLang.admin,
+            "Factory": subLang.factory,
+            "Maintain Center": subLang.maintain_center,
+            "Dealer": subLang.dealer,
+            "Unknown": "Unknown"
+        }
+    }
+
     const getRole = (roleId) => {
         switch (roleId) {
             case 1:
@@ -90,7 +100,7 @@ const AdminAccounts = () => {
         { 
             dataField: 'name', 
             text: subLang.name,
-            filter: textFilter() 
+            filter: textFilter(),
         },
         { 
             dataField: 'email', 
@@ -112,6 +122,8 @@ const AdminAccounts = () => {
         { 
             dataField: 'role', 
             text: subLang.role,
+            formatter: cell => selectOptions.options[cell],
+            filter: selectFilter(selectOptions)
         }
     ]
     useEffect(() => {
@@ -124,7 +136,7 @@ const AdminAccounts = () => {
         })
         setArrayPartners(transPartners)
     }, [subLang, listPartners])
-
+    console.log(subLang)
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">

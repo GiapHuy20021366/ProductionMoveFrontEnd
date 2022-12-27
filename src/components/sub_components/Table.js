@@ -24,7 +24,7 @@ import { Button } from "react-bootstrap";
 const TableBase = ({ isLoading, data, columns, title }) => {
   let checkb = false;
 
-  function AddCheckbox() {
+  function Check() {
     if (checkb == true) {
       checkb = false;
     } else {
@@ -48,15 +48,20 @@ const TableBase = ({ isLoading, data, columns, title }) => {
     //   console.log('sizePerPage', sizePerPage);
     // }
   });
+  function addCheckbox() {
+    if (checkb == true) {
+      return { mode: 'checkbox', clickToSelect: true }
+    } 
+  }
   return (
     <div className="card shadow mb-4">
       <div className="card-header py-3">
         <h6 className="m-0 font-weight-bold text-primary">{title}</h6>
-        <button 
-            onClick = {AddCheckbox}
+        <Button 
+            onClick = {Check}
         >
             Select
-        </button>
+        </Button>
         {/* selectRow={ { mode: 'checkbox', clickToSelect: true } } */}
       </div>
       <div className="card-body">
@@ -71,6 +76,8 @@ const TableBase = ({ isLoading, data, columns, title }) => {
             columns={columns}
             pagination={pagination}
             filter={filterFactory()}
+            // selectRow = {addCheckbox()}
+            selectRow={ { mode: 'checkbox', clickToSelect: true } }
           />
         </div>
       </div>
