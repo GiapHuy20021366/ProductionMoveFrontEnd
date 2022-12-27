@@ -2,7 +2,6 @@ import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import Login from '../components/containers/Login';
 import Home from '../components/containers/Home';
-import Dashboard from '../components/routes/SystemNavigator';
 import '../styles/App.scss';
 import { paths } from '../untils/constant';
 import { userIsAuthenticated, userIsNotAuthenticated } from '../components/hoc/authentication'

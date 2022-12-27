@@ -3,13 +3,13 @@ import axios from '../../axios'
 import { useState, useEffect } from "react"
 
 const TestApi = () => {
-    const [token, setToken] = useState('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJOYW1lIjoiREwxIiwic3RhdHVzIjoyLCJyb2xlIjozLCJpZCI6MzV9LCJpYXQiOjE2NzA4NjQyNjUsImV4cCI6MTY3MDg2Nzg2NX0.ipWfqEoDwLk2ZQy36lAkTe9lZG98ElFe3GwNXvmefWk')
+    const [token, setToken] = useState('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJOYW1lIjoiREwxIiwic3RhdHVzIjoyLCJyb2xlIjozLCJpZCI6MzV9LCJpYXQiOjE2NzIwNDE4MjAsImV4cCI6MTY3MjA0NTQyMH0.Ed4IN17R1oH6rpsOviosZlq75dwx6F3tFcD_xb-kk0c')
     const test = async () => {
         try {
             const data = await axios.post(
-                '/api/maintain-products', // path of API
+                '/api/get-models-by-query', // path of API
                 {
-                    productIds: [1, 2]
+                    productIds: [1, 2],
                     // exportIds: [1561],
                     // listId: [10],
                     // toPartnerId: 35
@@ -19,10 +19,10 @@ const TestApi = () => {
                     //         lt: 12
                     //     },
                     // },
-                    // pageOffset: {
-                    //     limit: 12, // rows in a page
-                    //     offset: 0   // page offset
-                    // },
+                    pageOffset: {
+                        limit: 12, // rows in a page
+                        offset: 0   // page offset
+                    },
                     // associates: {
                     //     product: {
                     //         model: {
