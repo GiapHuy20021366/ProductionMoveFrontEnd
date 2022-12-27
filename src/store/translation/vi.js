@@ -72,21 +72,21 @@ const langOfSystemNavigator = {
 }
 
 const langOfAdminModels = {
-    name: 'Name',
-    sign_name: 'Sign Name',
-    generation: 'Generation',
-    produced_factory: 'Produced Factory',
-    birth: 'Birthday',
+    name: 'Tên',
+    sign_name: 'Dòng',
+    generation: 'Thế hệ',
+    produced_factory: 'Nhà máy sản xuất',
+    birth: 'Ngày sản xuất',
     series: 'Series',
     trim: 'Trim',
-    length: 'Length',
-    width: 'Width',
-    height: 'Height',
-    body_type: 'Body Type',
-    engine_type: 'Engine Type',
-    max_speed: 'Max Speed',
-    acceleration: 'Acceleration',
-    city_fuel: 'City Fuel',
+    length: 'Chiều dài',
+    width: 'Chiều rộng',
+    height: 'Chiều cao',
+    body_type: 'Loại thân xe',
+    engine_type: 'Loại động cơ',
+    max_speed: 'Tối độ tối đa',
+    acceleration: 'Gia tốc',
+    city_fuel: 'Tiêu thụ nhiên liệu',
     sumary_re: count => `Tổng số ${count} dòng sản phẩm`,
     manage_models: 'Quản lý các dòng sản phẩm'
 }
@@ -98,6 +98,11 @@ const langOfAdminProducts = {
     birth: 'Ngày sản xuất',
     location: 'Vị trí',
     sumary_re: count => `Tổng số ${count} sản phẩm`,
+}
+
+const langOfModelDisplay = {
+    ...langOfAdminModels,
+    model_details: 'Thông tin dòng sản phẩm'
 }
 
 const vi = {
@@ -113,6 +118,7 @@ const vi = {
     AdminNavigator: langOfAdminNavigator,
     SystemNagivator: langOfSystemNavigator,
     AdminModels: langOfAdminModels,
-    AdminProducts: langOfAdminProducts
+    AdminProducts: langOfAdminProducts,
+    ModelDisplay: langOfModelDisplay
 }
 export default vi

@@ -17,6 +17,7 @@ import HomeSystem from "./HomeSystem";
 import AdminAccounts from "./AdminAccounts";
 import AdminModels from "./AdminModels";
 import AdminProducts from "./AdminProducts";
+import ModelDisplay from "./ModelDisplay";
 
 const System = (probs) => {
   // useEffect(() => {
@@ -38,8 +39,11 @@ const System = (probs) => {
                 <Route exact path={paths.SYSTEM} component={HomeSystem} />
                 <Route path={paths.ACCOUNT} component={Account} />
                 <Route path={paths.ADMIN_ACCOUNTs} component={AdminAccounts} />
-                <Route path={paths.ADMIN_MODELs} component={AdminModels} />
                 <Route path={paths.ADMIN_PRODUCTs} component={AdminProducts} />
+                <Route path={paths.ADMIN_MODELs} >
+                  <Route path={paths.ADMIN_MODELS_SHOW_ONE} component={ModelDisplay} />
+                  <Route exact path={paths.ADMIN_MODELs} component={AdminModels} />
+                </Route>
               </Switch>
             </div>
             {/* <footer className="sticky-footer bg-white">

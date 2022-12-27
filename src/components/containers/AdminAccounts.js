@@ -21,6 +21,7 @@ import { apiUrls } from '../../untils/constant'
 const AdminAccounts = () => {
     const account = useSelector(state => state.user.account)
     const subLang = useSelector(state => state.lang.AdminAccounts)
+    const deviceType = useSelector(state => state.device.type)
     const [listPartners, setListPartners] = useState({})
     const [partnersloading, setPartnersLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
@@ -58,7 +59,7 @@ const AdminAccounts = () => {
     useEffect(async () => {
         setErrorMessage('')
         setPartnersLoading(true)
-        const data = await useCallApi(
+        await useCallApi(
             apiUrls.GET_PARTNERS_BY_QUERY
         ).then((data) => {
             setPartnersLoading(false)
@@ -80,15 +81,29 @@ const AdminAccounts = () => {
         setCreateAccountVisible(!createAccountVisible)
     }
 
+    const columns = (() => {
+        const options = {
+            id: { dataField: 'id', text: 'Id' },
+            name: { dataField: 'name', text: subLang.name },
+            email: { dataField: 'email', text: subLang.email },
+            phone: { dataField: 'phone', text: subLang.phone },
+            address: { dataField: 'address', text: subLang.address },
+            role: { dataField: 'role', text: subLang.role }
+        }
 
-    const columns = [
-        { dataField: 'id', text: 'Id' },
-        { dataField: 'name', text: subLang.name },
-        { dataField: 'email', text: subLang.email },
-        { dataField: 'phone', text: subLang.phone },
-        { dataField: 'address', text: subLang.address },
-        { dataField: 'role', text: subLang.role }
-    ]
+        const { id, name, email, phone, address, role } = options
+
+        if (deviceType.isMobie) {
+            return [id, name, role]
+        }
+        if (deviceType.isTablet) {
+            return [id, name, role, address]
+        }
+        if (deviceType.isDesktop) {
+            return Object.values(options)
+        }
+    })()
+
 
     useEffect(() => {
         const transPartners = []

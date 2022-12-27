@@ -25,7 +25,7 @@ const AdminNavigator = (probs) => {
 
     function NavItem({ pathname, onClickFunc, title }) {
         return (
-            <li className={`nav-item ${history.location.pathname === pathname ? 'active' : ''}`}>
+            <li className={`nav-item ${history.location.pathname.startsWith(pathname) ? 'active' : ''}`}>
                 <a
                     className="nav-link collapsed"
                     href="#"

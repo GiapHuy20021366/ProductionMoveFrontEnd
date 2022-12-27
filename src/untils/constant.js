@@ -4,6 +4,7 @@ export const paths = {
     SYSTEM: '/system',
     ACCOUNT: '/system/account',
     ADMIN_ACCOUNTs: '/system/admin/accounts',
+    ADMIN_MODELS_SHOW_ONE: '/system/admin/models/detail',
     ADMIN_MODELs: '/system/admin/models',
     ADMIN_PRODUCTs: '/system/admin/products'
 }
@@ -20,5 +21,6 @@ export const apiUrls = {
     GET_PARTNERS_BY_QUERY: '/api/get-partners-by-query',
     CREATE_PARTNER: '/api/create-partner',
     GET_MODELS_BY_QUERY: '/api/get-models-by-query',
+    GET_MODELS_BY_IDS: '/api/get-models-by-ids',
     GET_PRODUCTS_BY_QUERY: '/api/get-products-by-query'
 }

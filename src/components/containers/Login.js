@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { loginUser } from "../../store/slices/userSlices"
 import '../../styles/Login.scss'
@@ -60,6 +60,10 @@ const Login = (probs) => {
     function turnBack() {
         probs.history.push(paths.HOME)
     }
+
+    useEffect(() => {
+        userNameRef.current.focus()
+    })
 
     return (
         <div className="page-white">

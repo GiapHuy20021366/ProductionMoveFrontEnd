@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
 import BootstrapTable from 'react-bootstrap-table-next';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
@@ -10,18 +9,11 @@ import "../../vendor/bootstrap/js/bootstrap.bundle.min";
 import "../../styles/sb-admin-2.min.css";
 import "../../styles/font.css";
 import "../../vendor/datatables/dataTables.bootstrap4.min.css";
-import { Redirect } from "react-router";
-import { paths } from "../../untils/constant";
-import axios from '../../axios'
-import AccountCreater from "../sub_components/AccountCreater";
-import Table from "../sub_components/Table"
-import ToastUtil from "../../untils/toastUtil";
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
 
 
-const TableBase = ({ isLoading, data, columns, title }) => {
-
+const TableBase = ({ isLoading, data, columns, title, rowEvents }) => {
 
     const pagination = paginationFactory({
         page: 2,
@@ -53,6 +45,7 @@ const TableBase = ({ isLoading, data, columns, title }) => {
                         data={data}
                         columns={columns}
                         pagination={pagination}
+                        rowEvents={rowEvents}
                     />
                 </div>
             </div>
