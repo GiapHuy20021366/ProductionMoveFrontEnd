@@ -14,7 +14,8 @@ import { Redirect } from "react-router";
 import { paths } from "../../untils/constant";
 import axios from '../../axios'
 import AccountCreater from "../sub_components/AccountCreater";
-import TableBase from "../sub_components/Table"
+import TableBase from "../sub_components/Table";
+import { textFilter, selectFilter } from "react-bootstrap-table2-filter";
 import ToastUtil from "../../untils/toastUtil";
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
@@ -29,6 +30,24 @@ const AdminAccounts = () => {
     const [statusCreateAccount, setStatusCreateAccount] = useState('')
     const [arrayPartners, setArrayPartners] = useState([])
 
+
+    // const selectOptions = [
+    //     { value: 0, label: lang.account_admin },
+    //     { value: 1, label: lang.account_factory },
+    //     { value: 2, label: lang.account_dealer },
+    //     { value: 3, label: lang.account_maintain_center },
+    //     { value: 4, label: 'Unknown' }
+
+
+    //   ];
+    const selectOptions = {
+        'Admin': lang.account_admin,
+        'Dealer': lang.account_dealer,
+        'Factory': lang.account_factory,
+        'Maintain Center': lang.account_maintain_center,
+        'Unknown': 'Unknown'
+    }
+ 
     const handleResultCreateAccount = (newAccount) => {
         const listCopy = { ...listPartners }
         listCopy[newAccount.id] = newAccount
@@ -87,16 +106,43 @@ const AdminAccounts = () => {
         setCreateAccountVisible(!createAccountVisible)
     }
 
-
     const columns = [
-        { dataField: 'id', text: 'Id' },
-        { dataField: 'name', text: lang.account_name },
-        { dataField: 'email', text: lang.account_email },
-        { dataField: 'phone', text: lang.account_phone },
-        { dataField: 'address', text: lang.account_address },
-        { dataField: 'role', text: lang.account_role }
-    ]
+        { 
+            dataField: 'id', 
+            text: 'Id' 
+        },
+        { 
+            dataField: 'name', 
+            text: lang.account_name,
+            filter: textFilter() 
+        },
+        { 
+            dataField: 'email', 
+            text: lang.account_email, 
+            filter: textFilter() 
 
+        },
+        { 
+            dataField: 'phone', 
+            text: lang.account_phone,
+            filter: textFilter() 
+
+        },
+        { 
+            dataField: 'address', 
+            text: lang.account_address,
+            filter: textFilter() 
+        },
+        { 
+            dataField: 'role', 
+            text: lang.account_role,
+            formatter: cell => selectOptions[cell],
+            filter: selectFilter({
+                options: selectOptions
+            })
+        }
+    ]
+    console.log(selectOptions)
     useEffect(() => {
         const transPartners = []
         Object.values(listPartners).forEach((partner) => {
@@ -107,7 +153,6 @@ const AdminAccounts = () => {
         })
         setArrayPartners(transPartners)
     }, [lang, listPartners])
-
 
     return (
         <div className="container-fluid">

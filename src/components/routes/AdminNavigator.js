@@ -17,11 +17,40 @@ const AdminNavigator = (probs) => {
     const onClickAccounts = () => {
         history.push(paths.ADMIN_ACCOUNTs)
     }
+    const onClickModels = () => {
+        history.push(paths.ADMIN_MODELs)
+        console.log(history)
+    }
+    const onClickProducts = () => {
+        history.push(paths.ADMIN_PRODUCTs)
+        console.log(history)
+    }
+
+    function NavItem({pathname, onClickFunc, title}) {
+        return (
+            <li className={`nav-item ${history.location.pathname === pathname ? 'active' : ''}`}>
+                <a
+                        className="nav-link collapsed"
+                        href="#"
+                        data-toggle="collapse"
+                        data-target="#collapseAccounts"
+                        aria-expanded="true"
+                        aria-controls="collapseAccounts"
+                        onClick={() => onClickFunc()}
+                    >
+                        <i className="fas fa-fw fa-wrench"></i>
+                        <span>{title}</span>
+                    </a>
+            </li>
+        )
+    }
+
     return (
         <>
             <hr className="sidebar-divider" />
             <div className="sidebar-heading">{lang.account_admin}</div>
 
+<<<<<<< HEAD
             <li className={`nav-item ${history.location.pathname === paths.ADMIN_ACCOUNTs ? 'active' : ''}`}>
                 <a
                     className="nav-link pointer"
@@ -55,6 +84,23 @@ const AdminNavigator = (probs) => {
                     </div>
                 </div> */}
             </li>
+=======
+            <NavItem
+                pathname = {paths.ADMIN_ACCOUNTs}
+                onClickFunc = {onClickAccounts}
+                title = {lang.admin_accounts}
+            />
+            <NavItem
+                pathname = {paths.ADMIN_MODELs}
+                onClickFunc = {onClickModels}
+                title = {lang.admin_models}
+            />
+            <NavItem
+                pathname = {paths.ADMIN_PRODUCTs}
+                onClickFunc = {onClickProducts}
+                title = {lang.admin_products}
+            />
+>>>>>>> origin/fe
         </>
     )
 }
