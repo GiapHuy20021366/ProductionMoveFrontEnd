@@ -1,11 +1,11 @@
 import React, { useRef, useState } from "react";
 import { useSelector } from "react-redux";
-import '../../styles/AccountCreater.scss'
+import '../../styles/AdminAddAccount.scss'
 import ToastUtil from "../../untils/toastUtil";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 
-const AccountCreater = ({ handleResult, handleClose }) => {
+const AdminAddAccount = ({ handleResult, handleClose }) => {
     const subLang = useSelector(state => state.lang.AccountCreater)
 
     const userNameRef = useRef()
@@ -149,5 +149,5 @@ const AccountCreater = ({ handleResult, handleClose }) => {
     )
 }
 
-export default AccountCreater
+export default AdminAddAccount
 
