@@ -13,9 +13,10 @@ import "../../vendor/datatables/dataTables.bootstrap4.min.css";
 import { Redirect } from "react-router";
 import { paths } from "../../untils/constant";
 import AccountCreater from "../sub_components/AccountCreater";
-import TableBase from "../sub_components/Table"
-import useCallApi from "../../untils/fetch";
-import { apiUrls } from '../../untils/constant'
+import TableBase from "../sub_components/Table";
+import { textFilter, selectFilter } from "react-bootstrap-table2-filter";
+import ToastUtil from "../../untils/toastUtil";
+import paginationFactory from 'react-bootstrap-table2-paginator';
 
 
 const AdminAccounts = () => {
@@ -28,6 +29,7 @@ const AdminAccounts = () => {
     const [createAccountVisible, setCreateAccountVisible] = useState(false)
     const [statusCreateAccount, setStatusCreateAccount] = useState('')
     const [arrayPartners, setArrayPartners] = useState([])
+
 
     const handleResultCreateAccount = (newAccount) => {
         const listCopy = { ...listPartners }
@@ -84,11 +86,16 @@ const AdminAccounts = () => {
     const columns = (() => {
         const options = {
             id: { dataField: 'id', text: 'Id' },
-            name: { dataField: 'name', text: subLang.name },
-            email: { dataField: 'email', text: subLang.email },
-            phone: { dataField: 'phone', text: subLang.phone },
-            address: { dataField: 'address', text: subLang.address },
-            role: { dataField: 'role', text: subLang.role }
+            name: { dataField: 'name', text: subLang.name, filter: textFilter() },
+            email: { dataField: 'email', text: subLang.email, filter: textFilter() },
+            phone: { dataField: 'phone', text: subLang.phone, filter: textFilter() },
+            address: { dataField: 'address', text: subLang.address, filter: textFilter() },
+            role: {
+                dataField: 'role', text: subLang.role, formatter: cell => selectOptions[cell],
+                filter: selectFilter({
+                    options: selectOptions
+                })
+            }
         }
 
         const { id, name, email, phone, address, role } = options

@@ -9,6 +9,7 @@ import "../../styles/font.css";
 
 import { useHistory } from "react-router";
 import { paths } from "../../untils/constant";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AdminNavigator = (probs) => {
     const subLang = useSelector(state => state.lang.AdminNavigator)

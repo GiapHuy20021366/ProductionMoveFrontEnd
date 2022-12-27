@@ -1,5 +1,6 @@
 import React from "react";
-import BootstrapTable from 'react-bootstrap-table-next';
+// import BootstrapTable from 'react-bootstrap-table-next';
+import BootstrapTable from "react-bootstrap-table-next";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import '../../styles/Dashboard.css'
@@ -10,6 +11,8 @@ import "../../styles/sb-admin-2.min.css";
 import "../../styles/font.css";
 import "../../vendor/datatables/dataTables.bootstrap4.min.css";
 import paginationFactory from 'react-bootstrap-table2-paginator';
+import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
+import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 
 
 
@@ -40,11 +43,14 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents }) => {
                     {isLoading && <div>Loading...</div>}
 
                     <BootstrapTable
+                        bootstrap4
                         keyField="id"
                         hover
                         data={data}
                         columns={columns}
                         pagination={pagination}
+                        filter={filterFactory()}
+                        selectRow={{ mode: 'checkbox', clickToSelect: true }}
                         rowEvents={rowEvents}
                     />
                 </div>

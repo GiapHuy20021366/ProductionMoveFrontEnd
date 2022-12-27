@@ -26,8 +26,7 @@ const LanguageChooser = () => {
     return (
         <li className="nav-item">
             <a
-                className="nav-link collapsed"
-                href="#"
+                className="nav-link pointer"
                 data-toggle="collapse"
                 data-target="#collapseLanguage"
                 aria-expanded="true"
@@ -43,7 +42,7 @@ const LanguageChooser = () => {
                 data-parent="#accordionSidebar"
             >
                 <div className="bg-white py-2 collapse-inner rounded">
-                    {/* <h6 className="collapse-header">Custom Utilities:</h6> */}
+                    <h6 className="collapse-header">Custom Utilities:</h6>
                     <a
                         className={`collapse-item language-area ${subLang._NAME_ === 'VI' ? "language-active" : ""}`}
                         onClick={(e) => onClickLanguage(e)}

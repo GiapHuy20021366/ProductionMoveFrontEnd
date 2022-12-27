@@ -13,6 +13,7 @@ import "../../vendor/datatables/dataTables.bootstrap4.min.css";
 import { Redirect } from "react-router";
 import { paths } from "../../untils/constant";
 import TableBase from "../sub_components/Table"
+import { textFilter, selectFilter } from "react-bootstrap-table2-filter";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import { useHistory } from 'react-router-dom';
@@ -33,6 +34,7 @@ const AdminModels = (probs) => {
             <Redirect to={paths.SYSTEM} />
         )
     }
+
 
     useEffect(async () => {
         setErrorMessage('')
@@ -62,7 +64,7 @@ const AdminModels = (probs) => {
 
     const tableColumns = (() => {
         const options = {
-            id: { dataField: 'id', text: 'Id' },
+            id: { dataField: 'id', text: 'Id', filter: textFilter() },
             name: { dataField: 'name', text: subLang.name },
             signName: { dataField: 'signName', text: subLang.sign_name },
             generation: { dataField: 'generation', text: subLang.generation },
@@ -103,6 +105,7 @@ const AdminModels = (probs) => {
         })
         setArrayModels(transModels)
     }, [subLang, listModels])
+    console.log(lang)
 
     const rowEvents = {
         onClick: (e, row, rowIndex) => {
