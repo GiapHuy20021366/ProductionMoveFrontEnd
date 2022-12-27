@@ -16,7 +16,7 @@ import FactoryNavigator from "./FactoryNavigator";
 
 
 const SystemNagivator = (probs) => {
-  const lang = useSelector(state => state.lang)
+  const subLang = useSelector(state => state.lang.SystemNagivator)
   const history = useHistory()
   const account = useSelector(state => state.user.account)
 
@@ -59,14 +59,14 @@ const SystemNagivator = (probs) => {
       <li className={`nav-item ${history.location.pathname === paths.SYSTEM ? 'active' : ''}`}>
         <a className="nav-link pointer" onClick={() => onClickHomeSystem()}>
           <i className="fas fa-fw fa-tachometer-alt"></i>
-          <span>{lang.system_home}</span>
+          <span>{subLang.home}</span>
         </a>
       </li>
 
       <li className={`nav-item ${history.location.pathname === paths.ACCOUNT ? 'active' : ''}`}>
         <a className="nav-link pointer" onClick={() => onClickAccount()}>
           <i className="fas fa-fw fa-tachometer-alt"></i>
-          <span>{lang.system_account}</span>
+          <span>{subLang.account}</span>
         </a>
       </li>
 
@@ -101,76 +101,6 @@ const SystemNagivator = (probs) => {
           <MaintenanceCenterNavigator /> :
           <></>
       }
-
-
-      {/* <div className="sidebar-heading">Menu</div> */}
-
-      {/* <li className="nav-item">
-        <a
-          className="nav-link collapsed"
-          href="#"
-          data-toggle="collapse"
-          data-target="#collapseTwo"
-          aria-expanded="true"
-          aria-controls="collapseTwo"
-        >
-          <i className="fas fa-fw fa-cog"></i>
-          <span>Components</span>
-        </a>
-        <div
-          id="collapseTwo"
-          className="collapse"
-          aria-labelledby="headingTwo"
-          data-parent="#accordionSidebar"
-        >
-          <div className="bg-white py-2 collapse-inner rounded">
-            <h6 className="collapse-header">Custom Components:</h6>
-            <a className="collapse-item" href="buttons.html">
-              Buttons
-            </a>
-            <a className="collapse-item" href="cards.html">
-              Cards
-            </a>
-          </div>
-        </div>
-      </li> */}
-
-      {/* <li className="nav-item">
-        <a
-          className="nav-link collapsed"
-          href="#"
-          data-toggle="collapse"
-          data-target="#collapseUtilities"
-          aria-expanded="true"
-          aria-controls="collapseUtilities"
-        >
-          <i className="fas fa-fw fa-wrench"></i>
-          <span>Utilities</span>
-        </a>
-
-        <div
-          id="collapseUtilities"
-          className="collapse"
-          aria-labelledby="headingUtilities"
-          data-parent="#accordionSidebar"
-        >
-          <div className="bg-white py-2 collapse-inner rounded">
-            <h6 className="collapse-header">Custom Utilities:</h6>
-            <a className="collapse-item" href="utilities-color.html">
-              Colors
-            </a>
-            <a className="collapse-item" href="utilities-border.html">
-              Borders
-            </a>
-            <a className="collapse-item" href="utilities-animation.html">
-              Animations
-            </a>
-            <a className="collapse-item" href="utilities-other.html">
-              Other
-            </a>
-          </div>
-        </div>
-      </li> */}
     </ul>
   );
 };

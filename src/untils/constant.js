@@ -14,3 +14,11 @@ export const messageTitles = {
     AUTHENTICATE_REQUEST: 'AUTHENTICATE_REQUEST',
     NEED_AUTHENTICATE: 'NEED_AUTHENTICATE'
 }
+
+export const apiUrls = {
+    LOGIN: 'login-partner',
+    GET_PARTNERS_BY_QUERY: '/api/get-partners-by-query',
+    CREATE_PARTNER: '/api/create-partner',
+    GET_MODELS_BY_QUERY: '/api/get-models-by-query',
+    GET_PRODUCTS_BY_QUERY: '/api/get-products-by-query'
+}

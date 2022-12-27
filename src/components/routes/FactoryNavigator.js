@@ -11,7 +11,7 @@ import { useHistory, withRouter } from "react-router";
 import { paths } from "../../untils/constant";
 
 const FactoryNavigator = (probs) => {
-    const lang = useSelector(state => state.lang)
+    const subLang = useSelector(state => state.lang)
     const history = probs.history
     const onClickProducts = () => {
         history.push(paths.FACTORY_PRODUCTs)

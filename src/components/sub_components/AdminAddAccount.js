@@ -1,12 +1,12 @@
 import React, { useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import '../../styles/AccountCreater.scss'
-import axios from '../../axios'
 import ToastUtil from "../../untils/toastUtil";
+import useCallApi from "../../untils/fetch";
+import { apiUrls } from '../../untils/constant'
 
-const AccountCreater = ({ handleResult }) => {
-    const lang = useSelector(state => state.lang)
-    const account = useSelector(state => state.user.account)
+const AccountCreater = ({ handleResult, handleClose }) => {
+    const subLang = useSelector(state => state.lang.AccountCreater)
 
     const userNameRef = useRef()
     const passwordRef = useRef()
@@ -18,7 +18,7 @@ const AccountCreater = ({ handleResult }) => {
 
     const [errorMessage, setErrorMessage] = useState('')
 
-    const onClickAddAccount = async () => {
+    const onClickAddAccount = async (e) => {
         setErrorMessage('')
         const newAcc = {
             userName: userNameRef.current.value,
@@ -30,14 +30,26 @@ const AccountCreater = ({ handleResult }) => {
             role: roleRef.current.value
         }
 
-        await axios.post(
-            '/api/create-partner', // path of API
-            newAcc,
-            {
-                headers: {
-                    Authorization: account.token
-                }
-            }
+        const testAPI = () => {
+            Promise.resolve(newAcc).then((data) => {
+                userNameRef.current.value = ''
+                passwordRef.current.value = ''
+                emailRef.current.value = ''
+                nameRef.current.value = ''
+                addressRef.current.value = ''
+                phoneRef.current.value = ''
+    
+                ToastUtil.success(subLang.create_success, 1000);
+                handleClose && handleClose(e)
+            }).catch((error) => {
+                const messageResponse = error.response.data.message
+                setErrorMessage(messageResponse)
+            })
+        }
+
+        await useCallApi(
+            apiUrls.CREATE_PARTNER,
+            newAcc
         ).then((data) => {
             handleResult && handleResult({
                 ...newAcc,
@@ -51,7 +63,8 @@ const AccountCreater = ({ handleResult }) => {
             addressRef.current.value = ''
             phoneRef.current.value = ''
 
-            ToastUtil.success(lang.account_create_success, 1000);
+            ToastUtil.success(subLang.create_success, 1000);
+            handleClose && handleClose(e)
             // console.log(data)
         }).catch((error) => {
             // console.log(error)
@@ -59,67 +72,80 @@ const AccountCreater = ({ handleResult }) => {
             setErrorMessage(messageResponse)
         })
 
-        // console.log(newAcc)
-        // setVisible && setVisible(false)
-        // setStatus && setStatus('success')
-        // handleResult && handleResult()
     }
 
     const getRole = (roleId) => {
         switch (roleId) {
             case 1:
-                return lang.account_admin
+                return subLang.admin
             case 2:
-                return lang.account_factory
+                return subLang.factory
             case 3:
-                return lang.account_agency
+                return subLang.agency
             case 4:
-                return lang.account_maintenance
+                return subLang.maintenance
             default:
                 return 'Unknown'
         }
     }
 
     return (
-        <div className="account-creater-container">
-            <ul>
-                <li>
-                    <label htmlFor="userName">{lang.account_userName}:</label>
-                    <input type='text' placeholder={lang.account_userName} name="userName" ref={userNameRef} required></input>
-                </li>
-                <li>
-                    <label htmlFor="password">{lang.account_password}:</label>
-                    <input type='password' placeholder={lang.account_password} name="password" ref={passwordRef} required></input>
-                </li>
-                <li>
-                    <label htmlFor="email">{lang.account_email}:</label>
-                    <input type='email' placeholder={lang.account_email} name="email" ref={emailRef} required></input>
-                </li>
-                <li>
-                    <label htmlFor="displayName">{lang.account_name}:</label>
-                    <input type='text' placeholder={lang.account_name} name='displayName' ref={nameRef} required></input>
-                </li>
-                <li>
-                    <label htmlFor="phone">{lang.account_phone}:</label>
-                    <input type='text' placeholder={lang.account_phone} name='phone' ref={phoneRef} ></input>
-                </li>
-                <li>
-                    <label htmlFor="address">{lang.account_address}:</label>
-                    <input type='text' placeholder={lang.account_address} name='address' ref={addressRef}></input>
-                </li>
-                <li>
-                    <label>{lang.account_role}:</label>
-                    <select ref={roleRef}>
-                        <option value="1">{getRole(1)}</option>
-                        <option value="2">{getRole(2)}</option>
-                        <option value="3">{getRole(3)}</option>
-                        <option value="4">{getRole(4)}</option>
-                    </select>
-                </li>
-            </ul>
-            <div class="errorMsg">{errorMessage}</div>
-            <button onClick={() => onClickAddAccount()}>Add Account</button>
-        </div>
+        <div className="modal fade" id="logoutModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">{subLang.add_new_account}</h5>
+                            <button className="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+
+                        <div className="modal-body">
+                            <ul>
+                                <li>
+                                    <label htmlFor="userName">{subLang.userName}:</label>
+                                    <input type='text' placeholder={subLang.userName} name="userName" ref={userNameRef} required></input>
+                                </li>
+                                <li>
+                                    <label htmlFor="password">{subLang.password}:</label>
+                                    <input type='password' placeholder={subLang.password} name="password" ref={passwordRef} required></input>
+                                </li>
+                                <li>
+                                    <label htmlFor="email">{subLang.email}:</label>
+                                    <input type='email' placeholder={subLang.email} name="email" ref={emailRef} required></input>
+                                </li>
+                                <li>
+                                    <label htmlFor="displayName">{subLang.name}:</label>
+                                    <input type='text' placeholder={subLang.name} name='displayName' ref={nameRef} required></input>
+                                </li>
+                                <li>
+                                    <label htmlFor="phone">{subLang.phone}:</label>
+                                    <input type='text' placeholder={subLang.phone} name='phone' ref={phoneRef} ></input>
+                                </li>
+                                <li>
+                                    <label htmlFor="address">{subLang.address}:</label>
+                                    <input type='text' placeholder={subLang.address} name='address' ref={addressRef}></input>
+                                </li>
+                                <li>
+                                    <label>{subLang.role}:</label>
+                                    <select ref={roleRef}>
+                                        <option value="1">{getRole(1)}</option>
+                                        <option value="2">{getRole(2)}</option>
+                                        <option value="3">{getRole(3)}</option>
+                                        <option value="4">{getRole(4)}</option>
+                                    </select>
+                                </li>
+                            </ul>
+                            <div className="errorMsg">{errorMessage}</div>
+                        </div>
+
+                        <div className="modal-footer">
+                            <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <button className="btn btn-primary" onClick={(e) => onClickAddAccount(e)}>Add new account</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
     )
 }
 

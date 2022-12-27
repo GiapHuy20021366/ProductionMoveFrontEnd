@@ -12,20 +12,14 @@ import "../../vendor/jquery/jquery.min";
 import "../../vendor/bootstrap/js/bootstrap.bundle.min";
 import "../../styles/sb-admin-2.min.css";
 import "../../styles/font.css";
-import Dashboard from "./DashBoard";
 import AccountInfo from "./AccountInfo";
-import Home from "./Home";
-import HomeSystem from "./HomeSystem";
+import SystemHome from "./SystemHome";
 import AdminAccounts from "./AdminAccounts";
 import AdminModels from "./AdminModels";
 import AdminProducts from "./AdminProducts";
 
 const System = (probs) => {
-  // useEffect(() => {
-  //   ToastUtil.success("Wellcome back", 1500);
-  // }, []);
   return (
-    <>
       <div id="page-top">
         <div id="wrapper">
           {/* Nagivator here */}
@@ -37,7 +31,7 @@ const System = (probs) => {
               <SystemTopBar />
               {/* Redirect depend on path */}
               <Switch>
-                <Route exact path={paths.SYSTEM} component={HomeSystem} />
+                <Route exact path={paths.SYSTEM} component={SystemHome} />
                 <Route path={paths.ACCOUNT} component={AccountInfo} />
                 <Route path={paths.ADMIN_ACCOUNTs} component={AdminAccounts} />
                 <Route path={paths.ADMIN_MODELs} component={AdminModels} />
@@ -54,7 +48,6 @@ const System = (probs) => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 

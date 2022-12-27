@@ -9,7 +9,6 @@ const initialState = {
 export const getMessages = createAsyncThunk(
     'message/getMessages',
     async (parameters, { rejectWithValue }) => {
-        // console.log(parameters)
         try {
             const data = await axios.post(
                 '/api/get-messages-by-query',

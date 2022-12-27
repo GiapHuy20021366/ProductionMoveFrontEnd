@@ -1,8 +1,6 @@
 .homeContainer {
     color: rgb(247, 247, 247);
 
-
-
     // general
     .center {
         display        : flex;
@@ -45,11 +43,11 @@
         .loginBtn {
             display        : flex;
             justify-content: center;
-            align-items: center;
-            width: 120px;
+            align-items    : center;
+            width          : 120px;
         }
 
-        .home { 
+        .home {
             &:hover {
                 cursor: default;
             }
@@ -75,12 +73,12 @@
     }
 
     .onscroll {
-        transition: all 1s ease;
-        padding-top: 0;
-        border-radius: 4px;
-        backdrop-filter: blur(10px);
+        transition      : all 1s ease;
+        padding-top     : 0;
+        border-radius   : 4px;
+        backdrop-filter : blur(10px);
         background-color: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
-        box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+        box-shadow      : rgba(0, 0, 0, 0.16) 0px 1px 4px;
     }
 
     .bannerContainer {
@@ -105,7 +103,7 @@
 
         .feature {
             display: inline-block;
-            width: 50%;
+            width  : 50%;
             padding: 0 24px;
 
             img {
@@ -117,23 +115,23 @@
             }
 
             .feature-name {
-                font-size: 0.9rem;
+                font-size  : 0.9rem;
                 padding-top: 4px;
             }
 
             .feature-description {
-                font-size: 0.65rem;
+                font-size  : 0.65rem;
                 padding-top: 7px;
                 text-align : justify;
             }
         }
     }
-    
+
     @media screen and (min-width: 800px) {
         .featureContainer {
-            min-height: 500px;
-            display: flex;
-            flex-direction: column;
+            min-height     : 500px;
+            display        : flex;
+            flex-direction : column;
             justify-content: space-evenly;
 
             .feature {
@@ -141,12 +139,12 @@
             }
         }
     }
-    
+
     @media screen and (min-width: 800px) {
         .featureContainer {
-            min-height: 500px;
-            display: flex;
-            flex-direction: column;
+            min-height     : 500px;
+            display        : flex;
+            flex-direction : column;
             justify-content: space-evenly;
 
             .feature {
@@ -180,12 +178,12 @@
                 }
 
                 input {
-                    display: block;
+                    display      : block;
                     border-radius: 4px;
-                    padding: 4px;
-                    margin-top: 4px;
-                    border: #fff;
-                    width: 260px;
+                    padding      : 4px;
+                    margin-top   : 4px;
+                    border       : #fff;
+                    width        : 260px;
                 }
             }
 

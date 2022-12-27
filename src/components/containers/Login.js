@@ -10,7 +10,7 @@ const Login = (probs) => {
     const [errMess, setErrMess] = useState('')
     const [isLogging, setIsLogging] = useState(false)
     const dispatch = useDispatch()
-    const lang = useSelector(state => state.lang)
+    const subLang = useSelector(state => state.lang.Login)
 
     const onCLickLoginButton = (e) => {
         e.preventDefault()
@@ -65,12 +65,12 @@ const Login = (probs) => {
         <div className="page-white">
             <div className="login">
                 <form className="login-form" action="" method="post">
-                    <h1 className="text">{lang.login_wellcome}</h1>
+                    <h1 className="text">{subLang.welcome}</h1>
                     <div className="input-container">
                         <input
                             type="text"
                             className="input-box"
-                            placeholder={lang.login_userName}
+                            placeholder={subLang.userName}
                             ref={userNameRef} required
                             onKeyDown={(e) => onPressKeyDown(e)}
                             onFocus={(e) => onFocusInput(e)}
@@ -80,7 +80,7 @@ const Login = (probs) => {
                         <input
                             type="password"
                             className="input-box"
-                            placeholder={lang.login_password}
+                            placeholder={subLang.password}
                             ref={passwordRef} required
                             onKeyDown={(e) => onPressKeyDown(e)}
                             onFocus={(e) => onFocusInput(e)}
@@ -88,15 +88,14 @@ const Login = (probs) => {
                     </div>
                     <span>{errMess}</span>
                     <div className="button-container">
-                        <input type="submit" content="Login" value={lang.login_login} onClick={(e) => onCLickLoginButton(e)} />
+                        <input type="submit" content="Login" value={subLang.login} onClick={(e) => onCLickLoginButton(e)} />
                     </div>
                     <div className="backBtn">
-                        <img src="/backBtn.png" alt="return" onClick={() => turnBack()}/>
+                        <img src="/backBtn.png" alt="return" onClick={() => turnBack()} />
                     </div>
                 </form>
             </div>
         </div>
-
     )
 }
 

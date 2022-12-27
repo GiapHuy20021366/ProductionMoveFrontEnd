@@ -13,7 +13,7 @@ import { userLogout } from "../../store/slices/userSlices";
 const SystemTopBar = () => {
     const history = useHistory();
     const dispatch = useDispatch()
-    const lang = useSelector(state => state.lang)
+    const subLang = useSelector(state => state.lang.SystemTopBar)
     const onClickLogout = () => {
         history.push(paths.HOME);
         dispatch(userLogout());
@@ -59,7 +59,7 @@ const SystemTopBar = () => {
                             }}
                         >
                             <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                            {lang.system_topbar_account}
+                            {subLang.account}
                         </a>
 
                         <a
@@ -71,7 +71,7 @@ const SystemTopBar = () => {
                             }}
                         >
                             <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                            {lang.logout}
+                            {subLang.logout}
                         </a>
 
                     </div>

@@ -7,7 +7,7 @@ import { paths } from './../../untils/constant';
 
 
 const Home = (probs) => {
-    const lang = useSelector(state => state.lang)
+    const subLang = useSelector(state => state.lang)
 
     function Feature({ img, title, desc }) {
         return (
@@ -19,9 +19,9 @@ const Home = (probs) => {
         )
     }
 
-    function onScroll() {
+    (function onScroll() {
         let scrollTrigger = 60;
-        window.onscroll = function() {
+        window.onscroll = function () {
             // We add pageYOffset for compatibility with IE.
             if (window.scrollY >= scrollTrigger || window.pageYOffset >= scrollTrigger) {
                 document.querySelector(".navBar").classList.add("onscroll");
@@ -30,9 +30,7 @@ const Home = (probs) => {
                 document.querySelector(".navBar").classList.remove("onscroll");
             }
         };
-    }
-
-    onScroll();
+    })();
 
     return (
         <div className="homeContainer">
@@ -65,17 +63,17 @@ const Home = (probs) => {
                         title="Outstanding design"
                         desc="Designed to be flexible according to all your needs. Create your site with all module position."
                     />
-                    <Feature 
+                    <Feature
                         className="three"
                         img="/maintenance.png"
                         title="Outstanding design"
-                        desc="Designed to be flexible according to all your needs. Create your site with all module position."  
+                        desc="Designed to be flexible according to all your needs. Create your site with all module position."
                     />
-                    <Feature 
+                    <Feature
                         className="two"
                         img="/electric-car.png"
                         title="Outstanding design"
-                        desc="Designed to be flexible according to all your needs. Create your site with all module position."  
+                        desc="Designed to be flexible according to all your needs. Create your site with all module position."
                     />
                 </div>
             </div>
@@ -102,8 +100,6 @@ const Home = (probs) => {
                     <span>Team</span>
                     <span>Careers</span>
                 </div>
-
-
             </div>
         </div >
         // <Redirect to={paths.SYSTEM} />
