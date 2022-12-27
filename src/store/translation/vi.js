@@ -59,6 +59,21 @@ const langOfAdminNavigator = {
     manage_products: 'Quản lý sản phẩm'
 }
 
+const langOfFactoryNavigator = {
+    factory: 'Cơ sở sản xuất',
+    factory_products: 'Quản lý sản phẩm',
+}
+
+const langOfAgencyNavigator = {
+    agency: 'Đại lý phân phối',
+    agency_products: 'Quản lý sản phẩm',
+}
+
+const langOfMaintenanceNavigator = {
+    maintenance: 'Trung tâm bảo hành',
+    maintenance_products: 'Quản lý sản phẩm bảo hành'
+}
+
 const langOfAdminAddAccount = {
     ...langOfAccountInfo,
     create_success: 'Tạo Tài Khoản Mới Thành Công',
@@ -120,6 +135,9 @@ const vi = {
     
     SystemNagivator: langOfSystemNavigator,
     AdminNavigator: langOfAdminNavigator,
+    FactoryNavigator: langOfFactoryNavigator,
+    AgencyNavigator: langOfAgencyNavigator,
+    MaintenanceNavigator: langOfMaintenanceNavigator,
     
     AdminAddAccount: langOfAdminAddAccount,
     AdminAccounts: langOfAdminAccounts,

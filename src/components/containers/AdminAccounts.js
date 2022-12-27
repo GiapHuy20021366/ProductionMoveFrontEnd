@@ -16,6 +16,7 @@ import { textFilter, selectFilter } from "react-bootstrap-table2-filter";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import ToastUtil from "../../untils/toastUtil";
+import AdminAddAccount from "../sub_components/AdminAddAccount";
 
 const AdminAccounts = () => {
     const account = useSelector(state => state.user.account)
@@ -82,8 +83,8 @@ const AdminAccounts = () => {
 
     const columns = (() => {
         const options = {
-            id: { dataField: 'id', text: 'Id' },
-            name: { dataField: 'name', text: subLang.name, filter: textFilter() },
+            id: { dataField: 'id', text: 'Id', sort: true},
+            name: { dataField: 'name', text: subLang.name, filter: textFilter() , sort: true},
             email: { dataField: 'email', text: subLang.email, filter: textFilter() },
             phone: { dataField: 'phone', text: subLang.phone, filter: textFilter() },
             address: { dataField: 'address', text: subLang.address, filter: textFilter() },

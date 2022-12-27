@@ -10,6 +10,7 @@ import "../../styles/font.css";
 import { useHistory } from "react-router";
 import { paths } from "../../untils/constant";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import NavItem from "./NavItem";
 
 const AdminNavigator = (probs) => {
     const subLang = useSelector(state => state.lang.AdminNavigator)
@@ -22,25 +23,6 @@ const AdminNavigator = (probs) => {
     }
     const onClickProducts = () => {
         history.push(paths.ADMIN_PRODUCTs)
-    }
-
-    function NavItem({ pathname, onClickFunc, title }) {
-        return (
-            <li className={`nav-item ${history.location.pathname.startsWith(pathname) ? 'active' : ''}`}>
-                <a
-                    className="nav-link collapsed"
-                    href="#"
-                    data-toggle="collapse"
-                    data-target="#collapseAccounts"
-                    aria-expanded="true"
-                    aria-controls="collapseAccounts"
-                    onClick={() => onClickFunc()}
-                >
-                    <i className="fas fa-fw fa-wrench"></i>
-                    <span>{title}</span>
-                </a>
-            </li>
-        )
     }
 
     return (
@@ -66,6 +48,5 @@ const AdminNavigator = (probs) => {
         </>
     )
 }
-
 
 export default AdminNavigator

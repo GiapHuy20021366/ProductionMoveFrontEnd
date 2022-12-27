@@ -9,43 +9,25 @@ import "../../styles/font.css";
 import LanguageChooser from "../sub_components/LanguageChooser";
 import { useHistory, withRouter } from "react-router";
 import { paths } from "../../untils/constant";
+import NavItem from "./NavItem";
 
 const MaintenanceNavigator = (probs) => {
-    const subLang = useSelector(state => state.lang)
+    const subLang = useSelector(state => state.lang.MaintenanceNavigator)
     const history = probs.history
     const onClickProducts = () => {
         history.push(paths.MAINTENANCE_PRODUCTs)
         console.log(history)
     }
 
-    function NavItem({pathname, onClickFunc, title}) {
-        return (
-            <li className={`nav-item ${history.location.pathname === pathname ? 'active' : ''}`}>
-                <a
-                        className="nav-link collapsed"
-                        href="#"
-                        data-toggle="collapse"
-                        data-target="#collapseAccounts"
-                        aria-expanded="true"
-                        aria-controls="collapseAccounts"
-                        onClick={() => onClickFunc()}
-                    >
-                        <i className="fas fa-fw fa-wrench"></i>
-                        <span>{title}</span>
-                    </a>
-            </li>
-        )
-    }
-
     return (
         <>
             <hr className="sidebar-divider" />
-            <div className="sidebar-heading">{lang.account_maintenanceCenter}</div>
+            <div className="sidebar-heading">{subLang.maintenance}</div>
 
             <NavItem
                 pathname = {paths.MAINTENANCE_PRODUCTs}
                 onClickFunc = {onClickProducts}
-                title = {lang.maintenanceCenter_products}
+                title = {subLang.maintenance_products}
             />
         </>
     )

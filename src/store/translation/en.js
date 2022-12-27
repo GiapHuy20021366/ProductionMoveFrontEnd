@@ -59,6 +59,20 @@ const langOfAdminNavigator = {
     manage_products: 'Manage Products',
 }
 
+const langOfFactoryNavigator = {
+    factory: 'FACTORY',
+    factory_products: 'Manage Products',
+}
+
+const langOfAgencyNavigator = {
+    agency: 'AGENCY',
+    agency_products: 'Manage Products',
+}
+
+const langOfMaintenanceNavigator = {
+    maintenance: 'MAINTENANCE CENTER',
+    maintenance_products: 'Manage Maintained Products'
+}
 
 const langOfAdminAddAccount = {
     ...langOfAccountInfo,
@@ -121,6 +135,9 @@ const en = {
     
     SystemNagivator: langOfSystemNavigator,
     AdminNavigator: langOfAdminNavigator,
+    FactoryNavigator: langOfFactoryNavigator,
+    AgencyNavigator: langOfAgencyNavigator,
+    MaintenanceNavigator: langOfMaintenanceNavigator,
     
     AdminAddAccount: langOfAdminAddAccount,
     AdminAccounts: langOfAdminAccounts,

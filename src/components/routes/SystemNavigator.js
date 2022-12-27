@@ -11,9 +11,8 @@ import { useHistory } from "react-router";
 import { paths } from "../../untils/constant";
 import AdminNavigator from "./AdminNavigator";
 import FactoryNavigator from "./FactoryNavigator";
-
-
-
+import AgencyNavigator from "./AgencyNavigator";
+import MaintenanceCenterNav from "./MaintenanceCenterNav";
 
 const SystemNagivator = (probs) => {
   const subLang = useSelector(state => state.lang.SystemNagivator)
@@ -74,31 +73,27 @@ const SystemNagivator = (probs) => {
 
       <hr className="sidebar-divider" />
 
-      {/* **************************************************************** */}
       {
         account?.role === 1 ?
           <AdminNavigator /> :
           <></>
       }
 
-      {/* **************************************************************** */}
       {
         account?.role === 2 ?
           <FactoryNavigator /> :
           <></>
       }
 
-      {/* **************************************************************** */}
       {
         account?.role === 3 ?
           <AgencyNavigator /> :
           <></>
       }
 
-      {/* **************************************************************** */}
       {
         account?.role === 4 ?
-          <MaintenanceCenterNavigator /> :
+          <MaintenanceCenterNav /> :
           <></>
       }
     </ul>
