@@ -105,7 +105,7 @@ const AdminModels = (probs) => {
         })
         setArrayModels(transModels)
     }, [subLang, listModels])
-    console.log(lang)
+
 
     const rowEvents = {
         onClick: (e, row, rowIndex) => {

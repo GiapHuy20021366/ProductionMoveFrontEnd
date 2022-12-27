@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import '../../styles/Dashboard.css'
@@ -15,8 +14,9 @@ import { paths } from "../../untils/constant";
 import AccountCreater from "../sub_components/AccountCreater";
 import TableBase from "../sub_components/Table";
 import { textFilter, selectFilter } from "react-bootstrap-table2-filter";
-import ToastUtil from "../../untils/toastUtil";
-import paginationFactory from 'react-bootstrap-table2-paginator';
+import useCallApi from "../../untils/fetch";
+import { apiUrls } from '../../untils/constant'
+import { useHistory } from 'react-router-dom';
 
 
 const AdminAccounts = () => {
@@ -91,10 +91,11 @@ const AdminAccounts = () => {
             phone: { dataField: 'phone', text: subLang.phone, filter: textFilter() },
             address: { dataField: 'address', text: subLang.address, filter: textFilter() },
             role: {
-                dataField: 'role', text: subLang.role, formatter: cell => selectOptions[cell],
-                filter: selectFilter({
-                    options: selectOptions
-                })
+                dataField: 'role', text: subLang.role,
+                // formatter: cell => selectOptions[cell],
+                // filter: selectFilter({
+                //     options: selectOptions
+                // })
             }
         }
 
