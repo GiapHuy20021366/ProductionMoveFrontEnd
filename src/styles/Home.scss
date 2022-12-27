@@ -43,13 +43,8 @@
         .loginBtn {
             display        : flex;
             justify-content: center;
-<<<<<<<<< Temporary merge branch 1
-            align-items    : center;
-            min-width      : 120px;
-=========
             align-items: center;
             width: 120px;
->>>>>>>>> Temporary merge branch 2
         }
 
         .home {
@@ -108,10 +103,6 @@
 
         .feature {
             display: inline-block;
-<<<<<<<<< Temporary merge branch 1
-            width  : 25%;
-            padding: 16px;
-=========
             width: 50%;
             padding: 0 24px;
 
@@ -125,16 +116,11 @@
 
             .feature-name {
                 font-size: 0.9rem;
->>>>>>>>> Temporary merge branch 2
                 padding-top: 4px;
             }
 
             .feature-description {
-<<<<<<<<< Temporary merge branch 1
-                font-size  : 0.75rem;
-=========
                 font-size: 0.65rem;
->>>>>>>>> Temporary merge branch 2
                 padding-top: 7px;
                 text-align : justify;
             }
@@ -148,22 +134,19 @@
             flex-direction : column;
             justify-content: space-evenly;
 
-<<<<<<<<< Temporary merge branch 1
-    .footerContainer {
-        background-color: #ccc;
-
-        * {
-            .title {
-                font-size: 1.5rem;
+            .feature {
+                width: 25%;
             }
+        }
+    }
+    
+    @media screen and (min-width: 800px) {
+        .featureContainer {
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
 
-            .subscribe-text,
-            .column.right>* {
-                font-size: 1.05rem;
-            }
-
-            font-size: 0.75rem;
-=========
             .feature {
                 width: 25%;
             }
@@ -201,7 +184,6 @@
                     margin-top: 4px;
                     border: #fff;
                     width: 260px;
->>>>>>>>> Temporary merge branch 2
                 }
             }
 

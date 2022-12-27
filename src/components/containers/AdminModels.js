@@ -14,6 +14,7 @@ import { Redirect } from "react-router";
 import { paths } from "../../untils/constant";
 import axios from '../../axios'
 import TableBase from "../sub_components/Table"
+import { textFilter, selectFilter } from "react-bootstrap-table2-filter";
 import ToastUtil from "../../untils/toastUtil";
 import paginationFactory from 'react-bootstrap-table2-paginator';
 
@@ -31,20 +32,6 @@ const AdminModels = () => {
         )
     }
 
-    const getRole = (roleId) => {
-        switch (roleId) {
-            case 1:
-                return lang.account_admin
-            case 2:
-                return lang.account_factory
-            case 3:
-                return lang.account_dealer
-            case 4:
-                return lang.account_maintain_center
-            default:
-                return 'Unknown'
-        }
-    }
 
     useEffect(async () => {
         setErrorMessage('')
@@ -74,7 +61,7 @@ const AdminModels = () => {
     }, [])
 
     const tableColumns = [
-        { dataField: 'id', text: 'Id' },
+        { dataField: 'id', text: 'Id', filter: textFilter() },
         { dataField: 'name', text: lang.model_name },
         { dataField: 'signName', text: lang.model_signName },
         { dataField: 'generation', text: lang.model_generation },
@@ -91,12 +78,9 @@ const AdminModels = () => {
         { dataField: 'acceleration', text: lang.model_acceleration }, 
         { dataField: 'cityFuel', text: lang.model_cityFuel }
     ]
+    console.log(lang)
 
     const arrayPartners = Object.values(listPartners)
-    for (var i = 0; i < arrayPartners.length; i++) {
-        arrayPartners[i].role = getRole(arrayPartners[i].role)
-    }
-
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">

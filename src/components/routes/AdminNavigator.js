@@ -50,41 +50,6 @@ const AdminNavigator = (probs) => {
             <hr className="sidebar-divider" />
             <div className="sidebar-heading">{lang.account_admin}</div>
 
-<<<<<<< HEAD
-            <li className={`nav-item ${history.location.pathname === paths.ADMIN_ACCOUNTs ? 'active' : ''}`}>
-                <a
-                    className="nav-link pointer"
-                    onClick={() => onClickAccounts()}
-                >
-                    <i className="fas fa-fw fa-wrench"></i>
-                    <span>{lang.admin_accounts}</span>
-                </a>
-                {/* <div
-                    id="collapseLanguage"
-                    className="collapse"
-                    aria-labelledby="headingLanguage"
-                    data-parent="#accordionSidebar"
-                >
-                    <div className="bg-white py-2 collapse-inner rounded">
-                        <h6 className="collapse-header">Custom Utilities:</h6>
-                        <a
-                            className={`collapse-item language-area ${lang._NAME_ === 'VI' ? "language-active" : ""}`}
-                            onClick={(e) => onClickLanguage(e)}
-                            ref={vietnameseRef}
-                        >
-                            {lang.vietnamese}
-                        </a>
-                        <a
-                            className={`collapse-item language-area ${lang._NAME_ === 'EN' ? "language-active" : ""}`}
-                            onClick={(e) => onClickLanguage(e)}
-                            ref={englishRef}
-                        >
-                            {lang.english}
-                        </a>
-                    </div>
-                </div> */}
-            </li>
-=======
             <NavItem
                 pathname = {paths.ADMIN_ACCOUNTs}
                 onClickFunc = {onClickAccounts}
@@ -100,7 +65,6 @@ const AdminNavigator = (probs) => {
                 onClickFunc = {onClickProducts}
                 title = {lang.admin_products}
             />
->>>>>>> origin/fe
         </>
     )
 }

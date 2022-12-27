@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import BootstrapTable from 'react-bootstrap-table-next';
+// import BootstrapTable from 'react-bootstrap-table-next';
+import BootstrapTable from "react-bootstrap-table-next";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import '../../styles/Dashboard.css'
@@ -17,6 +18,8 @@ import AccountCreater from "../sub_components/AccountCreater";
 import Table from "../sub_components/Table"
 import ToastUtil from "../../untils/toastUtil";
 import paginationFactory from 'react-bootstrap-table2-paginator';
+import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
+import 'react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css';
 
 
 
@@ -48,11 +51,14 @@ const TableBase = (probs) => {
                 {probs.partnersloading && <div>Loading...</div>}
 
                 <BootstrapTable
+                    bootstrap4
                     keyField="id"
                     hover
                     data={probs.arrayPartners}
                     columns={probs.columns}
                     pagination={pagination}
+                    filter={ filterFactory() }
+                    selectRow={ { mode: 'checkbox', clickToSelect: true } }
                 />
                 </div>
             </div>
