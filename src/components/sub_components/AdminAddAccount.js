@@ -5,8 +5,8 @@ import ToastUtil from "../../untils/toastUtil";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 
-const AccountCreater = ({ handleResult, handleClose }) => {
-    const subLang = useSelector(state => state.lang.AccountCreater)
+const AdminAddAccount = ({ handleResult, handleClose }) => {
+    const subLang = useSelector(state => state.lang.AdminAddAccount)
 
     const userNameRef = useRef()
     const passwordRef = useRef()
@@ -38,7 +38,7 @@ const AccountCreater = ({ handleResult, handleClose }) => {
                 nameRef.current.value = ''
                 addressRef.current.value = ''
                 phoneRef.current.value = ''
-    
+
                 ToastUtil.success(subLang.create_success, 1000);
                 handleClose && handleClose(e)
             }).catch((error) => {
@@ -47,30 +47,31 @@ const AccountCreater = ({ handleResult, handleClose }) => {
             })
         }
 
-        await useCallApi(
-            apiUrls.CREATE_PARTNER,
-            newAcc
-        ).then((data) => {
-            handleResult && handleResult({
-                ...newAcc,
-                id: data.data.id
-            })
+        testAPI()
+        // await useCallApi(
+        //     apiUrls.CREATE_PARTNER,
+        //     newAcc
+        // ).then((data) => {
+        //     handleResult && handleResult({
+        //         ...newAcc,
+        //         id: data.data.id
+        //     })
 
-            userNameRef.current.value = ''
-            passwordRef.current.value = ''
-            emailRef.current.value = ''
-            nameRef.current.value = ''
-            addressRef.current.value = ''
-            phoneRef.current.value = ''
+        //     userNameRef.current.value = ''
+        //     passwordRef.current.value = ''
+        //     emailRef.current.value = ''
+        //     nameRef.current.value = ''
+        //     addressRef.current.value = ''
+        //     phoneRef.current.value = ''
 
-            ToastUtil.success(subLang.create_success, 1000);
-            handleClose && handleClose(e)
-            // console.log(data)
-        }).catch((error) => {
-            // console.log(error)
-            const messageResponse = error.response.data.message
-            setErrorMessage(messageResponse)
-        })
+        //     ToastUtil.success(subLang.create_success, 1000);
+        //     handleClose && handleClose(e)
+        //     // console.log(data)
+        // }).catch((error) => {
+        //     // console.log(error)
+        //     const messageResponse = error.response.data.message
+        //     setErrorMessage(messageResponse)
+        // })
 
     }
 
@@ -91,63 +92,63 @@ const AccountCreater = ({ handleResult, handleClose }) => {
 
     return (
         <div className="modal fade" id="logoutModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div className="modal-dialog" role="document">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">{subLang.add_new_account}</h5>
-                            <button className="close" type="button" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
+            <div className="modal-dialog" role="document">
+                <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel">{subLang.add_new_account}</h5>
+                        <button className="close" type="button" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
 
-                        <div className="modal-body">
-                            <ul>
-                                <li>
-                                    <label htmlFor="userName">{subLang.userName}:</label>
-                                    <input type='text' placeholder={subLang.userName} name="userName" ref={userNameRef} required></input>
-                                </li>
-                                <li>
-                                    <label htmlFor="password">{subLang.password}:</label>
-                                    <input type='password' placeholder={subLang.password} name="password" ref={passwordRef} required></input>
-                                </li>
-                                <li>
-                                    <label htmlFor="email">{subLang.email}:</label>
-                                    <input type='email' placeholder={subLang.email} name="email" ref={emailRef} required></input>
-                                </li>
-                                <li>
-                                    <label htmlFor="displayName">{subLang.name}:</label>
-                                    <input type='text' placeholder={subLang.name} name='displayName' ref={nameRef} required></input>
-                                </li>
-                                <li>
-                                    <label htmlFor="phone">{subLang.phone}:</label>
-                                    <input type='text' placeholder={subLang.phone} name='phone' ref={phoneRef} ></input>
-                                </li>
-                                <li>
-                                    <label htmlFor="address">{subLang.address}:</label>
-                                    <input type='text' placeholder={subLang.address} name='address' ref={addressRef}></input>
-                                </li>
-                                <li>
-                                    <label>{subLang.role}:</label>
-                                    <select ref={roleRef}>
-                                        <option value="1">{getRole(1)}</option>
-                                        <option value="2">{getRole(2)}</option>
-                                        <option value="3">{getRole(3)}</option>
-                                        <option value="4">{getRole(4)}</option>
-                                    </select>
-                                </li>
-                            </ul>
-                            <div className="errorMsg">{errorMessage}</div>
-                        </div>
+                    <div className="modal-body">
+                        <ul>
+                            <li>
+                                <label htmlFor="userName">{subLang.userName}:</label>
+                                <input type='text' placeholder={subLang.userName} name="userName" ref={userNameRef} required></input>
+                            </li>
+                            <li>
+                                <label htmlFor="password">{subLang.password}:</label>
+                                <input type='password' placeholder={subLang.password} name="password" ref={passwordRef} required></input>
+                            </li>
+                            <li>
+                                <label htmlFor="email">{subLang.email}:</label>
+                                <input type='email' placeholder={subLang.email} name="email" ref={emailRef} required></input>
+                            </li>
+                            <li>
+                                <label htmlFor="displayName">{subLang.name}:</label>
+                                <input type='text' placeholder={subLang.name} name='displayName' ref={nameRef} required></input>
+                            </li>
+                            <li>
+                                <label htmlFor="phone">{subLang.phone}:</label>
+                                <input type='text' placeholder={subLang.phone} name='phone' ref={phoneRef} ></input>
+                            </li>
+                            <li>
+                                <label htmlFor="address">{subLang.address}:</label>
+                                <input type='text' placeholder={subLang.address} name='address' ref={addressRef}></input>
+                            </li>
+                            <li>
+                                <label>{subLang.role}:</label>
+                                <select ref={roleRef}>
+                                    <option value="1">{getRole(1)}</option>
+                                    <option value="2">{getRole(2)}</option>
+                                    <option value="3">{getRole(3)}</option>
+                                    <option value="4">{getRole(4)}</option>
+                                </select>
+                            </li>
+                        </ul>
+                        <div className="errorMsg">{errorMessage}</div>
+                    </div>
 
-                        <div className="modal-footer">
-                            <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <button className="btn btn-primary" onClick={(e) => onClickAddAccount(e)}>Add new account</button>
-                        </div>
+                    <div className="modal-footer">
+                        <button className="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                        <button className="btn btn-primary" onClick={(e) => onClickAddAccount(e)}>Add new account</button>
                     </div>
                 </div>
             </div>
+        </div>
     )
 }
 
-export default AccountCreater
+export default AdminAddAccount
 

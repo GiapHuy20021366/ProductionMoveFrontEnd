@@ -11,14 +11,13 @@ import "../../styles/font.css";
 import "../../vendor/datatables/dataTables.bootstrap4.min.css";
 import { Redirect } from "react-router";
 import { paths } from "../../untils/constant";
-import AccountCreater from "../sub_components/AccountCreater";
 import TableBase from "../sub_components/Table";
 import { textFilter, selectFilter } from "react-bootstrap-table2-filter";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
-import ToastUtil from "../../untils/toastUtil";
 import '../../styles/AccountCreater.scss'
-import { useHistory } from 'react-router-dom';
+import AdminAddAccount from "../sub_components/AdminAddAccount";
+
 
 
 const AdminAccounts = () => {
@@ -131,6 +130,9 @@ const AdminAccounts = () => {
     const handleClose = (e) => {
         setShowModal(false)
         window.document.body.querySelector('.modal-backdrop').remove()
+        window.document.body.classList.remove('modal-open')
+        window.document.body.style = null
+
     }
 
     return (
