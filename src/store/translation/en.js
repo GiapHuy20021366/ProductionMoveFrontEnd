@@ -10,15 +10,24 @@ const langOfLogin = {
     login: 'LOGIN'
 }
 
+const langOfSystemTopBar = {
+    account: 'Account',
+    logout: 'Logout'
+}
 
-const langOfAccount = {
+const langOfSystemHome = {
+    home: 'Home'
+}
+
+const langOfAccountInfo = {
+    account_info: 'Account Infomation',
     name: 'Name',
     userName: 'Username',
     password: 'Password',
     admin: 'Admin',
-    dealer: 'Dealer',
     factory: 'Factory',
-    maintain_center: 'Maintain Center',
+    agency: 'Agency',
+    maintain_center: 'Maintenance Center',
     role: 'Role',
     email: 'Email',
     phone: 'Phone',
@@ -29,33 +38,18 @@ const langOfAccount = {
     status_disable: 'Disable',
 }
 
-const langOfAdminAccounts = {
-    ...langOfAccount,
-    manage_accounts: 'Manage Accounts',
-    add_new_account: 'Add new account',
-    sumary_re: count => `Total of ${count} ${count <= 1 ? 'account' : 'accounts'}`
-}
-
-const langOfHomeSystem = {
-    home: 'Home'
-}
-
-const langOfAccountCreater = {
-    ...langOfAccount,
-    create_success: 'Create Account Successful!',
-    add_account: 'Add Account'
-}
-
-const langOfSystemTopBar = {
-    account: 'Account',
-    logout: 'Logout'
-}
-
 const langOfLanguageChooser = {
     _NAME_: 'EN',
     language: 'Language',
     vietnamese: 'Vietnamese',
     english: 'English',
+}
+
+const langOfSystemNavigator = {
+    system: 'GENERAL',
+    home: 'Home',
+    account: 'Account Info',
+    display: 'Display'
 }
 
 const langOfAdminNavigator = {
@@ -65,10 +59,34 @@ const langOfAdminNavigator = {
     manage_products: 'Manage Products',
 }
 
-const langOfSystemNavigator = {
-    home: 'Home',
-    account: 'Account',
-    display: 'Display'
+const langOfFactoryNavigator = {
+    factory: 'FACTORY',
+    factory_products: 'Manage Products',
+}
+
+const langOfAgencyNavigator = {
+    agency: 'AGENCY',
+    agency_products: 'Manage Products',
+}
+
+const langOfMaintenanceNavigator = {
+    maintenance: 'MAINTENANCE CENTER',
+    maintenance_products: 'Manage Maintained Products'
+}
+
+const langOfAdminAddAccount = {
+    ...langOfAccountInfo,
+    create_success: 'Create Account Successful!',
+    add_new_account: 'Add new account',
+    cancel: 'Cancel',
+    submit: 'Submit',
+}
+
+const langOfAdminAccounts = {
+    ...langOfAccountInfo,
+    manage_accounts: 'Manage Accounts',
+    add_new_account: 'Add new account',
+    sumary_re: count => `Total of ${count} ${count <= 1 ? 'account' : 'accounts'}`
 }
 
 const langOfAdminModels = {
@@ -76,7 +94,7 @@ const langOfAdminModels = {
     sign_name: 'Sign Name',
     generation: 'Generation',
     produced_factory: 'Produced Factory',
-    birth: 'Birthday',
+    birth: 'Launch Date',
     series: 'Series',
     trim: 'Trim',
     length: 'Length',
@@ -100,20 +118,32 @@ const langOfAdminProducts = {
     sumary_re: count => `Total of ${count} ${count <= 1 ? 'product' : 'products'}`,
 }
 
+const langOfModelDisplay = {
+    ...langOfAdminModels,
+    model_details: 'Model details'
+}
+
 const en = {
     _NAME_: 'EN',
     TruckBtn: langOfTruckBtn,
     Login: langOfLogin,
-    Account: langOfAccount,
-    HomeSystem: langOfHomeSystem,
-    AdminAccounts: langOfAdminAccounts,
-    AccountCreater: langOfAccountCreater,
+    
     SystemTopBar: langOfSystemTopBar,
+    SystemHome: langOfSystemHome,
+    AccountInfo: langOfAccountInfo,
     LanguageChooser: langOfLanguageChooser,
-    AdminNavigator: langOfAdminNavigator,
+    
     SystemNagivator: langOfSystemNavigator,
+    AdminNavigator: langOfAdminNavigator,
+    FactoryNavigator: langOfFactoryNavigator,
+    AgencyNavigator: langOfAgencyNavigator,
+    MaintenanceNavigator: langOfMaintenanceNavigator,
+    
+    AdminAddAccount: langOfAdminAddAccount,
+    AdminAccounts: langOfAdminAccounts,
     AdminModels: langOfAdminModels,
-    AdminProducts: langOfAdminProducts
+    AdminProducts: langOfAdminProducts,
+    ModelDisplay: langOfModelDisplay
 }
 
 export default en

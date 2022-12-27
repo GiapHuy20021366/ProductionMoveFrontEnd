@@ -7,8 +7,8 @@ import "../../vendor/bootstrap/js/bootstrap.bundle.min";
 import "../../styles/sb-admin-2.min.css";
 import "../../styles/font.css";
 
-const HomeSystem = () => {
-    const subLang = useSelector(state => state.lang.HomeSystem)
+const SystemHome = () => {
+    const subLang = useSelector(state => state.lang.SystemHome)
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -21,4 +21,4 @@ const HomeSystem = () => {
     )
 }
 
-export default HomeSystem
+export default SystemHome

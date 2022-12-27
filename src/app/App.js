@@ -12,14 +12,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import TestApi from '../components/until_components/TestApi';
 import SocketConnector from '../components/until_components/SocketConnector';
 import MessageLoader from '../components/until_components/MessageLoader';
+import DeviceUpdater from '../components/until_components/DeviceUpdater';
 
 const App = () => {
   useEffect(async () => {
     const token = await updateToken()
-    // if (token) {
-    //   authenticate(token)
-    // }
-
   }, [])
 
 
@@ -29,6 +26,7 @@ const App = () => {
       {/* <TestApi /> */}
       <SocketConnector />
       <MessageLoader />
+      <DeviceUpdater />
       {/*  */}
       <BrowserRouter>
         <Switch>

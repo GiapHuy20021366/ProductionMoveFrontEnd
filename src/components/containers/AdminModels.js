@@ -16,20 +16,25 @@ import TableBase from "../sub_components/Table"
 import { textFilter, selectFilter } from "react-bootstrap-table2-filter";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
+import { useHistory } from 'react-router-dom';
 
-const AdminModels = () => {
+const AdminModels = (probs) => {
     const account = useSelector(state => state.user.account)
     const subLang = useSelector(state => state.lang.AdminModels)
+    const deviceType = useSelector(state => state.device.type)
+    const history = useHistory()
     const [listModels, setListModels] = useState({})
     const [modelsLoading, setModelsLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const [arrayModels, setArrayModels] = useState([])
+
 
     if (account?.role !== 1) {
         return (
             <Redirect to={paths.SYSTEM} />
         )
     }
+
 
     useEffect(async () => {
         setErrorMessage('')
@@ -86,6 +91,13 @@ const AdminModels = () => {
         setArrayModels(transModels)
     }, [subLang, listModels])
 
+
+    const rowEvents = {
+        onClick: (e, row, rowIndex) => {
+            history.push(paths.ADMIN_MODELS_SHOW_ONE, { row })
+        }
+    };
+
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -96,6 +108,7 @@ const AdminModels = () => {
                 data={arrayModels}
                 columns={tableColumns}
                 isLoading={modelsLoading}
+                rowEvents={rowEvents}
             />
         </div>
     )

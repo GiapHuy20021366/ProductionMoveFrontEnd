@@ -73,7 +73,6 @@ const AdminProducts = () => {
             const productCopy = { ...product }
             productCopy.model = `${product?.model?.name} - ${product?.model?.signName}`
             productCopy.factory = product?.model?.factory?.name
-            console.log(productCopy)
             transProducts.push(productCopy)
         })
         setArrayProducts(transProducts)

@@ -1,29 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import BootstrapTable from "react-bootstrap-table-next";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
-import "../../styles/Dashboard.css";
+import BootstrapTable from 'react-bootstrap-table-next';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
+import '../../styles/Dashboard.css'
 import "../../js/sb-admin-2.min";
 import "../../vendor/jquery/jquery.min";
 import "../../vendor/bootstrap/js/bootstrap.bundle.min";
 import "../../styles/sb-admin-2.min.css";
 import "../../styles/font.css";
 import "../../vendor/datatables/dataTables.bootstrap4.min.css";
-import { Redirect } from "react-router";
-import { paths } from "../../untils/constant";
-import axios from "../../axios";
-import AccountCreater from "../sub_components/AccountCreater";
-import Table from "../sub_components/Table";
-import ToastUtil from "../../untils/toastUtil";
-import paginationFactory from "react-bootstrap-table2-paginator";
+import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
 import { Button } from "react-bootstrap";
 
-const TableBase = ({ isLoading, data, columns, title }) => {
+const TableBase = ({ isLoading, data, columns, title, rowEvents }) => {
   let checkb = false;
-
   function Check() {
     if (checkb == true) {
       checkb = false;
@@ -68,21 +60,21 @@ const TableBase = ({ isLoading, data, columns, title }) => {
         <div className="table-responsive">
           {isLoading && <div>Loading...</div>}
 
-          <BootstrapTable
-            bootstrap4
-            keyField="id"
-            hover
-            data={data}
-            columns={columns}
-            pagination={pagination}
-            filter={filterFactory()}
-            // selectRow = {addCheckbox()}
-            selectRow={ { mode: 'checkbox', clickToSelect: true } }
-          />
+                    <BootstrapTable
+                        bootstrap4
+                        keyField="id"
+                        hover
+                        data={data}
+                        columns={columns}
+                        pagination={pagination}
+                        filter={filterFactory()}
+                        selectRow={{ mode: 'checkbox', clickToSelect: true }}
+                        rowEvents={rowEvents}
+                    />
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default TableBase;
