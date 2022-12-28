@@ -15,7 +15,6 @@ import TableBase from "../sub_components/Table";
 import { textFilter, selectFilter } from "react-bootstrap-table2-filter";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
-import ToastUtil from "../../untils/toastUtil";
 import AdminAddAccount from "../sub_components/AdminAddAccount";
 
 const AdminAccounts = () => {
@@ -71,7 +70,7 @@ const AdminAccounts = () => {
                 return subLang.unknown
         }
     }
-    
+
     useEffect(() => {
         const transPartners = []
         Object.values(listPartners).forEach((partner) => {
@@ -95,8 +94,8 @@ const AdminAccounts = () => {
 
     const columns = (() => {
         const options = {
-            id: { dataField: 'id', text: 'Id', sort: true},
-            name: { dataField: 'name', text: subLang.name, filter: textFilter() , sort: true},
+            id: { dataField: 'id', text: 'Id', sort: true },
+            name: { dataField: 'name', text: subLang.name, filter: textFilter(), sort: true },
             email: { dataField: 'email', text: subLang.email, filter: textFilter() },
             phone: { dataField: 'phone', text: subLang.phone, filter: textFilter() },
             address: { dataField: 'address', text: subLang.address, filter: textFilter() },
@@ -129,18 +128,11 @@ const AdminAccounts = () => {
 
     const handleCloseModal = (e) => {
         setShowModal(false)
-        window.document.body.querySelector('.modal-backdrop').remove()
-        window.document.body.classList.remove('modal-open')
-        window.document.body.style = null
+
     }
 
-    function ModalBtn(btnName) {
-        const onClickModalBtn = () => {
-            setShowModal(true)
-        }
-        return (
-            <button className="btn btn-primary" data-toggle="modal" data-target="#logoutModal" onClick={() => onClickModalBtn()}>{btnName}</button>
-        )
+    const onClickAddNewAccount = () => {
+        setShowModal(true)
     }
 
     return (
@@ -149,11 +141,15 @@ const AdminAccounts = () => {
                 <h1 className="h3 mb-0 text-gray-800">{subLang.manage_accounts}</h1>
             </div>
             {/* Button Create Account */}
-            <ModalBtn btnName={subLang.add_new_account}/>
+            <button className="btn btn-primary" onClick={() => onClickAddNewAccount()}>{subLang.add_new_account}</button>
 
             {/* Popup Form **************************************************************** */}
             {
-                showModal && <AdminAddAccount handleResult={handleResult} handleClose={handleCloseModal} />
+
+                <AdminAddAccount
+                    handleResult={handleResult}
+                    handleClose={handleCloseModal}
+                    show={showModal} />
             }
 
             <TableBase
@@ -161,6 +157,7 @@ const AdminAccounts = () => {
                 data={arrayPartners}
                 columns={columns}
                 isLoading={partnersloading}
+            // rowEvents={rowEvents}
             />
         </div>
     )

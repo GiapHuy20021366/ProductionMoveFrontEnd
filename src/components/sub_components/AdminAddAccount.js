@@ -5,8 +5,10 @@ import ToastUtil from "../../untils/toastUtil";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import Popup from './Popup'
+import { Button, Modal } from "react-bootstrap";
 
-const AdminAddAccount = ({ handleResult, handleClose }) => {
+
+const AdminAddAccount = ({ handleResult, handleClose, show }) => {
     const subLang = useSelector(state => state.lang.AdminAddAccount)
 
     const userNameRef = useRef()
@@ -31,48 +33,51 @@ const AdminAddAccount = ({ handleResult, handleClose }) => {
             role: roleRef.current.value
         }
 
-        const testAPI = () => {
-            Promise.resolve(newAcc).then((data) => {
-                userNameRef.current.value = ''
-                passwordRef.current.value = ''
-                emailRef.current.value = ''
-                nameRef.current.value = ''
-                addressRef.current.value = ''
-                phoneRef.current.value = ''
+        // const testAPI = () => {
+        //     Promise.resolve(newAcc).then((data) => {
+        //         userNameRef.current.value = ''
+        //         passwordRef.current.value = ''
+        //         emailRef.current.value = ''
+        //         nameRef.current.value = ''
+        //         addressRef.current.value = ''
+        //         phoneRef.current.value = ''
 
-                ToastUtil.success(subLang.create_success, 1000);
-                handleClose && handleClose(e)
-            }).catch((error) => {
-                const messageResponse = error.response.data.message
-                setErrorMessage(messageResponse)
-            })
-        }
-
-        testAPI()
-        // await useCallApi(
-        //     apiUrls.CREATE_PARTNER,
-        //     newAcc
-        // ).then((data) => {
-        //     handleResult && handleResult({
-        //         ...newAcc,
-        //         id: data.data.id
+        //         ToastUtil.success(subLang.create_success, 1000);
+        //         handleClose && handleClose()
+        //     }).catch((error) => {
+        //         const messageResponse = error.response.data.message
+        //         setErrorMessage(messageResponse)
         //     })
+        // }
 
-        //     userNameRef.current.value = ''
-        //     passwordRef.current.value = ''
-        //     emailRef.current.value = ''
-        //     nameRef.current.value = ''
-        //     addressRef.current.value = ''
-        //     phoneRef.current.value = ''
+        // testAPI()
+        await useCallApi(
+            apiUrls.CREATE_PARTNER,
+            newAcc
+        ).then((data) => {
+            handleResult && handleResult({
+                ...newAcc,
+                id: data.data.id
+            })
 
-        //     ToastUtil.success(subLang.create_success, 1000);
-        //     handleClose && handleClose(e)
-        //     // console.log(data)
-        // }).catch((error) => {
-        //     // console.log(error)
-        //     const messageResponse = error.response.data.message
-        //     setErrorMessage(messageResponse)
-        // })
+            userNameRef.current.value = ''
+            passwordRef.current.value = ''
+            emailRef.current.value = ''
+            nameRef.current.value = ''
+            addressRef.current.value = ''
+            phoneRef.current.value = ''
+
+            ToastUtil.success(subLang.create_success, 1000);
+            handleClose && handleClose(e)
+            window.document.body.querySelector('.modal-backdrop').remove()
+            window.document.body.classList.remove('modal-open')
+            window.document.body.style = null
+            // console.log(data)
+        }).catch((error) => {
+            // console.log(error)
+            const messageResponse = error.response.data.message
+            setErrorMessage(messageResponse)
+        })
 
     }
 
@@ -92,52 +97,63 @@ const AdminAddAccount = ({ handleResult, handleClose }) => {
     }
 
     return (
-        <Popup
-            headerTitle={subLang.add_new_account}
-            body={
-                <div className="AdminAddAccount-popup">
-                    <ul>
-                        <li>
-                            <label htmlFor="userName">{subLang.userName}:</label>
-                            <input type='text' placeholder={subLang.userName} name="userName" ref={userNameRef} required></input>
-                        </li>
-                        <li>
-                            <label htmlFor="password">{subLang.password}:</label>
-                            <input type='password' placeholder={subLang.password} name="password" ref={passwordRef} required></input>
-                        </li>
-                        <li>
-                            <label htmlFor="email">{subLang.email}:</label>
-                            <input type='email' placeholder={subLang.email} name="email" ref={emailRef} required></input>
-                        </li>
-                        <li>
-                            <label htmlFor="displayName">{subLang.name}:</label>
-                            <input type='text' placeholder={subLang.name} name='displayName' ref={nameRef} required></input>
-                        </li>
-                        <li>
-                            <label htmlFor="phone">{subLang.phone}:</label>
-                            <input type='text' placeholder={subLang.phone} name='phone' ref={phoneRef} ></input>
-                        </li>
-                        <li>
-                            <label htmlFor="address">{subLang.address}:</label>
-                            <input type='text' placeholder={subLang.address} name='address' ref={addressRef}></input>
-                        </li>
-                        <li>
-                            <label>{subLang.role}:</label>
-                            <select ref={roleRef}>
-                                <option value="1">{getRole(1)}</option>
-                                <option value="2">{getRole(2)}</option>
-                                <option value="3">{getRole(3)}</option>
-                                <option value="4">{getRole(4)}</option>
-                            </select>
-                        </li>
-                    </ul>
-                    <div className="errorMsg">{errorMessage}</div>
-                </div>
-            }
-            cancel = {subLang.cancel}
-            submit = {subLang.submit}
-            onSubmit = {(e) => onClickAddAccount(e)}
-        />
+        <>
+            <Modal
+                size="lg"
+                show={show}
+                onHide={handleClose}
+            >
+                <Modal.Header closeButton>
+                    <Modal.Title>{subLang.add_new_account}</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <div className="AdminAddAccount-popup">
+                        <ul>
+                            <li>
+                                <label htmlFor="userName">{subLang.userName}:</label>
+                                <input type='text' placeholder={subLang.userName} name="userName" ref={userNameRef} required></input>
+                            </li>
+                            <li>
+                                <label htmlFor="password">{subLang.password}:</label>
+                                <input type='password' placeholder={subLang.password} name="password" ref={passwordRef} required></input>
+                            </li>
+                            <li>
+                                <label htmlFor="email">{subLang.email}:</label>
+                                <input type='email' placeholder={subLang.email} name="email" ref={emailRef} required></input>
+                            </li>
+                            <li>
+                                <label htmlFor="displayName">{subLang.name}:</label>
+                                <input type='text' placeholder={subLang.name} name='displayName' ref={nameRef} required></input>
+                            </li>
+                            <li>
+                                <label htmlFor="phone">{subLang.phone}:</label>
+                                <input type='text' placeholder={subLang.phone} name='phone' ref={phoneRef} ></input>
+                            </li>
+                            <li>
+                                <label htmlFor="address">{subLang.address}:</label>
+                                <input type='text' placeholder={subLang.address} name='address' ref={addressRef}></input>
+                            </li>
+                            <li>
+                                <label>{subLang.role}:</label>
+                                <select ref={roleRef}>
+                                    <option value="1">{getRole(1)}</option>
+                                    <option value="2">{getRole(2)}</option>
+                                    <option value="3">{getRole(3)}</option>
+                                    <option value="4">{getRole(4)}</option>
+                                </select>
+                            </li>
+                        </ul>
+                        <div className="errorMsg">{errorMessage}</div>
+                    </div>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Cancel
+                    </Button>
+                    <Button variant="primary" onClick={onClickAddAccount}>{subLang.add_new_account}</Button>
+                </Modal.Footer>
+            </Modal>
+        </>
     )
 }
 
