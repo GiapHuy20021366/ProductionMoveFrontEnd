@@ -70,7 +70,7 @@ const AdminAccounts = () => {
                 return subLang.unknown
         }
     }
-
+    // *** update table of list products when numOfProduct or language is changed ***
     useEffect(() => {
         const transPartners = []
         Object.values(listPartners).forEach((partner) => {
@@ -128,7 +128,6 @@ const AdminAccounts = () => {
 
     const handleCloseModal = (e) => {
         setShowModal(false)
-
     }
 
     const onClickAddNewAccount = () => {
@@ -140,16 +139,17 @@ const AdminAccounts = () => {
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 className="h3 mb-0 text-gray-800">{subLang.manage_accounts}</h1>
             </div>
+
             {/* Button Create Account */}
             <button className="btn btn-primary" onClick={() => onClickAddNewAccount()}>{subLang.add_new_account}</button>
 
             {/* Popup Form **************************************************************** */}
             {
-
                 <AdminAddAccount
                     handleResult={handleResult}
                     handleClose={handleCloseModal}
-                    show={showModal} />
+                    show={showModal} 
+                />
             }
 
             <TableBase

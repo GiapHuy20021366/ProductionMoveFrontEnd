@@ -4,11 +4,11 @@ import '../../styles/AdminAddAccount.scss'
 import ToastUtil from "../../untils/toastUtil";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal, Form } from "react-bootstrap";
 
 
-const AdminAddAccount = ({ handleResult, handleClose, show }) => {
-    const subLang = useSelector(state => state.lang.AdminAddAccount)
+const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
+    const subLang = useSelector(state => state.lang.FactoryImportProducts)
 
     const userNameRef = useRef()
     const passwordRef = useRef()
@@ -20,7 +20,7 @@ const AdminAddAccount = ({ handleResult, handleClose, show }) => {
 
     const [errorMessage, setErrorMessage] = useState('')
 
-    const onClickAddAccount = async (e) => {
+    const onClickSubmit = async (e) => {
         setErrorMessage('')
         const newAcc = {
             userName: userNameRef.current.value,
@@ -49,7 +49,6 @@ const AdminAddAccount = ({ handleResult, handleClose, show }) => {
             })
         }
 
-        testAPI()
         // await useCallApi(
         //     apiUrls.CREATE_PARTNER,
         //     newAcc
@@ -77,6 +76,8 @@ const AdminAddAccount = ({ handleResult, handleClose, show }) => {
         //     const messageResponse = error.response.data.message
         //     setErrorMessage(messageResponse)
         // })
+
+        testAPI()
     }
 
     const getRole = (roleId) => {
@@ -101,57 +102,37 @@ const AdminAddAccount = ({ handleResult, handleClose, show }) => {
             onHide={handleClose}
         >
             <Modal.Header closeButton>
-                <Modal.Title>{subLang.add_new_account}</Modal.Title>
+                <Modal.Title>{subLang.import_products}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <div className="AdminAddAccount-popup">
-                    <ul>
-                        <li>
-                            <label htmlFor="userName">{subLang.userName}:</label>
-                            <input type='text' placeholder={subLang.userName} name="userName" ref={userNameRef} required></input>
-                        </li>
-                        <li>
-                            <label htmlFor="password">{subLang.password}:</label>
-                            <input type='password' placeholder={subLang.password} name="password" ref={passwordRef} required></input>
-                        </li>
-                        <li>
-                            <label htmlFor="email">{subLang.email}:</label>
-                            <input type='email' placeholder={subLang.email} name="email" ref={emailRef} required></input>
-                        </li>
-                        <li>
-                            <label htmlFor="displayName">{subLang.name}:</label>
-                            <input type='text' placeholder={subLang.name} name='displayName' ref={nameRef} required></input>
-                        </li>
-                        <li>
-                            <label htmlFor="phone">{subLang.phone}:</label>
-                            <input type='text' placeholder={subLang.phone} name='phone' ref={phoneRef} ></input>
-                        </li>
-                        <li>
-                            <label htmlFor="address">{subLang.address}:</label>
-                            <input type='text' placeholder={subLang.address} name='address' ref={addressRef}></input>
-                        </li>
-                        <li>
-                            <label>{subLang.role}:</label>
-                            <select ref={roleRef}>
-                                <option value="1">{getRole(1)}</option>
-                                <option value="2">{getRole(2)}</option>
-                                <option value="3">{getRole(3)}</option>
-                                <option value="4">{getRole(4)}</option>
-                            </select>
-                        </li>
-                    </ul>
-                    <div className="errorMsg">{errorMessage}</div>
-                </div>
+                <Form>
+                    <Form.Group className="mb-3" controlId="Model">
+                        <Form.Label>{subLang.model}</Form.Label>
+                        <Form.Control type="text"/>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="produced_factory">
+                        <Form.Label>{subLang.produced_factory}</Form.Label>
+                        <Form.Control type="text"/>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="birth">
+                        <Form.Label>{subLang.birth}</Form.Label>
+                        <Form.Control type="date"/>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="birth">
+                        <Form.Label>{subLang.location}</Form.Label>
+                        <Form.Control type="text"/>
+                    </Form.Group>
+                </Form>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
                     Cancel
                 </Button>
-                <Button variant="primary" onClick={onClickAddAccount}>{subLang.add_new_account}</Button>
+                <Button variant="primary" onClick={onClickSubmit}>{subLang.submit}</Button>
             </Modal.Footer>
         </Modal>
     )
 }
 
-export default AdminAddAccount
+export default FactoryImportProducts
 

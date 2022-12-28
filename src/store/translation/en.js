@@ -62,6 +62,7 @@ const langOfAdminNavigator = {
 
 const langOfFactoryNavigator = {
     factory: 'FACTORY',
+    factory_models: 'Manage Models',
     factory_products: 'Manage Products',
 }
 
@@ -112,16 +113,24 @@ const langOfAdminModels = {
 }
 
 const langOfAdminProducts = {
+    manage_products: 'Manage Products',
     model: 'Model',
     produced_factory: 'Produced Factory',
-    manage_products: 'Manage Products',
-    birth: 'Birth',
+    birth: 'Birthday',
     location: 'Location',
     sumary_re: count => `Total of ${count} ${count <= 1 ? 'product' : 'products'}`,
 }
 
 const langOfFactoryProducts = {
-    ...langOfAdminProducts
+    ...langOfAdminProducts,
+    import_products_btn: 'Import Products',
+}
+
+const langOfFactoryImportProducts = {
+    ...langOfAdminProducts,
+    import_products: "Batch Import Products",
+    cancel: 'Cancel',
+    submit: 'Submit',
 }
 
 const langOfAgencyProducts = {
@@ -161,6 +170,7 @@ const en = {
     AdminProducts: langOfAdminProducts,
 
     FactoryProducts: langOfFactoryProducts,
+    FactoryImportProducts: langOfFactoryImportProducts,
     AgencyProducts: langOfAgencyProducts,
     MaintenanceProducts: langOfMaintenanceProducts,
 }
