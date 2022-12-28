@@ -95,7 +95,7 @@ const AdminAddAccount = ({ handleResult, handleClose }) => {
         <Popup
             headerTitle={subLang.add_new_account}
             body={
-                <>
+                <div className="AdminAddAccount-popup">
                     <ul>
                         <li>
                             <label htmlFor="userName">{subLang.userName}:</label>
@@ -132,7 +132,7 @@ const AdminAddAccount = ({ handleResult, handleClose }) => {
                         </li>
                     </ul>
                     <div className="errorMsg">{errorMessage}</div>
-                </>
+                </div>
             }
             cancel = {subLang.cancel}
             submit = {subLang.submit}
