@@ -15,8 +15,8 @@ import TableBase from "../sub_components/Table";
 import { textFilter, selectFilter } from "react-bootstrap-table2-filter";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
-import '../../styles/AccountCreater.scss'
 import AdminAddAccount from "../sub_components/AdminAddAccount";
+import Modal from '../until_components/Modal';
 
 
 
@@ -127,12 +127,8 @@ const AdminAccounts = () => {
     const onClickAddNewAccount = () => {
         setShowModal(true)
     }
-    const handleClose = (e) => {
+    const handleClose = () => {
         setShowModal(false)
-        window.document.body.querySelector('.modal-backdrop').remove()
-        window.document.body.classList.remove('modal-open')
-        window.document.body.style = null
-
     }
 
     return (
@@ -141,11 +137,12 @@ const AdminAccounts = () => {
                 <h1 className="h3 mb-0 text-gray-800">{subLang.manage_accounts}</h1>
             </div>
             {/* Button Create Account */}
-            <button className="btn btn-primary" data-toggle="modal" data-target="#logoutModal" onClick={() => onClickAddNewAccount()}>{subLang.add_new_account}</button>
+            <button className="btn btn-primary" data-toggle="modal" data-target="#ModalContainer" onClick={() => onClickAddNewAccount()}>{subLang.add_new_account}</button>
 
             {/* Popup Form **************************************************************** */}
             {
-                showModal && <AdminAddAccount handleResult={handleResult} handleClose={handleClose} />
+
+                <AdminAddAccount handleResult={handleResult} handleClose={handleClose} shower={showModal} />
             }
 
             <TableBase
