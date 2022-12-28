@@ -14,7 +14,7 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
     const modelNameRef = useRef()
     const signNameRef = useRef()
     const generationRef = useRef()
-    const factoryRef = useRef()
+    const factoryRef = account.name
     const seriesRef = useRef()
     const birthRef = useRef()
     const lengthRef = useRef()
@@ -129,95 +129,95 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Group as={Row} className="mb-3" controlId="name" ref={modelNameRef}>
+                    <Form.Group as={Row} className="mb-3" controlId="name">
                         <Form.Label column sm="4">{subLang.name}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text"/>
+                            <Form.Control type="text" ref={modelNameRef}/>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="sign_name" ref={signNameRef}>
+                    <Form.Group as={Row} className="mb-3" controlId="sign_name">
                         <Form.Label column sm="4">{subLang.sign_name}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text"/>
+                            <Form.Control type="text"ref={signNameRef}/>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="generation" ref={generationRef}>
+                    <Form.Group as={Row} className="mb-3" controlId="generation" >
                         <Form.Label column sm="4">{subLang.generation}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text"/>
+                            <Form.Control type="text" ref={generationRef}/>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="produced_factory" ref={factoryRef}>
+                    <Form.Group as={Row} className="mb-3" controlId="produced_factory" >
                         <Form.Label column sm="4">{subLang.produced_factory}</Form.Label>
                         <Col sm="8">
                             <Form.Control plaintext readOnly defaultValue={account.name}/>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="birth" ref={birthRef}>
+                    <Form.Group as={Row} className="mb-3" controlId="birth">
                         <Form.Label column sm="4">{subLang.birth}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="date"/>
+                            <Form.Control type="date" ref={birthRef}/>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="series" ref={seriesRef}>
+                    <Form.Group as={Row} className="mb-3" controlId="series">
                         <Form.Label column sm="4">{subLang.series}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text"/>
+                            <Form.Control type="text" ref={seriesRef}/>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="length" ref={lengthRef}>
+                    <Form.Group as={Row} className="mb-3" controlId="length">
                         <Form.Label column sm="4">{subLang.length}</Form.Label>
                         <Col sm="8">
                             <InputGroup>
-                                <Form.Control type="number"/>
+                                <Form.Control type="number" ref={lengthRef}/>
                                 <InputGroup.Text>mm</InputGroup.Text>
                             </InputGroup>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="width" ref={widthRef}>
+                    <Form.Group as={Row} className="mb-3" controlId="width">
                         <Form.Label column sm="4">{subLang.width}</Form.Label>
                         <Col sm="8">
                             <InputGroup>
-                                <Form.Control type="number"/>
+                                <Form.Control type="number" ref={widthRef}/>
                                 <InputGroup.Text>mm</InputGroup.Text>
                             </InputGroup>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="height" ref={heightRef}>
+                    <Form.Group as={Row} className="mb-3" controlId="height">
                         <Form.Label column sm="4">{subLang.height}</Form.Label>
                         <Col sm="8">
                             <InputGroup>
-                                <Form.Control type="number"/>
+                                <Form.Control type="number" ref={heightRef}/>
                                 <InputGroup.Text>mm</InputGroup.Text>
                             </InputGroup>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="body_type" ref={bodyTypeRef}>
+                    <Form.Group as={Row} className="mb-3" controlId="body_type">
                         <Form.Label column sm="4">{subLang.body_type}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text"/>
+                            <Form.Control type="text" ref={bodyTypeRef}/>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="engine_type" ref={engineTypeRef}>
+                    <Form.Group as={Row} className="mb-3" controlId="engine_type">
                         <Form.Label column sm="4">{subLang.engine_type}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text"/>
+                            <Form.Control type="text" ref={engineTypeRef}/>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="max_speed" ref={maxSpeedRef}>
+                    <Form.Group as={Row} className="mb-3" controlId="max_speed">
                         <Form.Label column sm="4">{subLang.max_speed}</Form.Label>
                         <Col sm="8">
                             <InputGroup>
-                                <Form.Control type="number"/>
+                                <Form.Control type="number" ref={maxSpeedRef}/>
                                 <InputGroup.Text>km/h</InputGroup.Text>
                             </InputGroup>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="acceleration" ref={accelerationRef}>
+                    <Form.Group as={Row} className="mb-3" controlId="acceleration">
                         <Form.Label column sm="4">{subLang.acceleration}</Form.Label>
                         <Col sm="8">
                             <InputGroup>
-                                <Form.Control type="number"/>
+                                <Form.Control type="number" ref={accelerationRef}/>
                                 <InputGroup.Text>
                                     <MathJax.Provider>
                                         <MathJax.Node inline formula='m/s^2'/>
@@ -226,11 +226,11 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
                             </InputGroup>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="city_fuel" ref={cityFuelRef}>
+                    <Form.Group as={Row} className="mb-3" controlId="city_fuel">
                         <Form.Label column sm="4">{subLang.city_fuel}</Form.Label>
                         <Col sm="8">
                             <InputGroup>
-                                <Form.Control type="number"/>
+                                <Form.Control type="number" ref={cityFuelRef}/>
                                 <InputGroup.Text>
                                     <MathJax.Provider>
                                         <MathJax.Node inline formula='l/100km'/>
