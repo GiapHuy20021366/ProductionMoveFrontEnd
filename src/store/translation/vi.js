@@ -99,14 +99,14 @@ const langOfAdminModels = {
     birth: 'Ngày ra mắt',
     series: 'Phiên bản',
     trim: 'Trim',
-    length: 'Chiều dài',
-    width: 'Chiều rộng',
-    height: 'Chiều cao',
+    length: 'Chiều dài (mm)',
+    width: 'Chiều rộng (mm)',
+    height: 'Chiều cao (mm)',
     body_type: 'Loại thân xe',
     engine_type: 'Loại động cơ',
-    max_speed: 'Tốc độ tối đa',
+    max_speed: 'Tốc độ tối đa (km/h)',
     acceleration: 'Gia tốc',
-    city_fuel: 'Nhiên liệu tiêu thụ',
+    city_fuel: 'Nhiên liệu tiêu thụ (l/100km)',
     sumary_re: count => `Tổng số ${count} dòng sản phẩm`,
     manage_models: 'Quản lý các dòng sản phẩm'
 }
@@ -119,6 +119,25 @@ const langOfAdminProducts = {
     state: 'Trạng thái',
     location: 'Vị trí',
     sumary_re: count => `Tổng số ${count} sản phẩm`,
+}
+
+const langOfFactoryModels = {
+    ...langOfAdminModels,
+    add_model_btn: 'Thêm dòng sản phẩm mới',
+}
+
+const langOfFactoryAddModel = {
+    ...langOfAdminModels,
+    add_new_model: "Thêm dòng sản phẩm mới",
+    birth: 'Ngày ra mắt',
+    length: 'Chiều dài',
+    width: 'Chiều rộng',
+    height: 'Chiều cao',
+    max_speed: 'Tốc độ tối đa',
+    city_fuel: 'Nhiên liệu tiêu thụ',
+    cancel: 'Hủy',
+    submit: 'Thêm',
+    add_success: 'Thêm dòng sản phẩm mới thành công!',
 }
 
 const langOfFactoryProducts = {
@@ -170,6 +189,8 @@ const vi = {
     AdminModels: langOfAdminModels,
     AdminProducts: langOfAdminProducts,
 
+    FactoryModels: langOfFactoryModels,
+    FactoryAddModel: langOfFactoryAddModel,
     FactoryProducts: langOfFactoryProducts,
     FactoryImportProducts: langOfFactoryImportProducts,
     AgencyProducts: langOfAgencyProducts,

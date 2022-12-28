@@ -4,105 +4,118 @@ import '../../styles/AdminAddAccount.scss'
 import ToastUtil from "../../untils/toastUtil";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
-import { Button, Modal, Form, Col, Row } from "react-bootstrap";
+import { Button, Modal, Form, Col, Row, InputGroup } from "react-bootstrap";
+import MathJax from 'react-mathjax';
 
 const FactoryAddModel = ({ handleResult, handleClose, show }) => {
     const subLang = useSelector(state => state.lang.FactoryAddModel)
     const account = useSelector(state => state.user.account)
 
-    const userNameRef = useRef()
-    const passwordRef = useRef()
-    const emailRef = useRef()
-    const nameRef = useRef()
-    const phoneRef = useRef()
-    const addressRef = useRef()
-    const roleRef = useRef()
+    const modelNameRef = useRef()
+    const signNameRef = useRef()
+    const generationRef = useRef()
+    const factoryRef = useRef()
+    const seriesRef = useRef()
+    const birthRef = useRef()
+    const lengthRef = useRef()
+    const widthRef = useRef()
+    const heightRef = useRef()
+    const numberOfSeatsRef = useRef()
+    const bodyTypeRef = useRef()
+    const engineTypeRef = useRef()
+    const boostTypeRef = useRef()
+    const maxSpeedRef = useRef()
+    const accelerationRef = useRef()
+    const cityFuelRef = useRef()
 
     const [errorMessage, setErrorMessage] = useState('')
 
     const onClickSubmit = async (e) => {
         setErrorMessage('')
-        const newAcc = {
-            userName: userNameRef.current.value,
-            password: passwordRef.current.value,
-            email: emailRef.current.value,
-            name: nameRef.current.value,
-            address: addressRef.current.value,
-            phone: phoneRef.current.value,
-            role: roleRef.current.value
+        const newModel = {
+            name: modelNameRef.current.value,
+            signName: signNameRef.current.value,
+            generation: generationRef.current.value,
+            factory: factoryRef.current.value,
+            birth: birthRef.current.value,
+            series: seriesRef.current.value,
+            length: lengthRef.current.value,
+            width: widthRef.current.value,
+            height: heightRef.current.value,
+            // numberOfSeats: numberOfSeatsRef.current.value,
+            bodyType: bodyTypeRef.current.value,
+            engineType: engineTypeRef.current.value,
+            // boostType: boostTypeRef.current.value,
+            maxspeed: maxSpeedRef.current.value,
+            accceleration: accelerationRef.current.value,
+            cityFuel: cityFuelRef.current.value
         }
 
-        const testAPI = () => {
-            Promise.resolve(newAcc).then((data) => {
-                userNameRef.current.value = ''
-                passwordRef.current.value = ''
-                emailRef.current.value = ''
-                nameRef.current.value = ''
-                addressRef.current.value = ''
-                phoneRef.current.value = ''
+        console.log(newModel)
 
-                ToastUtil.success(subLang.create_success, 1000);
+        const testAPI = () => {
+            Promise.resolve(newModel).then((data) => {
+                modelNameRef.current.value = ''
+                signNameRef.current.value = ''
+                generationRef.current.value = ''
+                factoryRef.current.value = ''
+                birthRef.current.value = ''
+                seriesRef.current.value = ''
+                lengthRef.current.value = ''
+                widthRef.current.value = ''
+                heightRef.current.value = ''
+                bodyTypeRef.current.value = ''
+                engineTypeRef.current.value = ''
+                maxSpeedRef.current.value = ''
+                accelerationRef.current.value = ''
+                cityFuelRef.current.value = ''
+
+                ToastUtil.success(subLang.add_success, 1000);
                 handleClose && handleClose()
             }).catch((error) => {
                 const messageResponse = error.response.data.message
                 setErrorMessage(messageResponse)
             })
         }
+        
+        await useCallApi(
+            apiUrls.CREATE_MODEL,
+            newModel
+        ).then((data) => {
+            console.log(data)
 
-        // await useCallApi(
-        //     apiUrls.CREATE_PARTNER,
-        //     newAcc
-        // ).then((data) => {
-        //     handleResult && handleResult({
-        //         ...newAcc,
-        //         id: data.data.id
-        //     })
+            handleResult && handleResult({
+                ...newModel,
+                id: data.data.id
+            })
 
-        //     userNameRef.current.value = ''
-        //     passwordRef.current.value = ''
-        //     emailRef.current.value = ''
-        //     nameRef.current.value = ''
-        //     addressRef.current.value = ''
-        //     phoneRef.current.value = ''
+            modelNameRef.current.value = ''
+            signNameRef.current.value = ''
+            generationRef.current.value = ''
+            // factoryRef.current.value = ''
+            birthRef.current.value = ''
+            // seriesRef.current.value = ''
+            // lengthRef.current.value = ''
+            // widthRef.current.value = ''
+            // heightRef.current.value = ''
+            // bodyTypeRef.current.value = ''
+            // engineTypeRef.current.value = ''
+            // maxSpeedRef.current.value = ''
+            // accelerationRef.current.value = ''
+            // cityFuelRef.current.value = ''
 
-        //     ToastUtil.success(subLang.create_success, 1000);
-        //     handleClose && handleClose(e)
-        //     window.document.body.querySelector('.modal-backdrop').remove()
-        //     window.document.body.classList.remove('modal-open')
-        //     window.document.body.style = null
-        //     // console.log(data)
-        // }).catch((error) => {
-        //     // console.log(error)
-        //     const messageResponse = error.response.data.message
-        //     setErrorMessage(messageResponse)
-        // })
+            ToastUtil.success(subLang.add_success, 1000);
+            handleClose && handleClose(e)
+            window.document.body.querySelector('.modal-backdrop').remove()
+            window.document.body.classList.remove('modal-open')
+            window.document.body.style = null
+        }).catch((error) => {
+            console.log(error)
+            const messageResponse = error.response.data.message
+            setErrorMessage(messageResponse)
+        })
 
-        testAPI()
-    }
-
-    const getRole = (roleId) => {
-        switch (roleId) {
-            case 1:
-                return subLang.admin
-            case 2:
-                return subLang.factory
-            case 3:
-                return subLang.agency
-            case 4:
-                return subLang.maintain_center
-            default:
-                return subLang.unknown
-        }
-    }
-
-    {
-        var today = new Date();
-        var dd = String(today.getDate()).padStart(2, '0');
-        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-        var yyyy = today.getFullYear();
-    
-        today = dd + '/' + mm + '/' + yyyy;
-        console.log(today);
+        // testAPI()
     }
 
     return (
@@ -116,94 +129,114 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Group as={Row} className="mb-3" controlId="name">
+                    <Form.Group as={Row} className="mb-3" controlId="name" ref={modelNameRef}>
                         <Form.Label column sm="4">{subLang.name}</Form.Label>
                         <Col sm="8">
                             <Form.Control type="text"/>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="sign_name">
+                    <Form.Group as={Row} className="mb-3" controlId="sign_name" ref={signNameRef}>
                         <Form.Label column sm="4">{subLang.sign_name}</Form.Label>
                         <Col sm="8">
                             <Form.Control type="text"/>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="generation">
+                    <Form.Group as={Row} className="mb-3" controlId="generation" ref={generationRef}>
                         <Form.Label column sm="4">{subLang.generation}</Form.Label>
                         <Col sm="8">
                             <Form.Control type="text"/>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="produced_factory">
+                    <Form.Group as={Row} className="mb-3" controlId="produced_factory" ref={factoryRef}>
                         <Form.Label column sm="4">{subLang.produced_factory}</Form.Label>
                         <Col sm="8">
                             <Form.Control plaintext readOnly defaultValue={account.name}/>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="birth">
+                    <Form.Group as={Row} className="mb-3" controlId="birth" ref={birthRef}>
                         <Form.Label column sm="4">{subLang.birth}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="date" defaultValue={today}/>
+                            <Form.Control type="date"/>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="series">
+                    <Form.Group as={Row} className="mb-3" controlId="series" ref={seriesRef}>
                         <Form.Label column sm="4">{subLang.series}</Form.Label>
                         <Col sm="8">
                             <Form.Control type="text"/>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="trim">
-                        <Form.Label column sm="4">{subLang.trim}</Form.Label>
-                        <Col sm="8">
-                            <Form.Control type="text"/>
-                        </Col>
-                    </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="length">
+                    <Form.Group as={Row} className="mb-3" controlId="length" ref={lengthRef}>
                         <Form.Label column sm="4">{subLang.length}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text"/>
+                            <InputGroup>
+                                <Form.Control type="number"/>
+                                <InputGroup.Text>mm</InputGroup.Text>
+                            </InputGroup>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="width">
+                    <Form.Group as={Row} className="mb-3" controlId="width" ref={widthRef}>
                         <Form.Label column sm="4">{subLang.width}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text"/>
+                            <InputGroup>
+                                <Form.Control type="number"/>
+                                <InputGroup.Text>mm</InputGroup.Text>
+                            </InputGroup>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="height">
+                    <Form.Group as={Row} className="mb-3" controlId="height" ref={heightRef}>
                         <Form.Label column sm="4">{subLang.height}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text"/>
+                            <InputGroup>
+                                <Form.Control type="number"/>
+                                <InputGroup.Text>mm</InputGroup.Text>
+                            </InputGroup>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="body_type">
+                    <Form.Group as={Row} className="mb-3" controlId="body_type" ref={bodyTypeRef}>
                         <Form.Label column sm="4">{subLang.body_type}</Form.Label>
                         <Col sm="8">
                             <Form.Control type="text"/>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="engine_type">
+                    <Form.Group as={Row} className="mb-3" controlId="engine_type" ref={engineTypeRef}>
                         <Form.Label column sm="4">{subLang.engine_type}</Form.Label>
                         <Col sm="8">
                             <Form.Control type="text"/>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="max_speed">
+                    <Form.Group as={Row} className="mb-3" controlId="max_speed" ref={maxSpeedRef}>
                         <Form.Label column sm="4">{subLang.max_speed}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text"/>
+                            <InputGroup>
+                                <Form.Control type="number"/>
+                                <InputGroup.Text>km/h</InputGroup.Text>
+                            </InputGroup>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="acceleration">
+                    <Form.Group as={Row} className="mb-3" controlId="acceleration" ref={accelerationRef}>
                         <Form.Label column sm="4">{subLang.acceleration}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text"/>
+                            <InputGroup>
+                                <Form.Control type="number"/>
+                                <InputGroup.Text>
+                                    <MathJax.Provider>
+                                        <MathJax.Node inline formula='m/s^2'/>
+                                    </MathJax.Provider>
+                                </InputGroup.Text>
+                            </InputGroup>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="city_fuel">
+                    <Form.Group as={Row} className="mb-3" controlId="city_fuel" ref={cityFuelRef}>
                         <Form.Label column sm="4">{subLang.city_fuel}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text"/>
+                            <InputGroup>
+                                <Form.Control type="number"/>
+                                <InputGroup.Text>
+                                    <MathJax.Provider>
+                                        <MathJax.Node inline formula='l/100km'/>
+                                    </MathJax.Provider>
+                                </InputGroup.Text>
+                            </InputGroup>
                         </Col>
                     </Form.Group>
                 </Form>

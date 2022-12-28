@@ -78,7 +78,7 @@ const langOfMaintenanceNavigator = {
 
 const langOfAdminAddAccount = {
     ...langOfAccountInfo,
-    create_success: 'Create Account Successful!',
+    create_success: 'Create Account Successfully!',
     add_new_account: 'Add new account',
     cancel: 'Cancel',
     submit: 'Submit',
@@ -100,14 +100,14 @@ const langOfAdminModels = {
     birth: 'Launch Date',
     series: 'Series',
     trim: 'Trim',
-    length: 'Length',
-    width: 'Width',
-    height: 'Height',
+    length: 'Length (mm)',
+    width: 'Width (mm)',
+    height: 'Height (mm)',
     body_type: 'Body Type',
     engine_type: 'Engine Type',
-    max_speed: 'Max Speed',
+    max_speed: 'Max Speed (km/h)',
     acceleration: 'Acceleration',
-    city_fuel: 'City Fuel',
+    city_fuel: 'City Fuel (l/100km)',
     sumary_re: count => `Total of ${count} ${count <= 1 ? 'model' : 'models'}`,
 }
 
@@ -130,8 +130,14 @@ const langOfFactoryAddModel = {
     ...langOfAdminModels,
     add_new_model: "Add New Model",
     birth: 'Launch Date',
+    length: 'Length',
+    width: 'Width',
+    height: 'Height',
+    max_speed: 'Max Speed',
+    city_fuel: 'City Fuel',
     cancel: 'Cancel',
-    submit: 'Submit',
+    submit: 'Add',
+    add_success: 'Add New Model Successfully!',
 }
 
 const langOfFactoryProducts = {
