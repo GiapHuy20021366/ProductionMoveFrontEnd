@@ -14,58 +14,115 @@ import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
 import { Button } from "react-bootstrap";
 
-const TableBase = ({ isLoading, data, columns, title, rowEvents }) => {
+// const TableBase = ({ isLoading, data, columns, title, rowEvents }) => {
 
-    const pagination = paginationFactory({
-        page: 2,
-        sizePerPage: 10,
-        nextPageText: ">",
-        prePageText: "<",
-        alwaysShowAllBtns: false,
-        // onPageChange: function (page, sizePerPage) {
-        //   console.log('page', page);
-        //   console.log('sizePerPage', sizePerPage);
-        // },
-        // onSizePerPageChange: function (page, sizePerPage) {
-        //   console.log('page', page);
-        //   console.log('sizePerPage', sizePerPage);
-        // }
-    });
-    function addCheckbox() {
-        if (checkb == true) {
-            return { mode: 'checkbox', clickToSelect: true }
-        }
-    }
+    // const pagination = paginationFactory({
+    //     page: 2,
+    //     sizePerPage: 10,
+    //     nextPageText: ">",
+    //     prePageText: "<",
+    //     alwaysShowAllBtns: false,
+    //     // onPageChange: function (page, sizePerPage) {
+    //     //   console.log('page', page);
+    //     //   console.log('sizePerPage', sizePerPage);
+    //     // },
+    //     // onSizePerPageChange: function (page, sizePerPage) {
+    //     //   console.log('page', page);
+    //     //   console.log('sizePerPage', sizePerPage);
+    //     // }
+    // });
+    // return (
+    //     <div className="card shadow mb-4">
+    //         <div className="card-header py-3">
+    //             <h6 className="m-0 font-weight-bold text-primary">{title}</h6>
+    //             {/* <Button
+    //                 onClick={Check}
+    //             >
+    //                 Select
+    //             </Button> */}
+    //             {/* selectRow={ { mode: 'checkbox', clickToSelect: true } } */}
+    //         </div>
+    //         <div className="card-body">
+    //             <div className="table-responsive">
+    //                 {isLoading && <div>Loading...</div>}
+
+    //                 <BootstrapTable
+    //                     bootstrap4
+    //                     keyField="id"
+    //                     hover
+    //                     data={data}
+    //                     columns={columns}
+    //                     pagination={pagination}
+    //                     filter={filterFactory()}
+    //                     selectRow={{ mode: 'checkbox', clickToSelect: true, style: {background: 'gray'} }}
+    //                     rowEvents={rowEvents}
+    //                 />
+    //             </div>
+    //         </div>
+    //     </div>
+    // );
+// };
+
+// export default TableBase;
+
+const pagination = paginationFactory({
+  page: 1,
+  sizePerPage: 10,
+  nextPageText: ">",
+  prePageText: "<",
+  alwaysShowAllBtns: false,
+});
+export default class TableBase extends React.Component {
+  handleGetCurrentData = () => {
+    console.log(this.node.table.props.data);
+  }
+  handleGetSelectedData = () => {
+    console.log(this.node.selectionContext.selected);
+  }
+  constructor(props) {
+    super(props);
+    this.state = { rowCount: this.props.data.length };
+  }
+  handleDataChange = ({ dataSize }) => {
+    this.setState({ rowCount: dataSize });
+  }
+
+  render() {
+    
     return (
-        <div className="card shadow mb-4">
-            <div className="card-header py-3">
-                <h6 className="m-0 font-weight-bold text-primary">{title}</h6>
-                {/* <Button
-                    onClick={Check}
-                >
-                    Select
-                </Button> */}
-                {/* selectRow={ { mode: 'checkbox', clickToSelect: true } } */}
-            </div>
-            <div className="card-body">
-                <div className="table-responsive">
-                    {isLoading && <div>Loading...</div>}
+      <div className="card shadow mb-4">
+          <div className="card-header py-3">
+              <h6 className="m-0 font-weight-bold text-primary">{this.state.rowCount}</h6>
+              {/* <Button
+                  onClick={Check}
+              >
+                  Select
+              </Button> */}
+              {/* selectRow={ { mode: 'checkbox', clickToSelect: true } } */}
+              <button className="btn btn-default" onClick={ this.handleGetCurrentData }>Get Current Display Rows</button>
+              <button className="btn btn-default" onClick={ this.handleGetSelectedData }>Get Current Selected Rows</button>
+          </div>
+          <div className="card-body">
+              <div className="table-responsive">
+                  {this.props.isLoading && <div>Loading...</div>}
 
-                    <BootstrapTable
-                        bootstrap4
-                        keyField="id"
-                        hover
-                        data={data}
-                        columns={columns}
-                        pagination={pagination}
-                        filter={filterFactory()}
-                        selectRow={{ mode: 'checkbox', clickToSelect: true, style: {background: 'gray'} }}
-                        rowEvents={rowEvents}
-                    />
-                </div>
-            </div>
-        </div>
-    );
-};
+                  <BootstrapTable
+                      ref={ n => this.node = n }
+                      onDataSizeChange={ this.handleDataChange }
+                      bootstrap4
+                      keyField="id"
+                      hover
+                      data={this.props.data}
+                      columns={this.props.columns}
+                      pagination={pagination}
+                      filter={filterFactory()}
+                      selectRow={{ mode: 'checkbox', clickToSelect: true }}
+                      // rowEvents={rowEvents}
+                  />
+              </div>
+          </div>
+      </div>
+  );
+  }
+}
 
-export default TableBase;
