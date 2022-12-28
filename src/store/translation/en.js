@@ -168,7 +168,36 @@ const langOfAccountDisplay = {
 
 const langOfProductDisplay = {
     ...langOfAdminProducts,
-    product_details: 'Product Details'
+    product_details: 'Product Details',
+    history: 'History',
+    produced_at: factoryName => `Produced at ${factoryName} factory`,
+    begin_maintain: agencyName => `Warranty at ${agencyName} agency `,
+    export_out: (from, to, roles) => {
+        return `Transport from ${from.name} ${roles[from.role].toLowerCase()} to ${to.name} ${roles[to.role].toLowerCase()}`
+    },
+    purchase_to: customerName => `Product was sold to customer ${customerName}`,
+    recall_start: (agency, customer) => {
+        return `Agency ${agency?.name} recalls product from customer ${customer?.name}`
+    },
+    maintain_fail: (maintainCenter, factory) => {
+        return `Products are transported to factory ${factory?.name} by  ${maintainCenter?.name} warranty center due to detecting errors during warranty`
+    },
+    maintain_moving: (sender, reciever, isFromAgency) => {
+        if (isFromAgency) {
+            return `Agency ${sender?.name} transport product to ${reciever?.name} warranty center for warranty`
+        }
+        return `The product has completed its warranty at the ${sender?.name} and shipped to the dealer  ${reciever?.name}`
+    },
+    return_customer: (agency, customer) => {
+        return `Agency ${agency?.name} return product to customer ${customer?.name} after warranty`
+    },
+    recall_moving: (sender, reciever, isFromAgency) => {
+        if (isFromAgency) {
+            return `Agency ${sender?.name} transport product to ${reciever?.name} warranty center to recall`
+        }
+        return `Warranty center ${sender?.name} transport product to ${reciever?.name} factory to recall`
+    }
+
 }
 
 const en = {

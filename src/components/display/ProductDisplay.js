@@ -1,21 +1,30 @@
 import Modal from 'react-bootstrap/Modal';
+
 import React, { useEffect, useRef, useState } from "react";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import { useDispatch, useSelector } from "react-redux";
 
+import '../../styles/ProductDisplay.scss'
+
 
 const ProductDisplay = ({ show, handleClose, row }) => {
     const subLang = useSelector(state => state.lang.ProductDisplay)
     const [loadingProduct, setLoadingProduct] = useState(false)
-    const [product, setProduct] = useState({})
+    const [product, setProduct] = useState({
+        id: 9999,
+        modelName: 'Unknown',
+        factoryName: 'Unknown',
+        birth: 'Unknown',
+        location: 'Unknown',
+    })
 
     const parseHistory = (product) => {
-        console.log(product)
         const history = []
         history.push({
             key: 'BIRTH',
-            time: product.birth
+            time: product.birth,
+            factory: product?.model?.factory
         })
         if (product.purchase) {
             history.push({
@@ -62,14 +71,21 @@ const ProductDisplay = ({ show, handleClose, row }) => {
                     }
                     case 1: {
                         sample.key = 'MAINTAIN_MOVING'
+                        if (_export.sender.role === 3) sample.isFromAgency = true
                         break
                     }
                     case 2: {
-                        sample.key = 'FAIL'
+                        sample.key = 'MAINTAIN_FAIL'
                         break
                     }
                     case 3: {
                         sample.key = 'RECALL_MOVING'
+                        if (_export.sender.role === 3) sample.isFromAgency = true
+                        break
+                    }
+                    case 4: {
+                        sample.key = 'RETURN_CUSTOMER'
+                        sample.reciever = product.purchase.customer
                         break
                     }
                 }
@@ -78,6 +94,11 @@ const ProductDisplay = ({ show, handleClose, row }) => {
         }
         history.sort((a, b) => Date.parse(a.time) - Date.parse(b.time))
         return history
+    }
+    const roles = {
+        2: subLang.factory,
+        3: subLang.agency,
+        4: subLang.maintain_center
     }
 
     useEffect(async () => {
@@ -110,9 +131,28 @@ const ProductDisplay = ({ show, handleClose, row }) => {
                 const { data } = response
                 if (data.rows.length === 1) {
                     const product = data.rows[0]
-                    setProduct(product)
                     const productHistory = parseHistory(product)
                     product.history = productHistory
+                    const holders = product.holders
+                    product.location = (() => {
+                        if (holders?.nowAt) {
+                            if (holders?.willAt) {
+                                return subLang.moving_to(holders.willAt)
+                            } else {
+                                return subLang.staying_at(holders.nowAt.name, roles[holders.nowAt.role])
+                            }
+                        } else {
+                            return subLang.by_customer(holders.customer.name)
+                        }
+
+
+
+                    })()
+                    product.modelName = product?.model?.name + ' - ' + product?.model?.signName
+                    product.factoryName = product?.model?.factory?.name
+
+                    setProduct(product)
+
                     // console.log(Date.parse('2004-01-11T17:00:00.000Z'))
                     // console.log(product)
                     // console.log(productHistory)
@@ -139,9 +179,68 @@ const ProductDisplay = ({ show, handleClose, row }) => {
                     {
                         loadingProduct && <div>Loading...</div>
                     }
-                    <ul>
-                        {JSON.stringify(product.history)}
-                    </ul>
+                    <div className='product-detail-container'>
+                        <div className='product-detail'>
+                            <ul>
+                                <li>Id: {product.id}</li>
+                                <li>{subLang.model}: {product.modelName}</li>
+                                <li>{subLang.produced_factory}: {product.factoryName}</li>
+                                <li>{subLang.birth}: {product.birth}</li>
+                                <li>{subLang.location}: {product.location}</li>
+                            </ul>
+                        </div>
+                        <div className='product-history'>
+                            <h5>{subLang.history}</h5>
+                            <ul className='timeline'>
+                                {
+                                    product?.history?.map((event) => {
+                                        const title = (() => {
+                                            switch (event.key) {
+                                                case 'BIRTH': {
+                                                    return subLang.produced_at(event?.factory?.name)
+                                                }
+                                                case 'MAINTAIN_START': {
+                                                    return subLang.begin_maintain(event?.agency?.name)
+                                                }
+                                                case 'EXPORT_OUT': {
+                                                    return subLang.export_out(event?.sender, event?.reciever, roles)
+                                                }
+                                                case 'PURCHASE': {
+                                                    return subLang.purchase_to(event?.customer.name)
+                                                }
+                                                case 'RECALL_START': {
+                                                    return subLang.recall_start(event?.agency, event?.customer)
+                                                }
+                                                case 'MAINTAIN_FAIL': {
+                                                    return subLang.maintain_fail(event?.sender, event?.reciever)
+                                                }
+                                                case 'MAINTAIN_MOVING': {
+                                                    return subLang.maintain_moving(event.sender, event.reciever, event.isFromAgency)
+                                                }
+                                                case 'RETURN_CUSTOMER': {
+                                                    return subLang.return_customer(event?.sender, event?.reciever)
+                                                }
+                                                case 'RECALL_MOVING': {
+                                                    return subLang.recall_moving(event.sender, event.reciever, event.isFromAgency)
+                                                }
+                                            }
+                                            return event.key
+                                        })();
+                                        return (
+                                            <li key={event.time} className='moment'>
+                                                <h5 className='moment-title'>{event.time}</h5>
+                                                <div className='moment-content'>
+                                                    {
+                                                        title
+                                                    }
+                                                </div>
+                                            </li>
+                                        )
+                                    })
+                                }
+                            </ul>
+                        </div>
+                    </div>
                 </Modal.Body>
             </Modal>
         </>
