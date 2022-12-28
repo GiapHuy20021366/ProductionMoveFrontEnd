@@ -16,6 +16,7 @@ const SystemHome = () => {
             </div>
             <div className="row">
                 Content here
+                
             </div>
         </div>
     )

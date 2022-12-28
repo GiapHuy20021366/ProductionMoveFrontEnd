@@ -8,6 +8,7 @@ export const paths = {
     ADMIN_MODELS: '/system/admin/models',
     ADMIN_PRODUCTS: '/system/admin/products',
     FACTORY_PRODUCTS: '/system/factory/products',
+    FACTORY_MODELS: '/system/factory/models',
     AGENCY_PRODUCTS: '/system/agency/products',
     MAINTENANCE_PRODUCTS: '/system/maintenance/products'
 }

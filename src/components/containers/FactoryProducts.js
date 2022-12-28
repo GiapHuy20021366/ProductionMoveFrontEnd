@@ -14,6 +14,7 @@ import { paths } from "../../untils/constant";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import TableBase from "../sub_components/Table"
+import FactoryImportProducts from "../sub_components/FactoryImportProducts";
 
 const FactoryProducts = () => {
     const account = useSelector(state => state.user.account)
@@ -22,6 +23,7 @@ const FactoryProducts = () => {
     const [productsLoading, setProductLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const [arrayProducts, setArrayProducts] = useState([])
+    const [showModal, setShowModal] = useState(false)
 
     // *** prevent another role from accessing to link which just only for admin ***
     if (account?.role !== 2) {
@@ -79,19 +81,39 @@ const FactoryProducts = () => {
         { dataField: 'location', text: subLang.location }
     ]
 
+    // *** update new account -> to table of accounts list -> when add new account ***
+    const handleResult = (newAccount) => {
+        const listCopy = { ...listPartners }
+        listCopy[newAccount.id] = newAccount
+        setListPartners(listCopy)
+    }
+
+    const handleCloseModal = (e) => {
+        setShowModal(false)
+    }
+
+    const onClickModalBtn = () => {
+        setShowModal(true)
+    }
+
     return (
         <div className="container-fluid">
-            {/* Button Import Products Data */}
-            <button className="btn btn-primary" data-toggle="modal" data-target="#logoutModal" onClick={() => onClickModalBtn()}>{subLang.import_data}</button>
-
-            {/* Popup Form **************************************************************** */}
-            {
-                showModal && <FactoryImportProduct handleResult={handleResult} handleClose={handleClose} />
-            }
-
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 className="h3 mb-0 text-gray-800">{subLang.manage_products}</h1>
             </div>
+
+            {/* Button Import Products Data */}
+            <button className="btn btn-primary" onClick={() => onClickModalBtn()}>{subLang.import_products_btn}</button>
+
+            {/* Popup Form **************************************************************** */}
+            {
+                <FactoryImportProducts
+                    handleResult={handleResult}
+                    handleClose={handleCloseModal}
+                    show={showModal} 
+                />
+            }
+
             <TableBase
                 title={subLang.sumary_re(arrayProducts.length)}
                 data={arrayProducts}
