@@ -76,7 +76,6 @@ const langOfMaintenanceNavigator = {
     maintenance_products: 'Manage Maintained Products'
 }
 
-
 const langOfAdminAddAccount = {
     ...langOfAccountInfo,
     create_success: 'Create Account Successful!',
@@ -93,7 +92,8 @@ const langOfAdminAccounts = {
 }
 
 const langOfAdminModels = {
-    name: 'Name',
+    manage_models: 'Manage Models',
+    name: 'Model Name',
     sign_name: 'Sign Name',
     generation: 'Generation',
     produced_factory: 'Produced Factory',
@@ -109,7 +109,6 @@ const langOfAdminModels = {
     acceleration: 'Acceleration',
     city_fuel: 'City Fuel',
     sumary_re: count => `Total of ${count} ${count <= 1 ? 'model' : 'models'}`,
-    manage_models: 'Manage Models'
 }
 
 const langOfAdminProducts = {
@@ -117,8 +116,22 @@ const langOfAdminProducts = {
     model: 'Model',
     produced_factory: 'Produced Factory',
     birth: 'Birthday',
+    state: 'State',
     location: 'Location',
     sumary_re: count => `Total of ${count} ${count <= 1 ? 'product' : 'products'}`,
+}
+
+const langOfFactoryModels = {
+    ...langOfAdminModels,
+    add_model_btn: 'Add New Model',
+}
+
+const langOfFactoryAddModel = {
+    ...langOfAdminModels,
+    add_new_model: "Add New Model",
+    birth: 'Launch Date',
+    cancel: 'Cancel',
+    submit: 'Submit',
 }
 
 const langOfFactoryProducts = {
@@ -129,8 +142,9 @@ const langOfFactoryProducts = {
 const langOfFactoryImportProducts = {
     ...langOfAdminProducts,
     import_products: "Batch Import Products",
+    quantity: 'Quantity',
     cancel: 'Cancel',
-    submit: 'Submit',
+    submit: 'Import',
 }
 
 const langOfAgencyProducts = {
@@ -169,6 +183,8 @@ const en = {
     AdminModels: langOfAdminModels,
     AdminProducts: langOfAdminProducts,
 
+    FactoryModels: langOfFactoryModels,
+    FactoryAddModel: langOfFactoryAddModel,
     FactoryProducts: langOfFactoryProducts,
     FactoryImportProducts: langOfFactoryImportProducts,
     AgencyProducts: langOfAgencyProducts,

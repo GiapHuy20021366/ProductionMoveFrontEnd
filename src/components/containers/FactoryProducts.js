@@ -17,8 +17,8 @@ import TableBase from "../sub_components/Table"
 import FactoryImportProducts from "../sub_components/FactoryImportProducts";
 
 const FactoryProducts = () => {
-    const account = useSelector(state => state.user.account)
     const subLang = useSelector(state => state.lang.FactoryProducts)
+    const account = useSelector(state => state.user.account)
     const [listProducts, setListProducts] = useState({})
     const [productsLoading, setProductLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
@@ -61,7 +61,7 @@ const FactoryProducts = () => {
         })
     }, [])
 
-    // *** update table of list products when numOfProduct or language is changed ***
+    // *** update table of list products when numOfProducts or language is changed ***
     useEffect(() => {
         const transProducts = []
         Object.values(listProducts).forEach((product) => {
@@ -78,6 +78,7 @@ const FactoryProducts = () => {
         { dataField: 'model', text: subLang.model },
         { dataField: 'factory', text: subLang.produced_factory },
         { dataField: 'birth', text: subLang.birth },
+        { dataField: 'state', text: subLang.state },
         { dataField: 'location', text: subLang.location }
     ]
 

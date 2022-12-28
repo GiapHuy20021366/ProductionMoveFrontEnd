@@ -68,7 +68,7 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents }) => {
                         columns={columns}
                         pagination={pagination}
                         filter={filterFactory()}
-                        // selectRow={{ mode: 'checkbox', clickToSelect: true }}
+                        selectRow={{ mode: 'checkbox', clickToSelect: true }}
                         rowEvents={rowEvents}
                     />
                 </div>

@@ -21,6 +21,7 @@ import AdminProducts from "./AdminProducts";
 import FactoryProducts from "./FactoryProducts";
 import AgencyProducts from "./AgencyProducts";
 import MaintenanceProducts from "./MaintenanceProducts";
+import FactoryModels from "./FactoryModels";
 
 const System = (probs) => {
   return (
@@ -43,6 +44,7 @@ const System = (probs) => {
                   <Route path={paths.ADMIN_MODELS_SHOW_ONE} component={ModelDisplay} />
                   <Route exact path={paths.ADMIN_MODELS} component={AdminModels} />
                 </Route>
+                <Route path={paths.FACTORY_MODELS} component={FactoryModels} />
                 <Route path={paths.FACTORY_PRODUCTS} component={FactoryProducts} />
                 <Route path={paths.AGENCY_PRODUCTS} component={AgencyProducts} />
                 <Route path={paths.MAINTENANCE_PRODUCTS} component={MaintenanceProducts} />

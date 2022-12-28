@@ -62,6 +62,7 @@ const langOfAdminNavigator = {
 
 const langOfFactoryNavigator = {
     factory: 'Cơ sở sản xuất',
+    factory_models: 'Quản lý dòng sản phẩm',
     factory_products: 'Quản lý sản phẩm',
 }
 
@@ -74,7 +75,6 @@ const langOfMaintenanceNavigator = {
     maintenance: 'Trung tâm bảo hành',
     maintenance_products: 'Quản lý sản phẩm bảo hành'
 }
-
 
 const langOfAdminAddAccount = {
     ...langOfAccountInfo,
@@ -116,11 +116,29 @@ const langOfAdminProducts = {
     model: 'Tên & Mã dòng sản phẩm',
     produced_factory: 'Nhà máy sản xuất',
     birth: 'Ngày sản xuất',
+    state: 'Trạng thái',
     location: 'Vị trí',
     sumary_re: count => `Tổng số ${count} sản phẩm`,
 }
 
 const langOfFactoryProducts = {
+    ...langOfAdminProducts,
+    import_products_btn: 'Nhập liệu',
+}
+
+const langOfFactoryImportProducts = {
+    ...langOfAdminProducts,
+    import_products: "Nhập lô sản phẩm",
+    quantity: 'Số lượng',
+    cancel: 'Hủy',
+    submit: 'Nạp',
+}
+
+const langOfAgencyProducts = {
+    ...langOfAdminProducts
+}
+
+const langOfMaintenanceProducts = {
     ...langOfAdminProducts
 }
 
@@ -153,6 +171,9 @@ const vi = {
     AdminProducts: langOfAdminProducts,
 
     FactoryProducts: langOfFactoryProducts,
+    FactoryImportProducts: langOfFactoryImportProducts,
+    AgencyProducts: langOfAgencyProducts,
+    MaintenanceProducts: langOfMaintenanceProducts,
 }
 
 export default vi

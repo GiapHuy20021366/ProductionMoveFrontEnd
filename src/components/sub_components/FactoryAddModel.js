@@ -6,8 +6,8 @@ import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import { Button, Modal, Form, Col, Row } from "react-bootstrap";
 
-const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
-    const subLang = useSelector(state => state.lang.FactoryImportProducts)
+const FactoryAddModel = ({ handleResult, handleClose, show }) => {
+    const subLang = useSelector(state => state.lang.FactoryAddModel)
     const account = useSelector(state => state.user.account)
 
     const userNameRef = useRef()
@@ -112,24 +112,26 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
             onHide={handleClose}
         >
             <Modal.Header closeButton>
-                <Modal.Title>{subLang.import_products}</Modal.Title>
+                <Modal.Title>{subLang.add_new_model}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Group as={Row} className="mb-3" controlId="quantity">
-                        <Form.Label column sm="4">{subLang.quantity}</Form.Label>
+                    <Form.Group as={Row} className="mb-3" controlId="name">
+                        <Form.Label column sm="4">{subLang.name}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="number"/>
+                            <Form.Control type="text"/>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="model">
-                        <Form.Label column sm="4">{subLang.model}</Form.Label>
+                    <Form.Group as={Row} className="mb-3" controlId="sign_name">
+                        <Form.Label column sm="4">{subLang.sign_name}</Form.Label>
                         <Col sm="8">
-                            <Form.Select aria-label="Default select example">
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </Form.Select>
+                            <Form.Control type="text"/>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="generation">
+                        <Form.Label column sm="4">{subLang.generation}</Form.Label>
+                        <Col sm="8">
+                            <Form.Control type="text"/>
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="produced_factory">
@@ -144,10 +146,64 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
                             <Form.Control type="date" defaultValue={today}/>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="state">
-                        <Form.Label column sm="4">{subLang.state}</Form.Label>
+                    <Form.Group as={Row} className="mb-3" controlId="series">
+                        <Form.Label column sm="4">{subLang.series}</Form.Label>
                         <Col sm="8">
-                        <Form.Control plaintext readOnly defaultValue="Tồn kho"/>
+                            <Form.Control type="text"/>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="trim">
+                        <Form.Label column sm="4">{subLang.trim}</Form.Label>
+                        <Col sm="8">
+                            <Form.Control type="text"/>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="length">
+                        <Form.Label column sm="4">{subLang.length}</Form.Label>
+                        <Col sm="8">
+                            <Form.Control type="text"/>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="width">
+                        <Form.Label column sm="4">{subLang.width}</Form.Label>
+                        <Col sm="8">
+                            <Form.Control type="text"/>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="height">
+                        <Form.Label column sm="4">{subLang.height}</Form.Label>
+                        <Col sm="8">
+                            <Form.Control type="text"/>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="body_type">
+                        <Form.Label column sm="4">{subLang.body_type}</Form.Label>
+                        <Col sm="8">
+                            <Form.Control type="text"/>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="engine_type">
+                        <Form.Label column sm="4">{subLang.engine_type}</Form.Label>
+                        <Col sm="8">
+                            <Form.Control type="text"/>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="max_speed">
+                        <Form.Label column sm="4">{subLang.max_speed}</Form.Label>
+                        <Col sm="8">
+                            <Form.Control type="text"/>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="acceleration">
+                        <Form.Label column sm="4">{subLang.acceleration}</Form.Label>
+                        <Col sm="8">
+                            <Form.Control type="text"/>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="city_fuel">
+                        <Form.Label column sm="4">{subLang.city_fuel}</Form.Label>
+                        <Col sm="8">
+                            <Form.Control type="text"/>
                         </Col>
                     </Form.Group>
                 </Form>
@@ -162,5 +218,5 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
     )
 }
 
-export default FactoryImportProducts
+export default FactoryAddModel
 
