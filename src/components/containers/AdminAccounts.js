@@ -41,6 +41,16 @@ const AdminAccounts = () => {
         )
     }
 
+    const selectOptions = {
+        options: {
+            "Admin": subLang.admin,
+            "Factory": subLang.factory,
+            "Maintain Center": subLang.maintain_center,
+            "Agency": subLang.agency,
+            "Unknown": "Unknown"
+        }
+    }
+
     const getRole = (roleId) => {
         switch (roleId) {
             case 1:
@@ -90,10 +100,8 @@ const AdminAccounts = () => {
             address: { dataField: 'address', text: subLang.address, filter: textFilter() },
             role: {
                 dataField: 'role', text: subLang.role,
-                // formatter: cell => selectOptions[cell],
-                // filter: selectFilter({
-                //     options: selectOptions
-                // })
+                formatter: cell => selectOptions.options[cell],
+                filter: selectFilter(selectOptions)
             }
         }
 

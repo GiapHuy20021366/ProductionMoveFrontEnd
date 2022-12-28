@@ -6,6 +6,8 @@ import "../../vendor/jquery/jquery.min";
 import "../../vendor/bootstrap/js/bootstrap.bundle.min";
 import "../../styles/sb-admin-2.min.css";
 import "../../styles/font.css";
+import "../../styles/fontAS.css";
+// import { FaHome } from 'react-icons/fa'
 import LanguageChooser from "../sub_components/LanguageChooser";
 import { useHistory } from "react-router";
 import { paths } from "../../untils/constant";
@@ -18,6 +20,7 @@ const SystemNagivator = (probs) => {
   const subLang = useSelector(state => state.lang.SystemNagivator)
   const history = useHistory()
   const account = useSelector(state => state.user.account)
+
 
   const onClickHome = () => {
     history.push(paths.HOME)
@@ -57,7 +60,8 @@ const SystemNagivator = (probs) => {
 
       <li className={`nav-item ${history.location.pathname === paths.SYSTEM ? 'active' : ''}`}>
         <a className="nav-link pointer" onClick={() => onClickHomeSystem()}>
-          <i className="fas fa-fw fa-tachometer-alt"></i>
+          {/* <FontAwesomeIcon icon="fa-solid fa-house" /> */}
+          <i className="fas fa-fw fa-house"></i>
           <span>{subLang.home}</span>
         </a>
       </li>
