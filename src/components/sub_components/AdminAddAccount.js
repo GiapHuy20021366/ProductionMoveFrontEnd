@@ -4,7 +4,6 @@ import '../../styles/AdminAddAccount.scss'
 import ToastUtil from "../../untils/toastUtil";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
-import Popup from './Popup'
 import { Button, Modal } from "react-bootstrap";
 
 
@@ -33,52 +32,51 @@ const AdminAddAccount = ({ handleResult, handleClose, show }) => {
             role: roleRef.current.value
         }
 
-        // const testAPI = () => {
-        //     Promise.resolve(newAcc).then((data) => {
-        //         userNameRef.current.value = ''
-        //         passwordRef.current.value = ''
-        //         emailRef.current.value = ''
-        //         nameRef.current.value = ''
-        //         addressRef.current.value = ''
-        //         phoneRef.current.value = ''
+        const testAPI = () => {
+            Promise.resolve(newAcc).then((data) => {
+                userNameRef.current.value = ''
+                passwordRef.current.value = ''
+                emailRef.current.value = ''
+                nameRef.current.value = ''
+                addressRef.current.value = ''
+                phoneRef.current.value = ''
 
-        //         ToastUtil.success(subLang.create_success, 1000);
-        //         handleClose && handleClose()
-        //     }).catch((error) => {
-        //         const messageResponse = error.response.data.message
-        //         setErrorMessage(messageResponse)
-        //     })
-        // }
-
-        // testAPI()
-        await useCallApi(
-            apiUrls.CREATE_PARTNER,
-            newAcc
-        ).then((data) => {
-            handleResult && handleResult({
-                ...newAcc,
-                id: data.data.id
+                ToastUtil.success(subLang.create_success, 1000);
+                handleClose && handleClose()
+            }).catch((error) => {
+                const messageResponse = error.response.data.message
+                setErrorMessage(messageResponse)
             })
+        }
 
-            userNameRef.current.value = ''
-            passwordRef.current.value = ''
-            emailRef.current.value = ''
-            nameRef.current.value = ''
-            addressRef.current.value = ''
-            phoneRef.current.value = ''
+        testAPI()
+        // await useCallApi(
+        //     apiUrls.CREATE_PARTNER,
+        //     newAcc
+        // ).then((data) => {
+        //     handleResult && handleResult({
+        //         ...newAcc,
+        //         id: data.data.id
+        //     })
 
-            ToastUtil.success(subLang.create_success, 1000);
-            handleClose && handleClose(e)
-            window.document.body.querySelector('.modal-backdrop').remove()
-            window.document.body.classList.remove('modal-open')
-            window.document.body.style = null
-            // console.log(data)
-        }).catch((error) => {
-            // console.log(error)
-            const messageResponse = error.response.data.message
-            setErrorMessage(messageResponse)
-        })
+        //     userNameRef.current.value = ''
+        //     passwordRef.current.value = ''
+        //     emailRef.current.value = ''
+        //     nameRef.current.value = ''
+        //     addressRef.current.value = ''
+        //     phoneRef.current.value = ''
 
+        //     ToastUtil.success(subLang.create_success, 1000);
+        //     handleClose && handleClose(e)
+        //     window.document.body.querySelector('.modal-backdrop').remove()
+        //     window.document.body.classList.remove('modal-open')
+        //     window.document.body.style = null
+        //     // console.log(data)
+        // }).catch((error) => {
+        //     // console.log(error)
+        //     const messageResponse = error.response.data.message
+        //     setErrorMessage(messageResponse)
+        // })
     }
 
     const getRole = (roleId) => {
