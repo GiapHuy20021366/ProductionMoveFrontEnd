@@ -75,6 +75,11 @@ const langOfMaintenanceNavigator = {
     maintenance_products: 'Quản lý sản phẩm bảo hành'
 }
 
+const langOfModelDisplay = {
+    ...langOfAdminModels,
+    model_details: 'Thông tin dòng sản phẩm'
+}
+
 const langOfAdminAddAccount = {
     ...langOfAccountInfo,
     create_success: 'Tạo Tài Khoản Mới Thành Công',
@@ -119,9 +124,8 @@ const langOfAdminProducts = {
     sumary_re: count => `Tổng số ${count} sản phẩm`,
 }
 
-const langOfModelDisplay = {
-    ...langOfAdminModels,
-    model_details: 'Thông tin dòng sản phẩm'
+const langOfFactoryProducts = {
+    ...langOfAdminProducts
 }
 
 const vi = {
@@ -140,11 +144,14 @@ const vi = {
     AgencyNavigator: langOfAgencyNavigator,
     MaintenanceNavigator: langOfMaintenanceNavigator,
     
+    ModelDisplay: langOfModelDisplay,
+    
     AdminAddAccount: langOfAdminAddAccount,
     AdminAccounts: langOfAdminAccounts,
     AdminModels: langOfAdminModels,
     AdminProducts: langOfAdminProducts,
-    ModelDisplay: langOfModelDisplay
+    
+    FactoryProducts: langOfFactoryProducts,
 }
 
 export default vi

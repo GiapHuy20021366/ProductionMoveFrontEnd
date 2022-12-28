@@ -75,6 +75,11 @@ const langOfMaintenanceNavigator = {
     maintenance_products: 'Manage Maintained Products'
 }
 
+const langOfModelDisplay = {
+    ...langOfAdminModels,
+    model_details: 'Model details'
+}
+
 const langOfAdminAddAccount = {
     ...langOfAccountInfo,
     create_success: 'Create Account Successful!',
@@ -119,9 +124,16 @@ const langOfAdminProducts = {
     sumary_re: count => `Total of ${count} ${count <= 1 ? 'product' : 'products'}`,
 }
 
-const langOfModelDisplay = {
-    ...langOfAdminModels,
-    model_details: 'Model details'
+const langOfFactoryProducts = {
+    ...langOfAdminProducts
+}
+
+const langOfAgencyProducts = {
+    ...langOfAdminProducts
+}
+
+const langOfMaintenanceProducts = {
+    ...langOfAdminProducts
 }
 
 const en = {
@@ -140,11 +152,16 @@ const en = {
     AgencyNavigator: langOfAgencyNavigator,
     MaintenanceNavigator: langOfMaintenanceNavigator,
     
+    ModelDisplay: langOfModelDisplay,
+    
     AdminAddAccount: langOfAdminAddAccount,
     AdminAccounts: langOfAdminAccounts,
     AdminModels: langOfAdminModels,
     AdminProducts: langOfAdminProducts,
-    ModelDisplay: langOfModelDisplay
+
+    FactoryProducts: langOfFactoryProducts,
+    AgencyProducts: langOfAgencyProducts,
+    MaintenanceProducts: langOfMaintenanceProducts,
 }
 
 export default en

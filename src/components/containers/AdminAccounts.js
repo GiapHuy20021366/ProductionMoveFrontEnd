@@ -28,44 +28,14 @@ const AdminAccounts = () => {
     const [arrayPartners, setArrayPartners] = useState([])
     const [showModal, setShowModal] = useState(false)
 
-
-    const handleResult = (newAccount) => {
-        const listCopy = { ...listPartners }
-        listCopy[newAccount.id] = newAccount
-        setListPartners(listCopy)
-    }
-
+    // *** prevent another role from accessing to link which just only for admin ***
     if (account?.role !== 1) {
         return (
             <Redirect to={paths.SYSTEM} />
         )
     }
 
-    const selectOptions = {
-        options: {
-            [subLang.admin]: subLang.admin,
-            [subLang.factory]: subLang.factory,
-            [subLang.maintain_center]: subLang.maintain_center,
-            [subLang.agency]: subLang.agency,
-            [subLang.unknown]: subLang.unknown
-        }
-    }
-
-    const getRole = (roleId) => {
-        switch (roleId) {
-            case 1:
-                return subLang.admin
-            case 2:
-                return subLang.factory
-            case 3:
-                return subLang.agency
-            case 4:
-                return subLang.maintain_center
-            default:
-                return 'Unknown'
-        }
-    }
-
+    // *** API load data ***
     useEffect(async () => {
         setErrorMessage('')
         setPartnersLoading(true)
@@ -86,6 +56,42 @@ const AdminAccounts = () => {
             setErrorMessage('Some error occur, please try again!')
         })
     }, [])
+
+    const getRole = (roleId) => {
+        switch (roleId) {
+            case 1:
+                return subLang.admin
+            case 2:
+                return subLang.factory
+            case 3:
+                return subLang.agency
+            case 4:
+                return subLang.maintain_center
+            default:
+                return subLang.unknown
+        }
+    }
+    
+    useEffect(() => {
+        const transPartners = []
+        Object.values(listPartners).forEach((partner) => {
+            transPartners.push({
+                ...partner,
+                role: getRole(partner.role)
+            })
+        })
+        setArrayPartners(transPartners)
+    }, [subLang, listPartners])
+
+    const selectOptions = {
+        options: {
+            [subLang.admin]: subLang.admin,
+            [subLang.factory]: subLang.factory,
+            [subLang.maintain_center]: subLang.maintain_center,
+            [subLang.agency]: subLang.agency,
+            [subLang.unknown]: subLang.unknown
+        }
+    }
 
     const columns = (() => {
         const options = {
@@ -114,27 +120,27 @@ const AdminAccounts = () => {
         }
     })()
 
-
-    useEffect(() => {
-        const transPartners = []
-        Object.values(listPartners).forEach((partner) => {
-            transPartners.push({
-                ...partner,
-                role: getRole(partner.role)
-            })
-        })
-        setArrayPartners(transPartners)
-    }, [subLang, listPartners])
-
-    const onClickAddNewAccount = () => {
-        setShowModal(true)
+    // *** update new account -> to table of accounts list -> when add new account ***
+    const handleResult = (newAccount) => {
+        const listCopy = { ...listPartners }
+        listCopy[newAccount.id] = newAccount
+        setListPartners(listCopy)
     }
-    const handleClose = (e) => {
+
+    const handleCloseModal = (e) => {
         setShowModal(false)
         window.document.body.querySelector('.modal-backdrop').remove()
         window.document.body.classList.remove('modal-open')
         window.document.body.style = null
+    }
 
+    function ModalBtn(btnName) {
+        const onClickModalBtn = () => {
+            setShowModal(true)
+        }
+        return (
+            <button className="btn btn-primary" data-toggle="modal" data-target="#logoutModal" onClick={() => onClickModalBtn()}>{btnName}</button>
+        )
     }
 
     return (
@@ -143,11 +149,11 @@ const AdminAccounts = () => {
                 <h1 className="h3 mb-0 text-gray-800">{subLang.manage_accounts}</h1>
             </div>
             {/* Button Create Account */}
-            <button className="btn btn-primary" data-toggle="modal" data-target="#logoutModal" onClick={() => onClickAddNewAccount()}>{subLang.add_new_account}</button>
+            <ModalBtn btnName={subLang.add_new_account}/>
 
             {/* Popup Form **************************************************************** */}
             {
-                showModal && <AdminAddAccount handleResult={handleResult} handleClose={handleClose} />
+                showModal && <AdminAddAccount handleResult={handleResult} handleClose={handleCloseModal} />
             }
 
             <TableBase

@@ -15,7 +15,7 @@ const MaintenanceNavigator = (probs) => {
     const subLang = useSelector(state => state.lang.MaintenanceNavigator)
     const history = probs.history
     const onClickProducts = () => {
-        history.push(paths.MAINTENANCE_PRODUCTs)
+        history.push(paths.MAINTENANCE_PRODUCTS)
         console.log(history)
     }
 
@@ -25,7 +25,7 @@ const MaintenanceNavigator = (probs) => {
             <div className="sidebar-heading">{subLang.maintenance}</div>
 
             <NavItem
-                pathname = {paths.MAINTENANCE_PRODUCTs}
+                pathname = {paths.MAINTENANCE_PRODUCTS}
                 onClickFunc = {onClickProducts}
                 title = {subLang.maintenance_products}
             />

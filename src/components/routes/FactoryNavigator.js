@@ -13,9 +13,9 @@ import NavItem from "./NavItem";
 
 const FactoryNavigator = (probs) => {
     const subLang = useSelector(state => state.lang.FactoryNavigator)
-    const history = probs.history
+    const history = useHistory()
     const onClickProducts = () => {
-        history.push(paths.FACTORY_PRODUCTs)
+        history.push(paths.FACTORY_PRODUCTS)
         console.log(history)
     }
 
@@ -25,7 +25,7 @@ const FactoryNavigator = (probs) => {
             <div className="sidebar-heading">{subLang.factory}</div>
 
             <NavItem
-                pathname = {paths.FACTORY_PRODUCTs}
+                pathname = {paths.FACTORY_PRODUCTS}
                 onClickFunc = {onClickProducts}
                 title = {subLang.factory_products}
             />
