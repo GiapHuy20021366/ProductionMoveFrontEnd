@@ -27,44 +27,14 @@ const AdminAccounts = () => {
     const [arrayPartners, setArrayPartners] = useState([])
     const [showModal, setShowModal] = useState(false)
 
-
-    const handleResult = (newAccount) => {
-        const listCopy = { ...listPartners }
-        listCopy[newAccount.id] = newAccount
-        setListPartners(listCopy)
-    }
-
+    // *** prevent another role from accessing to link which just only for admin ***
     if (account?.role !== 1) {
         return (
             <Redirect to={paths.SYSTEM} />
         )
     }
 
-    const selectOptions = {
-        options: {
-            "Admin": subLang.admin,
-            "Factory": subLang.factory,
-            "Maintain Center": subLang.maintain_center,
-            "Agency": subLang.agency,
-            "Unknown": "Unknown"
-        }
-    }
-
-    const getRole = (roleId) => {
-        switch (roleId) {
-            case 1:
-                return subLang.admin
-            case 2:
-                return subLang.factory
-            case 3:
-                return subLang.agency
-            case 4:
-                return subLang.maintain_center
-            default:
-                return 'Unknown'
-        }
-    }
-
+    // *** API load data ***
     useEffect(async () => {
         setErrorMessage('')
         setPartnersLoading(true)
@@ -86,8 +56,40 @@ const AdminAccounts = () => {
         })
     }, [])
 
-    const onClickCreateNewAccount = () => {
-        setCreateAccountVisible(!createAccountVisible)
+    const getRole = (roleId) => {
+        switch (roleId) {
+            case 1:
+                return subLang.admin
+            case 2:
+                return subLang.factory
+            case 3:
+                return subLang.agency
+            case 4:
+                return subLang.maintain_center
+            default:
+                return subLang.unknown
+        }
+    }
+
+    useEffect(() => {
+        const transPartners = []
+        Object.values(listPartners).forEach((partner) => {
+            transPartners.push({
+                ...partner,
+                role: getRole(partner.role)
+            })
+        })
+        setArrayPartners(transPartners)
+    }, [subLang, listPartners])
+
+    const selectOptions = {
+        options: {
+            [subLang.admin]: subLang.admin,
+            [subLang.factory]: subLang.factory,
+            [subLang.maintain_center]: subLang.maintain_center,
+            [subLang.agency]: subLang.agency,
+            [subLang.unknown]: subLang.unknown
+        }
     }
 
     const columns = (() => {
@@ -117,23 +119,20 @@ const AdminAccounts = () => {
         }
     })()
 
+    // *** update new account -> to table of accounts list -> when add new account ***
+    const handleResult = (newAccount) => {
+        const listCopy = { ...listPartners }
+        listCopy[newAccount.id] = newAccount
+        setListPartners(listCopy)
+    }
 
-    useEffect(() => {
-        const transPartners = []
-        Object.values(listPartners).forEach((partner) => {
-            transPartners.push({
-                ...partner,
-                role: getRole(partner.role)
-            })
-        })
-        setArrayPartners(transPartners)
-    }, [subLang, listPartners])
+    const handleCloseModal = (e) => {
+        setShowModal(false)
+
+    }
 
     const onClickAddNewAccount = () => {
         setShowModal(true)
-    }
-    const handleClose = () => {
-        setShowModal(false)
     }
 
     return (
@@ -149,7 +148,7 @@ const AdminAccounts = () => {
 
                 <AdminAddAccount
                     handleResult={handleResult}
-                    handleClose={handleClose}
+                    handleClose={handleCloseModal}
                     show={showModal} />
             }
 

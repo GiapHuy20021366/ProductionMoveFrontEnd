@@ -92,7 +92,7 @@ const AdminAddAccount = ({ handleResult, handleClose, show }) => {
             case 4:
                 return subLang.maintain_center
             default:
-                return 'Unknown'
+                return subLang.unknown
         }
     }
 
