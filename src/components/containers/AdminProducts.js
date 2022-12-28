@@ -129,8 +129,6 @@ const AdminProducts = () => {
                 columns={tableColumns}
                 isLoading={productsLoading}
                 rowEvents={rowEvents}
-                getBtn={undefined}
-
             />
         </div>
     )
