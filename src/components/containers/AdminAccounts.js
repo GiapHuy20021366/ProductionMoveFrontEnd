@@ -142,12 +142,15 @@ const AdminAccounts = () => {
                 <h1 className="h3 mb-0 text-gray-800">{subLang.manage_accounts}</h1>
             </div>
             {/* Button Create Account */}
-            <button className="btn btn-primary" data-toggle="modal" data-target="#ModalContainer" onClick={() => onClickAddNewAccount()}>{subLang.add_new_account}</button>
+            <button className="btn btn-primary" onClick={() => onClickAddNewAccount()}>{subLang.add_new_account}</button>
 
             {/* Popup Form **************************************************************** */}
             {
 
-                <AdminAddAccount handleResult={handleResult} handleClose={handleClose} shower={showModal} />
+                <AdminAddAccount
+                    handleResult={handleResult}
+                    handleClose={handleClose}
+                    show={showModal} />
             }
 
             <TableBase
@@ -155,6 +158,7 @@ const AdminAccounts = () => {
                 data={arrayPartners}
                 columns={columns}
                 isLoading={partnersloading}
+            // rowEvents={rowEvents}
             />
         </div>
     )

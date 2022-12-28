@@ -32,7 +32,7 @@ const LanguageChooser = () => {
                 aria-expanded="true"
                 aria-controls="collapseLanguage"
             >
-                <i class="fas fa-fw fa-language"></i>
+                <i className="fas fa-fw fa-language"></i>
                 <span>{subLang.language}</span>
             </a>
             <div
@@ -42,7 +42,7 @@ const LanguageChooser = () => {
                 data-parent="#accordionSidebar"
             >
                 <div className="bg-white py-2 collapse-inner rounded">
-                    <h6 className="collapse-header">Custom Utilities:</h6>
+                    {/* <h6 className="collapse-header">Custom Utilities:</h6> */}
                     <a
                         className={`collapse-item language-area ${subLang._NAME_ === 'VI' ? "language-active" : ""}`}
                         onClick={(e) => onClickLanguage(e)}

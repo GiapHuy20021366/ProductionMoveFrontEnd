@@ -15,50 +15,50 @@ import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css
 import { Button } from "react-bootstrap";
 
 const TableBase = ({ isLoading, data, columns, title, rowEvents }) => {
-  let checkb = false;
-  function Check() {
-    if (checkb == true) {
-      checkb = false;
-    } else {
-      checkb = true;
+    let checkb = false;
+    function Check() {
+        if (checkb == true) {
+            checkb = false;
+        } else {
+            checkb = true;
+        }
+        console.log(checkb)
     }
-    console.log(checkb)
-  }
 
-  const pagination = paginationFactory({
-    page: 2,
-    sizePerPage: 10,
-    nextPageText: ">",
-    prePageText: "<",
-    alwaysShowAllBtns: false,
-    // onPageChange: function (page, sizePerPage) {
-    //   console.log('page', page);
-    //   console.log('sizePerPage', sizePerPage);
-    // },
-    // onSizePerPageChange: function (page, sizePerPage) {
-    //   console.log('page', page);
-    //   console.log('sizePerPage', sizePerPage);
-    // }
-  });
-  function addCheckbox() {
-    if (checkb == true) {
-      return { mode: 'checkbox', clickToSelect: true }
-    } 
-  }
-  return (
-    <div className="card shadow mb-4">
-      <div className="card-header py-3">
-        <h6 className="m-0 font-weight-bold text-primary">{title}</h6>
-        <Button 
-            onClick = {Check}
-        >
-            Select
-        </Button>
-        {/* selectRow={ { mode: 'checkbox', clickToSelect: true } } */}
-      </div>
-      <div className="card-body">
-        <div className="table-responsive">
-          {isLoading && <div>Loading...</div>}
+    const pagination = paginationFactory({
+        page: 2,
+        sizePerPage: 10,
+        nextPageText: ">",
+        prePageText: "<",
+        alwaysShowAllBtns: false,
+        // onPageChange: function (page, sizePerPage) {
+        //   console.log('page', page);
+        //   console.log('sizePerPage', sizePerPage);
+        // },
+        // onSizePerPageChange: function (page, sizePerPage) {
+        //   console.log('page', page);
+        //   console.log('sizePerPage', sizePerPage);
+        // }
+    });
+    function addCheckbox() {
+        if (checkb == true) {
+            return { mode: 'checkbox', clickToSelect: true }
+        }
+    }
+    return (
+        <div className="card shadow mb-4">
+            <div className="card-header py-3">
+                <h6 className="m-0 font-weight-bold text-primary">{title}</h6>
+                <Button
+                    onClick={Check}
+                >
+                    Select
+                </Button>
+                {/* selectRow={ { mode: 'checkbox', clickToSelect: true } } */}
+            </div>
+            <div className="card-body">
+                <div className="table-responsive">
+                    {isLoading && <div>Loading...</div>}
 
                     <BootstrapTable
                         bootstrap4
@@ -68,7 +68,7 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents }) => {
                         columns={columns}
                         pagination={pagination}
                         filter={filterFactory()}
-                        selectRow={{ mode: 'checkbox', clickToSelect: true }}
+                        // selectRow={{ mode: 'checkbox', clickToSelect: true }}
                         rowEvents={rowEvents}
                     />
                 </div>
