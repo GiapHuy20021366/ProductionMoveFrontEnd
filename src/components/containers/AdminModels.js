@@ -62,38 +62,24 @@ const AdminModels = (probs) => {
         })
     }, [])
 
-    const tableColumns = (() => {
-        const options = {
-            id: { dataField: 'id', text: 'Id', filter: textFilter() },
-            name: { dataField: 'name', text: subLang.name },
-            signName: { dataField: 'signName', text: subLang.sign_name },
-            generation: { dataField: 'generation', text: subLang.generation },
-            factory: { dataField: 'factory', text: subLang.produced_factory },
-            birth: { dataField: 'birth', text: subLang.birth },
-            series: { dataField: 'series', text: subLang.series },
-            length: { dataField: 'length', text: subLang.length },
-            width: { dataField: 'width', text: subLang.width },
-            height: { dataField: 'height', text: subLang.height },
-            bodyType: { dataField: 'bodyType', text: subLang.body_type }, //material?
-            engineType: { dataField: 'engineType', text: subLang.engine_type },
-            maxSpeed: { dataField: 'maxSpeed', text: subLang.max_speed },
-            acceleration: { dataField: 'accceleration', text: subLang.acceleration },
-            cityFuel: { dataField: 'cityFuel', text: subLang.city_fuel }
-        }
-        const { id, name, signName, generation, factory, birth, series, length, width, height } = options
-
-        const baseSE = [id, name, signName]
-        if (deviceType.isMobie) {
-            baseSE.push(factory)
-        }
-        if (deviceType.isTablet) {
-            baseSE.push(factory, birth, generation)
-        }
-        if (deviceType.isDesktop) {
-            baseSE.push(factory, birth, generation, series)
-        }
-        return baseSE
-    })()
+    const tableColumns = [
+        { dataField: 'id', text: 'Id'},
+        { dataField: 'name', text: subLang.name },
+        { dataField: 'signName', text: subLang.sign_name },
+        { dataField: 'generation', text: subLang.generation },
+        { dataField: 'factory', text: subLang.produced_factory },
+        { dataField: 'birth', text: subLang.birth },
+        { dataField: 'series', text: subLang.series },
+        { dataField: 'trim', text: subLang.trim }, //?
+        { dataField: 'length', text: subLang.length },
+        { dataField: 'width', text: subLang.width },
+        { dataField: 'height', text: subLang.height },
+        { dataField: 'bodyType', text: subLang.body_type }, //material?
+        { dataField: 'engineType', text: subLang.engine_type },
+        { dataField: 'maxSpeed', text: subLang.max_speed },
+        { dataField: 'accceleration', text: subLang.acceleration },
+        { dataField: 'cityFuel', text: subLang.city_fuel }
+    ]
 
     useEffect(() => {
         const transModels = []

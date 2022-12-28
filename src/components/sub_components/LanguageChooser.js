@@ -32,7 +32,7 @@ const LanguageChooser = () => {
                 aria-expanded="true"
                 aria-controls="collapseLanguage"
             >
-                <i className="fas fa-fw fa-wrench"></i>
+                <i class="fas fa-fw fa-language"></i>
                 <span>{subLang.language}</span>
             </a>
             <div
