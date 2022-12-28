@@ -64,6 +64,7 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents }) => {
                         bootstrap4
                         keyField="id"
                         hover
+                        classes="table-base"
                         data={data}
                         columns={columns}
                         pagination={pagination}
