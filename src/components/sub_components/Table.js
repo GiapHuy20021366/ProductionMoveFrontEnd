@@ -17,23 +17,17 @@ import { Button } from "react-bootstrap";
 const TableBase = ({ isLoading, data, columns, title, rowEvents }) => {
 
 
+
+
+
+
+  const indexNum = (cell, row, enumObject, index) => {
+    let current_pagenum = this.state.page;
+    let total_records_per_page = this.state.sizePerPage;
+    let row_index = (index+1);
+    let serial_num = ((total_records_per_page*(current_pagenum-1))+row_index);
+    return (<div>{serial_num}</div>) 
 }
-
-  function click() {
-    window.document.querySelector('.selection-cell-header').setAttribute('style', 'display: none')
-    let selectCell = window.document.querySelectorAll('.selection-cell')
-    console.log(window.document.querySelector('.selection-cell-header').getAttribute('display'))
-    selectCell.forEach(element => {
-      element.setAttribute('style', 'display: none')
-    });
-  }
-
-
-  click()
-
-
-
-
   const pagination = paginationFactory({
     page: 2,
     sizePerPage: 10,
@@ -53,12 +47,6 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents }) => {
     <div className="card shadow mb-4">
       <div className="card-header py-3">
         <h6 className="m-0 font-weight-bold text-primary">{title}</h6>
-        <Button 
-          onClick={handleClick}
-        >
-            Select
-        </Button>
-        {/* selectRow={ { mode: 'checkbox', clickToSelect: true } } */}
       </div>
       <div className="card-body">
         <div className="table-responsive">
