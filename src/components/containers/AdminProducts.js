@@ -11,7 +11,6 @@ import "../../styles/font.css";
 import "../../vendor/datatables/dataTables.bootstrap4.min.css";
 import { Redirect } from "react-router";
 import { paths } from "../../untils/constant";
-import axios from '../../axios'
 import TableBase from "../sub_components/Table"
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
