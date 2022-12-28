@@ -16,6 +16,7 @@ import { textFilter, selectFilter } from "react-bootstrap-table2-filter";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import AdminAddAccount from "../sub_components/AdminAddAccount";
+import AccountDisplay from "../display/AccountDisplay";
 
 const AdminAccounts = () => {
     const account = useSelector(state => state.user.account)
@@ -25,7 +26,9 @@ const AdminAccounts = () => {
     const [partnersloading, setPartnersLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const [arrayPartners, setArrayPartners] = useState([])
-    const [showModal, setShowModal] = useState(false)
+    const [showCreateAccount, setShowCreateAccount] = useState(false)
+    const [showAccountDetail, setShowAccountDetail] = useState(false)
+    const [choosedRow, setChoosedRow] = useState({})
 
     // *** prevent another role from accessing to link which just only for admin ***
     if (account?.role !== 1) {
@@ -39,7 +42,7 @@ const AdminAccounts = () => {
         setErrorMessage('')
         setPartnersLoading(true)
         await useCallApi(
-            apiUrls.GET_PARTNERS_BY_QUERY
+            apiUrls.GET_PARTNERS_BY_QUERY,
         ).then((data) => {
             setPartnersLoading(false)
             const partnersRequest = data.data.rows
@@ -126,13 +129,25 @@ const AdminAccounts = () => {
         setListPartners(listCopy)
     }
 
-    const handleCloseModal = (e) => {
-        setShowModal(false)
+    const closeModalCreateAccount = (e) => {
+        setShowCreateAccount(false)
+
+    }
+
+    const closeModalAccountDetail = () => {
+        setShowAccountDetail(false)
     }
 
     const onClickAddNewAccount = () => {
-        setShowModal(true)
+        setShowCreateAccount(true)
     }
+
+    const rowEvents = {
+        onClick: (e, row, rowIndex) => {
+            setShowAccountDetail(true)
+            setChoosedRow(row)
+        }
+    };
 
     return (
         <div className="container-fluid">
@@ -147,17 +162,24 @@ const AdminAccounts = () => {
             {
                 <AdminAddAccount
                     handleResult={handleResult}
-                    handleClose={handleCloseModal}
-                    show={showModal} 
-                />
+                    handleClose={closeModalCreateAccount}
+                    show={showCreateAccount} />
             }
+
+            <AccountDisplay
+                handleClose={closeModalAccountDetail}
+                show={showAccountDetail}
+                row={choosedRow}
+            />
 
             <TableBase
                 title={`${subLang.sumary_re(arrayPartners.length)}`}
                 data={arrayPartners}
                 columns={columns}
                 isLoading={partnersloading}
-            // rowEvents={rowEvents}
+                getBtn={{ display: 'none' }}
+
+                rowEvents={rowEvents}
             />
         </div>
     )

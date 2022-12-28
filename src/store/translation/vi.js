@@ -119,6 +119,28 @@ const langOfAdminProducts = {
     state: 'Trạng thái',
     location: 'Vị trí',
     sumary_re: count => `Tổng số ${count} sản phẩm`,
+    moving_to: (partner) => {
+        const prefix = 'Đang vận chuyển đến '
+        switch (partner.role) {
+            case 2:
+                return prefix + 'nhà máy ' + partner.name
+            case 3:
+                return prefix + 'đại lý ' + partner.name
+            case 4:
+                return prefix + 'TTBH ' + partner.name
+        }
+        return 'Unkown'
+    },
+    staying_at: (name, role) => {
+        return role + ' ' + name
+    },
+    by_customer: (name) => {
+        return 'Khách hàng ' + name
+    },
+    factory: 'Nhà máy',
+    agency: 'Đại lý',
+    maintain_center: 'TTBH',
+    customer: 'Khách h'
 }
 
 const langOfFactoryModels = {
@@ -166,6 +188,48 @@ const langOfModelDisplay = {
     model_details: 'Thông tin dòng sản phẩm'
 }
 
+const langOfAccountDisplay = {
+    ...langOfAccountInfo,
+    created_at: 'Ngày tạo',
+    updated_at: 'Sửa đổi cuối',
+    account_details: 'Thông tin chi tiết'
+}
+
+const langOfProductDisplay = {
+    ...langOfAdminProducts,
+    product_details: 'Thông tin chi tiết',
+    history: 'Lịch sử',
+    produced_at: factoryName => `Sản xuất tại nhà máy ${factoryName}`,
+    begin_maintain: agencyName => `Bắt đầu bảo hành tại đại lý ${agencyName}`,
+    export_out: (from, to, roles) => {
+        return `Vận chuyển từ ${roles[from.role].toLowerCase()} ${from.name} đến ${roles[to.role].toLowerCase()} ${to.name}`
+    },
+    purchase_to: customerName => `Sản phẩm được bán cho khách hàng ${customerName}`,
+    recall_start: (agency, customer) => {
+        return `Đại lý ${agency?.name} thu hồi sản phẩm từ khách hàng ${customer?.name}`
+    },
+    maintain_fail: (maintainCenter, factory) => {
+        return `Sản phẩm được trung tâm bảo hành ${maintainCenter?.name} chuyển về nhà máy ${factory?.name} do phát hiện lỗi trong quá trình bảo hành`
+    },
+    maintain_moving: (sender, reciever, isFromAgency) => {
+        if (isFromAgency) {
+            return `Đại lý ${sender?.name} chuyển sản phẩm đến trung tâm bảo hành ${reciever?.name} để bảo hành sản phẩm`
+        }
+        return `Sản phẩm hoàn tất bảo hành tại trung tâm bảo hành ${sender?.name} và được vận chuyển về đại lý  ${reciever?.name}`
+    },
+    return_customer: (agency, customer) => {
+        return `Đại lý ${agency?.name} trả sản phẩm cho khách hàng ${customer?.name} sau bảo hành`
+    },
+    recall_moving: (sender, reciever, isFromAgency) => {
+        if (isFromAgency) {
+            return `Đại lý ${sender?.name} chuyển sản phẩm đến trung tâm bảo hành ${reciever?.name} để thu hồi`
+        }
+        return `Trung tâm bảo hành ${sender?.name} chuyển sản phẩm về nhà máy ${reciever?.name} để thu hồi`
+    }
+}
+
+
+
 const vi = {
     _NAME_: 'VI',
     TruckBtn: langOfTruckBtn,
@@ -183,6 +247,8 @@ const vi = {
     MaintenanceNavigator: langOfMaintenanceNavigator,
 
     ModelDisplay: langOfModelDisplay,
+    AccountDisplay: langOfAccountDisplay,
+    ProductDisplay: langOfProductDisplay,
 
     AdminAddAccount: langOfAdminAddAccount,
     AdminAccounts: langOfAdminAccounts,

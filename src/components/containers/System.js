@@ -14,7 +14,7 @@ import "../../styles/sb-admin-2.min.css";
 import "../../styles/font.css";
 import AccountInfo from "./AccountInfo";
 import SystemHome from "./SystemHome";
-import ModelDisplay from "./ModelDisplay";
+import ModelDisplay from "../display/ModelDisplay";
 import AdminAccounts from "./AdminAccounts";
 import AdminModels from "./AdminModels";
 import AdminProducts from "./AdminProducts";
@@ -25,10 +25,10 @@ import FactoryModels from "./FactoryModels";
 
 const System = (probs) => {
   return (
-      <div id="page-top">
-        <div id="wrapper">
-          {/* Nagivator here */}
-          <SystemNagivator />
+    <div id="page-top">
+      <div id="wrapper">
+        {/* Nagivator here */}
+        <SystemNagivator />
 
           <div id="content-wrapper" className="d-flex flex-column">
             <div id="content">
@@ -57,9 +57,9 @@ const System = (probs) => {
                 </div>
               </div>
             </footer> */}
-          </div>
         </div>
       </div>
+    </div>
   );
 };
 

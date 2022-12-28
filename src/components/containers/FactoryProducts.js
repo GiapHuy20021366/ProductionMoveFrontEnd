@@ -120,6 +120,8 @@ const FactoryProducts = () => {
                 data={arrayProducts}
                 columns={tableColumns}
                 isLoading={productsLoading}
+                getBtn = {undefined}
+
             />
         </div>
     )
