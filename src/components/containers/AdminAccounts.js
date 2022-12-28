@@ -157,6 +157,8 @@ const AdminAccounts = () => {
                 data={arrayPartners}
                 columns={columns}
                 isLoading={partnersloading}
+                getBtn = {{display: 'none'}}
+
             // rowEvents={rowEvents}
             />
         </div>
