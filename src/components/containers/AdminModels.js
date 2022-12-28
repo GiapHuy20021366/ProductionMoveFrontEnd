@@ -139,6 +139,7 @@ const AdminModels = (probs) => {
                 columns={tableColumns}
                 isLoading={modelsLoading}
                 rowEvents={rowEvents}
+                getBtn = {undefined}
             />
         </div>
     )
