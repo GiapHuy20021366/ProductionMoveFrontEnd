@@ -14,7 +14,7 @@ import "../../styles/sb-admin-2.min.css";
 import "../../styles/font.css";
 import AccountInfo from "./AccountInfo";
 import SystemHome from "./SystemHome";
-import ModelDisplay from "./ModelDisplay";
+import ModelDisplay from "../display/ModelDisplay";
 import AdminAccounts from "./AdminAccounts";
 import AdminModels from "./AdminModels";
 import AdminProducts from "./AdminProducts";
@@ -24,40 +24,40 @@ import MaintenanceProducts from "./MaintenanceProducts";
 
 const System = (probs) => {
   return (
-      <div id="page-top">
-        <div id="wrapper">
-          {/* Nagivator here */}
-          <SystemNagivator />
+    <div id="page-top">
+      <div id="wrapper">
+        {/* Nagivator here */}
+        <SystemNagivator />
 
-          <div id="content-wrapper" className="d-flex flex-column">
-            <div id="content">
-              {/* TopBar here */}
-              <SystemTopBar />
-              {/* Redirect depend on path */}
-              <Switch>
-                <Route exact path={paths.SYSTEM} component={SystemHome} />
-                <Route path={paths.ACCOUNT} component={AccountInfo} />
-                <Route path={paths.ADMIN_ACCOUNTS} component={AdminAccounts} />
-                <Route path={paths.ADMIN_PRODUCTS} component={AdminProducts} />
-                <Route path={paths.ADMIN_MODELS} >
-                  <Route path={paths.ADMIN_MODELS_SHOW_ONE} component={ModelDisplay} />
-                  <Route exact path={paths.ADMIN_MODELS} component={AdminModels} />
-                </Route>
-                <Route path={paths.FACTORY_PRODUCTS} component={FactoryProducts} />
-                <Route path={paths.AGENCY_PRODUCTS} component={AgencyProducts} />
-                <Route path={paths.MAINTENANCE_PRODUCTS} component={MaintenanceProducts} />
-              </Switch>
-            </div>
-            {/* <footer className="sticky-footer bg-white">
+        <div id="content-wrapper" className="d-flex flex-column">
+          <div id="content">
+            {/* TopBar here */}
+            <SystemTopBar />
+            {/* Redirect depend on path */}
+            <Switch>
+              <Route exact path={paths.SYSTEM} component={SystemHome} />
+              <Route path={paths.ACCOUNT} component={AccountInfo} />
+              <Route path={paths.ADMIN_ACCOUNTS} component={AdminAccounts} />
+              <Route path={paths.ADMIN_PRODUCTS} component={AdminProducts} />
+              <Route path={paths.ADMIN_MODELS} >
+                <Route path={paths.ADMIN_MODELS_SHOW_ONE} component={ModelDisplay} />
+                <Route exact path={paths.ADMIN_MODELS} component={AdminModels} />
+              </Route>
+              <Route path={paths.FACTORY_PRODUCTS} component={FactoryProducts} />
+              <Route path={paths.AGENCY_PRODUCTS} component={AgencyProducts} />
+              <Route path={paths.MAINTENANCE_PRODUCTS} component={MaintenanceProducts} />
+            </Switch>
+          </div>
+          {/* <footer className="sticky-footer bg-white">
               <div className="container my-auto">
                 <div className="copyright text-center my-auto">
                   <span>Copyright &copy; Your Website 2021</span>
                 </div>
               </div>
             </footer> */}
-          </div>
         </div>
       </div>
+    </div>
   );
 };
 

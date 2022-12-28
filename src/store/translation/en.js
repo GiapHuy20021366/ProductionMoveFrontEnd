@@ -118,6 +118,28 @@ const langOfAdminProducts = {
     birth: 'Birth',
     location: 'Location',
     sumary_re: count => `Total of ${count} ${count <= 1 ? 'product' : 'products'}`,
+    moving_to: (partner) => {
+        const prefix = 'Being shipped to '
+        switch (partner.role) {
+            case 2:
+                return prefix + partner.name + ' Factory'
+            case 3:
+                return prefix + partner.name + ' Agency'
+            case 4:
+                return prefix + partner.name + ' Maintain Center'
+        }
+        return 'Unkown'
+    },
+    staying_at: (name, role) => {
+        return name + ' ' + role
+    },
+    by_customer: (name) => {
+        return name + ' Customer'
+    },
+    factory: 'Factory',
+    agency: 'Agency',
+    maintain_center: 'Maintain Center',
+    customer: 'Customer'
 }
 
 const langOfFactoryProducts = {
@@ -137,6 +159,18 @@ const langOfModelDisplay = {
     model_details: 'Model details'
 }
 
+const langOfAccountDisplay = {
+    ...langOfAccountInfo,
+    created_at: 'Created At',
+    updated_at: 'Last Update',
+    account_details: 'Account Details'
+}
+
+const langOfProductDisplay = {
+    ...langOfAdminProducts,
+    product_details: 'Product Details'
+}
+
 const en = {
     _NAME_: 'EN',
     TruckBtn: langOfTruckBtn,
@@ -154,6 +188,8 @@ const en = {
     MaintenanceNavigator: langOfMaintenanceNavigator,
 
     ModelDisplay: langOfModelDisplay,
+    AccountDisplay: langOfAccountDisplay,
+    ProductDisplay: langOfProductDisplay,
 
     AdminAddAccount: langOfAdminAddAccount,
     AdminAccounts: langOfAdminAccounts,

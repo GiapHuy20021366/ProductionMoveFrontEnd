@@ -26,5 +26,5 @@ export const apiUrls = {
     GET_MODELS_BY_QUERY: '/api/get-models-by-query',
     GET_MODELS_BY_IDS: '/api/get-models-by-ids',
     GET_PRODUCTS_BY_QUERY: '/api/get-products-by-query',
-    GET_CURRENT_PRODUCTS_BY_QUERY: '/api/get-current-products-by-query',
+    GET_CURRENT_PRODUCTS_BY_QUERY: '/api/get-current-products-by-query'
 }

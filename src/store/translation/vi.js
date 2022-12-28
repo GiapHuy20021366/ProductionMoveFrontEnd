@@ -118,6 +118,28 @@ const langOfAdminProducts = {
     birth: 'Ngày sản xuất',
     location: 'Vị trí',
     sumary_re: count => `Tổng số ${count} sản phẩm`,
+    moving_to: (partner) => {
+        const prefix = 'Đang vận chuyển đến '
+        switch (partner.role) {
+            case 2:
+                return prefix + 'nhà máy ' + partner.name
+            case 3:
+                return prefix + 'đại lý ' + partner.name
+            case 4:
+                return prefix + 'TTBH ' + partner.name
+        }
+        return 'Unkown'
+    },
+    staying_at: (name, role) => {
+        return role + ' ' + name
+    },
+    by_customer: (name) => {
+        return 'Khách hàng ' + name
+    },
+    factory: 'Nhà máy',
+    agency: 'Đại lý',
+    maintain_center: 'TTBH',
+    customer: 'Khách h'
 }
 
 const langOfFactoryProducts = {
@@ -128,6 +150,20 @@ const langOfModelDisplay = {
     ...langOfAdminModels,
     model_details: 'Thông tin dòng sản phẩm'
 }
+
+const langOfAccountDisplay = {
+    ...langOfAccountInfo,
+    created_at: 'Ngày tạo',
+    updated_at: 'Sửa đổi cuối',
+    account_details: 'Thông tin chi tiết'
+}
+
+const langOfProductDisplay = {
+    ...langOfAdminProducts,
+    product_details: 'Thông tin chi tiết'
+}
+
+
 
 const vi = {
     _NAME_: 'VI',
@@ -146,6 +182,8 @@ const vi = {
     MaintenanceNavigator: langOfMaintenanceNavigator,
 
     ModelDisplay: langOfModelDisplay,
+    AccountDisplay: langOfAccountDisplay,
+    ProductDisplay: langOfProductDisplay,
 
     AdminAddAccount: langOfAdminAddAccount,
     AdminAccounts: langOfAdminAccounts,
