@@ -75,10 +75,6 @@ const langOfMaintenanceNavigator = {
     maintenance_products: 'Manage Maintained Products'
 }
 
-const langOfModelDisplay = {
-    ...langOfAdminModels,
-    model_details: 'Model details'
-}
 
 const langOfAdminAddAccount = {
     ...langOfAccountInfo,
@@ -136,24 +132,29 @@ const langOfMaintenanceProducts = {
     ...langOfAdminProducts
 }
 
+const langOfModelDisplay = {
+    ...langOfAdminModels,
+    model_details: 'Model details'
+}
+
 const en = {
     _NAME_: 'EN',
     TruckBtn: langOfTruckBtn,
     Login: langOfLogin,
-    
+
     SystemTopBar: langOfSystemTopBar,
     SystemHome: langOfSystemHome,
     AccountInfo: langOfAccountInfo,
     LanguageChooser: langOfLanguageChooser,
-    
+
     SystemNagivator: langOfSystemNavigator,
     AdminNavigator: langOfAdminNavigator,
     FactoryNavigator: langOfFactoryNavigator,
     AgencyNavigator: langOfAgencyNavigator,
     MaintenanceNavigator: langOfMaintenanceNavigator,
-    
+
     ModelDisplay: langOfModelDisplay,
-    
+
     AdminAddAccount: langOfAdminAddAccount,
     AdminAccounts: langOfAdminAccounts,
     AdminModels: langOfAdminModels,

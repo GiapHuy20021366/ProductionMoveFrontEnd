@@ -12,7 +12,7 @@ import "../../vendor/datatables/dataTables.bootstrap4.min.css";
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
-// import { Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 const TableBase = ({ isLoading, data, columns, title, rowEvents }) => {
     let checkb = false;

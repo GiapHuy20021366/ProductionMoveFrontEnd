@@ -75,10 +75,6 @@ const langOfMaintenanceNavigator = {
     maintenance_products: 'Quản lý sản phẩm bảo hành'
 }
 
-const langOfModelDisplay = {
-    ...langOfAdminModels,
-    model_details: 'Thông tin dòng sản phẩm'
-}
 
 const langOfAdminAddAccount = {
     ...langOfAccountInfo,
@@ -128,6 +124,11 @@ const langOfFactoryProducts = {
     ...langOfAdminProducts
 }
 
+const langOfModelDisplay = {
+    ...langOfAdminModels,
+    model_details: 'Thông tin dòng sản phẩm'
+}
+
 const vi = {
     _NAME_: 'VI',
     TruckBtn: langOfTruckBtn,
@@ -137,20 +138,20 @@ const vi = {
     SystemHome: langOfSystemHome,
     AccountInfo: langOfAccountInfo,
     LanguageChooser: langOfLanguageChooser,
-    
+
     SystemNagivator: langOfSystemNavigator,
     AdminNavigator: langOfAdminNavigator,
     FactoryNavigator: langOfFactoryNavigator,
     AgencyNavigator: langOfAgencyNavigator,
     MaintenanceNavigator: langOfMaintenanceNavigator,
-    
+
     ModelDisplay: langOfModelDisplay,
-    
+
     AdminAddAccount: langOfAdminAddAccount,
     AdminAccounts: langOfAdminAccounts,
     AdminModels: langOfAdminModels,
     AdminProducts: langOfAdminProducts,
-    
+
     FactoryProducts: langOfFactoryProducts,
 }
 
