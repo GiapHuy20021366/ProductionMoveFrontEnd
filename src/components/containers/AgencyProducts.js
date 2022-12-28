@@ -89,6 +89,8 @@ const AgencyProducts = () => {
                 data={arrayProducts}
                 columns={tableColumns}
                 isLoading={productsLoading}
+                getBtn = {undefined}
+
             />
         </div>
     )

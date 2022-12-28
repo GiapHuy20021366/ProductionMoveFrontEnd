@@ -78,7 +78,7 @@ const langOfMaintenanceNavigator = {
 
 const langOfAdminAddAccount = {
     ...langOfAccountInfo,
-    create_success: 'Create Account Successful!',
+    create_success: 'Create Account Successfully!',
     add_new_account: 'Add new account',
     cancel: 'Cancel',
     submit: 'Submit',
@@ -100,14 +100,14 @@ const langOfAdminModels = {
     birth: 'Launch Date',
     series: 'Series',
     trim: 'Trim',
-    length: 'Length',
-    width: 'Width',
-    height: 'Height',
+    length: 'Length (mm)',
+    width: 'Width (mm)',
+    height: 'Height (mm)',
     body_type: 'Body Type',
     engine_type: 'Engine Type',
-    max_speed: 'Max Speed',
+    max_speed: 'Max Speed (km/h)',
     acceleration: 'Acceleration',
-    city_fuel: 'City Fuel',
+    city_fuel: 'City Fuel (l/100km)',
     sumary_re: count => `Total of ${count} ${count <= 1 ? 'model' : 'models'}`,
 }
 
@@ -119,6 +119,28 @@ const langOfAdminProducts = {
     state: 'State',
     location: 'Location',
     sumary_re: count => `Total of ${count} ${count <= 1 ? 'product' : 'products'}`,
+    moving_to: (partner) => {
+        const prefix = 'Being shipped to '
+        switch (partner.role) {
+            case 2:
+                return prefix + partner.name + ' Factory'
+            case 3:
+                return prefix + partner.name + ' Agency'
+            case 4:
+                return prefix + partner.name + ' Maintain Center'
+        }
+        return 'Unkown'
+    },
+    staying_at: (name, role) => {
+        return name + ' ' + role
+    },
+    by_customer: (name) => {
+        return name + ' Customer'
+    },
+    factory: 'Factory',
+    agency: 'Agency',
+    maintain_center: 'Maintain Center',
+    customer: 'Customer'
 }
 
 const langOfFactoryModels = {
@@ -130,8 +152,14 @@ const langOfFactoryAddModel = {
     ...langOfAdminModels,
     add_new_model: "Add New Model",
     birth: 'Launch Date',
+    length: 'Length',
+    width: 'Width',
+    height: 'Height',
+    max_speed: 'Max Speed',
+    city_fuel: 'City Fuel',
     cancel: 'Cancel',
-    submit: 'Submit',
+    submit: 'Add',
+    add_success: 'Add New Model Successfully!',
 }
 
 const langOfFactoryProducts = {
@@ -160,6 +188,47 @@ const langOfModelDisplay = {
     model_details: 'Model details'
 }
 
+const langOfAccountDisplay = {
+    ...langOfAccountInfo,
+    created_at: 'Created At',
+    updated_at: 'Last Update',
+    account_details: 'Account Details'
+}
+
+const langOfProductDisplay = {
+    ...langOfAdminProducts,
+    product_details: 'Product Details',
+    history: 'History',
+    produced_at: factoryName => `Produced at ${factoryName} factory`,
+    begin_maintain: agencyName => `Warranty at ${agencyName} agency `,
+    export_out: (from, to, roles) => {
+        return `Transport from ${from.name} ${roles[from.role].toLowerCase()} to ${to.name} ${roles[to.role].toLowerCase()}`
+    },
+    purchase_to: customerName => `Product was sold to customer ${customerName}`,
+    recall_start: (agency, customer) => {
+        return `Agency ${agency?.name} recalls product from customer ${customer?.name}`
+    },
+    maintain_fail: (maintainCenter, factory) => {
+        return `Products are transported to factory ${factory?.name} by  ${maintainCenter?.name} warranty center due to detecting errors during warranty`
+    },
+    maintain_moving: (sender, reciever, isFromAgency) => {
+        if (isFromAgency) {
+            return `Agency ${sender?.name} transport product to ${reciever?.name} warranty center for warranty`
+        }
+        return `The product has completed its warranty at the ${sender?.name} and shipped to the dealer  ${reciever?.name}`
+    },
+    return_customer: (agency, customer) => {
+        return `Agency ${agency?.name} return product to customer ${customer?.name} after warranty`
+    },
+    recall_moving: (sender, reciever, isFromAgency) => {
+        if (isFromAgency) {
+            return `Agency ${sender?.name} transport product to ${reciever?.name} warranty center to recall`
+        }
+        return `Warranty center ${sender?.name} transport product to ${reciever?.name} factory to recall`
+    }
+
+}
+
 const en = {
     _NAME_: 'EN',
     TruckBtn: langOfTruckBtn,
@@ -177,6 +246,8 @@ const en = {
     MaintenanceNavigator: langOfMaintenanceNavigator,
 
     ModelDisplay: langOfModelDisplay,
+    AccountDisplay: langOfAccountDisplay,
+    ProductDisplay: langOfProductDisplay,
 
     AdminAddAccount: langOfAdminAddAccount,
     AdminAccounts: langOfAdminAccounts,

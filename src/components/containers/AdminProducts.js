@@ -14,6 +14,7 @@ import { paths } from "../../untils/constant";
 import TableBase from "../sub_components/Table"
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
+import ProductDisplay from "../display/ProductDisplay";
 
 const AdminProducts = () => {
     const account = useSelector(state => state.user.account)
@@ -22,6 +23,8 @@ const AdminProducts = () => {
     const [productsLoading, setProductLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const [arrayProducts, setArrayProducts] = useState([])
+    const [showProductDetail, setShowProductDetail] = useState(false)
+    const [choosedRow, setChoosedRow] = useState({})
 
     // *** prevent another role from accessing to link which just only for admin
     if (account?.role !== 1) {
@@ -42,7 +45,8 @@ const AdminProducts = () => {
                 //     limit: 700
                 // },
                 associates: {
-                    model: { factory: true }
+                    model: { factory: true },
+                    holders: true
                 }
             }
         ).then((data) => {
@@ -68,11 +72,28 @@ const AdminProducts = () => {
             const productCopy = { ...product }
             productCopy.model = `${product?.model?.name} - ${product?.model?.signName}`
             productCopy.factory = product?.model?.factory?.name
+            const holders = product.holders
+            productCopy.location = (() => {
+                const roles = {
+                    2: subLang.factory,
+                    3: subLang.agency,
+                    4: subLang.maintain_center
+                }
+                if (holders?.nowAt) {
+                    if (holders?.willAt) {
+                        return subLang.moving_to(holders.willAt)
+                    } else {
+                        return subLang.staying_at(holders.nowAt.name, roles[holders.nowAt.role])
+                    }
+                } else {
+                    return subLang.by_customer(holders.customer.name)
+                }
+            })()
             transProducts.push(productCopy)
         })
         setArrayProducts(transProducts)
     }, [subLang, listProducts])
-    
+
     const tableColumns = [
         { dataField: 'id', text: 'Id' },
         { dataField: 'model', text: subLang.model },
@@ -81,16 +102,33 @@ const AdminProducts = () => {
         { dataField: 'location', text: subLang.location }
     ]
 
+    const closeModalProductDetail = () => {
+        setShowProductDetail(false)
+    }
+
+    const rowEvents = {
+        onClick: (e, row, rowIndex) => {
+            setShowProductDetail(true)
+            setChoosedRow(row)
+        }
+    };
+
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 className="h3 mb-0 text-gray-800">{subLang.manage_products}</h1>
             </div>
+            <ProductDisplay
+                show={showProductDetail}
+                row={choosedRow}
+                handleClose={closeModalProductDetail}
+            />
             <TableBase
                 title={subLang.sumary_re(arrayProducts.length)}
                 data={arrayProducts}
                 columns={tableColumns}
                 isLoading={productsLoading}
+                rowEvents={rowEvents}
             />
         </div>
     )

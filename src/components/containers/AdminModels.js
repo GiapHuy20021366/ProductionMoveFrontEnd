@@ -17,7 +17,7 @@ import { textFilter, selectFilter } from "react-bootstrap-table2-filter";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import { useHistory } from 'react-router-dom';
-import ModelDisplay from "./ModelDisplay";
+import ModelDisplay from "../display/ModelDisplay";
 
 
 const AdminModels = (probs) => {
@@ -139,6 +139,7 @@ const AdminModels = (probs) => {
                 columns={tableColumns}
                 isLoading={modelsLoading}
                 rowEvents={rowEvents}
+                getBtn = {undefined}
             />
         </div>
     )
