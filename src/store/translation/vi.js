@@ -28,6 +28,7 @@ const langOfAccountInfo = {
     factory: 'Nhà máy',
     agency: 'Đại lý',
     maintain_center: 'Trung tâm bảo hành',
+    unknown: 'Chưa xác định',
     role: 'Vai trò',
     email: 'Email',
     phone: 'Điện thoại',

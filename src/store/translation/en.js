@@ -28,6 +28,7 @@ const langOfAccountInfo = {
     factory: 'Factory',
     agency: 'Agency',
     maintain_center: 'Maintenance Center',
+    unknown: 'Unknown',
     role: 'Role',
     email: 'Email',
     phone: 'Phone',

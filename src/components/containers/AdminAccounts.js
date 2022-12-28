@@ -43,11 +43,11 @@ const AdminAccounts = () => {
 
     const selectOptions = {
         options: {
-            "Admin": subLang.admin,
-            "Factory": subLang.factory,
-            "Maintain Center": subLang.maintain_center,
-            "Agency": subLang.agency,
-            "Unknown": "Unknown"
+            [subLang.admin]: subLang.admin,
+            [subLang.factory]: subLang.factory,
+            [subLang.maintain_center]: subLang.maintain_center,
+            [subLang.agency]: subLang.agency,
+            [subLang.unknown]: subLang.unknown
         }
     }
 
@@ -86,10 +86,6 @@ const AdminAccounts = () => {
             setErrorMessage('Some error occur, please try again!')
         })
     }, [])
-
-    const onClickCreateNewAccount = () => {
-        setCreateAccountVisible(!createAccountVisible)
-    }
 
     const columns = (() => {
         const options = {
