@@ -82,11 +82,11 @@ const FactoryProducts = () => {
     return (
         <div className="container-fluid">
             {/* Button Import Products Data */}
-            <button className="btn btn-primary" data-toggle="modal" data-target="#logoutModal" onClick={() => onClickModalBtn()}>{subLang.import_data}</button>
+            {/* <button className="btn btn-primary" data-toggle="modal" data-target="#logoutModal" onClick={() => onClickModalBtn()}>{subLang.import_data}</button> */}
 
             {/* Popup Form **************************************************************** */}
             {
-                showModal && <FactoryImportProduct handleResult={handleResult} handleClose={handleClose} />
+                // showModal && <FactoryImportProduct handleResult={handleResult} handleClose={handleClose} />
             }
 
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
