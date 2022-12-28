@@ -9,47 +9,28 @@ import "../../styles/font.css";
 import LanguageChooser from "../sub_components/LanguageChooser";
 import { useHistory, withRouter } from "react-router";
 import { paths } from "../../untils/constant";
+import NavItem from "./NavItem";
 
 const FactoryNavigator = (probs) => {
-    const subLang = useSelector(state => state.lang)
+    const subLang = useSelector(state => state.lang.FactoryNavigator)
     const history = probs.history
     const onClickProducts = () => {
         history.push(paths.FACTORY_PRODUCTs)
         console.log(history)
     }
 
-    function NavItem({pathname, onClickFunc, title}) {
-        return (
-            <li className={`nav-item ${history.location.pathname === pathname ? 'active' : ''}`}>
-                <a
-                        className="nav-link collapsed"
-                        href="#"
-                        data-toggle="collapse"
-                        data-target="#collapseAccounts"
-                        aria-expanded="true"
-                        aria-controls="collapseAccounts"
-                        onClick={() => onClickFunc()}
-                    >
-                        <i className="fas fa-fw fa-wrench"></i>
-                        <span>{title}</span>
-                    </a>
-            </li>
-        )
-    }
-
     return (
         <>
             <hr className="sidebar-divider" />
-            <div className="sidebar-heading">{lang.account_factory}</div>
+            <div className="sidebar-heading">{subLang.factory}</div>
 
             <NavItem
                 pathname = {paths.FACTORY_PRODUCTs}
                 onClickFunc = {onClickProducts}
-                title = {lang.factory_products}
+                title = {subLang.factory_products}
             />
         </>
     )
 }
-
 
 export default withRouter(FactoryNavigator)

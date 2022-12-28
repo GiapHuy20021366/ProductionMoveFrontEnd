@@ -52,13 +52,12 @@
     }
 }
 
-.modal-body {
-    padding               : 12px 12px 12px 0;
-    margin                : 10px 0 16px 10px;
-    // width           : fit-content;
-    // border-radius      : 8px;
-    background-color      : rgba(#ccc, 0.2);
-    align-self            : center;
+.modal-body>.AdminAddAccount-popup {
+    padding         : 12px 12px 12px 0;
+    margin          : 10px 0 16px 10px;
+    width           : fit-content;
+    border-radius   : 8px;
+    background-color: rgba(#ccc, 0.2);
 
 
     ul>li {

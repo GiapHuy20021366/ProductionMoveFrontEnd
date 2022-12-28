@@ -71,7 +71,6 @@ const AdminModels = (probs) => {
             factory: { dataField: 'factory', text: subLang.produced_factory },
             birth: { dataField: 'birth', text: subLang.birth },
             series: { dataField: 'series', text: subLang.series },
-            trim: { dataField: 'trim', text: subLang.trim }, //?
             length: { dataField: 'length', text: subLang.length },
             width: { dataField: 'width', text: subLang.width },
             height: { dataField: 'height', text: subLang.height },
@@ -81,7 +80,7 @@ const AdminModels = (probs) => {
             acceleration: { dataField: 'accceleration', text: subLang.acceleration },
             cityFuel: { dataField: 'cityFuel', text: subLang.city_fuel }
         }
-        const { id, name, signName, generation, factory, birth, series, trim, length, width, height } = options
+        const { id, name, signName, generation, factory, birth, series, length, width, height } = options
 
         const baseSE = [id, name, signName]
         if (deviceType.isMobie) {
@@ -91,7 +90,7 @@ const AdminModels = (probs) => {
             baseSE.push(factory, birth, generation)
         }
         if (deviceType.isDesktop) {
-            baseSE.push(factory, birth, generation, series, trim)
+            baseSE.push(factory, birth, generation, series)
         }
         return baseSE
     })()
