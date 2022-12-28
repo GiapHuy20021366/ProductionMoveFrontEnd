@@ -28,6 +28,7 @@ const langOfAccountInfo = {
     factory: 'Nhà máy',
     agency: 'Đại lý',
     maintain_center: 'Trung tâm bảo hành',
+    unknown: 'Chưa xác định',
     role: 'Vai trò',
     email: 'Email',
     phone: 'Điện thoại',
@@ -74,6 +75,7 @@ const langOfMaintenanceNavigator = {
     maintenance_products: 'Quản lý sản phẩm bảo hành'
 }
 
+
 const langOfAdminAddAccount = {
     ...langOfAccountInfo,
     create_success: 'Tạo Tài Khoản Mới Thành Công',
@@ -118,6 +120,10 @@ const langOfAdminProducts = {
     sumary_re: count => `Tổng số ${count} sản phẩm`,
 }
 
+const langOfFactoryProducts = {
+    ...langOfAdminProducts
+}
+
 const langOfModelDisplay = {
     ...langOfAdminModels,
     model_details: 'Thông tin dòng sản phẩm'
@@ -132,18 +138,21 @@ const vi = {
     SystemHome: langOfSystemHome,
     AccountInfo: langOfAccountInfo,
     LanguageChooser: langOfLanguageChooser,
-    
+
     SystemNagivator: langOfSystemNavigator,
     AdminNavigator: langOfAdminNavigator,
     FactoryNavigator: langOfFactoryNavigator,
     AgencyNavigator: langOfAgencyNavigator,
     MaintenanceNavigator: langOfMaintenanceNavigator,
-    
+
+    ModelDisplay: langOfModelDisplay,
+
     AdminAddAccount: langOfAdminAddAccount,
     AdminAccounts: langOfAdminAccounts,
     AdminModels: langOfAdminModels,
     AdminProducts: langOfAdminProducts,
-    ModelDisplay: langOfModelDisplay
+
+    FactoryProducts: langOfFactoryProducts,
 }
 
 export default vi

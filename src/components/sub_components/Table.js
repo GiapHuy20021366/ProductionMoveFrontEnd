@@ -16,41 +16,40 @@ import { Button } from "react-bootstrap";
 
 const TableBase = ({ isLoading, data, columns, title, rowEvents }) => {
 
-
-
-
-
-
-  const indexNum = (cell, row, enumObject, index) => {
-    let current_pagenum = this.state.page;
-    let total_records_per_page = this.state.sizePerPage;
-    let row_index = (index+1);
-    let serial_num = ((total_records_per_page*(current_pagenum-1))+row_index);
-    return (<div>{serial_num}</div>) 
-}
-  const pagination = paginationFactory({
-    page: 2,
-    sizePerPage: 10,
-    nextPageText: ">",
-    prePageText: "<",
-    alwaysShowAllBtns: false,
-    // onPageChange: function (page, sizePerPage) {
-    //   console.log('page', page);
-    //   console.log('sizePerPage', sizePerPage);
-    // },
-    // onSizePerPageChange: function (page, sizePerPage) {
-    //   console.log('page', page);
-    //   console.log('sizePerPage', sizePerPage);
-    // }
-  });
-  return (
-    <div className="card shadow mb-4">
-      <div className="card-header py-3">
-        <h6 className="m-0 font-weight-bold text-primary">{title}</h6>
-      </div>
-      <div className="card-body">
-        <div className="table-responsive">
-          {isLoading && <div>Loading...</div>}
+    const pagination = paginationFactory({
+        page: 2,
+        sizePerPage: 10,
+        nextPageText: ">",
+        prePageText: "<",
+        alwaysShowAllBtns: false,
+        // onPageChange: function (page, sizePerPage) {
+        //   console.log('page', page);
+        //   console.log('sizePerPage', sizePerPage);
+        // },
+        // onSizePerPageChange: function (page, sizePerPage) {
+        //   console.log('page', page);
+        //   console.log('sizePerPage', sizePerPage);
+        // }
+    });
+    function addCheckbox() {
+        if (checkb == true) {
+            return { mode: 'checkbox', clickToSelect: true }
+        }
+    }
+    return (
+        <div className="card shadow mb-4">
+            <div className="card-header py-3">
+                <h6 className="m-0 font-weight-bold text-primary">{title}</h6>
+                {/* <Button
+                    onClick={Check}
+                >
+                    Select
+                </Button> */}
+                {/* selectRow={ { mode: 'checkbox', clickToSelect: true } } */}
+            </div>
+            <div className="card-body">
+                <div className="table-responsive">
+                    {isLoading && <div>Loading...</div>}
 
                     <BootstrapTable
                         bootstrap4

@@ -16,13 +16,13 @@ const AdminNavigator = (probs) => {
     const subLang = useSelector(state => state.lang.AdminNavigator)
     const history = useHistory()
     const onClickAccounts = () => {
-        history.push(paths.ADMIN_ACCOUNTs)
+        history.push(paths.ADMIN_ACCOUNTS)
     }
     const onClickModels = () => {
-        history.push(paths.ADMIN_MODELs)
+        history.push(paths.ADMIN_MODELS)
     }
     const onClickProducts = () => {
-        history.push(paths.ADMIN_PRODUCTs)
+        history.push(paths.ADMIN_PRODUCTS)
     }
 
     return (
@@ -31,17 +31,17 @@ const AdminNavigator = (probs) => {
             <div className="sidebar-heading">{subLang.admin}</div>
 
             <NavItem
-                pathname={paths.ADMIN_ACCOUNTs}
+                pathname={paths.ADMIN_ACCOUNTS}
                 onClickFunc={onClickAccounts}
                 title={subLang.manage_accounts}
             />
             <NavItem
-                pathname={paths.ADMIN_MODELs}
+                pathname={paths.ADMIN_MODELS}
                 onClickFunc={onClickModels}
                 title={subLang.manage_models}
             />
             <NavItem
-                pathname={paths.ADMIN_PRODUCTs}
+                pathname={paths.ADMIN_PRODUCTS}
                 onClickFunc={onClickProducts}
                 title={subLang.manage_products}
             />

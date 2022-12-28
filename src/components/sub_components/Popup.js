@@ -1,8 +1,8 @@
 import React from 'react';
 
-function Popup({headerTitle, body, cancel, submit, onSubmit}) {
+function Popup({ headerTitle, body, cancel, submit, onSubmit }) {
     return (
-        <div className="modal fade" id="logoutModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div className="modal fade" id="PopopModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div className="modal-dialog" role="document">
                 <div className="modal-content">
                     <div className="modal-header">

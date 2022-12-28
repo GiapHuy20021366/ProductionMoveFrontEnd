@@ -13,6 +13,7 @@ import TestApi from '../components/until_components/TestApi';
 import SocketConnector from '../components/until_components/SocketConnector';
 import MessageLoader from '../components/until_components/MessageLoader';
 import DeviceUpdater from '../components/until_components/DeviceUpdater';
+import Modal from '../components/until_components/Modal'
 
 const App = () => {
   useEffect(async () => {
@@ -27,6 +28,7 @@ const App = () => {
       <SocketConnector />
       <MessageLoader />
       <DeviceUpdater />
+      <Modal.Background />
       {/*  */}
       <BrowserRouter>
         <Switch>

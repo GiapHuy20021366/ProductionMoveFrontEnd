@@ -15,7 +15,7 @@ const AgencyNavigator = (probs) => {
     const subLang = useSelector(state => state.lang.AgencyNavigator)
     const history = probs.history
     const onClickProducts = () => {
-        history.push(paths.AGENCY_PRODUCTs)
+        history.push(paths.AGENCY_PRODUCTS)
         console.log(history)
     }
 
@@ -25,7 +25,7 @@ const AgencyNavigator = (probs) => {
             <div className="sidebar-heading">{subLang.agency}</div>
 
             <NavItem
-                pathname = {paths.AGENCY_PRODUCTs}
+                pathname = {paths.AGENCY_PRODUCTS}
                 onClickFunc = {onClickProducts}
                 title = {subLang.agency_products}
             />
