@@ -102,10 +102,10 @@ const FactoryProducts = () => {
     ]
 
     // *** update new account -> to table of accounts list -> when add new account ***
-    const handleResult = (newAccount) => {
-        const listCopy = { ...listPartners }
-        listCopy[newAccount.id] = newAccount
-        setListPartners(listCopy)
+    const handleResult = (listNewProducts) => {
+        const listCopy = { ...listProducts }
+        listCopy[listNewProducts.id] = listNewProducts
+        setListProducts(listCopy)
     }
 
     const handleCloseModal = (e) => {
