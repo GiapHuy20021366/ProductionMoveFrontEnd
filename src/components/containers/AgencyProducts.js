@@ -14,14 +14,16 @@ import { paths } from "../../untils/constant";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import TableBase from "../sub_components/Table"
+import AgencySendWarranty from "../sub_components/AgencySendWarranty";
 
 const AgencyProducts = () => {
-    const account = useSelector(state => state.user.account)
     const subLang = useSelector(state => state.lang.AgencyProducts)
+    const account = useSelector(state => state.user.account)
     const [listProducts, setListProducts] = useState({})
     const [productsLoading, setProductLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const [arrayProducts, setArrayProducts] = useState([])
+    const [showSendWarranty, setShowSendWarranty] = useState(false)
 
     // *** prevent another role from accessing to link which just only for admin ***
     if (account?.role !== 3) {
@@ -79,11 +81,37 @@ const AgencyProducts = () => {
         { dataField: 'location', text: subLang.location }
     ]
 
+    // *** update new account -> to table of accounts list -> when add new account ***
+    const handleResult = (newProduct) => {
+        const listCopy = { ...listProducts }
+        listCopy[newProduct.id] = newProduct
+        setListProducts(listCopy)
+    }
+
+    const closeModalPopupForm = (e) => {
+        setShowSendWarranty(false)
+    }
+
+    const openModalPopupForm = () => {
+        setShowSendWarranty(true)
+    }
+
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 className="h3 mb-0 text-gray-800">{subLang.manage_products}</h1>
             </div>
+            {/* Button Create Account */}
+            <button className="btn btn-primary" onClick={() => openModalPopupForm()}>Bảo hành</button>
+
+            {/* Popup Form **************************************************************** */}
+            {
+                <AgencySendWarranty
+                    handleResult={handleResult}
+                    handleClose={closeModalPopupForm}
+                    show={showSendWarranty} />
+            }
+
             <TableBase
                 title={subLang.sumary_re(arrayProducts.length)}
                 data={arrayProducts}

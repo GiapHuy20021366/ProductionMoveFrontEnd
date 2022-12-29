@@ -197,14 +197,20 @@ const langOfAgencyProducts = {
 
 const langOfAgencyCustomers = {
     ...langOfAdminAccounts,
-    manage_customers: 'Manage Customers Info',
+    manage_customers: 'Manage Customers Infomation',
     add_new_customer: 'Add new customer info',
     sumary_re: count => `Total of ${count} ${count <= 1 ? 'customer' : 'customers'}`
 }
 
 const langOfAgencyAddCustomer = {
-    ...langOfAdminAccounts,
+    ...langOfAccountInfo,
     add_new_customer: 'New customer information',
+}
+
+const langOfAgencySendWarrantyOrder = {
+    ...langOfAccountInfo,
+    send_warr: 'Send warranty order',
+    reason: 'Reason'
 }
 
 const langOfMaintenanceModels = {
@@ -296,6 +302,7 @@ const en = {
     AgencyProducts: langOfAgencyProducts,
     AgencyCustomers: langOfAgencyCustomers,
     AgencyAddCustomer: langOfAgencyAddCustomer,
+    AgencySendWarrantyOrder: langOfAgencySendWarrantyOrder,
     
     MaintenanceModels: langOfMaintenanceModels,
     MaintenanceProducts: langOfMaintenanceProducts,

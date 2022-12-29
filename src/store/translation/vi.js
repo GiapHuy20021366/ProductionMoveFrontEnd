@@ -150,7 +150,7 @@ const langOfAdminProducts = {
 const langOfAdminCustomers = {
     ...langOfAccountInfo,
     view_customers: 'Thông tin khách hàng',
-    sumary_re: count => `Tổng số ${count} 'khách hàng'`
+    sumary_re: count => `Tổng số ${count} khách hàng`
 }
 
 const langOfFactoryModels = {
@@ -199,7 +199,7 @@ const langOfAgencyCustomers = {
     ...langOfAdminAccounts,
     manage_customers: 'Quản lý thông tin khách hàng',
     add_new_customer: 'Thêm thông tin khách hàng mới',
-    sumary_re: count => `Total of ${count} ${count <= 1 ? 'customer' : 'customers'}`
+    sumary_re: count => `Tổng số ${count} khách hàng`
 }
 
 const langOfAgencyAddCustomer = {

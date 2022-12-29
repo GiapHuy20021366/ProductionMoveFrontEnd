@@ -1,4 +1,4 @@
-import React ,{ useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
@@ -15,6 +15,8 @@ import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import TableBase from "../sub_components/Table"
 import FactoryImportProducts from "../sub_components/FactoryImportProducts";
+import ProductDisplay from "../display/ProductDisplay";
+import ProductActions from "../display/ProductActions";
 
 const FactoryProducts = () => {
     const subLang = useSelector(state => state.lang.FactoryProducts)
@@ -24,7 +26,10 @@ const FactoryProducts = () => {
     const [errorMessage, setErrorMessage] = useState('')
     const [arrayProducts, setArrayProducts] = useState([])
     const [showModal, setShowModal] = useState(false)
-
+    const [showProductDetail, setShowProductDetail] = useState(false)
+    const [choosedRow, setChoosedRow] = useState({})
+    const [showProductActions, setShowProductActions] = useState(false)
+    const [choosedRows, setChoosedRows] = useState([])
     // *** prevent another role from accessing to link which just only for admin ***
     if (account?.role !== 2) {
         return (
@@ -72,7 +77,7 @@ const FactoryProducts = () => {
         })
         setArrayProducts(transProducts)
     }, [subLang, listProducts])
-    
+
     const tableColumns = [
         { dataField: 'id', text: 'Id' },
         { dataField: 'model', text: subLang.model },
@@ -97,6 +102,22 @@ const FactoryProducts = () => {
         setShowModal(true)
     }
 
+    const closeModalProductDetail = () => {
+        setShowProductDetail(false)
+    }
+
+    const rowEvents = {
+        onClick: (e, row, rowIndex) => {
+            setShowProductDetail(true)
+            setChoosedRow(row)
+        }
+    };
+
+    const clickAtions = (rows) => {
+        setChoosedRows(rows)
+        setShowProductActions(true)
+    }
+
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -107,11 +128,21 @@ const FactoryProducts = () => {
             <button className="btn btn-primary" onClick={() => onClickModalBtn()}>{subLang.import_products_btn}</button>
 
             {/* Popup Form **************************************************************** */}
+            <ProductActions
+                show={showProductActions}
+                rows={choosedRows}
+                handleClose={() => setShowProductActions(false)}
+            />
+            <ProductDisplay
+                show={showProductDetail}
+                row={choosedRow}
+                handleClose={closeModalProductDetail}
+            />
             {
                 <FactoryImportProducts
                     handleResult={handleResult}
                     handleClose={handleCloseModal}
-                    show={showModal} 
+                    show={showModal}
                 />
             }
 
@@ -120,8 +151,9 @@ const FactoryProducts = () => {
                 data={arrayProducts}
                 columns={tableColumns}
                 isLoading={productsLoading}
-                getBtn = {undefined}
-
+                getBtn={undefined}
+                rowEvents={rowEvents}
+                clickActions={clickAtions}
             />
         </div>
     )
