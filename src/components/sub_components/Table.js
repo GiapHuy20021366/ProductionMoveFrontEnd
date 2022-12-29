@@ -96,10 +96,8 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, c
               clickActions && clickActions(choosedRows)
             }}
           >
-            Button
+            Export
           </Button>{' '}
-          <Button>Button</Button>{' '}
-          <Button>Button</Button>
         </div>
       </Collapse>
       </div>
