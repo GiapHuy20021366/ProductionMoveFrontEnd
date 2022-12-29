@@ -3,42 +3,24 @@ import axios from '../../axios'
 import { useState, useEffect } from "react"
 
 const TestApi = () => {
-    const [token, setToken] = useState('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJOYW1lIjoiREwxIiwic3RhdHVzIjoyLCJyb2xlIjozLCJpZCI6MzV9LCJpYXQiOjE2NzIwNDE4MjAsImV4cCI6MTY3MjA0NTQyMH0.Ed4IN17R1oH6rpsOviosZlq75dwx6F3tFcD_xb-kk0c')
+    const [token, setToken] = useState('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJOYW1lIjoiREwxIiwic3RhdHVzIjoyLCJyb2xlIjozLCJpZCI6MzV9LCJpYXQiOjE2NzIyNDgyOTQsImV4cCI6MTY3MjI1MTg5NH0.omlAX25jLxkGRBwKFE_VOn4pYcpsxVeWsv0KfCv2Bvk')
     const test = async () => {
         try {
             const data = await axios.post(
-                '/api/get-models-by-query', // path of API
+                '/api/get-resources', // path of API
                 {
-                    productIds: [1, 2],
-                    // exportIds: [1561],
-                    // listId: [10],
-                    // toPartnerId: 35
-                    // attributes: {  // Attributes
-                    //     id: {
-                    //         gt: 6,
-                    //         lt: 12
-                    //     },
-                    // },
-                    pageOffset: {
-                        limit: 12, // rows in a page
-                        offset: 0   // page offset
+                    holders: {
+                        agency: true,
+                        maintainCenter: true,
+                        factory: true
                     },
-                    // associates: {
-                    //     product: {
-                    //         model: {
-                    //             factory: true
-                    //         },
-                    //         purchase: {
-                    //             dealer: true,
-                    //             customer: true
-                    //         }
-                    //     },
-                    //     customer: true,
-                    //     nowAt: true,
-                    //     willAt: true
-
-
-                    // }
+                    modelAttributes: {
+                        generation: true,
+                        bodyType: true,
+                        boostType: true,
+                        series: true,
+                        engineType: true
+                    }
                 },
                 {
                     headers: {

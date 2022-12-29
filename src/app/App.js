@@ -14,6 +14,7 @@ import SocketConnector from '../components/until_components/SocketConnector';
 import MessageLoader from '../components/until_components/MessageLoader';
 import DeviceUpdater from '../components/until_components/DeviceUpdater';
 import Modal from '../components/until_components/Modal'
+import ResourceLoader from '../components/until_components/ResourceLoader';
 
 const App = () => {
   useEffect(async () => {
@@ -28,6 +29,7 @@ const App = () => {
       <SocketConnector />
       <MessageLoader />
       <DeviceUpdater />
+      <ResourceLoader />
       <Modal.Background />
       {/*  */}
       <BrowserRouter>
