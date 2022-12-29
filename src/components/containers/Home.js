@@ -4,7 +4,7 @@ import TruckBtn from '../sub_components/TruckBtn'
 import '../../styles/Home.scss'
 import { useSelector } from 'react-redux';
 import { paths } from './../../untils/constant';
-
+import { MDBAnimation } from 'mdbreact';
 
 const Home = (probs) => {
     const subLang = useSelector(state => state.lang)
@@ -19,18 +19,18 @@ const Home = (probs) => {
         )
     }
 
-    // (function onScroll() {
-    //     let scrollTrigger = 60;
-    //     window.onscroll = function () {
-    //         // We add pageYOffset for compatibility with IE.
-    //         if (window.scrollY >= scrollTrigger || window.pageYOffset >= scrollTrigger) {
-    //             document.querySelector(".navBar").classList.add("onscroll");
+    (function onScroll() {
+        let scrollTrigger = 60;
+        window.onscroll = function () {
+            // We add pageYOffset for compatibility with IE.
+            if (window.scrollY >= scrollTrigger || window.pageYOffset >= scrollTrigger) {
+                document.querySelector(".navBar").classList.add("onscroll");
 
-    //         } else {
-    //             document.querySelector(".navBar").classList.remove("onscroll");
-    //         }
-    //     };
-    // })();
+            } else {
+                document.querySelector(".navBar").classList.remove("onscroll");
+            }
+        };
+    })();
 
     return (
         <div className="homeContainer">
@@ -51,12 +51,20 @@ const Home = (probs) => {
             <div className="featureContainer">
                 <span className="title center">Our features</span>
                 <div className="featureDescription">
-                    <Feature
-                        className="one"
-                        img="/car.png"
-                        title="Outstanding design"
-                        desc="Designed to be flexible according to all your needs. Create your site with all module position."
-                    />
+                    {/* <MDBAnimation 
+                        start='onScroll'
+                        type="slide-out-right"
+                        reset={true}
+                        duration={500}
+                    >
+                        hi
+                    </MDBAnimation> */}
+                        <Feature
+                            className="one"
+                            img="/car.png"
+                            title="Outstanding design"
+                            desc="Designed to be flexible according to all your needs. Create your site with all module position."
+                        />
                     <Feature
                         className="two"
                         img="/electric-car.png"

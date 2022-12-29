@@ -23,6 +23,7 @@
     "dotenv": "^16.0.3",
     "gsap": "^3.11.3",
     "jquery": "^3.6.2",
+    "mdbreact": "^5.2.0",
     "react": "^17.0.2",
     "react-bootstrap": "^2.7.0",
     "react-bootstrap-table-next": "^4.0.3",

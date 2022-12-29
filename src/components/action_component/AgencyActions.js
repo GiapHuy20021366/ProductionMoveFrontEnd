@@ -7,16 +7,45 @@ import { Button, Modal, Form, Col, Row } from "react-bootstrap";
 import MaintainStart from './MaintainStart';
 import ExportProducts from "./ExportProducts";
 
-const canMaintain = (products) => {
-    return products.every((product) => {
+const isSold = (products) => {
+    return products.every(product =>{
         const holders = product.holders
-        return !holders.nowAt && !holders.willAt
+        return Boolean(holders.customer)
     })
 }
 
+// product can maintain: is sold (exist customer) & now at agency (??????)
+const canMaintain = (products) => {
+    return products.every((product) => {
+        const holders = product.holders
+        // return !holders.nowAt && !holders.willAt
+        return holders.customer && !holders.willAt
+    })
+}
 
+// as the same with product can maintain
+const canRecall = (products) => {
+    return products.every((product) => {
+        const holders = product.holders
+        // return !holders.nowAt && !holders.willAt
+        return holders.customer && !holders.willAt
+    })
+}
 
-
+// product can export: is sold (exist customer) & now at factory (?: làm sao biết holders.nowAt là factory hay ko?)
+const canExport = (products) => {
+    console.log("products")
+    console.log(products)
+    return products.every((product) => {
+        console.log("product")
+        console.log(product)
+        const holders = product.holders
+        console.log(holders.customer)
+        console.log(holders.nowAt)
+        console.log(Boolean(holders.customer && holders.nowAt))
+        return holders.customer && !holders.nowAt
+    })
+}
 
 const AgencyActions = ({ products, regisAction }) => {
     const subLang = useSelector(state => state.lang.AgencyActions)
@@ -65,8 +94,8 @@ const AgencyActions = ({ products, regisAction }) => {
         {
             key: 'EXPORT',
             type: 'EXPORT',
-            valid: true,
-            title: 'Xuất sản phẩm đến nơi khác'
+            title: 'Xuất sản phẩm đến nơi khác',
+            valid: canExport(products)
         },
         {
             key: 'RETURN',
