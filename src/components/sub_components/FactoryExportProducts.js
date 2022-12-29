@@ -16,24 +16,25 @@ const FactoryExportProducts = ({ handleResult, handleClose, show }) => {
     const quantityRef = useRef()
     const modelIdRef = useRef()
     const birthRef = useRef()
-    
     const agencyIdRef = useRef()
 
-    const [errorMsgCreateProducts, setErrorMsgCreateProducts] = useState('')
-    const [errorMsgGetModels, setErrorMsgGetModels] = useState('')
+    
+    const [errorMsgExportProducts, setErrorMsgExportProducts] = useState('')
+    const [choosedRow, setChoosedRow] = useState({})
+    const [choosedRows, setChoosedRows] = useState([])
+    const [listExportedProducts, setListExportedProducts] = useState([])
+
+    const clickActions = (rows) => {
+        setChoosedRows(rows)
+    }
 
     // *** call API to export products
     const onClickSubmit = async (e) => {
-        setErrorMsgCreateProducts('')
-        const quantity = quantityRef.current.value
-        const newProduct = {
-            modelId: modelIdRef.current.value,
-            birth: birthRef.current.value,
-        }
-        let listNewProducts = []
-        for (let i = 0; i < quantity; i++) {
-            listNewProducts.push(newProduct)
-        }
+        setErrorMsgExportProducts('')
+        // let listNewProducts = []
+        // for (let i = 0; i < quantity; i++) {
+        //     listNewProducts.push(newProduct)
+        // }
 
         // const testAPI = () => {
         //     Promise.resolve(listNewProducts).then((data) => {
@@ -50,27 +51,30 @@ const FactoryExportProducts = ({ handleResult, handleClose, show }) => {
         // console.log(modelIdRef.current)
 
         await useCallApi(
-            apiUrls.CREATE_PRODUCTS,
+            apiUrls.EXPORT_PRODUCTS,
             {
-                products: listNewProducts
+                listId: listProducts, 
+                // toPartnerId: Number, 
+                // type: Number, 
+                // note:String
             }
         ).then((data) => {
             handleResult && handleResult({
-                ...listNewProducts,
+                ...listProducts,
             })
-
-            modelIdRef.current.value = ''
-            birthRef.current.value = ''
-
+    
+            // modelIdRef.current.value = ''
+            // birthRef.current.value = ''
+    
             ToastUtil.success(subLang.import_success, 1000);
             handleClose && handleClose(e)
             // console.log(data)
         }).catch((error) => {
             console.log(error)
             const messageResponse = error.response.data.message
-            setErrorMsgCreateProducts(messageResponse)
+            setErrorMsgExportProducts(messageResponse)
         })
-
+    
         // testAPI()
     }
 

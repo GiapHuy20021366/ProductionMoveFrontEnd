@@ -61,7 +61,7 @@ const MaintainStart = ({ products, regisAction, hanldeResult }) => {
     )
 }
 
-const AgencyActions = ({ products, regisAction }) => {
+const FactoryActions = ({ products, regisAction }) => {
     const actionRef = useRef()
     const [actionKey, setActionKey] = useState('MAINTAIN_START')
     // const resources = useSelector(state => state.resources)
@@ -108,7 +108,7 @@ const AgencyActions = ({ products, regisAction }) => {
             <Form.Group as={Row} className="mb-3" controlId="model">
                 <Form.Label column sm="2">{'Hành động'}</Form.Label>
                 <Col sm="10">
-                    <Form.Select onChange={(e) => { onChangeAction(e) }} ref={actionRef} aria-label="Default select example" >
+                    <Form.Select onChange={(e) => { onChangeAction(e) }} ref={actionRef}>
                         {
                             actions.map((action) =>
                                 <option value={action.key} key={action.key} disabled={action.valid ? false : true}>
@@ -129,7 +129,7 @@ const AgencyActions = ({ products, regisAction }) => {
     )
 }
 
-export default AgencyActions
+export default FactoryActions
 
 
 

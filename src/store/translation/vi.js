@@ -266,9 +266,23 @@ const langOfProductDisplay = {
 
 const langOfProductActions = {
     ...langOfAdminProducts,
-
+    actions_title: 'Hành động', 
+    cancel: 'Hủy',
+    submit: 'Hành động',
 }
 
+const langOfFactoryActions = {
+    ...langOfProductActions,
+    actions_title: "Xuất lô sản phẩm",
+    destination_agency: 'Tới Đại lý',
+    delivery_date: 'Ngày giao hàng',
+    submit: 'Xuất',
+    alert_success: 'Xuất lô sản phẩm thành công!',
+}
+
+const langOfAgencyActions = {
+    ...langOfProductActions,
+}
 
 const vi = {
     _NAME_: 'VI',
@@ -290,13 +304,15 @@ const vi = {
     AccountDisplay: langOfAccountDisplay,
     ProductDisplay: langOfProductDisplay,
 
-    ProductActions: langOfProductActions,
-
     AdminAddAccount: langOfAdminAddAccount,
     AdminAccounts: langOfAdminAccounts,
     AdminModels: langOfAdminModels,
     AdminProducts: langOfAdminProducts,
     AdminCustomers: langOfAdminCustomers,
+    
+    ProductActions: langOfProductActions,
+    FactoryActions: langOfFactoryActions,
+    AgencyActions: langOfAgencyActions,
 
     FactoryModels: langOfFactoryModels,
     FactoryAddModel: langOfFactoryAddModel,
