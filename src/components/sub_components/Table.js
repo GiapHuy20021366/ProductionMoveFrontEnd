@@ -75,15 +75,15 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, c
           choosed &&
           <OverlayTrigger placement="right" overlay={<Tooltip>{btnName}</Tooltip>}>
             <Button variant="outline-primary"
-            // aria-controls="example-collapse-text"
-            // aria-expanded={open}
-            onClick={() => {
+              // aria-controls="example-collapse-text"
+              // aria-expanded={open}
+              onClick={() => {
                 clickActions && clickActions(choosedRows)
                 // setOpen(!open)
               }}
               disabled={choose ? false : true}
-              >
-              <i class="fa-solid fa-car-side"></i>
+            >
+              <i className="fa-solid fa-car-side"></i>
             </Button>
           </OverlayTrigger>
         }

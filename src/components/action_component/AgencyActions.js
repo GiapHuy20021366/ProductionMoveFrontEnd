@@ -1,26 +1,52 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { paths } from "../../untils/constant";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import { Button, Modal, Form, Col, Row } from "react-bootstrap";
 
-// const canMaintain = (products) => {
-//     return products.every((product) => {
-//         const holders = product.holders
-//         return holders.nowAt
-//     })
-// }
+const canMaintain = (products) => {
+    return products.every((product) => {
+        const holders = product.holders
+        return !holders.nowAt && !holders.willAt
+    })
+}
 
 
-const MaintainStart = ({ products, regisAction }) => {
+const MaintainStart = ({ products, regisAction, hanldeResult }) => {
     const account = useSelector(state => state.user.account)
+    const noteRef = useRef()
+
 
     useEffect(() => {
-        // const productids
+        const productIds = []
+        products.forEach((product) => {
+            productIds.push(product.id)
+        })
+
         const action = async () => {
-            // await 
+            return new Promise(async (resolve, reject) => {
+                await useCallApi(
+                    apiUrls.MAINTENANCE_PRODUCTS,
+                    {
+                        productIds: productIds,
+                        note: noteRef.current?.value
+                    }
+                ).then((res) => {
+                    const productIds = []
+                    res.data.forEach((maintain) => {
+                        productIds.push(maintain.productId)
+                    })
+                    resolve(productIds)
+                }).catch((err) => {
+                    reject(err)
+                })
+            })
         }
+        regisAction(action)
+
+        // console.log(typeof (action))
+        // regisAction(action)
         // console.log('begin', products)
         // console.log('begin', regisAction)
     }, [products])
@@ -28,8 +54,8 @@ const MaintainStart = ({ products, regisAction }) => {
     return (
         <>
             <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Example textarea</Form.Label>
-                <Form.Control as="textarea" rows={3} />
+                <Form.Label>Note</Form.Label>
+                <Form.Control as="textarea" ref={noteRef} rows={3} />
             </Form.Group>
         </>
     )
@@ -43,7 +69,7 @@ const AgencyActions = ({ products, regisAction }) => {
     // useEffect(() => {
     //     console.log(actionRef)
     // }, [actionRef.current])
-    console.log(products)
+    // console.log(products)
 
     const onChangeAction = (e) => {
         setActionKey(e.target.value)
@@ -52,7 +78,8 @@ const AgencyActions = ({ products, regisAction }) => {
     const actions = [
         {
             key: 'MAINTAIN_START',
-            title: 'Bắt đầu bảo hành'
+            title: 'Bắt đầu bảo hành',
+            valid: canMaintain(products)
         },
         {
             key: 'MAINTAIN_MOVING',
@@ -84,7 +111,7 @@ const AgencyActions = ({ products, regisAction }) => {
                     <Form.Select onChange={(e) => { onChangeAction(e) }} ref={actionRef} aria-label="Default select example" >
                         {
                             actions.map((action) =>
-                                <option value={action.key} key={action.key} >
+                                <option value={action.key} key={action.key} disabled={action.valid ? false : true}>
                                     {
                                         action.title
                                     }

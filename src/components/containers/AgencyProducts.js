@@ -100,6 +100,7 @@ const AgencyProducts = () => {
         })
         transProducts.sort((p1, p2) => Date.parse(p2.birth) - Date.parse(p1.birth))
         setArrayProducts(transProducts)
+        // console.log('set array again')
     }, [subLang, listProducts])
 
     const tableColumns = [
@@ -111,10 +112,8 @@ const AgencyProducts = () => {
     ]
 
     // *** update new account -> to table of accounts list -> when add new account ***
-    const handleResult = (newProduct) => {
-        const listCopy = { ...listProducts }
-        listCopy[newProduct.id] = newProduct
-        setListProducts(listCopy)
+    const handleResult = (listNewProducts) => {
+        setListProducts({ ...listProducts, ...listNewProducts })
     }
 
     const closeModalPopupForm = (e) => {
@@ -141,6 +140,7 @@ const AgencyProducts = () => {
         setShowProductActions(true)
     }
 
+
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -160,6 +160,7 @@ const AgencyProducts = () => {
                 show={showProductActions}
                 rows={choosedRows}
                 columns={tableColumns}
+                hanldeResult={handleResult}
                 handleClose={() => setShowProductActions(false)}
             />
 
