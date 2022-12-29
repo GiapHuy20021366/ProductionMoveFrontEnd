@@ -6,8 +6,8 @@ import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import { Button, Modal, Form, Col, Row } from "react-bootstrap";
 
-const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
-    const subLang = useSelector(state => state.lang.FactoryImportProducts)
+const FactoryExportProducts = ({ handleResult, handleClose, show }) => {
+    const subLang = useSelector(state => state.lang.FactoryExportProducts)
     const account = useSelector(state => state.user.account)
 
     const quantityRef = useRef()
@@ -71,45 +71,16 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
             {
                 products: listNewProducts
             }
-        ).then(async (data) => {
-            const products = data.data
-            const ids = []
-            products.forEach((product) => { ids.push(product.id) })
-            await useCallApi(
-                apiUrls.GET_CURRENT_PRODUCTS_BY_QUERY,
-                {
-                    associates: {
-                        product: {
-                            model: { factory: true }
-                        },
-                        nowAt: true,
-                        willAt: true,
-                        customer: true
-                    },
-                    attributes: {
-                        id: { 
-                            or: ids
-                        }
-                    }
-                }
-            ).then((data) => {
-                console.log(data)
-                const holdersRequest = data.data.rows
-                const products = {}
-                for (const holder of holdersRequest) {
-                    const { product, nowAt, willAt, customer } = holder
-                    product.holders = { nowAt, willAt, customer }
-                    products[product.id] = product
-                }
-                handleResult && handleResult(products)
-    
-                modelIdRef.current.value = ''
-                birthRef.current.value = ''
-    
-                ToastUtil.success(subLang.import_success, 1000);
-                handleClose && handleClose(e)
-
+        ).then((data) => {
+            handleResult && handleResult({
+                ...listNewProducts,
             })
+
+            modelIdRef.current.value = ''
+            birthRef.current.value = ''
+
+            ToastUtil.success(subLang.import_success, 1000);
+            handleClose && handleClose(e)
             // console.log(data)
         }).catch((error) => {
             console.log(error)
@@ -117,9 +88,9 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
             setErrorMessage(messageResponse)
         })
 
-        testAPI()
+        // testAPI()
     }
-
+    
     const getRole = (roleId) => {
         switch (roleId) {
             case 1:
@@ -140,9 +111,9 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         var yyyy = today.getFullYear();
-
+    
         today = dd + '/' + mm + '/' + yyyy;
-        // console.log(today);
+        console.log(today);
     }
 
     return (
@@ -152,22 +123,22 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
             onHide={handleClose}
         >
             <Modal.Header closeButton>
-                <Modal.Title>{subLang.import_products}</Modal.Title>
+                <Modal.Title>{subLang.export_products}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
                     <Form.Group as={Row} className="mb-3" controlId="produced_factory">
                         <Form.Label column sm="4">{subLang.produced_factory}</Form.Label>
                         <Col sm="8">
-                            <Form.Control plaintext readOnly defaultValue={account.name} />
+                            <Form.Control plaintext readOnly defaultValue={account.name}/>
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="model">
                         <Form.Label column sm="4">{subLang.model}</Form.Label>
                         <Col sm="8">
-                            <Form.Select  ref={modelIdRef} aria-label="Default select example" >
+                            <Form.Select aria-label="Default select example" >
                                 {listModels.map(model => (
-                                    <option  value={model.id} key={model.id}>
+                                    <option ref={modelIdRef} value={model.id} key={model.id}>
                                         {model.id + " - " + model.name + " - " + model.signName}
                                     </option>
                                 ))}
@@ -177,13 +148,13 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
                     <Form.Group as={Row} className="mb-3" controlId="birth">
                         <Form.Label column sm="4">{subLang.birth}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="date" ref={birthRef} />
+                            <Form.Control type="date" ref={birthRef}/>
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="quantity">
                         <Form.Label column sm="4">{subLang.quantity}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="number" ref={quantityRef} />
+                            <Form.Control type="number" ref={quantityRef}/>
                         </Col>
                     </Form.Group>
                 </Form>
@@ -198,5 +169,5 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
     )
 }
 
-export default FactoryImportProducts
+export default FactoryExportProducts
 

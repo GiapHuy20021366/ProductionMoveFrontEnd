@@ -15,6 +15,7 @@ import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import TableBase from "../sub_components/Table"
 import FactoryImportProducts from "../sub_components/FactoryImportProducts";
+import FactoryExportProducts from "../sub_components/FactoryExportProducts";
 import ProductDisplay from "../display/ProductDisplay";
 import ProductActions from "../display/ProductActions";
 
@@ -42,7 +43,7 @@ const FactoryProducts = () => {
         setErrorMessage('')
         setProductLoading(true)
         await useCallApi(
-            apiUrls.GET_PRODUCTS_BY_QUERY,
+            apiUrls.GET_CURRENT_PRODUCTS_BY_QUERY,
             {
                 associates: {
                     product: {
@@ -111,9 +112,11 @@ const FactoryProducts = () => {
 
     // *** update new account -> to table of accounts list -> when add new account ***
     const handleResult = (listNewProducts) => {
-        const listCopy = { ...listProducts }
-        listCopy[listNewProducts.id] = listNewProducts
-        setListProducts(listCopy)
+        // const listCopy = { ...listProducts }
+        // listNewProducts.forEach(product => {
+        //     listCopy[product.id] = product
+        // })
+        setListProducts({...listProducts, ...listNewProducts})
     }
 
     const handleCloseModal = (e) => {
@@ -148,8 +151,25 @@ const FactoryProducts = () => {
 
             {/* Button Import Products Data */}
             <button className="btn btn-primary" onClick={() => onClickModalBtn()}>{subLang.import_products_btn}</button>
-
             {/* Popup Form **************************************************************** */}
+            {
+                <FactoryImportProducts
+                handleResult={handleResult}
+                handleClose={handleCloseModal}
+                show={showModal}
+                />
+            }
+            {/* Button Export Products Data */}
+            <button className="btn btn-primary" onClick={() => onClickModalBtn()}>{subLang.export_products_btn}</button>
+            {/* Popup Form **************************************************************** */}
+            {
+                // <FactoryExportProducts
+                // handleResult={handleResult}
+                // handleClose={handleCloseModal}
+                // show={showModal}
+                // />
+            }
+
             <ProductActions
                 show={showProductActions}
                 rows={choosedRows}
@@ -160,14 +180,6 @@ const FactoryProducts = () => {
                 row={choosedRow}
                 handleClose={closeModalProductDetail}
             />
-            {
-                <FactoryImportProducts
-                    handleResult={handleResult}
-                    handleClose={handleCloseModal}
-                    show={showModal}
-                />
-            }
-
             <TableBase
                 title={subLang.sumary_re(arrayProducts.length)}
                 data={arrayProducts}
