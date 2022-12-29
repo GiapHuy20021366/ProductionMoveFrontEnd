@@ -3,23 +3,15 @@ import axios from '../../axios'
 import { useState, useEffect } from "react"
 
 const TestApi = () => {
-    const [token, setToken] = useState('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJOYW1lIjoiREwxIiwic3RhdHVzIjoyLCJyb2xlIjozLCJpZCI6MzV9LCJpYXQiOjE2NzIyNDgyOTQsImV4cCI6MTY3MjI1MTg5NH0.omlAX25jLxkGRBwKFE_VOn4pYcpsxVeWsv0KfCv2Bvk')
+    const [token, setToken] = useState('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7InVzZXJOYW1lIjoiREwxIiwic3RhdHVzIjoyLCJyb2xlIjozLCJpZCI6MzV9LCJpYXQiOjE2NzIyODEwODQsImV4cCI6MTY3MjI4NDY4NH0.Hc6QwCEa8KlXT3-uf3SYIWoPOwsxb4Ldcuu8arfLazY')
     const test = async () => {
         try {
             const data = await axios.post(
-                '/api/get-resources', // path of API
+                '/api/sold-product', // path of API
                 {
-                    holders: {
-                        agency: true,
-                        maintainCenter: true,
-                        factory: true
-                    },
-                    modelAttributes: {
-                        generation: true,
-                        bodyType: true,
-                        boostType: true,
-                        series: true,
-                        engineType: true
+                    productId: 1,
+                    customer: {
+                        id: 1
                     }
                 },
                 {
