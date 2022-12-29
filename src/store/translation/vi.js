@@ -57,7 +57,8 @@ const langOfAdminNavigator = {
     admin: 'Quản trị viên',
     manage_accounts: 'Quản lý tài khoản',
     manage_models: 'Quản lý dòng sản phẩm',
-    manage_products: 'Quản lý sản phẩm'
+    manage_products: 'Quản lý sản phẩm',
+    view_customers: 'Thông tin khách hàng',
 }
 
 const langOfFactoryNavigator = {
@@ -146,6 +147,12 @@ const langOfAdminProducts = {
     customer: 'Khách hàng'
 }
 
+const langOfAdminCustomers = {
+    ...langOfAccountInfo,
+    view_customers: 'Thông tin khách hàng',
+    sumary_re: count => `Tổng số ${count} 'khách hàng'`
+}
+
 const langOfFactoryModels = {
     ...langOfAdminModels,
     add_model_btn: 'Thêm dòng sản phẩm mới',
@@ -186,6 +193,18 @@ const langOfAgencyModels = {
 
 const langOfAgencyProducts = {
     ...langOfAdminProducts
+}
+
+const langOfAgencyCustomers = {
+    ...langOfAdminAccounts,
+    manage_customers: 'Quản lý thông tin khách hàng',
+    add_new_customer: 'Thêm thông tin khách hàng mới',
+    sumary_re: count => `Total of ${count} ${count <= 1 ? 'customer' : 'customers'}`
+}
+
+const langOfAgencyAddCustomer = {
+    ...langOfAdminAccounts,
+    add_new_customer: 'Thêm thông tin khách hàng',
 }
 
 const langOfMaintenanceModels = {
@@ -268,6 +287,7 @@ const vi = {
     AdminAccounts: langOfAdminAccounts,
     AdminModels: langOfAdminModels,
     AdminProducts: langOfAdminProducts,
+    AdminCustomers: langOfAdminCustomers,
 
     FactoryModels: langOfFactoryModels,
     FactoryAddModel: langOfFactoryAddModel,
@@ -276,6 +296,8 @@ const vi = {
     
     AgencyModels: langOfAgencyModels,
     AgencyProducts: langOfAgencyProducts,
+    AgencyCustomers: langOfAgencyCustomers,
+    AgencyAddCustomer: langOfAgencyAddCustomer,
     
     MaintenanceModels: langOfMaintenanceModels,
     MaintenanceProducts: langOfMaintenanceProducts,

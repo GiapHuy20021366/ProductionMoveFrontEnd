@@ -7,6 +7,7 @@ export const paths = {
     ADMIN_MODELS_SHOW_ONE: '/system/admin/models/detail',
     ADMIN_MODELS: '/system/admin/models',
     ADMIN_PRODUCTS: '/system/admin/products',
+    ADMIN_CUSTOMERS: '/system/admin/customers',
     FACTORY_MODELS: '/system/factory/models',
     FACTORY_PRODUCTS: '/system/factory/products',
     AGENCY_MODELS: '/system/agency/models',
@@ -32,5 +33,6 @@ export const apiUrls = {
     GET_MODELS_BY_QUERY: '/api/get-models-by-query',
     GET_MODELS_BY_IDS: '/api/get-models-by-ids',
     GET_PRODUCTS_BY_QUERY: '/api/get-products-by-query',
+    GET_CUSTOMERS_BY_QUERY: '/api/get-customers-by-query',
     GET_CURRENT_PRODUCTS_BY_QUERY: '/api/get-current-products-by-query'
 }

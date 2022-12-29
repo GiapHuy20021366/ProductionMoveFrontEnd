@@ -58,6 +58,7 @@ const langOfAdminNavigator = {
     manage_accounts: 'Manage Accounts',
     manage_models: 'Manage Models',
     manage_products: 'Manage Products',
+    view_customers: 'Customers Infomation',
 }
 
 const langOfFactoryNavigator = {
@@ -146,6 +147,12 @@ const langOfAdminProducts = {
     customer: 'Customer'
 }
 
+const langOfAdminCustomers = {
+    ...langOfAccountInfo,
+    view_customers: 'Customers Infomation',
+    sumary_re: count => `Total of ${count} ${count <= 1 ? 'customer' : 'customers'}`
+}
+
 const langOfFactoryModels = {
     ...langOfAdminModels,
     add_model_btn: 'Add New Model',
@@ -190,7 +197,14 @@ const langOfAgencyProducts = {
 
 const langOfAgencyCustomers = {
     ...langOfAdminAccounts,
-    manage_customers: 'Manage Customers',
+    manage_customers: 'Manage Customers Info',
+    add_new_customer: 'Add new customer info',
+    sumary_re: count => `Total of ${count} ${count <= 1 ? 'customer' : 'customers'}`
+}
+
+const langOfAgencyAddCustomer = {
+    ...langOfAdminAccounts,
+    add_new_customer: 'New customer information',
 }
 
 const langOfMaintenanceModels = {
@@ -271,6 +285,7 @@ const en = {
     AdminAccounts: langOfAdminAccounts,
     AdminModels: langOfAdminModels,
     AdminProducts: langOfAdminProducts,
+    AdminCustomers: langOfAdminCustomers,
 
     FactoryModels: langOfFactoryModels,
     FactoryAddModel: langOfFactoryAddModel,
@@ -280,6 +295,7 @@ const en = {
     AgencyModels: langOfAgencyModels,
     AgencyProducts: langOfAgencyProducts,
     AgencyCustomers: langOfAgencyCustomers,
+    AgencyAddCustomer: langOfAgencyAddCustomer,
     
     MaintenanceModels: langOfMaintenanceModels,
     MaintenanceProducts: langOfMaintenanceProducts,

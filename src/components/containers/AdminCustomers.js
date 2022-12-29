@@ -15,11 +15,10 @@ import TableBase from "../sub_components/Table";
 import { textFilter, selectFilter } from "react-bootstrap-table2-filter";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
-import AgencyAddCustomer from "../sub_components/AgencyAddCustomer"
 import AccountDisplay from "../display/AccountDisplay";
 
-const AgencyCustomers = () => {
-    const subLang = useSelector(state => state.lang.AgencyCustomers)
+const AdminCustomers = () => {
+    const subLang = useSelector(state => state.lang.AdminCustomers)
     const account = useSelector(state => state.user.account)
     const deviceType = useSelector(state => state.device.type)
     const [listCustomers, setListCustomers] = useState({})
@@ -31,7 +30,7 @@ const AgencyCustomers = () => {
     const [choosedRow, setChoosedRow] = useState({})
 
     // *** prevent another role from accessing to link which just only for admin ***
-    if (account?.role !== 3) {
+    if (account?.role !== 1) {
         return (
             <Redirect to={paths.SYSTEM} />
         )
@@ -43,9 +42,6 @@ const AgencyCustomers = () => {
         setPartnersLoading(true)
         await useCallApi(
             apiUrls.GET_CUSTOMERS_BY_QUERY,
-            // {
-            //     purchases
-            // }
         ).then((data) => {
             setPartnersLoading(false)
             const partnersRequest = data.data.rows
@@ -154,19 +150,8 @@ const AgencyCustomers = () => {
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 className="h3 mb-0 text-gray-800">{subLang.manage_customers}</h1>
+                <h1 className="h3 mb-0 text-gray-800">{subLang.view_customers}</h1>
             </div>
-
-            {/* Button Create Account */}
-            <button className="btn btn-primary" onClick={() => openModalCreateAccount()}>{subLang.add_new_customer}</button>
-
-            {/* Popup Form **************************************************************** */}
-            {
-                <AgencyAddCustomer
-                    handleResult={handleResult}
-                    handleClose={closeModalCreateAccount}
-                    show={showAddCustomer} />
-            }
 
             <AccountDisplay
                 handleClose={closeModalAccountDetail}
@@ -187,4 +172,4 @@ const AgencyCustomers = () => {
     )
 }
 
-export default AgencyCustomers
+export default AdminCustomers
