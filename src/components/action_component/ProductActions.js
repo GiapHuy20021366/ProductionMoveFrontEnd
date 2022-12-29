@@ -7,10 +7,20 @@ import { Redirect, useHistory } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import BootstrapTable from "react-bootstrap-table-next";
+import paginationFactory from "react-bootstrap-table2-paginator";
+import AgencyActions from './AgencyActions';
+
+const pagination = paginationFactory({
+    page: 1,
+    sizePerPage: 4,
+    nextPageText: ">",
+    prePageText: "<",
+    alwaysShowAllBtns: false,
+});
 
 const ProductActions = ({ show, handleClose, rows, columns }) => {
     const subLang = useSelector(state => state.lang.ModelDisplay) // Language here
-
+    const account = useSelector(state => state.user.account)
 
     // const getAuths = (product) => {
     //     const auths = {
@@ -31,6 +41,8 @@ const ProductActions = ({ show, handleClose, rows, columns }) => {
 
     }
 
+
+
     return (
         <>
             <Modal
@@ -42,13 +54,19 @@ const ProductActions = ({ show, handleClose, rows, columns }) => {
                     <Modal.Title>{'Title here'}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Implement Here
+                    Các sản phẩm đã chọn
                     <BootstrapTable
                         keyField="id"
                         hover
                         data={rows}
                         columns={columns}
+                        pagination={pagination}
                     />
+
+                    {
+                        account.role === 3 &&
+                        <AgencyActions />
+                    }
                 </Modal.Body>
                 <Modal.Footer>
                     Implement here

@@ -74,20 +74,20 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, c
         <h6 className="m-0 font-weight-bold text-primary">{title}</h6>
         {
           choosed &&
-          <Button 
-          aria-controls="example-collapse-text"
-          aria-expanded={open}
-          onClick={() => {
-              // clickActions && clickActions(choosedRows)
-              setOpen(!open)
-          }}
+          <Button
+            // aria-controls="example-collapse-text"
+            // aria-expanded={open}
+            onClick={() => {
+              clickActions && clickActions(choosedRows)
+              // setOpen(!open)
+            }}
             disabled={choose ? false : true}
-        >
+          >
             Actions
           </Button>
         }
-        
-        <Collapse in={open}>
+
+        {/* <Collapse in={open}>
 
         <div id="example-collapse-text">
           <hr className="sidebar-divider" />
@@ -101,7 +101,7 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, c
           <Button>Button</Button>{' '}
           <Button>Button</Button>
         </div>
-      </Collapse>
+      </Collapse> */}
       </div>
       <div className="card-body">
         <div className="table-responsive">
