@@ -77,8 +77,8 @@ const FactoryProducts = () => {
         const transProducts = []
         Object.values(listProducts).forEach((product) => {
             const productCopy = { ...product }
-            productCopy.modelName = `${product?.model?.name} - ${product?.model?.signName}`
-            productCopy.factoryName = product?.model?.factory?.name
+            productCopy.model = `${product?.model?.name} - ${product?.model?.signName}`
+            productCopy.factory = product?.model?.factory?.name
             const holders = product.holders
             productCopy.location = (() => {
                 const roles = {
@@ -98,14 +98,13 @@ const FactoryProducts = () => {
             })()
             transProducts.push(productCopy)
         })
-        transProducts.sort((p1, p2) => Date.parse(p2.birth) - Date.parse(p1.birth))
         setArrayProducts(transProducts)
     }, [subLang, listProducts])
 
     const tableColumns = [
         { dataField: 'id', text: 'Id' },
-        { dataField: 'modelName', text: subLang.model },
-        { dataField: 'factoryName', text: subLang.produced_factory },
+        { dataField: 'model', text: subLang.model },
+        { dataField: 'factory', text: subLang.produced_factory },
         { dataField: 'birth', text: subLang.birth },
         // { dataField: 'state', text: subLang.state },
         { dataField: 'location', text: subLang.location }
@@ -192,7 +191,6 @@ const FactoryProducts = () => {
                 clickActions={clickAtions}
                 choosed={true}
             />
-
         </div>
     )
 }
