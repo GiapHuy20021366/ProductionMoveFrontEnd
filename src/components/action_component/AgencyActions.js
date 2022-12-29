@@ -14,19 +14,16 @@ const isSold = (products) => {
     })
 }
 
-// product can maintain: is sold (exist customer) & now at agency (??????)
-const canMaintain = (products) => {
+// product can maintain or recall: is sold (exist customer) & now at agency (??????)
+const canMaintainOrRecall = (products) => {
+    console.log("products")
+    console.log(products)
     return products.every((product) => {
         const holders = product.holders
-        // return !holders.nowAt && !holders.willAt
-        return holders.customer && !holders.willAt
-    })
-}
-
-// as the same with product can maintain
-const canRecall = (products) => {
-    return products.every((product) => {
-        const holders = product.holders
+        console.log(product)
+        console.log(holders.customer)
+        console.log(holders.nowAt)
+        console.log(holders.willAt)
         // return !holders.nowAt && !holders.willAt
         return holders.customer && !holders.willAt
     })
@@ -74,7 +71,7 @@ const AgencyActions = ({ products, regisAction }) => {
             key: 'MAINTAIN',
             title: 'Bắt đầu bảo hành',
             type: 'MAINTAIN',
-            valid: canMaintain(products)
+            valid: canMaintainOrRecall(products)
         },
         // {
         //     key: 'MAINTAIN_MOVING',

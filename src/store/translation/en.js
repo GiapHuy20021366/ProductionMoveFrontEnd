@@ -275,6 +275,7 @@ const langOfFactoryActions = {
     ...langOfProductActions,
     actions_title: "Batch Export Products",
     destination_agency: 'Destination Agency',
+    quantity: 'Quantity',
     delivery_date: 'Delivery Date',
     submit: 'Export',
     alert_success: 'Batch Export Products Successfully!',
@@ -282,7 +283,7 @@ const langOfFactoryActions = {
 
 const langOfAgencyActions = {
     ...langOfProductActions,
-    actions_selection: 'Select Action',
+    actions_selection: 'Select Action'
 }
 
 const langOfMaintenanceActions = {

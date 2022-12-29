@@ -5,7 +5,7 @@ import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import { Button, Modal, Form, Col, Row } from "react-bootstrap";
 
-const FactoryActions = () => {
+const FactoryActions = (products) => {
     const subLang = useSelector(state => state.lang.FactoryActions)
     const listAgencies = useSelector(state => state.resources.holders.agencies)
     console.log("Agencies")
@@ -30,6 +30,13 @@ const FactoryActions = () => {
                 <Form.Label column sm="4">{subLang.delivery_date}</Form.Label>
                 <Col sm="8">
                     <Form.Control type="date"/>
+                </Col>
+            </Form.Group>
+
+            <Form.Group as={Row} className="mb-3">
+                <Form.Label column sm="4">{subLang.quantity}</Form.Label>
+                <Col sm="8">
+                    <Form.Control plaintext readOnly defaultValue={products.length} />
                 </Col>
             </Form.Group>
         </Form>
