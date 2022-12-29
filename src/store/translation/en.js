@@ -119,7 +119,7 @@ const langOfAdminProducts = {
     manage_products: 'Manage Products',
     model: 'Model',
     produced_factory: 'Produced Factory',
-    birth: 'Birthday',
+    birth: 'Manufactured date',
     state: 'State',
     location: 'Location',
     sumary_re: count => `Total of ${count} ${count <= 1 ? 'product' : 'products'}`,

@@ -42,7 +42,7 @@ const FactoryProducts = () => {
         setErrorMessage('')
         setProductLoading(true)
         await useCallApi(
-            apiUrls.GET_CURRENT_PRODUCTS_BY_QUERY,
+            apiUrls.GET_PRODUCTS_BY_QUERY,
             {
                 associates: {
                     product: {
@@ -111,10 +111,10 @@ const FactoryProducts = () => {
     ]
 
     // *** update new account -> to table of accounts list -> when add new account ***
-    const handleResult = (newAccount) => {
-        const listCopy = { ...listPartners }
-        listCopy[newAccount.id] = newAccount
-        setListPartners(listCopy)
+    const handleResult = (listNewProducts) => {
+        const listCopy = { ...listProducts }
+        listCopy[listNewProducts.id] = listNewProducts
+        setListProducts(listCopy)
     }
 
     const handleCloseModal = (e) => {

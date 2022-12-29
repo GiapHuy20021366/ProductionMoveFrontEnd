@@ -12,11 +12,12 @@ import "../../vendor/datatables/dataTables.bootstrap4.min.css";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
-import { Button } from "react-bootstrap";
+import { Button, Collapse } from "react-bootstrap";
 
 const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, choosed, keyField }) => {
   const [choose, setChoose] = useState(false)
   const [choosedRows, setChoosedRows] = useState([])
+  const [open, setOpen] = useState(false);
   const pagination = paginationFactory({
     page: 2,
     sizePerPage: 10,
@@ -73,13 +74,34 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, c
         <h6 className="m-0 font-weight-bold text-primary">{title}</h6>
         {
           choosed &&
-          <Button onClick={() => {
-            clickActions && clickActions(choosedRows)
+          <Button 
+          aria-controls="example-collapse-text"
+          aria-expanded={open}
+          onClick={() => {
+              // clickActions && clickActions(choosedRows)
+              setOpen(!open)
           }}
-            disabled={choose ? false : true}>
+            disabled={choose ? false : true}
+        >
             Actions
           </Button>
         }
+        
+        <Collapse in={open}>
+
+        <div id="example-collapse-text">
+          <hr className="sidebar-divider" />
+          <Button 
+            onClick={() => {
+              clickActions && clickActions(choosedRows)
+            }}
+          >
+            Button
+          </Button>{' '}
+          <Button>Button</Button>{' '}
+          <Button>Button</Button>
+        </div>
+      </Collapse>
       </div>
       <div className="card-body">
         <div className="table-responsive">
