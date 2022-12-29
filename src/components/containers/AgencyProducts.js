@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
-import '../../styles/Dashboard.css'
 import "../../js/sb-admin-2.min";
 import "../../vendor/jquery/jquery.min";
 import "../../vendor/bootstrap/js/bootstrap.bundle.min";
@@ -16,6 +15,7 @@ import { apiUrls } from '../../untils/constant'
 import TableBase from "../sub_components/Table"
 import AgencySendWarranty from "../sub_components/AgencySendWarranty";
 import ProductDisplay from '../display/ProductDisplay';
+import ProductActions from '../action_component/ProductActions';
 
 const AgencyProducts = () => {
     const subLang = useSelector(state => state.lang.AgencyProducts)
@@ -98,6 +98,7 @@ const AgencyProducts = () => {
             })()
             transProducts.push(productCopy)
         })
+        transProducts.sort((p1, p2) => Date.parse(p2.birth) - Date.parse(p1.birth))
         setArrayProducts(transProducts)
     }, [subLang, listProducts])
 
@@ -155,6 +156,13 @@ const AgencyProducts = () => {
                     handleClose={closeModalPopupForm}
                     show={showSendWarranty} />
             } */}
+            <ProductActions
+                show={showProductActions}
+                rows={choosedRows}
+                columns={tableColumns}
+                handleClose={() => setShowProductActions(false)}
+            />
+
             <ProductDisplay
                 show={showProductDetail}
                 row={choosedRow}

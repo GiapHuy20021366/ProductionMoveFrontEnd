@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
-import '../../styles/Dashboard.css'
 import "../../js/sb-admin-2.min";
 import "../../vendor/jquery/jquery.min";
 import "../../vendor/bootstrap/js/bootstrap.bundle.min";
@@ -18,7 +17,7 @@ import FactoryImportProducts from "../sub_components/FactoryImportProducts";
 import FactoryExportProducts from "../sub_components/FactoryExportProducts";
 import ReceiveProduct from "../sub_components/ReceiveProduct";
 import ProductDisplay from "../display/ProductDisplay";
-import ProductActions from "../display/ProductActions";
+import ProductActions from "../action_component/ProductActions";
 
 const FactoryProducts = () => {
     const subLang = useSelector(state => state.lang.FactoryProducts)
@@ -27,12 +26,14 @@ const FactoryProducts = () => {
     const [productsLoading, setProductLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const [arrayProducts, setArrayProducts] = useState([])
-    const [showModal, setShowModal] = useState(false)
+    const [showModalImport, setShowModalImport] = useState(false)
+    const [showModalExport, setShowModalExport] = useState(false)
     const [showProductDetail, setShowProductDetail] = useState(false)
     const [showReceiveProduct, setShowReceiveProduct] = useState(false)
     const [choosedRow, setChoosedRow] = useState({})
     const [showProductActions, setShowProductActions] = useState(false)
     const [choosedRows, setChoosedRows] = useState([])
+    
     // *** prevent another role from accessing to link which just only for admin ***
     if (account?.role !== 2) {
         return (
@@ -118,26 +119,21 @@ const FactoryProducts = () => {
         // listNewProducts.forEach(product => {
         //     listCopy[product.id] = product
         // })
-        setListProducts({...listProducts, ...listNewProducts})
+        setListProducts({ ...listProducts, ...listNewProducts })
     }
 
     const handleCloseModal = (e) => {
-        setShowModal(false)
+        setShowModalImport(false)
+        setShowModalExport(false)
     }
 
-    const onClickModalBtn = () => {
-        setShowModal(true)
+    const handleOpenModalImport = () => {
+        setShowModalImport(true)
     }
-
-    const onClickReceive = () => {
-        setShowReceiveProduct(true)
+    const handleOpenModalExport = () => {
+        setShowModalExport(true)
     }
-
-    const closeReceive = () => {
-        setShowReceiveProduct(false)
-
-    }
-
+    
     const closeModalProductDetail = () => {
         setShowProductDetail(false)
     }
@@ -161,27 +157,23 @@ const FactoryProducts = () => {
             </div>
 
             {/* Button Import Products Data */}
-            <button className="btn btn-primary" onClick={() => onClickModalBtn()}>{subLang.import_products_btn}</button>
+            <button className="btn btn-primary" onClick={() => handleOpenModalImport()}>{subLang.import_products_btn}</button>
             {/* Popup Form **************************************************************** */}
             {
                 <FactoryImportProducts
                 handleResult={handleResult}
                 handleClose={handleCloseModal}
-                show={showModal}
+                show={showModalImport}
                 />
             }
             {/* Button Export Products Data */}
-            <button className="btn btn-primary" onClick={() => onClickModalBtn()}>{subLang.export_products_btn}</button>
-            <button className="btn btn-primary" onClick={() => onClickReceive()}>{"re"}</button>
+            <button className="btn btn-primary" onClick={() => handleOpenModalExport()}>{subLang.export_products_btn}</button>
+            {/* Popup Form **************************************************************** */}
             {
-                <ReceiveProduct
-                    show={showReceiveProduct}    
-                    handleClose={closeReceive}
-                    columns = {tableColumns}
-                    data = {[{id:"Fiat", model:"500", factory:"white", birth: "", location: ""},
-                    {id:"Fiat", model:"500", factory:"white", birth: "", location: ""},
-                    {id:"Fiat", model:"500", factory:"white", birth: "", location: ""}
-                         ]}
+                <FactoryExportProducts
+                handleResult={handleResult}
+                handleClose={handleCloseModal}
+                show={showModalExport}
                 />
             }
 
@@ -192,7 +184,7 @@ const FactoryProducts = () => {
             <ProductActions
                 show={showProductActions}
                 rows={choosedRows}
-                columns = {tableColumns}
+                columns={tableColumns}
                 handleClose={() => setShowProductActions(false)}
             />
             <ProductDisplay

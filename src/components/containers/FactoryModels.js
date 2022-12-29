@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import BootstrapTable from 'react-bootstrap-table-next';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
-import '../../styles/Dashboard.css'
 import "../../js/sb-admin-2.min";
 import "../../vendor/jquery/jquery.min";
 import "../../vendor/bootstrap/js/bootstrap.bundle.min";
