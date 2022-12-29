@@ -153,11 +153,11 @@ const AdminCustomers = () => {
                 <h1 className="h3 mb-0 text-gray-800">{subLang.view_customers}</h1>
             </div>
 
-            <AccountDisplay
+            {/* <AccountDisplay
                 handleClose={closeModalAccountDetail}
                 show={showCustomerDetail}
                 row={choosedRow}
-            />
+            /> */}
 
             <TableBase
                 title={`${subLang.sumary_re(arrayCustomers.length)}`}

@@ -1,4 +1,4 @@
-import React ,{ useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
@@ -15,6 +15,7 @@ import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import TableBase from "../sub_components/Table"
 import AgencySendWarranty from "../sub_components/AgencySendWarranty";
+import ProductDisplay from '../display/ProductDisplay';
 
 const AgencyProducts = () => {
     const subLang = useSelector(state => state.lang.AgencyProducts)
@@ -24,6 +25,10 @@ const AgencyProducts = () => {
     const [errorMessage, setErrorMessage] = useState('')
     const [arrayProducts, setArrayProducts] = useState([])
     const [showSendWarranty, setShowSendWarranty] = useState(false)
+    const [showProductActions, setShowProductActions] = useState(false)
+    const [showProductDetail, setShowProductDetail] = useState(false)
+    const [choosedRow, setChoosedRow] = useState({})
+    const [choosedRows, setChoosedRows] = useState([])
 
     // *** prevent another role from accessing to link which just only for admin ***
     if (account?.role !== 3) {
@@ -72,7 +77,7 @@ const AgencyProducts = () => {
         })
         setArrayProducts(transProducts)
     }, [subLang, listProducts])
-    
+
     const tableColumns = [
         { dataField: 'id', text: 'Id' },
         { dataField: 'model', text: subLang.model },
@@ -96,6 +101,22 @@ const AgencyProducts = () => {
         setShowSendWarranty(true)
     }
 
+    const closeModalProductDetail = () => {
+        setShowProductDetail(false)
+    }
+
+    const rowEvents = {
+        onClick: (e, row, rowIndex) => {
+            setShowProductDetail(true)
+            setChoosedRow(row)
+        }
+    };
+
+    const clickAtions = (rows) => {
+        setChoosedRows(rows)
+        setShowProductActions(true)
+    }
+
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -105,20 +126,27 @@ const AgencyProducts = () => {
             <button className="btn btn-primary" onClick={() => openModalPopupForm()}>Bảo hành</button>
 
             {/* Popup Form **************************************************************** */}
-            {
+            {/* {
                 <AgencySendWarranty
                     handleResult={handleResult}
                     handleClose={closeModalPopupForm}
                     show={showSendWarranty} />
-            }
+            } */}
+            <ProductDisplay
+                show={showProductDetail}
+                row={choosedRow}
+                handleClose={closeModalProductDetail}
+            />
 
             <TableBase
                 title={subLang.sumary_re(arrayProducts.length)}
                 data={arrayProducts}
                 columns={tableColumns}
                 isLoading={productsLoading}
-                getBtn = {undefined}
-
+                getBtn={undefined}
+                rowEvents={rowEvents}
+                clickActions={clickAtions}
+                choosed={true}
             />
         </div>
     )

@@ -14,7 +14,7 @@ import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
 import { Button } from "react-bootstrap";
 
-const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions }) => {
+const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, choosed }) => {
   const [choose, setChoose] = useState(false)
   const [choosedRows, setChoosedRows] = useState([])
   const pagination = paginationFactory({
@@ -71,28 +71,46 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions })
     <div className="card shadow mb-4">
       <div className="card-header py-3">
         <h6 className="m-0 font-weight-bold text-primary">{title}</h6>
-        <Button onClick={() => {
-          clickActions && clickActions(choosedRows)
-        }}
-          disabled={choose ? false : true}>
-          Actions
-        </Button>
+        {
+          choosed &&
+          <Button onClick={() => {
+            clickActions && clickActions(choosedRows)
+          }}
+            disabled={choose ? false : true}>
+            Actions
+          </Button>
+        }
       </div>
       <div className="card-body">
         <div className="table-responsive">
           {isLoading && <div>Loading...</div>}
-          <BootstrapTable
-            bootstrap4
-            keyField="id"
-            hover
-            data={data}
-            columns={columns}
-            pagination={pagination}
-            filter={filterFactory()}
-            selectRow={selectRow}
-            rowEvents={rowEvents}
-            classes="table-base"
-          />
+          {
+            choosed ?
+              <BootstrapTable
+                bootstrap4
+                keyField="id"
+                hover
+                data={data}
+                columns={columns}
+                pagination={pagination}
+                filter={filterFactory()}
+                selectRow={selectRow}
+                rowEvents={rowEvents}
+                classes="table-base"
+              /> :
+              <BootstrapTable
+                bootstrap4
+                keyField="id"
+                hover
+                data={data}
+                columns={columns}
+                pagination={pagination}
+                filter={filterFactory()}
+                // selectRow={selectRow}
+                rowEvents={rowEvents}
+                classes="table-base"
+              />
+          }
         </div>
       </div>
     </div>

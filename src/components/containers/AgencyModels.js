@@ -22,6 +22,7 @@ import ModelDisplay from "../display/ModelDisplay";
 const AgencyModels = (probs) => {
     const subLang = useSelector(state => state.lang.AgencyModels)
     const account = useSelector(state => state.user.account)
+    const deviceType = useSelector(state => state.device.type)
     const [listModels, setListModels] = useState({})
     const [modelsLoading, setModelsLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
@@ -48,11 +49,11 @@ const AgencyModels = (probs) => {
                     factory: true
                 },
 
-                attributes: {
-                    factoryId: {
-                        eq : account.id
-                    }
-                }
+                // attributes: {
+                //     factoryId: {
+                //         eq: account.id
+                //     }
+                // }
             }
         ).then((data) => {
             setModelsLoading(false)
@@ -79,20 +80,31 @@ const AgencyModels = (probs) => {
             name: { dataField: 'name', text: subLang.name },
             signName: { dataField: 'signName', text: subLang.sign_name },
             generation: { dataField: 'generation', text: subLang.generation },
-            factory: { dataField: 'factory', text: subLang.produced_factory},
+            factory: { dataField: 'factory', text: subLang.produced_factory },
             birth: { dataField: 'birth', text: subLang.birth },
             series: { dataField: 'series', text: subLang.series },
             length: { dataField: 'length', text: subLang.length },
             width: { dataField: 'width', text: subLang.width },
             height: { dataField: 'height', text: subLang.height },
             bodyType: { dataField: 'bodyType', text: subLang.body_type }, //material?
+            trim: { dataField: 'trim', text: subLang.trim }, //
             engineType: { dataField: 'engineType', text: subLang.engine_type },
             maxSpeed: { dataField: 'maxSpeed', text: subLang.max_speed },
             acceleration: { dataField: 'accceleration', text: subLang.acceleration },
             cityFuel: { dataField: 'cityFuel', text: subLang.city_fuel }
         }
-        const { id, name, signName, generation, factory, birth, series, length, width, height, bodyType, engineType, maxSpeed, acceleration, cityFuel } = options
-        return [id, name, signName, generation, factory, birth, series, length, width, height, bodyType, engineType, maxSpeed, acceleration, cityFuel]
+        const { id, name, signName, generation, factory, birth, series, trim, length, width, height } = options
+        const baseSE = [id, name, signName]
+        if (deviceType.isMobie) {
+            baseSE.push(factory)
+        }
+        if (deviceType.isTablet) {
+            baseSE.push(factory, birth, generation)
+        }
+        if (deviceType.isDesktop) {
+            baseSE.push(factory, birth, generation, series, trim)
+        }
+        return baseSE
     })()
 
     // *** update table of list models when numOfModels or language is changed ***
@@ -131,7 +143,7 @@ const AgencyModels = (probs) => {
 
     const onClickModalBtn = () => {
         setShowModal(true)
-    }    
+    }
 
     return (
         <div className="container-fluid">

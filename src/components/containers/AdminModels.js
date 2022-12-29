@@ -75,7 +75,7 @@ const AdminModels = (probs) => {
             factory: { dataField: 'factory', text: subLang.produced_factory },
             birth: { dataField: 'birth', text: subLang.birth },
             series: { dataField: 'series', text: subLang.series },
-            trim: { dataField: 'trim', text: subLang.trim }, //?
+            trim: { dataField: 'trim', text: subLang.trim }, //
             length: { dataField: 'length', text: subLang.length },
             width: { dataField: 'width', text: subLang.width },
             height: { dataField: 'height', text: subLang.height },
@@ -139,7 +139,7 @@ const AdminModels = (probs) => {
                 columns={tableColumns}
                 isLoading={modelsLoading}
                 rowEvents={rowEvents}
-                getBtn = {undefined}
+                getBtn={undefined}
             />
         </div>
     )

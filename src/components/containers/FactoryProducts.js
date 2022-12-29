@@ -154,6 +154,7 @@ const FactoryProducts = () => {
                 getBtn={undefined}
                 rowEvents={rowEvents}
                 clickActions={clickAtions}
+                choosed={true}
             />
         </div>
     )
