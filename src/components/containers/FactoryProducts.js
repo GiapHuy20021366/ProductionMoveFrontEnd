@@ -47,15 +47,20 @@ const FactoryProducts = () => {
                 associates: {
                     product: {
                         model: { factory: true }
-                    }
+                    },
+                    nowAt: true,
+                    willAt: true,
+                    customer: true
                 }
             }
         ).then((data) => {
             setProductLoading(false)
-            const productsRequest = data.data.rows
+            const holdersRequest = data.data.rows
             const products = {}
-            for (const product of productsRequest) {
-                products[product.product.id] = product.product
+            for (const holder of holdersRequest) {
+                const { product, nowAt, willAt, customer } = holder
+                product.holders = { nowAt, willAt, customer }
+                products[product.id] = product
             }
             setListProducts({
                 ...listProducts,
@@ -73,6 +78,23 @@ const FactoryProducts = () => {
             const productCopy = { ...product }
             productCopy.model = `${product?.model?.name} - ${product?.model?.signName}`
             productCopy.factory = product?.model?.factory?.name
+            const holders = product.holders
+            productCopy.location = (() => {
+                const roles = {
+                    2: subLang.factory,
+                    3: subLang.agency,
+                    4: subLang.maintain_center
+                }
+                if (holders?.nowAt) {
+                    if (holders?.willAt) {
+                        return subLang.moving_to(holders.willAt)
+                    } else {
+                        return subLang.staying_at(holders.nowAt.name, roles[holders.nowAt.role])
+                    }
+                } else {
+                    return subLang.by_customer(holders.customer.name)
+                }
+            })()
             transProducts.push(productCopy)
         })
         setArrayProducts(transProducts)
@@ -83,7 +105,7 @@ const FactoryProducts = () => {
         { dataField: 'model', text: subLang.model },
         { dataField: 'factory', text: subLang.produced_factory },
         { dataField: 'birth', text: subLang.birth },
-        { dataField: 'state', text: subLang.state },
+        // { dataField: 'state', text: subLang.state },
         { dataField: 'location', text: subLang.location }
     ]
 
@@ -154,6 +176,7 @@ const FactoryProducts = () => {
                 getBtn={undefined}
                 rowEvents={rowEvents}
                 clickActions={clickAtions}
+                choosed={true}
             />
         </div>
     )

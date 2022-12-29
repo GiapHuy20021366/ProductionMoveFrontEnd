@@ -19,18 +19,18 @@ const Home = (probs) => {
         )
     }
 
-    (function onScroll() {
-        let scrollTrigger = 60;
-        window.onscroll = function () {
-            // We add pageYOffset for compatibility with IE.
-            if (window.scrollY >= scrollTrigger || window.pageYOffset >= scrollTrigger) {
-                document.querySelector(".navBar").classList.add("onscroll");
+    // (function onScroll() {
+    //     let scrollTrigger = 60;
+    //     window.onscroll = function () {
+    //         // We add pageYOffset for compatibility with IE.
+    //         if (window.scrollY >= scrollTrigger || window.pageYOffset >= scrollTrigger) {
+    //             document.querySelector(".navBar").classList.add("onscroll");
 
-            } else {
-                document.querySelector(".navBar").classList.remove("onscroll");
-            }
-        };
-    })();
+    //         } else {
+    //             document.querySelector(".navBar").classList.remove("onscroll");
+    //         }
+    //     };
+    // })();
 
     return (
         <div className="homeContainer">

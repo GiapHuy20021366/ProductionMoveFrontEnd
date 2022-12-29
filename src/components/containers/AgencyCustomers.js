@@ -168,11 +168,11 @@ const AgencyCustomers = () => {
                     show={showAddCustomer} />
             }
 
-            <AccountDisplay
+            {/* <AccountDisplay
                 handleClose={closeModalAccountDetail}
                 show={showCustomerDetail}
                 row={choosedRow}
-            />
+            /> */}
 
             <TableBase
                 title={`${subLang.sumary_re(arrayCustomers.length)}`}
