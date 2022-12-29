@@ -37,7 +37,9 @@ const ProductActions = ({ show, handleClose, rows }) => {
     //     getAuths(rows[0])
     // }
 
-    const getActions = ()
+    const getActions = () => {
+
+    }
 
     return (
         <>
