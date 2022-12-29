@@ -23,38 +23,12 @@ const pagination = paginationFactory({
 const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
     const subLang = useSelector(state => state.lang.ProductActions) // Language here
     const account = useSelector(state => state.user.account)
-    // if (account.role === roles.FACTORY) {
-    //     subLang = useSelector(state => state.lang.FactoryActions)
-    // }
-    // if (account.role === roles.AGENCY) {
-    //     subLang = useSelector(state => state.lang.AgencyActions)
-    // }
-
-    const [action, setAction] = useState()
-
-    // const getAuths = (product) => {
-    //     const auths = {
-    //         canExport: false,
-    //         canReturnToCustomer: false,
-    //         canStartRecall: false,
-    //         canStartMaintain: false,
-    //         canReturnToFactory: false
-    //     }
-    //     console.log(product)
-    // }
-
-    // if (rows.length > 0) {
-    //     getAuths(rows[0])
-    // }
-
-    // const getActions = () => {
-
-    // }
     const actionRef = useRef()
 
     const handleAction = async () => {
         if (actionRef.current) {
             await actionRef.current().then(async (productIds) => {
+                console.log(productIds)
                 await useCallApi(
                     apiUrls.GET_CURRENT_PRODUCTS_BY_QUERY,
                     {
@@ -82,7 +56,7 @@ const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
                     }
                     handleResult && handleResult(products)
 
-                    ToastUtil.success('Bảo hành sản phẩm thành công', 1000);
+                    ToastUtil.success('Hành động thành công', 1000);
                     handleClose && handleClose()
                 })
             }).catch((error) => {

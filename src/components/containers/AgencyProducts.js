@@ -113,7 +113,11 @@ const AgencyProducts = () => {
 
     // *** update new account -> to table of accounts list -> when add new account ***
     const handleResult = (listNewProducts) => {
-        setListProducts({ ...listProducts, ...listNewProducts })
+        const newList = {
+            ...listProducts,
+            ...listNewProducts
+        }
+        setListProducts(newList)
     }
 
     const closeModalPopupForm = (e) => {
@@ -160,7 +164,7 @@ const AgencyProducts = () => {
                 show={showProductActions}
                 rows={choosedRows}
                 columns={tableColumns}
-                hanldeResult={handleResult}
+                handleResult={handleResult}
                 handleClose={() => setShowProductActions(false)}
             />
 

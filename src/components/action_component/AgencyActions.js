@@ -44,11 +44,6 @@ const MaintainStart = ({ products, regisAction, hanldeResult }) => {
             })
         }
         regisAction(action)
-
-        // console.log(typeof (action))
-        // regisAction(action)
-        // console.log('begin', products)
-        // console.log('begin', regisAction)
     }, [products])
 
     return (
