@@ -21,7 +21,7 @@ const pagination = paginationFactory({
 });
 
 const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
-    const subLang = useSelector(state => state.lang.ModelDisplay) // Language here
+    let subLang = useSelector(state => state.lang.ModelDisplay) // Language here
     const account = useSelector(state => state.user.account)
     if (account.role === roles.FACTORY) {
         subLang = useSelector(state => state.lang.FactoryActions)
@@ -103,7 +103,7 @@ const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
                 onHide={handleClose}
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>{'subLang.actions_title'}</Modal.Title>
+                    <Modal.Title>{subLang.actions_title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     Các sản phẩm đã chọn
@@ -127,9 +127,9 @@ const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Cancel
+                        {subLang.cancel}
                     </Button>
-                    <Button variant="primary" onClick={handleAction}>Hoan tat</Button>
+                    <Button variant="primary" onClick={handleAction}>{subLang.submit}</Button>
                 </Modal.Footer>
             </Modal>
         </>

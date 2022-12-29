@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router";
 
-function NavItem({ pathname, onClickFunc, title }) {
+function NavItem({ pathname, onClickFunc, title, Icon = () => {return (<i className="fas fa-fw fa-wrench"></i>)} }) {
     const history = useHistory()
     return (
         <li className={`nav-item ${history.location.pathname.startsWith(pathname) ? 'active' : ''}`}>
@@ -10,7 +10,7 @@ function NavItem({ pathname, onClickFunc, title }) {
                 href="#"
                 onClick={() => onClickFunc()}
             >
-                <i className="fas fa-fw fa-wrench"></i>
+                <Icon></Icon>
                 <span>{title}</span>
             </a>
         </li>

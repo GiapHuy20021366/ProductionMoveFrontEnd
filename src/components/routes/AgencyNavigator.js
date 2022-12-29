@@ -35,6 +35,9 @@ const AgencyNavigator = (probs) => {
                 pathname = {paths.AGENCY_MODELS}
                 onClickFunc = {onClickModels}
                 title = {subLang.agency_models}
+                Icon = {() => { return (
+                    <i class="fa-solid fa-eye"></i>
+                )}}
             />
             <NavItem
                 pathname = {paths.AGENCY_PRODUCTS}

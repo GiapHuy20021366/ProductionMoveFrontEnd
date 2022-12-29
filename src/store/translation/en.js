@@ -266,7 +266,7 @@ const langOfProductDisplay = {
 
 const langOfProductActions = {
     ...langOfAdminProducts,
-    actions_title: 'Actions Title', 
+    actions_title: 'Actions', 
     cancel: 'Cancel',
     submit: 'Submit',
 }
@@ -282,6 +282,12 @@ const langOfFactoryActions = {
 
 const langOfAgencyActions = {
     ...langOfProductActions,
+    actions_selection: 'Select Action',
+}
+
+const langOfMaintenanceActions = {
+    ...langOfProductActions,
+    actions_selection: 'Select Action',
 }
 
 const en = {
@@ -313,6 +319,7 @@ const en = {
     ProductActions: langOfProductActions,
     FactoryActions: langOfFactoryActions,
     AgencyActions: langOfAgencyActions,
+    MaintenanceActions: langOfMaintenanceActions,
 
     FactoryModels: langOfFactoryModels,
     FactoryAddModel: langOfFactoryAddModel,
