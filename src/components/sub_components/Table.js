@@ -76,7 +76,7 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions })
           aria-controls="example-collapse-text"
           aria-expanded={open}
           onClick={() => {
-            clickActions && clickActions(choosedRows)
+            // clickActions && clickActions(choosedRows)
             setOpen(!open)
           }}
           disabled={choose ? false : true}
@@ -88,7 +88,13 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions })
 
         <div id="example-collapse-text">
           <hr className="sidebar-divider" />
-          <Button>Button</Button>{' '}
+          <Button 
+            onClick={() => {
+              clickActions && clickActions(choosedRows)
+            }}
+          >
+            Button
+          </Button>{' '}
           <Button>Button</Button>{' '}
           <Button>Button</Button>
         </div>
