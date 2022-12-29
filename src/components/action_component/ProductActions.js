@@ -21,14 +21,14 @@ const pagination = paginationFactory({
 });
 
 const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
-    const subLang = useSelector(state => state.lang.ModelDisplay) // Language here
+    const subLang = useSelector(state => state.lang.ProductActions) // Language here
     const account = useSelector(state => state.user.account)
-    if (account.role === roles.FACTORY) {
-        subLang = useSelector(state => state.lang.FactoryActions)
-    }
-    if (account.role === roles.AGENCY) {
-        subLang = useSelector(state => state.lang.AgencyActions)
-    }
+    // if (account.role === roles.FACTORY) {
+    //     subLang = useSelector(state => state.lang.FactoryActions)
+    // }
+    // if (account.role === roles.AGENCY) {
+    //     subLang = useSelector(state => state.lang.AgencyActions)
+    // }
 
     const [action, setAction] = useState()
 

@@ -36,7 +36,8 @@ export const apiUrls = {
     GET_PRODUCTS_BY_QUERY: '/api/get-products-by-query',
     GET_CUSTOMERS_BY_QUERY: '/api/get-customers-by-query',
     GET_CURRENT_PRODUCTS_BY_QUERY: '/api/get-current-products-by-query',
-    GET_RESOURCES: '/api/get-resources'
+    GET_RESOURCES: '/api/get-resources',
+    MAINTENANCE_PRODUCTS: '/api/maintain-products'
 }
 
 export const roles = {
