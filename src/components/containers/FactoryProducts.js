@@ -42,7 +42,7 @@ const FactoryProducts = () => {
         setErrorMessage('')
         setProductLoading(true)
         await useCallApi(
-            apiUrls.GET_PRODUCTS_BY_QUERY,
+            apiUrls.GET_CURRENT_PRODUCTS_BY_QUERY,
             {
                 associates: {
                     product: {

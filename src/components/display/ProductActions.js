@@ -48,6 +48,7 @@ const ProductActions = ({ show, handleClose, rows }) => {
                 </Modal.Header>
                 <Modal.Body>
 
+
                 </Modal.Body>
                 <Modal.Footer>
                     Implement here
