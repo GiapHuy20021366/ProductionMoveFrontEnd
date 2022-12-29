@@ -65,7 +65,8 @@ const ProductDisplay = ({ show, handleClose, row }) => {
                     time: _export.date,
                     sender: _export.sender,
                     reciever: _export.reciever,
-                    isExport: true
+                    isExport: true,
+                    confirm: _export.confirm
                 }
                 switch (_export.type) {
                     case 0: {
@@ -93,7 +94,7 @@ const ProductDisplay = ({ show, handleClose, row }) => {
                     }
                 }
                 history.push(sample)
-                if (sample.isExport && sample.reciever) {
+                if (sample.isExport && sample.confirm) {
                     history.push({
                         ...sample,
                         key: 'RECIEVED_PRODUCT'
