@@ -16,6 +16,7 @@ import { apiUrls } from '../../untils/constant'
 import TableBase from "../sub_components/Table"
 import FactoryImportProducts from "../sub_components/FactoryImportProducts";
 import FactoryExportProducts from "../sub_components/FactoryExportProducts";
+import ReceiveProduct from "../sub_components/ReceiveProduct";
 import ProductDisplay from "../display/ProductDisplay";
 import ProductActions from "../display/ProductActions";
 
@@ -28,6 +29,7 @@ const FactoryProducts = () => {
     const [arrayProducts, setArrayProducts] = useState([])
     const [showModal, setShowModal] = useState(false)
     const [showProductDetail, setShowProductDetail] = useState(false)
+    const [showReceiveProduct, setShowReceiveProduct] = useState(false)
     const [choosedRow, setChoosedRow] = useState({})
     const [showProductActions, setShowProductActions] = useState(false)
     const [choosedRows, setChoosedRows] = useState([])
@@ -127,6 +129,15 @@ const FactoryProducts = () => {
         setShowModal(true)
     }
 
+    const onClickReceive = () => {
+        setShowReceiveProduct(true)
+    }
+
+    const closeReceive = () => {
+        setShowReceiveProduct(false)
+
+    }
+
     const closeModalProductDetail = () => {
         setShowProductDetail(false)
     }
@@ -161,14 +172,22 @@ const FactoryProducts = () => {
             }
             {/* Button Export Products Data */}
             <button className="btn btn-primary" onClick={() => onClickModalBtn()}>{subLang.export_products_btn}</button>
-            {/* Popup Form **************************************************************** */}
+            <button className="btn btn-primary" onClick={() => onClickReceive()}>{"re"}</button>
             {
-                // <FactoryExportProducts
-                // handleResult={handleResult}
-                // handleClose={handleCloseModal}
-                // show={showModal}
-                // />
+                <ReceiveProduct
+                    show={showReceiveProduct}    
+                    handleClose={closeReceive}
+                    columns = {tableColumns}
+                    data = {[{id:"Fiat", model:"500", factory:"white", birth: "", location: ""},
+                    {id:"Fiat", model:"500", factory:"white", birth: "", location: ""},
+                    {id:"Fiat", model:"500", factory:"white", birth: "", location: ""}
+                         ]}
+                />
             }
+
+
+
+            {/* Popup Form **************************************************************** */}
 
             <ProductActions
                 show={showProductActions}
