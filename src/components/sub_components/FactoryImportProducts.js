@@ -66,29 +66,29 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
         }
         console.log(modelIdRef.current)
 
-        await useCallApi(
-            apiUrls.CREATE_PRODUCTS,
-            {
-                products: listNewProducts
-            }
-        ).then((data) => {
-            handleResult && handleResult({
-                ...listNewProducts,
-            })
+        // await useCallApi(
+        //     apiUrls.CREATE_PRODUCTS,
+        //     {
+        //         products: listNewProducts
+        //     }
+        // ).then((data) => {
+        //     handleResult && handleResult({
+        //         ...listNewProducts,
+        //     })
 
-            modelIdRef.current.value = ''
-            birthRef.current.value = ''
+        //     modelIdRef.current.value = ''
+        //     birthRef.current.value = ''
 
-            ToastUtil.success(subLang.import_success, 1000);
-            handleClose && handleClose(e)
-            // console.log(data)
-        }).catch((error) => {
-            console.log(error)
-            const messageResponse = error.response.data.message
-            setErrorMessage(messageResponse)
-        })
+        //     ToastUtil.success(subLang.import_success, 1000);
+        //     handleClose && handleClose(e)
+        //     // console.log(data)
+        // }).catch((error) => {
+        //     console.log(error)
+        //     const messageResponse = error.response.data.message
+        //     setErrorMessage(messageResponse)
+        // })
 
-        // testAPI()
+        testAPI()
     }
     
     const getRole = (roleId) => {

@@ -5,7 +5,7 @@ import Home from '../components/containers/Home';
 import '../styles/App.scss';
 import { paths } from '../untils/constant';
 import { userIsAuthenticated, userIsNotAuthenticated } from '../components/hoc/authentication'
-import System from '../components/containers/System';
+import System from '../components/routes/System';
 import { updateToken } from './../untils/authenticate';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

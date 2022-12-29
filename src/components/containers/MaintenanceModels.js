@@ -23,6 +23,7 @@ const MaintenanceModels = (probs) => {
     const subLang = useSelector(state => state.lang.MaintenanceModels)
     const account = useSelector(state => state.user.account)
     const [listModels, setListModels] = useState({})
+    const deviceType = useSelector(state => state.device.type)
     const [modelsLoading, setModelsLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const [arrayModels, setArrayModels] = useState([])
@@ -49,9 +50,9 @@ const MaintenanceModels = (probs) => {
                 },
 
                 attributes: {
-                    factoryId: {
-                        eq : account.id
-                    }
+                    // factoryId: {
+                    //     eq : account.id
+                    // }
                 }
             }
         ).then((data) => {
@@ -79,9 +80,10 @@ const MaintenanceModels = (probs) => {
             name: { dataField: 'name', text: subLang.name },
             signName: { dataField: 'signName', text: subLang.sign_name },
             generation: { dataField: 'generation', text: subLang.generation },
-            factory: { dataField: 'factory', text: subLang.produced_factory},
+            factory: { dataField: 'factory', text: subLang.produced_factory },
             birth: { dataField: 'birth', text: subLang.birth },
             series: { dataField: 'series', text: subLang.series },
+            trim: { dataField: 'trim', text: subLang.trim }, //
             length: { dataField: 'length', text: subLang.length },
             width: { dataField: 'width', text: subLang.width },
             height: { dataField: 'height', text: subLang.height },
@@ -91,8 +93,18 @@ const MaintenanceModels = (probs) => {
             acceleration: { dataField: 'accceleration', text: subLang.acceleration },
             cityFuel: { dataField: 'cityFuel', text: subLang.city_fuel }
         }
-        const { id, name, signName, generation, factory, birth, series, length, width, height, bodyType, engineType, maxSpeed, acceleration, cityFuel } = options
-        return [id, name, signName, generation, factory, birth, series, length, width, height, bodyType, engineType, maxSpeed, acceleration, cityFuel]
+        const { id, name, signName, generation, factory, birth, series, trim, length, width, height, bodyType, engineType, maxSpeed, acceleration, cityFuel } = options
+        const baseSE = [id, name, signName]
+        if (deviceType.isMobie) {
+            baseSE.push(factory)
+        }
+        if (deviceType.isTablet) {
+            baseSE.push(factory, birth, generation)
+        }
+        if (deviceType.isDesktop) {
+            baseSE.push(factory, birth, generation, series, trim)
+        }
+        return baseSE
     })()
 
     // *** update table of list models when numOfModels or language is changed ***
@@ -131,7 +143,7 @@ const MaintenanceModels = (probs) => {
 
     const onClickModalBtn = () => {
         setShowModal(true)
-    }    
+    }
 
     return (
         <div className="container-fluid">

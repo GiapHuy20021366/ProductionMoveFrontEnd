@@ -1,4 +1,4 @@
-import React ,{ useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
@@ -15,6 +15,8 @@ import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import TableBase from "../sub_components/Table"
 import FactoryImportProducts from "../sub_components/FactoryImportProducts";
+import ProductDisplay from "../display/ProductDisplay";
+import ProductActions from "../display/ProductActions";
 
 const FactoryProducts = () => {
     const subLang = useSelector(state => state.lang.FactoryProducts)
@@ -24,7 +26,10 @@ const FactoryProducts = () => {
     const [errorMessage, setErrorMessage] = useState('')
     const [arrayProducts, setArrayProducts] = useState([])
     const [showModal, setShowModal] = useState(false)
-
+    const [showProductDetail, setShowProductDetail] = useState(false)
+    const [choosedRow, setChoosedRow] = useState({})
+    const [showProductActions, setShowProductActions] = useState(false)
+    const [choosedRows, setChoosedRows] = useState([])
     // *** prevent another role from accessing to link which just only for admin ***
     if (account?.role !== 2) {
         return (
@@ -40,18 +45,21 @@ const FactoryProducts = () => {
             apiUrls.GET_PRODUCTS_BY_QUERY,
             {
                 associates: {
-                    model: { factory: true },
-                    holders: true
-                },
-                attributes: {
-                    factoryId: { eq: account.id}
+                    product: {
+                        model: { factory: true }
+                    },
+                    nowAt: true,
+                    willAt: true,
+                    customer: true
                 }
             }
         ).then((data) => {
             setProductLoading(false)
-            const productsRequest = data.data.rows
+            const holdersRequest = data.data.rows
             const products = {}
-            for (const product of productsRequest) {
+            for (const holder of holdersRequest) {
+                const { product, nowAt, willAt, customer } = holder
+                product.holders = { nowAt, willAt, customer }
                 products[product.id] = product
             }
             setListProducts({
@@ -71,7 +79,6 @@ const FactoryProducts = () => {
             productCopy.model = `${product?.model?.name} - ${product?.model?.signName}`
             productCopy.factory = product?.model?.factory?.name
             const holders = product.holders
-            console.log(holders)
             productCopy.location = (() => {
                 const roles = {
                     2: subLang.factory,
@@ -92,12 +99,13 @@ const FactoryProducts = () => {
         })
         setArrayProducts(transProducts)
     }, [subLang, listProducts])
-    
+
     const tableColumns = [
         { dataField: 'id', text: 'Id' },
         { dataField: 'model', text: subLang.model },
         { dataField: 'factory', text: subLang.produced_factory },
         { dataField: 'birth', text: subLang.birth },
+        // { dataField: 'state', text: subLang.state },
         { dataField: 'location', text: subLang.location }
     ]
 
@@ -116,6 +124,22 @@ const FactoryProducts = () => {
         setShowModal(true)
     }
 
+    const closeModalProductDetail = () => {
+        setShowProductDetail(false)
+    }
+
+    const rowEvents = {
+        onClick: (e, row, rowIndex) => {
+            setShowProductDetail(true)
+            setChoosedRow(row)
+        }
+    };
+
+    const clickAtions = (rows) => {
+        setChoosedRows(rows)
+        setShowProductActions(true)
+    }
+
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -126,11 +150,21 @@ const FactoryProducts = () => {
             <button className="btn btn-primary" onClick={() => onClickModalBtn()}>{subLang.import_products_btn}</button>
 
             {/* Popup Form **************************************************************** */}
+            <ProductActions
+                show={showProductActions}
+                rows={choosedRows}
+                handleClose={() => setShowProductActions(false)}
+            />
+            <ProductDisplay
+                show={showProductDetail}
+                row={choosedRow}
+                handleClose={closeModalProductDetail}
+            />
             {
                 <FactoryImportProducts
                     handleResult={handleResult}
                     handleClose={handleCloseModal}
-                    show={showModal} 
+                    show={showModal}
                 />
             }
 
@@ -139,8 +173,10 @@ const FactoryProducts = () => {
                 data={arrayProducts}
                 columns={tableColumns}
                 isLoading={productsLoading}
-                getBtn = {undefined}
-
+                getBtn={undefined}
+                rowEvents={rowEvents}
+                clickActions={clickAtions}
+                choosed={true}
             />
         </div>
     )
