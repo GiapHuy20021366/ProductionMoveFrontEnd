@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 import BootstrapTable from "react-bootstrap-table-next";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import AgencyActions from './AgencyActions';
+import { async } from "q";
 
 const pagination = paginationFactory({
     page: 1,
@@ -21,6 +22,7 @@ const pagination = paginationFactory({
 const ProductActions = ({ show, handleClose, rows, columns }) => {
     const subLang = useSelector(state => state.lang.ModelDisplay) // Language here
     const account = useSelector(state => state.user.account)
+    const [action, setAction] = useState()
 
     // const getAuths = (product) => {
     //     const auths = {
@@ -37,9 +39,21 @@ const ProductActions = ({ show, handleClose, rows, columns }) => {
     //     getAuths(rows[0])
     // }
 
-    const getActions = () => {
+    // const getActions = () => {
 
+    // }
+
+    const handleAction = async () => {
+        if (action) {
+            const result = await action()
+            console.log(result)
+        }
     }
+
+    const regisAction = (action) => {
+        setAction(action)
+    }
+
 
 
 
@@ -65,11 +79,14 @@ const ProductActions = ({ show, handleClose, rows, columns }) => {
 
                     {
                         account.role === 3 &&
-                        <AgencyActions />
+                        <AgencyActions products={rows} regisAction={regisAction} />
                     }
                 </Modal.Body>
                 <Modal.Footer>
-                    Implement here
+                    <Button variant="secondary" onClick={handleClose}>
+                        Cancel
+                    </Button>
+                    <Button variant="primary">Hoan tat</Button>
                 </Modal.Footer>
             </Modal>
         </>
