@@ -14,7 +14,7 @@ import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
 import { Button } from "react-bootstrap";
 
-const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, choosed }) => {
+const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, choosed, keyField }) => {
   const [choose, setChoose] = useState(false)
   const [choosedRows, setChoosedRows] = useState([])
   const pagination = paginationFactory({

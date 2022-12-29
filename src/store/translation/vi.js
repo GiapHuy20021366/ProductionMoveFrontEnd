@@ -258,6 +258,9 @@ const langOfProductDisplay = {
             return `Đại lý ${sender?.name} chuyển sản phẩm đến trung tâm bảo hành ${reciever?.name} để thu hồi`
         }
         return `Trung tâm bảo hành ${sender?.name} chuyển sản phẩm về nhà máy ${reciever?.name} để thu hồi`
+    },
+    recieved_product: (sender, reciever, roles) => {
+        return `${roles[reciever.role]} ${reciever?.name} xác nhận sản phẩm`
     }
 }
 
@@ -293,12 +296,12 @@ const vi = {
     FactoryAddModel: langOfFactoryAddModel,
     FactoryProducts: langOfFactoryProducts,
     FactoryImportProducts: langOfFactoryImportProducts,
-    
+
     AgencyModels: langOfAgencyModels,
     AgencyProducts: langOfAgencyProducts,
     AgencyCustomers: langOfAgencyCustomers,
     AgencyAddCustomer: langOfAgencyAddCustomer,
-    
+
     MaintenanceModels: langOfMaintenanceModels,
     MaintenanceProducts: langOfMaintenanceProducts,
 }

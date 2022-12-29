@@ -91,9 +91,9 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         var yyyy = today.getFullYear();
-    
+
         today = dd + '/' + mm + '/' + yyyy;
-        console.log(today);
+        // console.log(today);
     }
 
     return (
@@ -110,7 +110,7 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
                     <Form.Group as={Row} className="mb-3" controlId="quantity">
                         <Form.Label column sm="4">{subLang.quantity}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="number"/>
+                            <Form.Control type="number" />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="model">
@@ -126,19 +126,19 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
                     <Form.Group as={Row} className="mb-3" controlId="produced_factory">
                         <Form.Label column sm="4">{subLang.produced_factory}</Form.Label>
                         <Col sm="8">
-                            <Form.Control plaintext readOnly defaultValue={account.name}/>
+                            <Form.Control plaintext readOnly defaultValue={account.name} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="birth">
                         <Form.Label column sm="4">{subLang.birth}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="date" defaultValue={today}/>
+                            <Form.Control type="date" defaultValue={today} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="state">
                         <Form.Label column sm="4">{subLang.state}</Form.Label>
                         <Col sm="8">
-                        <Form.Control plaintext readOnly defaultValue="Tồn kho"/>
+                            <Form.Control plaintext readOnly defaultValue="Tồn kho" />
                         </Col>
                     </Form.Group>
                 </Form>

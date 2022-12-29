@@ -6,10 +6,35 @@ import { apiUrls } from '../../untils/constant'
 import { Redirect, useHistory } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
+import TableBase from "../sub_components/Table";
+import Table from 'react-bootstrap/Table';
 
 const ProductActions = ({ show, handleClose, rows }) => {
-    const subLang = useSelector(state => state.lang.ModelDisplay) // Language here
+    const subLang = useSelector(state => state.lang.AdminProducts) // Language here
+    const resources = useSelector(state => state.resources)
+    const tableColumns = [
+        { dataField: 'id', text: 'Id' },
+        { dataField: 'modelName', text: subLang.model },
+        { dataField: 'factoryName', text: subLang.produced_factory },
+        { dataField: 'birth', text: subLang.birth },
+        { dataField: 'location', text: subLang.location }
+    ]
 
+
+    // const getAuths = (product) => {
+    //     const auths = {
+    //         canExport: false,
+    //         canReturnToCustomer: false,
+    //         canStartRecall: false,
+    //         canStartMaintain: false,
+    //         canReturnToFactory: false
+    //     }
+    //     console.log(product)
+    // }
+
+    // if (rows.length > 0) {
+    //     getAuths(rows[0])
+    // }
 
     return (
         <>
@@ -22,10 +47,7 @@ const ProductActions = ({ show, handleClose, rows }) => {
                     <Modal.Title>{'Title here'}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Implement here
-                    {
-                        JSON.stringify(rows)
-                    }
+
                 </Modal.Body>
                 <Modal.Footer>
                     Implement here
