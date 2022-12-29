@@ -282,6 +282,11 @@ const langOfProductDisplay = {
     }
 }
 
+const langOfProductActions = {
+    ...langOfAdminProducts,
+
+}
+
 const en = {
     _NAME_: 'EN',
     TruckBtn: langOfTruckBtn,
@@ -307,6 +312,8 @@ const en = {
     AdminModels: langOfAdminModels,
     AdminProducts: langOfAdminProducts,
     AdminCustomers: langOfAdminCustomers,
+
+    ProductActions: langOfProductActions,
 
     FactoryModels: langOfFactoryModels,
     FactoryAddModel: langOfFactoryAddModel,

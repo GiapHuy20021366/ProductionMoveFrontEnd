@@ -117,23 +117,9 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
             setErrorMessage(messageResponse)
         })
 
-        testAPI()
+        // testAPI()
     }
 
-    const getRole = (roleId) => {
-        switch (roleId) {
-            case 1:
-                return subLang.admin
-            case 2:
-                return subLang.factory
-            case 3:
-                return subLang.agency
-            case 4:
-                return subLang.maintain_center
-            default:
-                return subLang.unknown
-        }
-    }
 
     {
         var today = new Date();

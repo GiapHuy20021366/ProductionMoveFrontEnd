@@ -264,6 +264,10 @@ const langOfProductDisplay = {
     }
 }
 
+const langOfProductActions = {
+    ...langOfAdminProducts,
+
+}
 
 
 const vi = {
@@ -285,6 +289,8 @@ const vi = {
     ModelDisplay: langOfModelDisplay,
     AccountDisplay: langOfAccountDisplay,
     ProductDisplay: langOfProductDisplay,
+
+    ProductActions: langOfProductActions,
 
     AdminAddAccount: langOfAdminAddAccount,
     AdminAccounts: langOfAdminAccounts,
