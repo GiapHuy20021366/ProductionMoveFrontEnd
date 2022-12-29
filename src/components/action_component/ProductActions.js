@@ -43,6 +43,7 @@ const ProductActions = ({ show, handleClose, rows, columns }) => {
 
 
 
+
     return (
         <>
             <Modal
@@ -65,11 +66,14 @@ const ProductActions = ({ show, handleClose, rows, columns }) => {
 
                     {
                         account.role === 3 &&
-                        <AgencyActions />
+                        <AgencyActions products={rows} />
                     }
                 </Modal.Body>
                 <Modal.Footer>
-                    Implement here
+                    <Button variant="secondary" onClick={handleClose}>
+                        Cancel
+                    </Button>
+                    <Button variant="primary">Hoan tat</Button>
                 </Modal.Footer>
             </Modal>
         </>
