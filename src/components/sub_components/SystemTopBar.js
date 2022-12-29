@@ -12,7 +12,6 @@ import { paths } from "../../untils/constant";
 import { userLogout } from "../../store/slices/userSlices";
 import Message from "../containers/Message";
 
-
 const SystemTopBar = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -25,10 +24,39 @@ const SystemTopBar = () => {
     history.push(paths.ACCOUNT);
   };
   const account = useSelector((state) => state.user.account);
+
+  const onClickToggle = () => {
+    console.log(document.getElementById('accordionSidebar').getAttribute('class'))
+    let x = document.getElementById('accordionSidebar').getAttribute('class')
+    let check = x.indexOf('toggled');
+    if (check != -1){
+      let y = x.substring(0, check-1)
+      document.getElementById('accordionSidebar').setAttribute('class', y)
+    } else {
+      let y = x + " toggled"
+      document.getElementById('accordionSidebar').setAttribute('class',y)
+    }
+
+    let bx = document.body.getAttribute('class')
+    if (bx) {
+      document.body.removeAttribute('class')
+    } else {
+      bx = "sidebar-toggled"
+      document.body.setAttribute('class',bx)
+    }
+
+  }
   return (
     <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-      <ul className="navbar-nav ml-auto">
+        <button
+          id="sidebarToggleTop"
+          className="btn btn-link d-md-none rounded-circle mr-3"
+          onClick={onClickToggle}
+        >
+          <i className="fa fa-bars"></i>
+        </button>
 
+      <ul className="navbar-nav ml-auto">
         <Message />
 
         <div className="topbar-divider d-none d-sm-block"></div>

@@ -35,13 +35,17 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents }) => {
     // }
   });
 
-  useEffect(() => {
-    console.log(choosedRows)
-  }, [choosedRows])
+//   useEffect(() => {
+//     console.log(choosedRows)
+//   }, [choosedRows])
 
+
+  const select = () => {
+    console.log(choosedRows)
+  }
   const selectRow = {
     mode: 'checkbox',
-    clickToSelect: true,
+    // clickToSelect: true,
     onSelect: (row, isSelect, rowIndex, e) => {
       if (isSelect) {
         const isNotExist = choosedRows.every(rowc => rowc.id != row.id)
@@ -69,7 +73,7 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents }) => {
       <div className="card-header py-3">
         <h6 className="m-0 font-weight-bold text-primary">{title}</h6>
         <Button
-          onClick={() => { setChoose(!choose) }}
+          onClick={() => { select() }}
         >
           Select
         </Button>
@@ -87,6 +91,7 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents }) => {
             filter={filterFactory()}
             selectRow={selectRow}
             rowEvents={rowEvents}
+            classes = "table-base"
           />
           {/* {
             choose && <BootstrapTable

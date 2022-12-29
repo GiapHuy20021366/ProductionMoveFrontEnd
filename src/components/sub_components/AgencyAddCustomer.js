@@ -7,8 +7,8 @@ import { apiUrls } from '../../untils/constant'
 import { Button, Modal, Form, Col, Row, InputGroup } from "react-bootstrap";
 import MathJax from 'react-mathjax';
 
-const FactoryAddModel = ({ handleResult, handleClose, show }) => {
-    const subLang = useSelector(state => state.lang.FactoryAddModel)
+const AgencyAddCustomer = ({ handleResult, handleClose, show }) => {
+    const subLang = useSelector(state => state.lang.AgencyAddCustomer)
     const account = useSelector(state => state.user.account)
 
     const modelNameRef = useRef()
@@ -19,13 +19,6 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
     const lengthRef = useRef()
     const widthRef = useRef()
     const heightRef = useRef()
-    const numberOfSeatsRef = useRef()
-    const bodyTypeRef = useRef()
-    const engineTypeRef = useRef()
-    const boostTypeRef = useRef()
-    const maxSpeedRef = useRef()
-    const accelerationRef = useRef()
-    const cityFuelRef = useRef()
 
     const [errorMessage, setErrorMessage] = useState('')
 
@@ -40,13 +33,6 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
             length: lengthRef.current.value,
             width: widthRef.current.value,
             height: heightRef.current.value,
-            // numberOfSeats: numberOfSeatsRef.current.value,
-            bodyType: bodyTypeRef.current.value,
-            engineType: engineTypeRef.current.value,
-            // boostType: boostTypeRef.current.value,
-            // maxSpeed: maxSpeedRef.current.value,
-            accceleration: accelerationRef.current.value,
-            cityFuel: cityFuelRef.current.value
         }
 
         console.log(newModel)
@@ -61,10 +47,6 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
                 lengthRef.current.value = ''
                 widthRef.current.value = ''
                 heightRef.current.value = ''
-                bodyTypeRef.current.value = ''
-                engineTypeRef.current.value = ''
-                accelerationRef.current.value = ''
-                cityFuelRef.current.value = ''
 
                 ToastUtil.success(subLang.add_success, 1000);
                 handleClose && handleClose()
@@ -93,10 +75,6 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
             lengthRef.current.value = ''
             widthRef.current.value = ''
             heightRef.current.value = ''
-            bodyTypeRef.current.value = ''
-            engineTypeRef.current.value = ''
-            accelerationRef.current.value = ''
-            cityFuelRef.current.value = ''
 
             ToastUtil.success(subLang.add_success, 1000);
             handleClose && handleClose(e)
@@ -116,7 +94,7 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
             onHide={handleClose}
         >
             <Modal.Header closeButton>
-                <Modal.Title>{subLang.add_new_model}</Modal.Title>
+                <Modal.Title>{subLang.add_new_customer}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form>
@@ -183,53 +161,6 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
                             </InputGroup>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="body_type">
-                        <Form.Label column sm="4">{subLang.body_type}</Form.Label>
-                        <Col sm="8">
-                            <Form.Control type="text" ref={bodyTypeRef}/>
-                        </Col>
-                    </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="engine_type">
-                        <Form.Label column sm="4">{subLang.engine_type}</Form.Label>
-                        <Col sm="8">
-                            <Form.Control type="text" ref={engineTypeRef}/>
-                        </Col>
-                    </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="max_speed">
-                        <Form.Label column sm="4">{subLang.max_speed}</Form.Label>
-                        <Col sm="8">
-                            <InputGroup>
-                                <Form.Control type="number" ref={maxSpeedRef}/>
-                                <InputGroup.Text>km/h</InputGroup.Text>
-                            </InputGroup>
-                        </Col>
-                    </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="acceleration">
-                        <Form.Label column sm="4">{subLang.acceleration}</Form.Label>
-                        <Col sm="8">
-                            <InputGroup>
-                                <Form.Control type="number" ref={accelerationRef}/>
-                                <InputGroup.Text>
-                                    <MathJax.Provider>
-                                        <MathJax.Node inline formula='m/s^2'/>
-                                    </MathJax.Provider>
-                                </InputGroup.Text>
-                            </InputGroup>
-                        </Col>
-                    </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="city_fuel">
-                        <Form.Label column sm="4">{subLang.city_fuel}</Form.Label>
-                        <Col sm="8">
-                            <InputGroup>
-                                <Form.Control type="number" ref={cityFuelRef}/>
-                                <InputGroup.Text>
-                                    <MathJax.Provider>
-                                        <MathJax.Node inline formula='l/100km'/>
-                                    </MathJax.Provider>
-                                </InputGroup.Text>
-                            </InputGroup>
-                        </Col>
-                    </Form.Group>
                 </Form>
             </Modal.Body>
             <Modal.Footer>
@@ -242,5 +173,5 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
     )
 }
 
-export default FactoryAddModel
+export default AgencyAddCustomer
 

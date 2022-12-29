@@ -18,6 +18,7 @@ import ModelDisplay from "../display/ModelDisplay";
 import AdminAccounts from "./AdminAccounts";
 import AdminModels from "./AdminModels";
 import AdminProducts from "./AdminProducts";
+import AdminCustomers from "./AdminCustomers";
 import FactoryModels from "./FactoryModels";
 import FactoryProducts from "./FactoryProducts";
 import AgencyModels from "./AgencyModels";
@@ -47,6 +48,7 @@ const System = (probs) => {
                   <Route path={paths.ADMIN_MODELS_SHOW_ONE} component={ModelDisplay} />
                   <Route exact path={paths.ADMIN_MODELS} component={AdminModels} />
                 </Route>
+                <Route path={paths.ADMIN_CUSTOMERS} component={AdminCustomers} />
                 <Route path={paths.FACTORY_MODELS} component={FactoryModels} />
                 <Route path={paths.FACTORY_PRODUCTS} component={FactoryProducts} />
                 <Route path={paths.AGENCY_MODELS} component={AgencyModels} />
