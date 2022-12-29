@@ -174,8 +174,7 @@ const langOfFactoryAddModel = {
 
 const langOfFactoryProducts = {
     ...langOfAdminProducts,
-    import_products_btn: 'Import Products',
-    export_products_btn: 'Export Products',
+    import_products_btn: 'Batch Import Products',
 }
 
 const langOfFactoryImportProducts = {
@@ -184,8 +183,7 @@ const langOfFactoryImportProducts = {
     quantity: 'Quantity',
     cancel: 'Cancel',
     submit: 'Import',
-    import_success: 'Import Products Successfully!',
-    export_products: "Batch Export Products",
+    import_success: 'Batch Import Products Successfully!',
 }
 
 const langOfAgencyModels = {

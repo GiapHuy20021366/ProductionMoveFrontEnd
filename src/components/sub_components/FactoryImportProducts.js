@@ -67,58 +67,58 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
         console.log(modelIdRef.current)
 
         // *** call API to import products
-        await useCallApi(
-            apiUrls.CREATE_PRODUCTS,
-            {
-                products: listNewProducts
-            }
-        ).then(async (data) => {
-            const products = data.data
-            const ids = []
-            products.forEach((product) => { ids.push(product.id) })
-            await useCallApi(
-                apiUrls.GET_CURRENT_PRODUCTS_BY_QUERY,
-                {
-                    associates: {
-                        product: {
-                            model: { factory: true }
-                        },
-                        nowAt: true,
-                        willAt: true,
-                        customer: true
-                    },
-                    attributes: {
-                        id: {
-                            or: ids
-                        }
-                    }
-                }
-            ).then((data) => {
-                console.log(data)
-                const holdersRequest = data.data.rows
-                const products = {}
-                for (const holder of holdersRequest) {
-                    const { product, nowAt, willAt, customer } = holder
-                    product.holders = { nowAt, willAt, customer }
-                    products[product.id] = product
-                }
-                handleResult && handleResult(products)
+        // await useCallApi(
+        //     apiUrls.CREATE_PRODUCTS,
+        //     {
+        //         products: listNewProducts
+        //     }
+        // ).then(async (data) => {
+        //     const products = data.data
+        //     const ids = []
+        //     products.forEach((product) => { ids.push(product.id) })
+        //     await useCallApi(
+        //         apiUrls.GET_CURRENT_PRODUCTS_BY_QUERY,
+        //         {
+        //             associates: {
+        //                 product: {
+        //                     model: { factory: true }
+        //                 },
+        //                 nowAt: true,
+        //                 willAt: true,
+        //                 customer: true
+        //             },
+        //             attributes: {
+        //                 id: {
+        //                     or: ids
+        //                 }
+        //             }
+        //         }
+        //     ).then((data) => {
+        //         console.log(data)
+        //         const holdersRequest = data.data.rows
+        //         const products = {}
+        //         for (const holder of holdersRequest) {
+        //             const { product, nowAt, willAt, customer } = holder
+        //             product.holders = { nowAt, willAt, customer }
+        //             products[product.id] = product
+        //         }
+        //         handleResult && handleResult(products)
 
-                modelIdRef.current.value = ''
-                birthRef.current.value = ''
+        //         modelIdRef.current.value = ''
+        //         birthRef.current.value = ''
 
-                ToastUtil.success(subLang.import_success, 1000);
-                handleClose && handleClose(e)
+        //         ToastUtil.success(subLang.import_success, 1000);
+        //         handleClose && handleClose(e)
 
-            })
-            // console.log(data)
-        }).catch((error) => {
-            console.log(error)
-            const messageResponse = error.response.data.message
-            setErrorMessage(messageResponse)
-        })
+        //     })
+        //     // console.log(data)
+        // }).catch((error) => {
+        //     console.log(error)
+        //     const messageResponse = error.response.data.message
+        //     setErrorMessage(messageResponse)
+        // })
 
-        // testAPI()
+        testAPI()
     }
 
     {
@@ -158,12 +158,6 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
                                     </option>
                                 ))}
                             </Form.Select>
-                        </Col>
-                    </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="produced_factory">
-                        <Form.Label column sm="4">{subLang.produced_factory}</Form.Label>
-                        <Col sm="8">
-                            <Form.Control plaintext readOnly defaultValue={account.name} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="birth">
