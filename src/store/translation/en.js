@@ -58,6 +58,7 @@ const langOfAdminNavigator = {
     manage_accounts: 'Manage Accounts',
     manage_models: 'Manage Models',
     manage_products: 'Manage Products',
+    view_customers: 'Customers Infomation',
 }
 
 const langOfFactoryNavigator = {
@@ -68,18 +69,20 @@ const langOfFactoryNavigator = {
 
 const langOfAgencyNavigator = {
     agency: 'AGENCY',
+    agency_models: 'View Models',
     agency_products: 'Manage Products',
+    agency_customers: 'Manage Customers Info',
 }
 
 const langOfMaintenanceNavigator = {
     maintenance: 'MAINTENANCE CENTER',
+    maintenance_models: 'View Models',
     maintenance_products: 'Manage Maintained Products'
 }
 
-
 const langOfAdminAddAccount = {
     ...langOfAccountInfo,
-    create_success: 'Create Account Successful!',
+    create_success: 'Create Account Successfully!',
     add_new_account: 'Add new account',
     cancel: 'Cancel',
     submit: 'Submit',
@@ -93,23 +96,23 @@ const langOfAdminAccounts = {
 }
 
 const langOfAdminModels = {
-    name: 'Name',
+    manage_models: 'Manage Models',
+    name: 'Model Name',
     sign_name: 'Sign Name',
     generation: 'Generation',
     produced_factory: 'Produced Factory',
     birth: 'Launch Date',
     series: 'Series',
     trim: 'Trim',
-    length: 'Length',
-    width: 'Width',
-    height: 'Height',
+    length: 'Length (mm)',
+    width: 'Width (mm)',
+    height: 'Height (mm)',
     body_type: 'Body Type',
     engine_type: 'Engine Type',
-    max_speed: 'Max Speed',
+    max_speed: 'Max Speed (km/h)',
     acceleration: 'Acceleration',
-    city_fuel: 'City Fuel',
+    city_fuel: 'City Fuel (l/100km)',
     sumary_re: count => `Total of ${count} ${count <= 1 ? 'model' : 'models'}`,
-    manage_models: 'Manage Models'
 }
 
 const langOfAdminProducts = {
@@ -117,6 +120,7 @@ const langOfAdminProducts = {
     model: 'Model',
     produced_factory: 'Produced Factory',
     birth: 'Birthday',
+    state: 'State',
     location: 'Location',
     sumary_re: count => `Total of ${count} ${count <= 1 ? 'product' : 'products'}`,
     moving_to: (partner) => {
@@ -143,6 +147,31 @@ const langOfAdminProducts = {
     customer: 'Customer'
 }
 
+const langOfAdminCustomers = {
+    ...langOfAccountInfo,
+    view_customers: 'Customers Infomation',
+    sumary_re: count => `Total of ${count} ${count <= 1 ? 'customer' : 'customers'}`
+}
+
+const langOfFactoryModels = {
+    ...langOfAdminModels,
+    add_model_btn: 'Add New Model',
+}
+
+const langOfFactoryAddModel = {
+    ...langOfAdminModels,
+    add_new_model: "Add New Model",
+    birth: 'Launch Date',
+    length: 'Length',
+    width: 'Width',
+    height: 'Height',
+    max_speed: 'Max Speed',
+    city_fuel: 'City Fuel',
+    cancel: 'Cancel',
+    submit: 'Add',
+    add_success: 'Add New Model Successfully!',
+}
+
 const langOfFactoryProducts = {
     ...langOfAdminProducts,
     import_products_btn: 'Import Products',
@@ -151,12 +180,36 @@ const langOfFactoryProducts = {
 const langOfFactoryImportProducts = {
     ...langOfAdminProducts,
     import_products: "Batch Import Products",
+    quantity: 'Quantity',
     cancel: 'Cancel',
-    submit: 'Submit',
+    submit: 'Import',
+    import_success: 'Import Products Successfully!',
+}
+
+const langOfAgencyModels = {
+    ...langOfAdminModels,
+    view_models: 'View Models',
 }
 
 const langOfAgencyProducts = {
     ...langOfAdminProducts
+}
+
+const langOfAgencyCustomers = {
+    ...langOfAdminAccounts,
+    manage_customers: 'Manage Customers Info',
+    add_new_customer: 'Add new customer info',
+    sumary_re: count => `Total of ${count} ${count <= 1 ? 'customer' : 'customers'}`
+}
+
+const langOfAgencyAddCustomer = {
+    ...langOfAdminAccounts,
+    add_new_customer: 'New customer information',
+}
+
+const langOfMaintenanceModels = {
+    ...langOfAdminModels,
+    view_models: 'View Models',
 }
 
 const langOfMaintenanceProducts = {
@@ -206,7 +259,6 @@ const langOfProductDisplay = {
         }
         return `Warranty center ${sender?.name} transport product to ${reciever?.name} factory to recall`
     }
-
 }
 
 const en = {
@@ -233,10 +285,19 @@ const en = {
     AdminAccounts: langOfAdminAccounts,
     AdminModels: langOfAdminModels,
     AdminProducts: langOfAdminProducts,
+    AdminCustomers: langOfAdminCustomers,
 
+    FactoryModels: langOfFactoryModels,
+    FactoryAddModel: langOfFactoryAddModel,
     FactoryProducts: langOfFactoryProducts,
     FactoryImportProducts: langOfFactoryImportProducts,
+    
+    AgencyModels: langOfAgencyModels,
     AgencyProducts: langOfAgencyProducts,
+    AgencyCustomers: langOfAgencyCustomers,
+    AgencyAddCustomer: langOfAgencyAddCustomer,
+    
+    MaintenanceModels: langOfMaintenanceModels,
     MaintenanceProducts: langOfMaintenanceProducts,
 }
 

@@ -15,23 +15,23 @@ import TableBase from "../sub_components/Table";
 import { textFilter, selectFilter } from "react-bootstrap-table2-filter";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
-import AdminAddAccount from "../sub_components/AdminAddAccount";
+import AgencyAddCustomer from "../sub_components/AgencyAddCustomer"
 import AccountDisplay from "../display/AccountDisplay";
 
-const AdminAccounts = () => {
+const AgencyCustomers = () => {
+    const subLang = useSelector(state => state.lang.AgencyCustomers)
     const account = useSelector(state => state.user.account)
-    const subLang = useSelector(state => state.lang.AdminAccounts)
     const deviceType = useSelector(state => state.device.type)
-    const [listPartners, setListPartners] = useState({})
+    const [listCustomers, setListCustomers] = useState({})
     const [partnersloading, setPartnersLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
-    const [arrayPartners, setArrayPartners] = useState([])
-    const [showCreateAccount, setShowCreateAccount] = useState(false)
-    const [showAccountDetail, setShowAccountDetail] = useState(false)
+    const [arrayCustomers, setArrayCustomers] = useState([])
+    const [showAddCustomer, setShowAddCustomer] = useState(false)
+    const [showCustomerDetail, setShowCustomerDetail] = useState(false)
     const [choosedRow, setChoosedRow] = useState({})
 
     // *** prevent another role from accessing to link which just only for admin ***
-    if (account?.role !== 1) {
+    if (account?.role !== 3) {
         return (
             <Redirect to={paths.SYSTEM} />
         )
@@ -42,7 +42,10 @@ const AdminAccounts = () => {
         setErrorMessage('')
         setPartnersLoading(true)
         await useCallApi(
-            apiUrls.GET_PARTNERS_BY_QUERY,
+            apiUrls.GET_CUSTOMERS_BY_QUERY,
+            // {
+            //     purchases
+            // }
         ).then((data) => {
             setPartnersLoading(false)
             const partnersRequest = data.data.rows
@@ -50,8 +53,8 @@ const AdminAccounts = () => {
             for (const partner of partnersRequest) {
                 partners[partner.id] = partner
             }
-            setListPartners({
-                ...listPartners,
+            setListCustomers({
+                ...listCustomers,
                 ...partners
             })
         }).catch((error) => {
@@ -76,14 +79,14 @@ const AdminAccounts = () => {
     // *** update table of list products when numOfProduct or language is changed ***
     useEffect(() => {
         const transPartners = []
-        Object.values(listPartners).forEach((partner) => {
+        Object.values(listCustomers).forEach((partner) => {
             transPartners.push({
                 ...partner,
                 role: getRole(partner.role)
             })
         })
-        setArrayPartners(transPartners)
-    }, [subLang, listPartners])
+        setArrayCustomers(transPartners)
+    }, [subLang, listCustomers])
 
     const selectOptions = {
         options: {
@@ -123,27 +126,27 @@ const AdminAccounts = () => {
     })()
 
     // *** update new account -> to table of accounts list -> when add new account ***
-    const handleResult = (newAccount) => {
-        const listCopy = { ...listPartners }
-        listCopy[newAccount.id] = newAccount
-        setListPartners(listCopy)
+    const handleResult = (newCustomer) => {
+        const listCopy = { ...listCustomers }
+        listCopy[newCustomer.id] = newCustomer
+        setListCustomers(listCopy)
     }
 
     const closeModalCreateAccount = (e) => {
-        setShowCreateAccount(false)
+        setShowAddCustomer(false)
     }
 
     const closeModalAccountDetail = () => {
-        setShowAccountDetail(false)
+        setShowCustomerDetail(false)
     }
 
     const openModalCreateAccount = () => {
-        setShowCreateAccount(true)
+        setShowAddCustomer(true)
     }
 
     const rowEvents = {
         onClick: (e, row, rowIndex) => {
-            setShowAccountDetail(true)
+            setShowCustomerDetail(true)
             setChoosedRow(row)
         }
     };
@@ -151,29 +154,29 @@ const AdminAccounts = () => {
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 className="h3 mb-0 text-gray-800">{subLang.manage_accounts}</h1>
+                <h1 className="h3 mb-0 text-gray-800">{subLang.manage_customers}</h1>
             </div>
 
             {/* Button Create Account */}
-            <button className="btn btn-primary" onClick={() => openModalCreateAccount()}>{subLang.add_new_account}</button>
+            <button className="btn btn-primary" onClick={() => openModalCreateAccount()}>{subLang.add_new_customer}</button>
 
             {/* Popup Form **************************************************************** */}
             {
-                <AdminAddAccount
+                <AgencyAddCustomer
                     handleResult={handleResult}
                     handleClose={closeModalCreateAccount}
-                    show={showCreateAccount} />
+                    show={showAddCustomer} />
             }
 
             <AccountDisplay
                 handleClose={closeModalAccountDetail}
-                show={showAccountDetail}
+                show={showCustomerDetail}
                 row={choosedRow}
             />
 
             <TableBase
-                title={`${subLang.sumary_re(arrayPartners.length)}`}
-                data={arrayPartners}
+                title={`${subLang.sumary_re(arrayCustomers.length)}`}
+                data={arrayCustomers}
                 columns={columns}
                 isLoading={partnersloading}
                 getBtn={{ display: 'none' }}
@@ -184,4 +187,4 @@ const AdminAccounts = () => {
     )
 }
 
-export default AdminAccounts
+export default AgencyCustomers

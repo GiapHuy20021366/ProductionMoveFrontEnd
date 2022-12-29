@@ -24,6 +24,9 @@ const AdminNavigator = (probs) => {
     const onClickProducts = () => {
         history.push(paths.ADMIN_PRODUCTS)
     }
+    const onClickCustomers = () => {
+        history.push(paths.ADMIN_CUSTOMERS)
+    }
 
     return (
         <>
@@ -44,6 +47,11 @@ const AdminNavigator = (probs) => {
                 pathname={paths.ADMIN_PRODUCTS}
                 onClickFunc={onClickProducts}
                 title={subLang.manage_products}
+            />
+            <NavItem
+                pathname={paths.ADMIN_CUSTOMERS}
+                onClickFunc={onClickCustomers}
+                title={subLang.view_customers}
             />
         </>
     )

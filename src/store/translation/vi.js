@@ -57,24 +57,28 @@ const langOfAdminNavigator = {
     admin: 'Quản trị viên',
     manage_accounts: 'Quản lý tài khoản',
     manage_models: 'Quản lý dòng sản phẩm',
-    manage_products: 'Quản lý sản phẩm'
+    manage_products: 'Quản lý sản phẩm',
+    view_customers: 'Thông tin khách hàng',
 }
 
 const langOfFactoryNavigator = {
     factory: 'Cơ sở sản xuất',
+    factory_models: 'Quản lý dòng sản phẩm',
     factory_products: 'Quản lý sản phẩm',
 }
 
 const langOfAgencyNavigator = {
     agency: 'Đại lý phân phối',
+    agency_models: 'Các dòng sản phẩm',
     agency_products: 'Quản lý sản phẩm',
+    agency_customers: 'Quản lý thông tin khách hàng',
 }
 
 const langOfMaintenanceNavigator = {
     maintenance: 'Trung tâm bảo hành',
+    maintenance_models: 'Các dòng sản phẩm',
     maintenance_products: 'Quản lý sản phẩm bảo hành'
 }
-
 
 const langOfAdminAddAccount = {
     ...langOfAccountInfo,
@@ -99,14 +103,14 @@ const langOfAdminModels = {
     birth: 'Ngày ra mắt',
     series: 'Phiên bản',
     trim: 'Trim',
-    length: 'Chiều dài',
-    width: 'Chiều rộng',
-    height: 'Chiều cao',
+    length: 'Chiều dài (mm)',
+    width: 'Chiều rộng (mm)',
+    height: 'Chiều cao (mm)',
     body_type: 'Loại thân xe',
     engine_type: 'Loại động cơ',
-    max_speed: 'Tốc độ tối đa',
+    max_speed: 'Tốc độ tối đa (km/h)',
     acceleration: 'Gia tốc',
-    city_fuel: 'Nhiên liệu tiêu thụ',
+    city_fuel: 'Nhiên liệu tiêu thụ (l/100km)',
     sumary_re: count => `Tổng số ${count} dòng sản phẩm`,
     manage_models: 'Quản lý các dòng sản phẩm'
 }
@@ -116,6 +120,7 @@ const langOfAdminProducts = {
     model: 'Tên & Mã dòng sản phẩm',
     produced_factory: 'Nhà máy sản xuất',
     birth: 'Ngày sản xuất',
+    state: 'Trạng thái',
     location: 'Vị trí',
     sumary_re: count => `Tổng số ${count} sản phẩm`,
     moving_to: (partner) => {
@@ -138,11 +143,76 @@ const langOfAdminProducts = {
     },
     factory: 'Nhà máy',
     agency: 'Đại lý',
-    maintain_center: 'TTBH',
-    customer: 'Khách h'
+    maintain_center: 'Trung tâm bảo hành',
+    customer: 'Khách hàng'
+}
+
+const langOfAdminCustomers = {
+    ...langOfAccountInfo,
+    view_customers: 'Thông tin khách hàng',
+    sumary_re: count => `Tổng số ${count} 'khách hàng'`
+}
+
+const langOfFactoryModels = {
+    ...langOfAdminModels,
+    add_model_btn: 'Thêm dòng sản phẩm mới',
+}
+
+const langOfFactoryAddModel = {
+    ...langOfAdminModels,
+    add_new_model: "Thêm dòng sản phẩm mới",
+    birth: 'Ngày ra mắt',
+    length: 'Chiều dài',
+    width: 'Chiều rộng',
+    height: 'Chiều cao',
+    max_speed: 'Tốc độ tối đa',
+    city_fuel: 'Nhiên liệu tiêu thụ',
+    cancel: 'Hủy',
+    submit: 'Thêm',
+    add_success: 'Thêm dòng sản phẩm mới thành công!',
 }
 
 const langOfFactoryProducts = {
+    ...langOfAdminProducts,
+    import_products_btn: 'Nhập lô sản phẩm',
+}
+
+const langOfFactoryImportProducts = {
+    ...langOfAdminProducts,
+    import_products: "Nhập lô sản phẩm",
+    quantity: 'Số lượng',
+    cancel: 'Hủy',
+    submit: 'Nhập',
+    import_success: 'Nhập lô sản phẩm thành công!',
+}
+
+const langOfAgencyModels = {
+    ...langOfAdminModels,
+    view_models: 'Các dòng sản phẩm',
+}
+
+const langOfAgencyProducts = {
+    ...langOfAdminProducts
+}
+
+const langOfAgencyCustomers = {
+    ...langOfAdminAccounts,
+    manage_customers: 'Quản lý thông tin khách hàng',
+    add_new_customer: 'Thêm thông tin khách hàng mới',
+    sumary_re: count => `Total of ${count} ${count <= 1 ? 'customer' : 'customers'}`
+}
+
+const langOfAgencyAddCustomer = {
+    ...langOfAdminAccounts,
+    add_new_customer: 'Thêm thông tin khách hàng',
+}
+
+const langOfMaintenanceModels = {
+    ...langOfAdminModels,
+    view_models: 'Các dòng sản phẩm',
+}
+
+const langOfMaintenanceProducts = {
     ...langOfAdminProducts
 }
 
@@ -217,8 +287,20 @@ const vi = {
     AdminAccounts: langOfAdminAccounts,
     AdminModels: langOfAdminModels,
     AdminProducts: langOfAdminProducts,
+    AdminCustomers: langOfAdminCustomers,
 
+    FactoryModels: langOfFactoryModels,
+    FactoryAddModel: langOfFactoryAddModel,
     FactoryProducts: langOfFactoryProducts,
+    FactoryImportProducts: langOfFactoryImportProducts,
+    
+    AgencyModels: langOfAgencyModels,
+    AgencyProducts: langOfAgencyProducts,
+    AgencyCustomers: langOfAgencyCustomers,
+    AgencyAddCustomer: langOfAgencyAddCustomer,
+    
+    MaintenanceModels: langOfMaintenanceModels,
+    MaintenanceProducts: langOfMaintenanceProducts,
 }
 
 export default vi
