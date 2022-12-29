@@ -83,7 +83,7 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, c
               }}
               disabled={choose ? false : true}
               >
-              <i class="fa-solid fa-car-side"></i>
+              <i className="fa-solid fa-car-side"></i>
             </Button>
           </OverlayTrigger>
         }
