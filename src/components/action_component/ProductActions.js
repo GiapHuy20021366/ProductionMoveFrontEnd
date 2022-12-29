@@ -9,6 +9,7 @@ import paginationFactory from "react-bootstrap-table2-paginator";
 import FactoryActions from './FactoryActions';
 import AgencyActions from './AgencyActions';
 import { async } from "q";
+import ToastUtil from '../../untils/toastUtil';
 import { Button, Modal, Form, Col, Row } from "react-bootstrap";
 
 const pagination = paginationFactory({
@@ -19,7 +20,8 @@ const pagination = paginationFactory({
     alwaysShowAllBtns: false,
 });
 
-const ProductActions = ({ show, handleClose, rows, columns, onClickSubmit, subLang = useSelector(state => state.lang.ProductActions)}) => {
+const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
+    const subLang = useSelector(state => state.lang.ModelDisplay) // Language here
     const account = useSelector(state => state.user.account)
     if (account.role === roles.FACTORY) {
         subLang = useSelector(state => state.lang.FactoryActions)
@@ -48,16 +50,49 @@ const ProductActions = ({ show, handleClose, rows, columns, onClickSubmit, subLa
     // const getActions = () => {
 
     // }
+    const actionRef = useRef()
 
     const handleAction = async () => {
-        if (action) {
-            const result = await action()
-            console.log(result)
+        if (actionRef.current) {
+            await actionRef.current().then(async (productIds) => {
+                await useCallApi(
+                    apiUrls.GET_CURRENT_PRODUCTS_BY_QUERY,
+                    {
+                        associates: {
+                            product: {
+                                model: { factory: true }
+                            },
+                            nowAt: true,
+                            willAt: true,
+                            customer: true
+                        },
+                        attributes: {
+                            id: {
+                                or: productIds
+                            }
+                        }
+                    }
+                ).then((data) => {
+                    const holdersRequest = data.data.rows
+                    const products = {}
+                    for (const holder of holdersRequest) {
+                        const { product, nowAt, willAt, customer } = holder
+                        product.holders = { nowAt, willAt, customer }
+                        products[product.id] = product
+                    }
+                    handleResult && handleResult(products)
+
+                    ToastUtil.success('Bảo hành sản phẩm thành công', 1000);
+                    handleClose && handleClose()
+                })
+            }).catch((error) => {
+                console.log(error)
+            })
         }
     }
 
-    const regisAction = (action) => {
-        setAction(action)
+    const regisAction = (actionR) => {
+        actionRef.current = actionR
     }
 
     return (
@@ -91,8 +126,10 @@ const ProductActions = ({ show, handleClose, rows, columns, onClickSubmit, subLa
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>{subLang.cancel}</Button>
-                    <Button variant="primary" onClick={onClickSubmit}>{subLang.submit}</Button>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Cancel
+                    </Button>
+                    <Button variant="primary" onClick={handleAction}>Hoan tat</Button>
                 </Modal.Footer>
             </Modal>
         </>
