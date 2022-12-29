@@ -34,6 +34,19 @@ const SystemNagivator = (probs) => {
     history.push(paths.ACCOUNT)
   }
 
+  const onClickToggle = () => {
+    console.log(document.getElementById('accordionSidebar').getAttribute('class'))
+    let x = document.getElementById('accordionSidebar').getAttribute('class')
+    let check = x.indexOf('toggled');
+    if (check != -1){
+      let y = x.substring(0, check-1)
+      document.getElementById('accordionSidebar').setAttribute('class', y)
+    } else {
+      let y = x + " toggled"
+      document.getElementById('accordionSidebar').setAttribute('class',y)
+    }
+  }
+
   return (
     <ul
       className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
@@ -100,6 +113,18 @@ const SystemNagivator = (probs) => {
           <MaintenanceCenterNav /> :
           <></>
       }
+
+
+      <hr className="sidebar-divider d-none d-md-block"/>
+
+      <div className="text-center d-none d-md-inline">
+          <button 
+            className="rounded-circle border-0"
+            id="sidebarToggle"
+            onClick={onClickToggle} 
+          >
+          </button>
+      </div>
     </ul>
   );
 };
