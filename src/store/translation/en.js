@@ -119,7 +119,7 @@ const langOfAdminProducts = {
     manage_products: 'Manage Products',
     model: 'Model',
     produced_factory: 'Produced Factory',
-    birth: 'Birthday',
+    birth: 'Manufactured date',
     state: 'State',
     location: 'Location',
     sumary_re: count => `Total of ${count} ${count <= 1 ? 'product' : 'products'}`,
@@ -175,6 +175,7 @@ const langOfFactoryAddModel = {
 const langOfFactoryProducts = {
     ...langOfAdminProducts,
     import_products_btn: 'Import Products',
+    export_products_btn: 'Export Products',
 }
 
 const langOfFactoryImportProducts = {
@@ -184,6 +185,17 @@ const langOfFactoryImportProducts = {
     cancel: 'Cancel',
     submit: 'Import',
     import_success: 'Import Products Successfully!',
+    export_products: "Batch Export Products",
+}
+
+const langOfFactoryExportProducts = {
+    ...langOfAdminProducts,
+    export_products: "Batch Export Products",
+    quantity: 'Quantity',
+    cancel: 'Cancel',
+    submit: 'Export',
+    import_success: 'Export Products Successfully!',
+    destination_agency: 'Destination Agency',
 }
 
 const langOfAgencyModels = {
@@ -297,6 +309,7 @@ const en = {
     FactoryAddModel: langOfFactoryAddModel,
     FactoryProducts: langOfFactoryProducts,
     FactoryImportProducts: langOfFactoryImportProducts,
+    FactoryExportProducts: langOfFactoryExportProducts,
     
     AgencyModels: langOfAgencyModels,
     AgencyProducts: langOfAgencyProducts,
