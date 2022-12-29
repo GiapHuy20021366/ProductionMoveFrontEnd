@@ -68,11 +68,14 @@ const langOfFactoryNavigator = {
 
 const langOfAgencyNavigator = {
     agency: 'AGENCY',
+    agency_models: 'View Models',
     agency_products: 'Manage Products',
+    agency_customers: 'Manage Customers Info',
 }
 
 const langOfMaintenanceNavigator = {
     maintenance: 'MAINTENANCE CENTER',
+    maintenance_models: 'View Models',
     maintenance_products: 'Manage Maintained Products'
 }
 
@@ -173,10 +176,26 @@ const langOfFactoryImportProducts = {
     quantity: 'Quantity',
     cancel: 'Cancel',
     submit: 'Import',
+    import_success: 'Import Products Successfully!',
+}
+
+const langOfAgencyModels = {
+    ...langOfAdminModels,
+    view_models: 'View Models',
 }
 
 const langOfAgencyProducts = {
     ...langOfAdminProducts
+}
+
+const langOfAgencyCustomers = {
+    ...langOfAdminAccounts,
+    manage_customers: 'Manage Customers',
+}
+
+const langOfMaintenanceModels = {
+    ...langOfAdminModels,
+    view_models: 'View Models',
 }
 
 const langOfMaintenanceProducts = {
@@ -226,7 +245,6 @@ const langOfProductDisplay = {
         }
         return `Warranty center ${sender?.name} transport product to ${reciever?.name} factory to recall`
     }
-
 }
 
 const en = {
@@ -258,7 +276,12 @@ const en = {
     FactoryAddModel: langOfFactoryAddModel,
     FactoryProducts: langOfFactoryProducts,
     FactoryImportProducts: langOfFactoryImportProducts,
+    
+    AgencyModels: langOfAgencyModels,
     AgencyProducts: langOfAgencyProducts,
+    AgencyCustomers: langOfAgencyCustomers,
+    
+    MaintenanceModels: langOfMaintenanceModels,
     MaintenanceProducts: langOfMaintenanceProducts,
 }
 

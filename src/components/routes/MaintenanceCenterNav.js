@@ -14,6 +14,10 @@ import NavItem from "./NavItem";
 const MaintenanceNavigator = (probs) => {
     const subLang = useSelector(state => state.lang.MaintenanceNavigator)
     const history = probs.history
+    const onClickModels = () => {
+        history.push(paths.MAINTENANCE_MODELS)
+        console.log(history)
+    }
     const onClickProducts = () => {
         history.push(paths.MAINTENANCE_PRODUCTS)
         console.log(history)
@@ -24,6 +28,11 @@ const MaintenanceNavigator = (probs) => {
             <hr className="sidebar-divider" />
             <div className="sidebar-heading">{subLang.maintenance}</div>
 
+            <NavItem
+                pathname = {paths.MAINTENANCE_MODELS}
+                onClickFunc = {onClickModels}
+                title = {subLang.maintenance_models}
+            />
             <NavItem
                 pathname = {paths.MAINTENANCE_PRODUCTS}
                 onClickFunc = {onClickProducts}

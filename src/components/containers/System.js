@@ -18,10 +18,13 @@ import ModelDisplay from "../display/ModelDisplay";
 import AdminAccounts from "./AdminAccounts";
 import AdminModels from "./AdminModels";
 import AdminProducts from "./AdminProducts";
-import FactoryProducts from "./FactoryProducts";
-import AgencyProducts from "./AgencyProducts";
-import MaintenanceProducts from "./MaintenanceProducts";
 import FactoryModels from "./FactoryModels";
+import FactoryProducts from "./FactoryProducts";
+import AgencyModels from "./AgencyModels";
+import AgencyProducts from "./AgencyProducts";
+import AgencyCustomers from "./AgencyCustomers";
+import MaintenanceModels from "./MaintenanceModels";
+import MaintenanceProducts from "./MaintenanceProducts";
 
 const System = (probs) => {
   return (
@@ -46,17 +49,20 @@ const System = (probs) => {
                 </Route>
                 <Route path={paths.FACTORY_MODELS} component={FactoryModels} />
                 <Route path={paths.FACTORY_PRODUCTS} component={FactoryProducts} />
+                <Route path={paths.AGENCY_MODELS} component={AgencyModels} />
                 <Route path={paths.AGENCY_PRODUCTS} component={AgencyProducts} />
+                <Route path={paths.AGENCY_CUSTOMERS} component={AgencyCustomers} />
+                <Route path={paths.MAINTENANCE_MODELS} component={MaintenanceModels} />
                 <Route path={paths.MAINTENANCE_PRODUCTS} component={MaintenanceProducts} />
               </Switch>
             </div>
-            {/* <footer className="sticky-footer bg-white">
+            <footer className="sticky-footer bg-white">
               <div className="container my-auto">
                 <div className="copyright text-center my-auto">
-                  <span>Copyright &copy; Your Website 2021</span>
+                  <span>Copyright &copy; BigCorp 2023 - Design by UET Team </span>
                 </div>
               </div>
-            </footer> */}
+            </footer>
         </div>
       </div>
     </div>

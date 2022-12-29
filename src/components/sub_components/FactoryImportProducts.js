@@ -10,38 +10,30 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
     const subLang = useSelector(state => state.lang.FactoryImportProducts)
     const account = useSelector(state => state.user.account)
 
-    const userNameRef = useRef()
-    const passwordRef = useRef()
-    const emailRef = useRef()
-    const nameRef = useRef()
-    const phoneRef = useRef()
-    const addressRef = useRef()
-    const roleRef = useRef()
+    const quantityRef = useRef()
+    const modelNameRef = useRef()
+    const birthRef = useRef()
+    const stateRef = useRef()
 
     const [errorMessage, setErrorMessage] = useState('')
 
     const onClickSubmit = async (e) => {
         setErrorMessage('')
-        const newAcc = {
-            userName: userNameRef.current.value,
-            password: passwordRef.current.value,
-            email: emailRef.current.value,
-            name: nameRef.current.value,
-            address: addressRef.current.value,
-            phone: phoneRef.current.value,
-            role: roleRef.current.value
+        const newProduct = {
+            modelId: modelNameRef.current.value,
+            birth: birthRef.current.value,
+            quantity: quantityRef.current.value,
+            state: stateRef.current.value,
         }
 
         const testAPI = () => {
-            Promise.resolve(newAcc).then((data) => {
-                userNameRef.current.value = ''
-                passwordRef.current.value = ''
-                emailRef.current.value = ''
-                nameRef.current.value = ''
-                addressRef.current.value = ''
-                phoneRef.current.value = ''
+            Promise.resolve(newProduct).then((data) => {
+                modelNameRef.current.value = ''
+                birthRef.current.value = ''
+                quantityRef.current.value = ''
+                stateRef.current.value = ''
 
-                ToastUtil.success(subLang.create_success, 1000);
+                ToastUtil.success(subLang.import_success, 1000);
                 handleClose && handleClose()
             }).catch((error) => {
                 const messageResponse = error.response.data.message
@@ -50,22 +42,21 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
         }
 
         // await useCallApi(
-        //     apiUrls.CREATE_PARTNER,
-        //     newAcc
+        //     apiUrls.CREATE_PRODUCTS,
+        //     newProduct
         // ).then((data) => {
         //     handleResult && handleResult({
-        //         ...newAcc,
+        //         ...newProduct,
         //         id: data.data.id
         //     })
 
-        //     userNameRef.current.value = ''
-        //     passwordRef.current.value = ''
-        //     emailRef.current.value = ''
-        //     nameRef.current.value = ''
-        //     addressRef.current.value = ''
-        //     phoneRef.current.value = ''
+        //     quantityRef.current.value = ''
+        //     modelNameRef.current.value = ''
+        //     factoryRef.current.value = ''
+        //     birthRef.current.value = ''
+        //     stateRef.current.value = ''
 
-        //     ToastUtil.success(subLang.create_success, 1000);
+        //     ToastUtil.success(subLang.import_success, 1000);
         //     handleClose && handleClose(e)
         //     window.document.body.querySelector('.modal-backdrop').remove()
         //     window.document.body.classList.remove('modal-open')

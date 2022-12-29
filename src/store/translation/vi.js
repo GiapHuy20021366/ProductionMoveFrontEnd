@@ -68,11 +68,14 @@ const langOfFactoryNavigator = {
 
 const langOfAgencyNavigator = {
     agency: 'Đại lý phân phối',
+    agency_models: 'Các dòng sản phẩm',
     agency_products: 'Quản lý sản phẩm',
+    agency_customers: 'Quản lý thông tin khách hàng',
 }
 
 const langOfMaintenanceNavigator = {
     maintenance: 'Trung tâm bảo hành',
+    maintenance_models: 'Các dòng sản phẩm',
     maintenance_products: 'Quản lý sản phẩm bảo hành'
 }
 
@@ -139,8 +142,8 @@ const langOfAdminProducts = {
     },
     factory: 'Nhà máy',
     agency: 'Đại lý',
-    maintain_center: 'TTBH',
-    customer: 'Khách h'
+    maintain_center: 'Trung tâm bảo hành',
+    customer: 'Khách hàng'
 }
 
 const langOfFactoryModels = {
@@ -164,7 +167,7 @@ const langOfFactoryAddModel = {
 
 const langOfFactoryProducts = {
     ...langOfAdminProducts,
-    import_products_btn: 'Nhập liệu',
+    import_products_btn: 'Nhập lô sản phẩm',
 }
 
 const langOfFactoryImportProducts = {
@@ -172,11 +175,22 @@ const langOfFactoryImportProducts = {
     import_products: "Nhập lô sản phẩm",
     quantity: 'Số lượng',
     cancel: 'Hủy',
-    submit: 'Nạp',
+    submit: 'Nhập',
+    import_success: 'Nhập lô sản phẩm thành công!',
+}
+
+const langOfAgencyModels = {
+    ...langOfAdminModels,
+    view_models: 'Các dòng sản phẩm',
 }
 
 const langOfAgencyProducts = {
     ...langOfAdminProducts
+}
+
+const langOfMaintenanceModels = {
+    ...langOfAdminModels,
+    view_models: 'Các dòng sản phẩm',
 }
 
 const langOfMaintenanceProducts = {
@@ -259,7 +273,11 @@ const vi = {
     FactoryAddModel: langOfFactoryAddModel,
     FactoryProducts: langOfFactoryProducts,
     FactoryImportProducts: langOfFactoryImportProducts,
+    
+    AgencyModels: langOfAgencyModels,
     AgencyProducts: langOfAgencyProducts,
+    
+    MaintenanceModels: langOfMaintenanceModels,
     MaintenanceProducts: langOfMaintenanceProducts,
 }
 

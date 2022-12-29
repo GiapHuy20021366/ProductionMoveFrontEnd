@@ -36,7 +36,6 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
             name: modelNameRef.current.value,
             signName: signNameRef.current.value,
             generation: generationRef.current.value,
-            factory: factoryRef.current.value,
             birth: birthRef.current.value,
             series: seriesRef.current.value,
             length: lengthRef.current.value,
@@ -46,7 +45,7 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
             bodyType: bodyTypeRef.current.value,
             engineType: engineTypeRef.current.value,
             // boostType: boostTypeRef.current.value,
-            maxspeed: maxSpeedRef.current.value,
+            // maxSpeed: maxSpeedRef.current.value,
             accceleration: accelerationRef.current.value,
             cityFuel: cityFuelRef.current.value
         }
@@ -58,7 +57,6 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
                 modelNameRef.current.value = ''
                 signNameRef.current.value = ''
                 generationRef.current.value = ''
-                factoryRef.current.value = ''
                 birthRef.current.value = ''
                 seriesRef.current.value = ''
                 lengthRef.current.value = ''
@@ -66,7 +64,6 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
                 heightRef.current.value = ''
                 bodyTypeRef.current.value = ''
                 engineTypeRef.current.value = ''
-                maxSpeedRef.current.value = ''
                 accelerationRef.current.value = ''
                 cityFuelRef.current.value = ''
 
@@ -92,23 +89,18 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
             modelNameRef.current.value = ''
             signNameRef.current.value = ''
             generationRef.current.value = ''
-            // factoryRef.current.value = ''
             birthRef.current.value = ''
-            // seriesRef.current.value = ''
-            // lengthRef.current.value = ''
-            // widthRef.current.value = ''
-            // heightRef.current.value = ''
-            // bodyTypeRef.current.value = ''
-            // engineTypeRef.current.value = ''
-            // maxSpeedRef.current.value = ''
-            // accelerationRef.current.value = ''
-            // cityFuelRef.current.value = ''
+            seriesRef.current.value = ''
+            lengthRef.current.value = ''
+            widthRef.current.value = ''
+            heightRef.current.value = ''
+            bodyTypeRef.current.value = ''
+            engineTypeRef.current.value = ''
+            accelerationRef.current.value = ''
+            cityFuelRef.current.value = ''
 
             ToastUtil.success(subLang.add_success, 1000);
             handleClose && handleClose(e)
-            window.document.body.querySelector('.modal-backdrop').remove()
-            window.document.body.classList.remove('modal-open')
-            window.document.body.style = null
         }).catch((error) => {
             console.log(error)
             const messageResponse = error.response.data.message

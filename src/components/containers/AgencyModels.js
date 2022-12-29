@@ -18,10 +18,9 @@ import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import { useHistory } from 'react-router-dom';
 import ModelDisplay from "../display/ModelDisplay";
-import FactoryAddModel from "../sub_components/FactoryAddModel"
 
-const FactoryModels = (probs) => {
-    const subLang = useSelector(state => state.lang.FactoryModels)
+const AgencyModels = (probs) => {
+    const subLang = useSelector(state => state.lang.AgencyModels)
     const account = useSelector(state => state.user.account)
     const [listModels, setListModels] = useState({})
     const [modelsLoading, setModelsLoading] = useState(false)
@@ -32,7 +31,7 @@ const FactoryModels = (probs) => {
     const [showModal, setShowModal] = useState(false)
 
     // *** prevent another role from accessing to link which just only for admin ***
-    if (account?.role !== 2) {
+    if (account?.role !== 3) {
         return (
             <Redirect to={paths.SYSTEM} />
         )
@@ -137,21 +136,9 @@ const FactoryModels = (probs) => {
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 className="h3 mb-0 text-gray-800">{subLang.manage_models}</h1>
+                <h1 className="h3 mb-0 text-gray-800">{subLang.view_models}</h1>
             </div>
 
-            {/* Button Import Models Data */}
-            <button className="btn btn-primary" onClick={() => onClickModalBtn()}>{subLang.add_model_btn}</button>
-
-            {/* Popup Form **************************************************************** */}
-            {
-                <FactoryAddModel
-                    handleResult={handleResult}
-                    handleClose={handleCloseModal}
-                    show={showModal} 
-                />
-            }
-            
             <ModelDisplay
                 show={showDetail}
                 row={choosedRow}
@@ -169,4 +156,4 @@ const FactoryModels = (probs) => {
     )
 }
 
-export default FactoryModels
+export default AgencyModels

@@ -7,9 +7,12 @@ export const paths = {
     ADMIN_MODELS_SHOW_ONE: '/system/admin/models/detail',
     ADMIN_MODELS: '/system/admin/models',
     ADMIN_PRODUCTS: '/system/admin/products',
-    FACTORY_PRODUCTS: '/system/factory/products',
     FACTORY_MODELS: '/system/factory/models',
+    FACTORY_PRODUCTS: '/system/factory/products',
+    AGENCY_MODELS: '/system/agency/models',
     AGENCY_PRODUCTS: '/system/agency/products',
+    AGENCY_CUSTOMERS: '/system/agency/customers',
+    MAINTENANCE_MODELS: '/system/maintenance/models',
     MAINTENANCE_PRODUCTS: '/system/maintenance/products'
 }
 
@@ -25,6 +28,7 @@ export const apiUrls = {
     GET_PARTNERS_BY_QUERY: '/api/get-partners-by-query',
     CREATE_PARTNER: '/api/create-partner',
     CREATE_MODEL: '/api/create-model',
+    CREATE_PRODUCTS: '/api/create-products',
     GET_MODELS_BY_QUERY: '/api/get-models-by-query',
     GET_MODELS_BY_IDS: '/api/get-models-by-ids',
     GET_PRODUCTS_BY_QUERY: '/api/get-products-by-query',
