@@ -20,8 +20,10 @@ const ProductDisplay = ({ show, handleClose, row }) => {
     })
 
     const parseHistory = (product) => {
+
         const history = []
         history.push({
+            id: 0,
             key: 'BIRTH',
             time: product.birth,
             factory: product?.model?.factory
@@ -62,7 +64,8 @@ const ProductDisplay = ({ show, handleClose, row }) => {
                 const sample = {
                     time: _export.date,
                     sender: _export.sender,
-                    reciever: _export.reciever
+                    reciever: _export.reciever,
+                    isExport: true
                 }
                 switch (_export.type) {
                     case 0: {
@@ -90,6 +93,12 @@ const ProductDisplay = ({ show, handleClose, row }) => {
                     }
                 }
                 history.push(sample)
+                if (sample.isExport && sample.reciever) {
+                    history.push({
+                        ...sample,
+                        key: 'RECIEVED_PRODUCT'
+                    })
+                }
             }
         }
         history.sort((a, b) => Date.parse(a.time) - Date.parse(b.time))
@@ -193,7 +202,8 @@ const ProductDisplay = ({ show, handleClose, row }) => {
                             <h5>{subLang.history}</h5>
                             <ul className='timeline'>
                                 {
-                                    product?.history?.map((event) => {
+                                    product?.history?.map((event, index) => {
+
                                         const title = (() => {
                                             switch (event.key) {
                                                 case 'BIRTH': {
@@ -223,11 +233,17 @@ const ProductDisplay = ({ show, handleClose, row }) => {
                                                 case 'RECALL_MOVING': {
                                                     return subLang.recall_moving(event.sender, event.reciever, event.isFromAgency)
                                                 }
+                                                case 'RECIEVED_PRODUCT': {
+                                                    if (event.reciever) {
+                                                        return subLang.recieved_product(event.sender, event.reciever, roles)
+                                                    }
+                                                }
                                             }
                                             return event.key
                                         })();
+
                                         return (
-                                            <li key={event.time} className='moment'>
+                                            <li key={index} className='moment'>
                                                 <h5 className='moment-title'>{event.time}</h5>
                                                 <div className='moment-content'>
                                                     {

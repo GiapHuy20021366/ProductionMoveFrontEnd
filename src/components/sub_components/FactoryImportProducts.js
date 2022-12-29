@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import '../../styles/AdminAddAccount.scss'
 import ToastUtil from "../../untils/toastUtil";
@@ -11,27 +11,51 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
     const account = useSelector(state => state.user.account)
 
     const quantityRef = useRef()
-    const modelNameRef = useRef()
+    const modelIdRef = useRef()
     const birthRef = useRef()
-    const stateRef = useRef()
 
     const [errorMessage, setErrorMessage] = useState('')
+    const [errorMessage2, setErrorMessage2] = useState('')
+    const [listModels, setListModels] = useState([])
 
+    // *** Get listModels by factoryId
+    useEffect(async () => {
+        setErrorMessage2('')
+        await useCallApi(
+            apiUrls.GET_MODELS_BY_QUERY,
+            {
+                attributes: {
+                    factoryId: { eq: account.id }
+                }
+            }
+        ).then((data) => {
+            console.log("models:")
+            console.log(data)
+            setListModels(data.data.rows)
+        }).catch((error) => {
+            console.log(error)
+            const messageResponse2 = error.response.data.message
+            setErrorMessage2(messageResponse2)
+        })
+    }, [])
+
+    // *** call API to import products
     const onClickSubmit = async (e) => {
         setErrorMessage('')
+        const quantity = quantityRef.current.value
         const newProduct = {
-            modelId: modelNameRef.current.value,
+            modelId: modelIdRef.current.value,
             birth: birthRef.current.value,
-            quantity: quantityRef.current.value,
-            state: stateRef.current.value,
+        }
+        let listNewProducts = []
+        for (let i = 0; i < quantity; i++) {
+            listNewProducts.push(newProduct)
         }
 
         const testAPI = () => {
-            Promise.resolve(newProduct).then((data) => {
-                modelNameRef.current.value = ''
+            Promise.resolve(listNewProducts).then((data) => {
+                modelIdRef.current.value = ''
                 birthRef.current.value = ''
-                quantityRef.current.value = ''
-                stateRef.current.value = ''
 
                 ToastUtil.success(subLang.import_success, 1000);
                 handleClose && handleClose()
@@ -40,30 +64,26 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
                 setErrorMessage(messageResponse)
             })
         }
+        console.log(modelIdRef.current)
 
         // await useCallApi(
         //     apiUrls.CREATE_PRODUCTS,
-        //     newProduct
+        //     {
+        //         products: listNewProducts
+        //     }
         // ).then((data) => {
         //     handleResult && handleResult({
-        //         ...newProduct,
-        //         id: data.data.id
+        //         ...listNewProducts,
         //     })
 
-        //     quantityRef.current.value = ''
-        //     modelNameRef.current.value = ''
-        //     factoryRef.current.value = ''
+        //     modelIdRef.current.value = ''
         //     birthRef.current.value = ''
-        //     stateRef.current.value = ''
 
         //     ToastUtil.success(subLang.import_success, 1000);
         //     handleClose && handleClose(e)
-        //     window.document.body.querySelector('.modal-backdrop').remove()
-        //     window.document.body.classList.remove('modal-open')
-        //     window.document.body.style = null
         //     // console.log(data)
         // }).catch((error) => {
-        //     // console.log(error)
+        //     console.log(error)
         //     const messageResponse = error.response.data.message
         //     setErrorMessage(messageResponse)
         // })
@@ -91,9 +111,9 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
         var dd = String(today.getDate()).padStart(2, '0');
         var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
         var yyyy = today.getFullYear();
-    
+
         today = dd + '/' + mm + '/' + yyyy;
-        console.log(today);
+        // console.log(today);
     }
 
     return (
@@ -107,38 +127,41 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Group as={Row} className="mb-3" controlId="quantity">
-                        <Form.Label column sm="4">{subLang.quantity}</Form.Label>
+                    <Form.Group as={Row} className="mb-3" controlId="produced_factory">
+                        <Form.Label column sm="4">{subLang.produced_factory}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="number"/>
+                            <Form.Control type="number" />
+                            <Form.Control plaintext readOnly defaultValue={account.name} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="model">
                         <Form.Label column sm="4">{subLang.model}</Form.Label>
                         <Col sm="8">
-                            <Form.Select aria-label="Default select example">
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <Form.Select aria-label="Default select example" >
+                                {listModels.map(model => (
+                                    <option ref={modelIdRef} value={model.id} key={model.id}>
+                                        {model.id + " - " + model.name + " - " + model.signName}
+                                    </option>
+                                ))}
                             </Form.Select>
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="produced_factory">
                         <Form.Label column sm="4">{subLang.produced_factory}</Form.Label>
                         <Col sm="8">
-                            <Form.Control plaintext readOnly defaultValue={account.name}/>
+                            <Form.Control plaintext readOnly defaultValue={account.name} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="birth">
                         <Form.Label column sm="4">{subLang.birth}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="date" defaultValue={today}/>
+                            <Form.Control type="date" defaultValue={today} />
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="state">
-                        <Form.Label column sm="4">{subLang.state}</Form.Label>
+                    <Form.Group as={Row} className="mb-3" controlId="quantity">
+                        <Form.Label column sm="4">{subLang.quantity}</Form.Label>
                         <Col sm="8">
-                        <Form.Control plaintext readOnly defaultValue="Tồn kho"/>
+                            <Form.Control plaintext readOnly defaultValue="Tồn kho" />
                         </Col>
                     </Form.Group>
                 </Form>

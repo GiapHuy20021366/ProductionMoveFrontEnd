@@ -16,11 +16,11 @@ const FactoryNavigator = (probs) => {
     const history = useHistory()
     const onClickProducts = () => {
         history.push(paths.FACTORY_PRODUCTS)
-        console.log(history)
+        // console.log(history)
     }
     const onClickModels = () => {
         history.push(paths.FACTORY_MODELS)
-        console.log(history)
+        // console.log(history)
     }
 
     return (
@@ -29,14 +29,14 @@ const FactoryNavigator = (probs) => {
             <div className="sidebar-heading">{subLang.factory}</div>
 
             <NavItem
-                pathname = {paths.FACTORY_MODELS}
-                onClickFunc = {onClickModels}
-                title = {subLang.factory_models}
+                pathname={paths.FACTORY_MODELS}
+                onClickFunc={onClickModels}
+                title={subLang.factory_models}
             />
             <NavItem
-                pathname = {paths.FACTORY_PRODUCTS}
-                onClickFunc = {onClickProducts}
-                title = {subLang.factory_products}
+                pathname={paths.FACTORY_PRODUCTS}
+                onClickFunc={onClickProducts}
+                title={subLang.factory_products}
             />
         </>
     )
