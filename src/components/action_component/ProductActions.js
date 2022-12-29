@@ -27,7 +27,7 @@ const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
 
     const handleAction = async () => {
         if (actionRef.current) {
-            await actionRef.current().then(async (productIds) => {
+            await actionRef.current().then(async (productIds, successMessage) => {
                 console.log(productIds)
                 await useCallApi(
                     apiUrls.GET_CURRENT_PRODUCTS_BY_QUERY,
@@ -56,11 +56,12 @@ const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
                     }
                     handleResult && handleResult(products)
 
-                    ToastUtil.success('Hành động thành công', 1000);
+                    ToastUtil.success(successMessage, 1000);
                     handleClose && handleClose()
                 })
             }).catch((error) => {
                 console.log(error)
+                ToastUtil.error(error, 1000);
             })
         }
     }

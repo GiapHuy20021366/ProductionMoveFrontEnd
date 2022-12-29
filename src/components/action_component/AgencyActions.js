@@ -4,6 +4,8 @@ import { paths } from "../../untils/constant";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import { Button, Modal, Form, Col, Row } from "react-bootstrap";
+import MaintainStart from './MaintainStart';
+import ExportProducts from "./ExportProducts";
 
 const canMaintain = (products) => {
     return products.every((product) => {
@@ -13,52 +15,12 @@ const canMaintain = (products) => {
 }
 
 
-const MaintainStart = ({ products, regisAction, hanldeResult }) => {
-    const account = useSelector(state => state.user.account)
-    const noteRef = useRef()
 
 
-    useEffect(() => {
-        const productIds = []
-        products.forEach((product) => {
-            productIds.push(product.id)
-        })
-
-        const action = async () => {
-            return new Promise(async (resolve, reject) => {
-                await useCallApi(
-                    apiUrls.MAINTENANCE_PRODUCTS,
-                    {
-                        productIds: productIds,
-                        note: noteRef.current?.value
-                    }
-                ).then((res) => {
-                    const productIds = []
-                    res.data.forEach((maintain) => {
-                        productIds.push(maintain.productId)
-                    })
-                    resolve(productIds)
-                }).catch((err) => {
-                    reject(err)
-                })
-            })
-        }
-        regisAction(action)
-    }, [products])
-
-    return (
-        <>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Note</Form.Label>
-                <Form.Control as="textarea" ref={noteRef} rows={3} />
-            </Form.Group>
-        </>
-    )
-}
 
 const FactoryActions = ({ products, regisAction }) => {
     const actionRef = useRef()
-    const [actionKey, setActionKey] = useState('MAINTAIN_START')
+    const [actionKey, setActionKey] = useState('MAINTAIN')
     // const resources = useSelector(state => state.resources)
 
     // useEffect(() => {
@@ -68,32 +30,51 @@ const FactoryActions = ({ products, regisAction }) => {
 
     const onChangeAction = (e) => {
         setActionKey(e.target.value)
+        console.log(e.target.value)
     }
+
+    useEffect(() => {
+        if (actionRef.current) {
+            setActionKey(actionRef.current.value)
+        }
+    }, [actionRef.current])
 
     const actions = [
         {
-            key: 'MAINTAIN_START',
+            key: 'MAINTAIN',
             title: 'Bắt đầu bảo hành',
+            type: 'MAINTAIN',
             valid: canMaintain(products)
         },
+        // {
+        //     key: 'MAINTAIN_MOVING',
+        //     type: 'EXPORT',
+        //     title: 'Chuyển sản phẩm bảo hành đến Trung tâm bảo hành'
+        // },
+        // {
+        //     key: 'RECALL_START',
+        //     type: 'EXPORT',
+        //     title: 'Xác nhận thu hồi sản phẩm'
+        // },
+        // {
+        //     key: 'RECALL_MOVING',
+        //     type: 'EXPORT',
+        //     title: 'Chuyển sản phẩm thu hồi về trung tâm bảo hành'
+        // },
         {
-            key: 'MAINTAIN_MOVING',
-            title: 'Chuyển sản phẩm bảo hành đến Trung tâm bảo hành'
+            key: 'EXPORT',
+            type: 'EXPORT',
+            valid: true,
+            title: 'Xuất sản phẩm đến nơi khác'
         },
         {
-            key: 'RECALL_START',
-            title: 'Xác nhận thu hồi sản phẩm'
-        },
-        {
-            key: 'RECALL_MOVING',
-            title: 'Chuyển sản phẩm thu hồi về trung tâm bảo hành'
-        },
-        {
-            key: 'RETURN_PRODUCT',
+            key: 'RETURN',
+            type: 'RETURN',
             title: 'Chuyển sản phẩm cho khách hàng sau bảo hành'
         },
         {
-            key: 'CONFIRM_EXPORT',
+            key: 'CONFIRM',
+            type: 'CONFIRM',
             title: 'Xác nhận sản phẩm'
         }
     ]
@@ -117,8 +98,12 @@ const FactoryActions = ({ products, regisAction }) => {
                 </Col>
             </Form.Group>
             {
-                actionKey == 'MAINTAIN_START' &&
+                actionKey == 'MAINTAIN' &&
                 <MaintainStart regisAction={regisAction} products={products} />
+            }
+            {
+                actionKey == 'EXPORT' &&
+                <ExportProducts regisAction={regisAction} products={products} />
             }
         </Form>
     )
