@@ -277,7 +277,15 @@ const langOfProductDisplay = {
             return `Agency ${sender?.name} transport product to ${reciever?.name} warranty center to recall`
         }
         return `Warranty center ${sender?.name} transport product to ${reciever?.name} factory to recall`
+    },
+    recieved_product: (sender, reciever, roles) => {
+        return `${roles[reciever.role]} ${reciever?.name} confirm the product`
     }
+}
+
+const langOfProductActions = {
+    ...langOfAdminProducts,
+
 }
 
 const en = {
@@ -306,18 +314,20 @@ const en = {
     AdminProducts: langOfAdminProducts,
     AdminCustomers: langOfAdminCustomers,
 
+    ProductActions: langOfProductActions,
+
     FactoryModels: langOfFactoryModels,
     FactoryAddModel: langOfFactoryAddModel,
     FactoryProducts: langOfFactoryProducts,
     FactoryImportProducts: langOfFactoryImportProducts,
     FactoryExportProducts: langOfFactoryExportProducts,
-    
+
     AgencyModels: langOfAgencyModels,
     AgencyProducts: langOfAgencyProducts,
     AgencyCustomers: langOfAgencyCustomers,
     AgencyAddCustomer: langOfAgencyAddCustomer,
     AgencySendWarrantyOrder: langOfAgencySendWarrantyOrder,
-    
+
     MaintenanceModels: langOfMaintenanceModels,
     MaintenanceProducts: langOfMaintenanceProducts,
 }

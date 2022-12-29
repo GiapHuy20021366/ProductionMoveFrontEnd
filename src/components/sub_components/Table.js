@@ -7,13 +7,14 @@ import "../../vendor/jquery/jquery.min";
 import "../../vendor/bootstrap/js/bootstrap.bundle.min";
 import "../../styles/sb-admin-2.min.css";
 import "../../styles/font.css";
+import "../../styles/fontAS.css";
 import "../../vendor/datatables/dataTables.bootstrap4.min.css";
 import paginationFactory from "react-bootstrap-table2-paginator";
 import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
-import { Button, Collapse } from "react-bootstrap";
+import { Button, OverlayTrigger, Tooltip, Collapse } from "react-bootstrap";
 
-const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, choosed }) => {
+const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, choosed, keyField, btnName = "More actions" }) => {
   const [choose, setChoose] = useState(false)
   const [choosedRows, setChoosedRows] = useState([])
   const [open, setOpen] = useState(false);
@@ -69,24 +70,26 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, c
 
   return (
     <div className="card shadow mb-4">
-      <div className="card-header py-3">
-        <h6 className="m-0 font-weight-bold text-primary">{title}</h6>
+      <div className="card-header py-3 d-flex justify-content-between align-items-center">
         {
           choosed &&
-          <Button 
-          aria-controls="example-collapse-text"
-          aria-expanded={open}
-          onClick={() => {
-              // clickActions && clickActions(choosedRows)
-              setOpen(!open)
-          }}
-            disabled={choose ? false : true}
-        >
-            Actions
-          </Button>
+          <OverlayTrigger placement="right" overlay={<Tooltip>{btnName}</Tooltip>}>
+            <Button variant="outline-primary"
+            // aria-controls="example-collapse-text"
+            // aria-expanded={open}
+            onClick={() => {
+                clickActions && clickActions(choosedRows)
+                // setOpen(!open)
+              }}
+              disabled={choose ? false : true}
+              >
+              <i class="fa-solid fa-car-side"></i>
+            </Button>
+          </OverlayTrigger>
         }
-        
-        <Collapse in={open}>
+        <h6 className="m-0 font-weight-bold text-primary">{title}</h6>
+
+        {/* <Collapse in={open}>
 
         <div id="example-collapse-text">
           <hr className="sidebar-divider" />
@@ -100,7 +103,7 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, c
           <Button>Button</Button>{' '}
           <Button>Button</Button>
         </div>
-      </Collapse>
+      </Collapse> */}
       </div>
       <div className="card-body">
         <div className="table-responsive">

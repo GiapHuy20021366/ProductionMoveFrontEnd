@@ -16,7 +16,7 @@ import TableBase from "../sub_components/Table"
 import FactoryImportProducts from "../sub_components/FactoryImportProducts";
 import FactoryExportProducts from "../sub_components/FactoryExportProducts";
 import ProductDisplay from "../display/ProductDisplay";
-import ProductActions from "../display/ProductActions";
+import ProductActions from "../action_component/ProductActions";
 
 const FactoryProducts = () => {
     const subLang = useSelector(state => state.lang.FactoryProducts)
@@ -117,7 +117,7 @@ const FactoryProducts = () => {
         // listNewProducts.forEach(product => {
         //     listCopy[product.id] = product
         // })
-        setListProducts({...listProducts, ...listNewProducts})
+        setListProducts({ ...listProducts, ...listNewProducts })
     }
 
     const handleCloseModal = (e) => {
@@ -178,6 +178,7 @@ const FactoryProducts = () => {
             <ProductActions
                 show={showProductActions}
                 rows={choosedRows}
+                columns={tableColumns}
                 handleClose={() => setShowProductActions(false)}
             />
             <ProductDisplay
