@@ -18,9 +18,9 @@ import { apiUrls } from '../../untils/constant'
 import AdminAddAccount from "../sub_components/AdminAddAccount";
 import AccountDisplay from "../display/AccountDisplay";
 
-const AdminAccounts = () => {
+const AgencyCustomers = () => {
+    const subLang = useSelector(state => state.lang.AgencyCustomers)
     const account = useSelector(state => state.user.account)
-    const subLang = useSelector(state => state.lang.AdminAccounts)
     const deviceType = useSelector(state => state.device.type)
     const [listPartners, setListPartners] = useState({})
     const [partnersloading, setPartnersLoading] = useState(false)
@@ -31,7 +31,7 @@ const AdminAccounts = () => {
     const [choosedRow, setChoosedRow] = useState({})
 
     // *** prevent another role from accessing to link which just only for admin ***
-    if (account?.role !== 1) {
+    if (account?.role !== 3) {
         return (
             <Redirect to={paths.SYSTEM} />
         )
@@ -151,7 +151,7 @@ const AdminAccounts = () => {
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 className="h3 mb-0 text-gray-800">{subLang.manage_accounts}</h1>
+                <h1 className="h3 mb-0 text-gray-800">{subLang.manage_customers}</h1>
             </div>
 
             {/* Button Create Account */}
@@ -184,4 +184,4 @@ const AdminAccounts = () => {
     )
 }
 
-export default AdminAccounts
+export default AgencyCustomers
