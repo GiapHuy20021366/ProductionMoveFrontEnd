@@ -3,7 +3,6 @@ import { FaBell } from 'react-icons/fa';
 import { FaFileAlt } from 'react-icons/fa';
 import { TbNotification } from "react-icons/tb";
 
-import "../../styles/Dashboard.css";
 import "../../js/sb-admin-2.min";
 import "../../vendor/jquery/jquery.min";
 import "../../vendor/bootstrap/js/bootstrap.bundle.min";

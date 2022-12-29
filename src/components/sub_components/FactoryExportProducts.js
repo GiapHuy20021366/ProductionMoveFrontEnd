@@ -9,39 +9,22 @@ import { Button, Modal, Form, Col, Row } from "react-bootstrap";
 const FactoryExportProducts = ({ handleResult, handleClose, show }) => {
     const subLang = useSelector(state => state.lang.FactoryExportProducts)
     const account = useSelector(state => state.user.account)
+    const listAgencies = useSelector(state => state.resources.holders.agencies)
+    console.log("Agencies")
+    console.log(listAgencies)
 
     const quantityRef = useRef()
     const modelIdRef = useRef()
     const birthRef = useRef()
+    
+    const agencyIdRef = useRef()
 
-    const [errorMessage, setErrorMessage] = useState('')
-    const [errorMessage2, setErrorMessage2] = useState('')
-    const [listModels, setListModels] = useState([])
+    const [errorMsgCreateProducts, setErrorMsgCreateProducts] = useState('')
+    const [errorMsgGetModels, setErrorMsgGetModels] = useState('')
 
-    // *** Get listModels by factoryId
-    useEffect(async () => {
-        setErrorMessage2('')
-        await useCallApi(
-            apiUrls.GET_MODELS_BY_QUERY,
-            {
-                attributes: {
-                    factoryId: { eq: account.id }
-                }
-            }
-        ).then((data) => {
-            console.log("models:")
-            console.log(data)
-            setListModels(data.data.rows)
-        }).catch((error) => {
-            console.log(error)
-            const messageResponse2 = error.response.data.message
-            setErrorMessage2(messageResponse2)
-        })
-    }, [])
-
-    // *** call API to import products
+    // *** call API to export products
     const onClickSubmit = async (e) => {
-        setErrorMessage('')
+        setErrorMsgCreateProducts('')
         const quantity = quantityRef.current.value
         const newProduct = {
             modelId: modelIdRef.current.value,
@@ -85,25 +68,10 @@ const FactoryExportProducts = ({ handleResult, handleClose, show }) => {
         }).catch((error) => {
             console.log(error)
             const messageResponse = error.response.data.message
-            setErrorMessage(messageResponse)
+            setErrorMsgCreateProducts(messageResponse)
         })
 
         // testAPI()
-    }
-    
-    const getRole = (roleId) => {
-        switch (roleId) {
-            case 1:
-                return subLang.admin
-            case 2:
-                return subLang.factory
-            case 3:
-                return subLang.agency
-            case 4:
-                return subLang.maintain_center
-            default:
-                return subLang.unknown
-        }
     }
 
     {
@@ -133,20 +101,20 @@ const FactoryExportProducts = ({ handleResult, handleClose, show }) => {
                             <Form.Control plaintext readOnly defaultValue={account.name}/>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="model">
-                        <Form.Label column sm="4">{subLang.model}</Form.Label>
+                    <Form.Group as={Row} className="mb-3" controlId="agency">
+                        <Form.Label column sm="4">{subLang.destination_agency}</Form.Label>
                         <Col sm="8">
-                            <Form.Select aria-label="Default select example" >
-                                {listModels.map(model => (
-                                    <option ref={modelIdRef} value={model.id} key={model.id}>
-                                        {model.id + " - " + model.name + " - " + model.signName}
+                            <Form.Select>
+                                {listAgencies.map(agency => (
+                                    <option ref={agencyIdRef} value={agency.id} key={agency.id}>
+                                        {agency.id + " - " + agency.name}
                                     </option>
                                 ))}
                             </Form.Select>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="birth">
-                        <Form.Label column sm="4">{subLang.birth}</Form.Label>
+                    <Form.Group as={Row} className="mb-3">
+                        <Form.Label column sm="4">{subLang.delivery_date}</Form.Label>
                         <Col sm="8">
                             <Form.Control type="date" ref={birthRef}/>
                         </Col>

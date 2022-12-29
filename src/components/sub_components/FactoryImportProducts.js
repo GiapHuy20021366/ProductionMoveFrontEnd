@@ -9,7 +9,7 @@ import { Button, Modal, Form, Col, Row } from "react-bootstrap";
 const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
     const subLang = useSelector(state => state.lang.FactoryImportProducts)
     const account = useSelector(state => state.user.account)
-
+    
     const quantityRef = useRef()
     const modelIdRef = useRef()
     const birthRef = useRef()
@@ -39,7 +39,7 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
         })
     }, [])
 
-    // *** call API to import products
+    // *** function will call API to import products
     const onClickSubmit = async (e) => {
         setErrorMessage('')
         const quantity = quantityRef.current.value
@@ -52,20 +52,21 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
             listNewProducts.push(newProduct)
         }
 
-        // const testAPI = () => {
-        //     Promise.resolve(listNewProducts).then((data) => {
-        //         modelIdRef.current.value = ''
-        //         birthRef.current.value = ''
+        const testAPI = () => {
+            Promise.resolve(listNewProducts).then((data) => {
+                modelIdRef.current.value = ''
+                birthRef.current.value = ''
 
-        //         ToastUtil.success(subLang.import_success, 1000);
-        //         handleClose && handleClose()
-        //     }).catch((error) => {
-        //         const messageResponse = error.response.data.message
-        //         setErrorMessage(messageResponse)
-        //     })
-        // }
-        // console.log(modelIdRef.current)
+                ToastUtil.success(subLang.import_success, 1000);
+                handleClose && handleClose()
+            }).catch((error) => {
+                const messageResponse = error.response.data.message
+                setErrorMessage(messageResponse)
+            })
+        }
+        console.log(modelIdRef.current)
 
+        // *** call API to import products
         await useCallApi(
             apiUrls.CREATE_PRODUCTS,
             {
@@ -119,7 +120,6 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
 
         // testAPI()
     }
-
 
     {
         var today = new Date();
