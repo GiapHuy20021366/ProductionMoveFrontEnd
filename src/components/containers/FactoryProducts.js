@@ -174,6 +174,7 @@ const FactoryProducts = () => {
             <ProductActions
                 show={showProductActions}
                 rows={choosedRows}
+                columns = {tableColumns}
                 handleClose={() => setShowProductActions(false)}
             />
             <ProductDisplay

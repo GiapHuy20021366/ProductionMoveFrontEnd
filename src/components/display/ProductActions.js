@@ -6,20 +6,10 @@ import { apiUrls } from '../../untils/constant'
 import { Redirect, useHistory } from 'react-router-dom';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
-import TableBase from "../sub_components/Table";
-import Table from 'react-bootstrap/Table';
+import BootstrapTable from "react-bootstrap-table-next";
 
-const ProductActions = ({ show, handleClose, rows }) => {
-    const subLang = useSelector(state => state.lang.ProductActions) // Language here
-    const resources = useSelector(state => state.resources)
-    const customer = useSelector(state => state.user.account)
-    // const tableColumns = [
-    //     { dataField: 'id', text: 'Id' },
-    //     { dataField: 'modelName', text: subLang.model },
-    //     { dataField: 'factoryName', text: subLang.produced_factory },
-    //     { dataField: 'birth', text: subLang.birth },
-    //     { dataField: 'location', text: subLang.location }
-    // ]
+const ProductActions = ({ show, handleClose, rows, columns }) => {
+    const subLang = useSelector(state => state.lang.ModelDisplay) // Language here
 
 
     // const getAuths = (product) => {
@@ -52,8 +42,13 @@ const ProductActions = ({ show, handleClose, rows }) => {
                     <Modal.Title>{'Title here'}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-
-
+                    Implement Here
+                    <BootstrapTable
+                        keyField="id"
+                        hover
+                        data={rows}
+                        columns={columns}
+                    />
                 </Modal.Body>
                 <Modal.Footer>
                     Implement here
