@@ -47,21 +47,27 @@ const AgencyProducts = () => {
                 associates: {
                     product: {
                         model: { factory: true }
-                    }
+                    },
+                    nowAt: true,
+                    willAt: true,
+                    customer: true
                 }
             }
         ).then((data) => {
             setProductLoading(false)
-            const productsRequest = data.data.rows
+            const holdersRequest = data.data.rows
             const products = {}
-            for (const product of productsRequest) {
-                products[product.product.id] = product.product
+            for (const holder of holdersRequest) {
+                const { product, nowAt, willAt, customer } = holder
+                product.holders = { nowAt, willAt, customer }
+                products[product.id] = product
             }
             setListProducts({
                 ...listProducts,
                 ...products
             })
         }).catch((error) => {
+            console.log(error)
             setErrorMessage('Some error occur, please try again!')
         })
     }, [])
@@ -73,6 +79,23 @@ const AgencyProducts = () => {
             const productCopy = { ...product }
             productCopy.model = `${product?.model?.name} - ${product?.model?.signName}`
             productCopy.factory = product?.model?.factory?.name
+            const holders = product.holders
+            productCopy.location = (() => {
+                const roles = {
+                    2: subLang.factory,
+                    3: subLang.agency,
+                    4: subLang.maintain_center
+                }
+                if (holders?.nowAt) {
+                    if (holders?.willAt) {
+                        return subLang.moving_to(holders.willAt)
+                    } else {
+                        return subLang.staying_at(holders.nowAt.name, roles[holders.nowAt.role])
+                    }
+                } else {
+                    return subLang.by_customer(holders.customer.name)
+                }
+            })()
             transProducts.push(productCopy)
         })
         setArrayProducts(transProducts)
