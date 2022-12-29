@@ -14,11 +14,9 @@ import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
 import { Button } from "react-bootstrap";
 
-const TableBase = ({ isLoading, data, columns, title, rowEvents }) => {
+const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions }) => {
   const [choose, setChoose] = useState(false)
-  const [node, setNode] = useState(undefined)
   const [choosedRows, setChoosedRows] = useState([])
-  const ref = useRef()
   const pagination = paginationFactory({
     page: 2,
     sizePerPage: 10,
@@ -35,9 +33,10 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents }) => {
     // }
   });
 
-//   useEffect(() => {
-//     console.log(choosedRows)
-//   }, [choosedRows])
+  useEffect(() => {
+    if (choosedRows.length === 0) setChoose(false)
+    else setChoose(true)
+  }, [choosedRows])
 
 
   const select = () => {
@@ -72,10 +71,11 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents }) => {
     <div className="card shadow mb-4">
       <div className="card-header py-3">
         <h6 className="m-0 font-weight-bold text-primary">{title}</h6>
-        <Button
-          onClick={() => { select() }}
-        >
-          Select
+        <Button onClick={() => {
+          clickActions && clickActions(choosedRows)
+        }}
+          disabled={choose ? false : true}>
+          Actions
         </Button>
       </div>
       <div className="card-body">
@@ -91,33 +91,8 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents }) => {
             filter={filterFactory()}
             selectRow={selectRow}
             rowEvents={rowEvents}
-            classes = "table-base"
+            classes="table-base"
           />
-          {/* {
-            choose && <BootstrapTable
-              bootstrap4
-              keyField="id"
-              hover
-              data={data}
-              columns={columns}
-              pagination={pagination}
-              filter={filterFactory()}
-              selectRow={selectRow}
-              rowEvents={rowEvents}
-            />
-          }
-          {
-            !choose && <BootstrapTable
-              bootstrap4
-              keyField="id"
-              hover
-              data={data}
-              columns={columns}
-              pagination={pagination}
-              filter={filterFactory()}
-              rowEvents={rowEvents}
-            />
-          } */}
         </div>
       </div>
     </div>
@@ -126,59 +101,3 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents }) => {
 
 export default TableBase;
 
-// const pagination = paginationFactory({
-//   page: 1,
-//   sizePerPage: 10,
-//   nextPageText: ">",
-//   prePageText: "<",
-//   alwaysShowAllBtns: false,
-// });
-// export default class TableBase extends React.Component {
-//   constructor(props) {
-//     super(props);
-//     this.state = { rowCount: this.props.data.length };
-//   }
-//   handleDataChange = ({ dataSize }) => {
-//     this.setState({ rowCount: dataSize });
-//   };
-
-//   render() {
-//     return (
-//       <div className="card shadow mb-4">
-//         <div className="card-header py-3">
-//           <h6 className="m-0 font-weight-bold text-primary">
-//             {this.state.rowCount}
-//           </h6>
-//           <button
-//             className="btn-primary"
-//             onClick={() => {
-//               console.log(this.node.selectionContext.selected);
-//             }}
-//             style={this.props.getBtn}
-//           >
-//             Get Current Selected Rows
-//           </button>
-//         </div>
-//         <div className="card-body">
-//           <div className="table-responsive">
-//             {this.props.isLoading && <div>Loading...</div>}
-
-//             <BootstrapTable
-//               ref={(n) => (this.node = n)}
-//               onDataSizeChange={this.handleDataChange}
-//               bootstrap4
-//               keyField="id"
-//               hover
-//               data={this.props.data}
-//               columns={this.props.columns}
-//               pagination={pagination}
-//               filter={filterFactory()}
-//               selectRow={{ mode: "checkbox", clickToSelect: true }}
-//             // rowEvents={rowEvents}
-//             />
-//           </div>
-//         </div>
-//       </div>
-//     );
-//   }
-// }
