@@ -13,17 +13,29 @@ import { Button, Modal, Form, Col, Row } from "react-bootstrap";
 // }
 
 
-const MaintainStart = ({ products }) => {
+const MaintainStart = ({ products, regisAction }) => {
+    const account = useSelector(state => state.user.account)
 
+    useEffect(() => {
+        // const productids
+        const action = async () => {
+            // await 
+        }
+        // console.log('begin', products)
+        // console.log('begin', regisAction)
+    }, [products])
 
     return (
         <>
-            Maintain
+            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                <Form.Label>Example textarea</Form.Label>
+                <Form.Control as="textarea" rows={3} />
+            </Form.Group>
         </>
     )
 }
 
-const AgencyActions = ({ products }) => {
+const AgencyActions = ({ products, regisAction }) => {
     const actionRef = useRef()
     const [actionKey, setActionKey] = useState('MAINTAIN_START')
     // const resources = useSelector(state => state.resources)
@@ -84,7 +96,7 @@ const AgencyActions = ({ products }) => {
             </Form.Group>
             {
                 actionKey == 'MAINTAIN_START' &&
-                <MaintainStart />
+                <MaintainStart regisAction={regisAction} products={products} />
             }
         </Form>
     )
