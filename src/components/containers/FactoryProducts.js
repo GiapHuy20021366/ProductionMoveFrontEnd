@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
-import '../../styles/Dashboard.css'
 import "../../js/sb-admin-2.min";
 import "../../vendor/jquery/jquery.min";
 import "../../vendor/bootstrap/js/bootstrap.bundle.min";
@@ -26,11 +25,13 @@ const FactoryProducts = () => {
     const [productsLoading, setProductLoading] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const [arrayProducts, setArrayProducts] = useState([])
-    const [showModal, setShowModal] = useState(false)
+    const [showModalImport, setShowModalImport] = useState(false)
+    const [showModalExport, setShowModalExport] = useState(false)
     const [showProductDetail, setShowProductDetail] = useState(false)
     const [choosedRow, setChoosedRow] = useState({})
     const [showProductActions, setShowProductActions] = useState(false)
     const [choosedRows, setChoosedRows] = useState([])
+    
     // *** prevent another role from accessing to link which just only for admin ***
     if (account?.role !== 2) {
         return (
@@ -120,13 +121,17 @@ const FactoryProducts = () => {
     }
 
     const handleCloseModal = (e) => {
-        setShowModal(false)
+        setShowModalImport(false)
+        setShowModalExport(false)
     }
 
-    const onClickModalBtn = () => {
-        setShowModal(true)
+    const handleOpenModalImport = () => {
+        setShowModalImport(true)
     }
-
+    const handleOpenModalExport = () => {
+        setShowModalExport(true)
+    }
+    
     const closeModalProductDetail = () => {
         setShowProductDetail(false)
     }
@@ -150,24 +155,24 @@ const FactoryProducts = () => {
             </div>
 
             {/* Button Import Products Data */}
-            <button className="btn btn-primary" onClick={() => onClickModalBtn()}>{subLang.import_products_btn}</button>
+            <button className="btn btn-primary" onClick={() => handleOpenModalImport()}>{subLang.import_products_btn}</button>
             {/* Popup Form **************************************************************** */}
             {
                 <FactoryImportProducts
                 handleResult={handleResult}
                 handleClose={handleCloseModal}
-                show={showModal}
+                show={showModalImport}
                 />
             }
             {/* Button Export Products Data */}
-            <button className="btn btn-primary" onClick={() => onClickModalBtn()}>{subLang.export_products_btn}</button>
+            <button className="btn btn-primary" onClick={() => handleOpenModalExport()}>{subLang.export_products_btn}</button>
             {/* Popup Form **************************************************************** */}
             {
-                // <FactoryExportProducts
-                // handleResult={handleResult}
-                // handleClose={handleCloseModal}
-                // show={showModal}
-                // />
+                <FactoryExportProducts
+                handleResult={handleResult}
+                handleClose={handleCloseModal}
+                show={showModalExport}
+                />
             }
 
             <ProductActions

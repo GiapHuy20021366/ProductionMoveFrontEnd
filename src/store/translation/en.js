@@ -196,6 +196,7 @@ const langOfFactoryExportProducts = {
     submit: 'Export',
     import_success: 'Export Products Successfully!',
     destination_agency: 'Destination Agency',
+    delivery_date: 'Delivery Date',
 }
 
 const langOfAgencyModels = {

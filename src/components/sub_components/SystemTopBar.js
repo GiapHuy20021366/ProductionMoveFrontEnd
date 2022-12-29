@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "../../styles/Dashboard.css";
 import "../../js/sb-admin-2.min";
 import "../../vendor/jquery/jquery.min";
 import "../../vendor/bootstrap/js/bootstrap.bundle.min";
