@@ -52,7 +52,7 @@ const AdminNavigator = (probs) => {
                 onClickFunc={onClickCustomers}
                 title={subLang.view_customers}
                 Icon = {() => { return (
-                    <i class="fa-solid fa-eye"></i>
+                    <i className="fa-solid fa-eye"></i>
                 )}}
             />
         </>

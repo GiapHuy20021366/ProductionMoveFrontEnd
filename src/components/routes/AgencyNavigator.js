@@ -36,7 +36,7 @@ const AgencyNavigator = (probs) => {
                 onClickFunc = {onClickModels}
                 title = {subLang.agency_models}
                 Icon = {() => { return (
-                    <i class="fa-solid fa-eye"></i>
+                    <i className="fa-solid fa-eye"></i>
                 )}}
             />
             <NavItem

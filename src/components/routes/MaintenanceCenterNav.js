@@ -32,7 +32,7 @@ const MaintenanceNavigator = (probs) => {
                 onClickFunc = {onClickModels}
                 title = {subLang.maintenance_models}
                 Icon = {() => { return (
-                    <i class="fa-solid fa-eye"></i>
+                    <i className="fa-solid fa-eye"></i>
                 )}}
             />
             <NavItem
