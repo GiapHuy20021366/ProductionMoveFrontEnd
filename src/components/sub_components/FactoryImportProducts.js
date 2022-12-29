@@ -52,15 +52,11 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
 
         //     quantityRef.current.value = ''
         //     modelNameRef.current.value = ''
-        //     factoryRef.current.value = ''
         //     birthRef.current.value = ''
         //     stateRef.current.value = ''
 
         //     ToastUtil.success(subLang.import_success, 1000);
         //     handleClose && handleClose(e)
-        //     window.document.body.querySelector('.modal-backdrop').remove()
-        //     window.document.body.classList.remove('modal-open')
-        //     window.document.body.style = null
         //     // console.log(data)
         // }).catch((error) => {
         //     // console.log(error)
@@ -107,40 +103,41 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Form.Group as={Row} className="mb-3" controlId="quantity">
-                        <Form.Label column sm="4">{subLang.quantity}</Form.Label>
-                        <Col sm="8">
-                            <Form.Control type="number"/>
-                        </Col>
-                    </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="model">
-                        <Form.Label column sm="4">{subLang.model}</Form.Label>
-                        <Col sm="8">
-                            <Form.Select aria-label="Default select example">
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
-                            </Form.Select>
-                        </Col>
-                    </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="produced_factory">
                         <Form.Label column sm="4">{subLang.produced_factory}</Form.Label>
                         <Col sm="8">
                             <Form.Control plaintext readOnly defaultValue={account.name}/>
                         </Col>
                     </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="model">
+                        <Form.Label column sm="4">{subLang.model}</Form.Label>
+                        <Col sm="8">
+                            {/* <Form.Select aria-label="Default select example">
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </Form.Select> */}
+                            <Form.Control type="text" ref={modelNameRef}/>
+                        </Col>
+                    </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="birth">
                         <Form.Label column sm="4">{subLang.birth}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="date" defaultValue={today}/>
+                            <Form.Control type="date" ref={birthRef}/>
                         </Col>
                     </Form.Group>
-                    <Form.Group as={Row} className="mb-3" controlId="state">
+                    <Form.Group as={Row} className="mb-3" controlId="quantity">
+                        <Form.Label column sm="4">{subLang.quantity}</Form.Label>
+                        <Col sm="8">
+                            <Form.Control type="number" ref={quantityRef}/>
+                        </Col>
+                    </Form.Group>
+                    {/* <Form.Group as={Row} className="mb-3" controlId="state">
                         <Form.Label column sm="4">{subLang.state}</Form.Label>
                         <Col sm="8">
                         <Form.Control plaintext readOnly defaultValue="Tồn kho"/>
                         </Col>
-                    </Form.Group>
+                    </Form.Group> */}
                 </Form>
             </Modal.Body>
             <Modal.Footer>
