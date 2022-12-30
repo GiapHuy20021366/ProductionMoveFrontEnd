@@ -6,7 +6,7 @@ import { Chart } from "react-google-charts";
 
 const Piee = ({ data, options, title }) => {
   return (
-    <div className="col-xl-4 col-lg-5">
+    <div className="col-xl-6 col-lg-5">
       <div className="card shadow mb-4">
         <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
           <h6 className="m-0 font-weight-bold text-primary">{title}</h6>
@@ -17,8 +17,8 @@ const Piee = ({ data, options, title }) => {
               chartType="PieChart"
               data={data}
               options={options}
-              width={"500px"}
-              height={"300px"}
+              width={"100%"}
+              height={"310px"}
             />
           </div>
           <div className="mt-4 text-center small">
