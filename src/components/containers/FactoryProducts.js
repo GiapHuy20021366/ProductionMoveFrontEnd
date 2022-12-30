@@ -31,6 +31,8 @@ const FactoryProducts = () => {
     const [choosedRow, setChoosedRow] = useState({})
     const [choosedRows, setChoosedRows] = useState([])
 
+    const indexMessage = useSelector(state => state.message.index)
+
     // *** prevent another role from accessing to link which just only for admin ***
     if (account?.role !== roles.FACTORY) {
         return (
@@ -70,7 +72,7 @@ const FactoryProducts = () => {
         }).catch((error) => {
             setErrorMessage('Some error occur, please try again!')
         })
-    }, [])
+    }, [indexMessage])
 
     // *** update table of list products when numOfProducts or language is changed ***
     useEffect(() => {
@@ -96,6 +98,7 @@ const FactoryProducts = () => {
                     return subLang.by_customer(holders.customer.name)
                 }
             })()
+            transProducts.sort((p1, p2) => Date.parse(p2.birth) - Date.parse(p1.birth))
             transProducts.push(productCopy)
         })
         setArrayProducts(transProducts)

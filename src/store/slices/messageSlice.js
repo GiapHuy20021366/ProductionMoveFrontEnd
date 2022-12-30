@@ -4,7 +4,7 @@ import axios from '../../axios'
 const initialState = {
     list: [],
     ids: [],
-
+    index: 0
 }
 
 export const getMessages = createAsyncThunk(
@@ -42,6 +42,7 @@ export const messageSlice = createSlice({
                 state.list.push(action.payload.message)
                 state.ids.push(action.payload.message.id)
             }
+            state.index += 1
         },
         clearMessage(state, action) {
             state.list = []
