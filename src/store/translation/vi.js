@@ -270,7 +270,7 @@ const langOfProductDisplay = {
 
 const langOfProductActions = {
     ...langOfAdminProducts,
-    actions_title: 'Hành động', 
+    actions_title: 'Hành động',
     cancel: 'Hủy',
     submit: 'Hành động',
 }
@@ -299,7 +299,7 @@ const vi = {
     _NAME_: 'VI',
     TruckBtn: langOfTruckBtn,
     Login: langOfLogin,
-    Login: langOfTable,
+    Table: langOfTable,
 
     SystemTopBar: langOfSystemTopBar,
     SystemHome: langOfSystemHome,
@@ -321,7 +321,7 @@ const vi = {
     AdminModels: langOfAdminModels,
     AdminProducts: langOfAdminProducts,
     AdminCustomers: langOfAdminCustomers,
-    
+
     ProductActions: langOfProductActions,
     FactoryActions: langOfFactoryActions,
     AgencyActions: langOfAgencyActions,

@@ -8,9 +8,11 @@ import "../../vendor/jquery/jquery.min";
 import "../../vendor/bootstrap/js/bootstrap.bundle.min";
 import "../../styles/sb-admin-2.min.css";
 import "../../styles/font.css";
+import { useSelector } from 'react-redux';
 
 const Message = () => {
-
+    const messages = useSelector(state => state.message)
+    console.log(messages)
     return (
         <li className="nav-item dropdown no-arrow mx-1">
             <a
