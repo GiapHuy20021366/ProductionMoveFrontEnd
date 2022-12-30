@@ -55,6 +55,10 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, c
       } else {
         setChoosedRows(choosedRows.filter((rowc) => rowc.id != row.id))
       }
+
+      // Check row already reject choosen in another component
+      // const rowCheck = 
+
     },
     onSelectAll: (isSelect, rows, e) => {
       const uniqueRows = {}

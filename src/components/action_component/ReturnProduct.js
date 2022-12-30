@@ -6,7 +6,7 @@ import { apiUrls } from '../../untils/constant'
 import { Button, Modal, Form, Col, Row } from "react-bootstrap";
 
 
-const MaintainStart = ({ products, regisAction, hanldeResult }) => {
+const ReturnProduct = ({ products, regisAction, hanldeResult }) => {
     const account = useSelector(state => state.user.account)
     const noteRef = useRef()
 
@@ -20,7 +20,7 @@ const MaintainStart = ({ products, regisAction, hanldeResult }) => {
         const action = async () => {
             return new Promise(async (resolve, reject) => {
                 await useCallApi(
-                    apiUrls.MAINTENANCE_PRODUCTS,
+                    apiUrls.RETURN_PRODUCT,
                     {
                         productIds: productIds,
                         note: noteRef.current?.value
@@ -35,6 +35,7 @@ const MaintainStart = ({ products, regisAction, hanldeResult }) => {
                         message: 'Sucess message'
                     })
                 }).catch((err) => {
+                    console.log(err)
                     reject('Error Message')
                 })
             })
@@ -52,4 +53,4 @@ const MaintainStart = ({ products, regisAction, hanldeResult }) => {
     )
 }
 
-export default MaintainStart
+export default ReturnProduct
