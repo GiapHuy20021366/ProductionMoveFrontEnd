@@ -21,18 +21,17 @@ const Message = () => {
   const onClickProducts = () => {
     switch (account.role) {
       case 1:
-        return history.push(paths.ADMIN_PRODUCTS)
+        return history.push(paths.ADMIN_PRODUCTS);
       case 2:
-        return history.push(paths.FACTORY_PRODUCTS)
+        return history.push(paths.FACTORY_PRODUCTS);
       case 3:
-        return history.push(paths.AGENCY_PRODUCTS)
+        return history.push(paths.AGENCY_PRODUCTS);
       case 4:
-        return history.push(paths.MAINTENANCE_PRODUCTS)
+        return history.push(paths.MAINTENANCE_PRODUCTS);
       default:
-        return "#"
+        return "#";
     }
-
-  }
+  };
 
   const getRole = (roleId) => {
     switch (roleId) {
@@ -48,8 +47,6 @@ const Message = () => {
         return subLang.unknown;
     }
   };
-  length = messages.list.length;
-
   const typeMessage = (message) => {
     if (message.content.type == "EXPORT_CONFIRM_NOTIFICATION") {
       return `đã xác nhận ${message.content.exports.length} sản phẩm được xuất đi.`;
@@ -76,36 +73,42 @@ const Message = () => {
         </span>
       </a>
       <div
-        className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+        className=" dropdown-list dropdown-menu dropdown-menu-right shadow force-scroll"
         aria-labelledby="alertsDropdown"
+        role="menu"
+        style={{ height: "350px" }}
       >
         <h6 className="dropdown-header">Alerts</h6>
+
         {messages.list.map((message) => {
           return (
-            <div className="dropdown-item d-flex align-items-center" key={message.id}>
-              <div>
-                <div className="small text-gray-500">
-                  {message.date.substring(0, 10)}
+            <>
+              <a
+                className="dropdown-item d-flex align-items-center "
+                style={{ cursor: "pointer" }}
+              >
+                <div>
+                  <div className="small text-gray-500">
+                    {message.date.substring(0, 10)}
+                  </div>
+                  <span className="font-weight-bold">
+                    {`${getRole(message.content.from.role)}
+                    ${message.content.from.name} ${typeMessage(message)}`}
+
+                    <a
+                      href="#"
+                      onClick={() => {
+                        onClickProducts();
+                      }}
+                    >
+                      Xem chi tiết
+                    </a>
+                  </span>
                 </div>
-                <span className="font-weight-bold">
-                  {getRole(message.content.from.role)}{" "}
-                  {message.content.from.name} {typeMessage(message)}{" "}
-
-                  <a href="#" onClick={() => {
-                    onClickProducts()
-                  }}>
-                    Xem chi tiết
-                  </a>
-
-
-                </span>
-              </div>
-            </div>
+              </a>
+            </>
           );
         })}
-        <button className="dropdown-item text-center small text-gray-500">
-          Show All Alerts
-        </button>
       </div>
     </li>
   );
