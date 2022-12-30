@@ -21,11 +21,18 @@ const pagination = paginationFactory({
 });
 
 const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
-    const subLang = useSelector(state => state.lang.ProductActions) // Language here
+    let subLang = useSelector(state => state.lang.ProductActions) // Language here
     const account = useSelector(state => state.user.account)
     const [selftColumns, setSelfColumns] = useState([...columns])
     const [, updateState] = React.useState();
     const forceUpdate = React.useCallback(() => updateState({}), []);
+
+    if (account.role === roles.FACTORY) {
+        subLang = useSelector(state => state.lang.FactoryActions)
+    }
+    if (account.role === roles.AGENCY) {
+        subLang = useSelector(state => state.lang.AgencyActions)
+    }
 
     const actionRef = useRef()
     const deleteActionRef = useRef()
@@ -67,6 +74,13 @@ const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
         }
         setSelfColumns([deleteRow, ...selftColumns])
     }, [])
+
+    if (account.role === roles.FACTORY) {
+        subLang = useSelector(state => state.lang.FactoryActions)
+    }
+    if (account.role === roles.AGENCY) {
+        subLang = useSelector(state => state.lang.AgencyActions)
+    }
 
     const handleAction = async () => {
         if (actionRef.current) {

@@ -4,7 +4,8 @@ import TruckBtn from '../sub_components/TruckBtn'
 import '../../styles/Home.scss'
 import { useSelector } from 'react-redux';
 import { paths } from './../../untils/constant';
-
+// import { Animation, MDBAnimation } from 'mdbreact';
+// import { animated } from 'react-spring'
 
 const Home = (probs) => {
     const subLang = useSelector(state => state.lang)
@@ -36,7 +37,6 @@ const Home = (probs) => {
         <div className="homeContainer">
             <div className="navBar" onChange={(e) => onScrollNavBar(e)}>
                 <span className="home title">BigCorp</span>
-
                 <div className="logoContainer">
                     <img className="logo" src="/logo.png" alt="BigCorp Logo" />
                 </div>
@@ -51,6 +51,9 @@ const Home = (probs) => {
             <div className="featureContainer">
                 <span className="title center">Our features</span>
                 <div className="featureDescription">
+                    {/* <MDBAnimation type="zoomOut">
+                    <img src="https://mdbootstrap.com/img/logo.webp" alt="Transparent MDB Logo"/>
+                </MDBAnimation> */}
                     <Feature
                         className="one"
                         img="/car.png"

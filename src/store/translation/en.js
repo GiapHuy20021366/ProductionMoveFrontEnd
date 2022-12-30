@@ -10,6 +10,10 @@ const langOfLogin = {
     login: 'LOGIN'
 }
 
+const langOfTable = {
+    actions_btnName: 'Thêm hành động',
+}
+
 const langOfSystemTopBar = {
     account: 'Account',
     logout: 'Logout'
@@ -268,13 +272,14 @@ const langOfProductActions = {
     ...langOfAdminProducts,
     actions_title: 'Actions', 
     cancel: 'Cancel',
-    submit: 'Submit',
+    submit: 'Action',
 }
 
 const langOfFactoryActions = {
     ...langOfProductActions,
     actions_title: "Batch Export Products",
     destination_agency: 'Destination Agency',
+    quantity: 'Quantity',
     delivery_date: 'Delivery Date',
     submit: 'Export',
     alert_success: 'Batch Export Products Successfully!',
@@ -282,7 +287,7 @@ const langOfFactoryActions = {
 
 const langOfAgencyActions = {
     ...langOfProductActions,
-    actions_selection: 'Select Action',
+    actions_selection: 'Select Action'
 }
 
 const langOfMaintenanceActions = {
@@ -294,6 +299,7 @@ const en = {
     _NAME_: 'EN',
     TruckBtn: langOfTruckBtn,
     Login: langOfLogin,
+    Table: langOfTable,
 
     SystemTopBar: langOfSystemTopBar,
     SystemHome: langOfSystemHome,

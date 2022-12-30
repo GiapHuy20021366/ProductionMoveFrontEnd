@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useSelector } from 'react-redux';
 import BootstrapTable from "react-bootstrap-table-next";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css";
@@ -14,10 +15,11 @@ import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
 import { Button, OverlayTrigger, Tooltip, Collapse } from "react-bootstrap";
 
-const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, choosed, keyField, btnName = "More actions", handleOpenModalExport}) => {
+const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, choosed, keyField }) => {
   const [choose, setChoose] = useState(false)
   const [choosedRows, setChoosedRows] = useState([])
   const [open, setOpen] = useState(false);
+  const subLang = useSelector(state => state.lang.Table)
   const pagination = paginationFactory({
     page: 2,
     sizePerPage: 10,
@@ -77,7 +79,7 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, c
       <div className="card-header py-3 d-flex justify-content-between align-items-center">
         {
           choosed &&
-          <OverlayTrigger placement="right" overlay={<Tooltip>{btnName}</Tooltip>}>
+          <OverlayTrigger placement="right" overlay={<Tooltip>{subLang.actions_btnName}</Tooltip>}>
             <Button variant="outline-primary"
               // aria-controls="example-collapse-text"
               // aria-expanded={open}
