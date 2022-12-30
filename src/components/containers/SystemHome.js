@@ -11,14 +11,14 @@ import { roles } from "../../untils/constant";
 import { useEffect } from "react";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
-import { parseMonths, parseModels } from "../../untils/parseData";
+import { parseMonths, parseModels, statisAgency } from "../../untils/parseData";
 
 
 
 const AgencyStatistic = () => {
   const account = useSelector(state => state.user.account)
   const [purchases, setPurchases] = useState([])
-  const [models, setModels] = useState(['Model', 'Total'])
+  const [models, setModels] = useState([['Model', 'Total']])
 
   const options = {
     title: "Productlines",
@@ -51,12 +51,64 @@ const AgencyStatistic = () => {
 
   return (
     <>
-      <Chart data={purchases} />
-      <Piee data={models} title={'Productlines'} />
+      <div className="row">
+        <Chart data={purchases} />
+      </div>
+      <div className="row">
+        <Piee data={models} title={'Productlines'} />
+      </div>
     </>
   )
 }
 
+const AdminStatistic = () => {
+  const account = useSelector(state => state.user.account)
+  const [purchases, setPurchases] = useState([])
+  const [models, setModels] = useState([['Model', 'Total']])
+  const [agencies, setAgencies] = useState([['Agency', 'Total']])
+
+  const options = {
+    title: "Productlines",
+  };
+
+  useEffect(async () => {
+    const purchasesRes = await useCallApi(
+      apiUrls.GET_PRODUCTS_BY_QUERY,
+      {
+        associates: {
+          purchase: {
+            customer: true,
+            dealer: true
+          },
+          model: true
+        }
+      }
+    ).then(({ data }) => {
+      const products = data.rows
+      const productsFilter = products.filter((product) => {
+        return product?.purchase
+      })
+      // console.log(productsFilter)
+      setPurchases(parseMonths(productsFilter))
+      setModels(parseModels(productsFilter))
+      setAgencies(statisAgency(productsFilter))
+    }).catch((err) => {
+      console.log(err)
+    })
+  }, [])
+
+  return (
+    <>
+      <div className="row">
+        <Chart data={purchases} />
+      </div>
+      <div className="row">
+        <Piee data={models} title={'Productlines'} />
+        <Piee data={agencies} title={'Agencies'} />
+      </div>
+    </>
+  )
+}
 
 const SystemHome = () => {
   const subLang = useSelector((state) => state.lang.SystemHome);
@@ -66,12 +118,14 @@ const SystemHome = () => {
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 className="h3 mb-0 text-gray-800">{subLang.home}</h1>
       </div>
-      <div className="row">
-        {
-          account.role === roles.AGENCY &&
-          <AgencyStatistic />
-        }
-      </div>
+      {
+        account.role === roles.AGENCY &&
+        <AgencyStatistic />
+      }
+      {
+        account.role === roles.ADMIN &&
+        <AdminStatistic />
+      }
     </div>
   );
 };

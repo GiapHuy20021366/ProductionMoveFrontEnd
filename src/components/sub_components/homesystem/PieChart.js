@@ -1,11 +1,10 @@
 import React, { useRef, useState } from "react";
 import "../../../styles/sb-admin-2.min.css";
-import { PieChart, Pie, ResponsiveContainer } from "recharts";
+import { Chart } from "react-google-charts";
 
 
 
 const Piee = ({ data, options, title }) => {
-
   return (
     <div className="col-xl-4 col-lg-5">
       <div className="card shadow mb-4">

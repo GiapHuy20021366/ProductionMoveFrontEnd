@@ -82,8 +82,8 @@ const Message = () => {
         <h6 className="dropdown-header">{subLang.alerts}</h6>
         {messages.list.map((message) => {
           return (
-            <>
-              <a
+            <div key={message.id}>
+              <div
                 className="dropdown-item d-flex align-items-center "
                 style={{ cursor: "pointer" }}
               >
@@ -102,8 +102,8 @@ const Message = () => {
                     </a>
                   </span>
                 </div>
-              </a>
-            </>
+              </div>
+            </div>
           );
         })}
         <button className="dropdown-item text-center small text-gray-500">
