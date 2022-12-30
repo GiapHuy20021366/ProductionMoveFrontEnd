@@ -130,8 +130,9 @@ const FactoryProducts = () => {
     const handleOpenModalImport = () => {
         setShowModalImport(true)
     }
-    const handleOpenModalExport = () => {
-        setShowModalExport(true)
+    const handleOpenModalExport = (rows) => {
+        setChoosedRows(rows)
+        // setShowModalExport(true)
     }
 
     const closeModalProductDetail = () => {
@@ -197,6 +198,7 @@ const FactoryProducts = () => {
                 getBtn={undefined}
                 rowEvents={rowEvents}
                 clickActions={clickAtions}
+                handleOpenModalExport = {handleOpenModalExport}
                 choosed={true}
             />
         </div>

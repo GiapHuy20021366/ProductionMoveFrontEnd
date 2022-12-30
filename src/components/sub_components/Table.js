@@ -85,6 +85,7 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, c
               // aria-expanded={open}
               onClick={() => {
                 clickActions && clickActions(choosedRows)
+                handleOpenModalExport && handleOpenModalExport(choosedRows)
                 // setOpen(!open)
               }}
               disabled={choose ? false : true}
@@ -104,10 +105,8 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, c
               clickActions && clickActions(choosedRows)
             }}
           >
-            Button
+            Export
           </Button>{' '}
-          <Button>Button</Button>{' '}
-          <Button>Button</Button>
         </div>
       </Collapse> */}
       </div>

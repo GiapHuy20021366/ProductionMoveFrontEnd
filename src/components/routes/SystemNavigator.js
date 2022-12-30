@@ -61,7 +61,7 @@ const SystemNagivator = (probs) => {
             style={{ height: "35px" }}
           />
         </div>
-        <div className="sidebar-brand-text mx-3">ProductMove</div>
+        <div className="sidebar-brand-text mx-3">ProductionMove</div>
       </a>
 
       {/* **************************************************************** */}
