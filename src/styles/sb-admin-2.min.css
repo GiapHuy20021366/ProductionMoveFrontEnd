@@ -46,6 +46,13 @@
     box-sizing: border-box
 }
 
+.force-scroll {
+
+    overflow-y: scroll;
+    
+    height: 200px;
+    
+    }
 
 .table-base td {
     cursor: pointer;
@@ -11466,7 +11473,8 @@ a:focus {
 .topbar .dropdown-list {
     padding: 0;
     border: none;
-    overflow: hidden
+    /* overflow: hidden */
+    max-height: 500px;
 }
 
 .topbar .dropdown-list .dropdown-header {

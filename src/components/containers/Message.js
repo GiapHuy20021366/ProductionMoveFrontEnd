@@ -24,19 +24,18 @@ const Message = () => {
 
   const onClickProducts = () => {
     switch (account.role) {
-        case 1:
-          return history.push(paths.ADMIN_PRODUCTS)
-        case 2:
-          return history.push(paths.FACTORY_PRODUCTS)
-        case 3:
-          return history.push(paths.AGENCY_PRODUCTS)
-        case 4:
-          return history.push(paths.MAINTENANCE_PRODUCTS)
-        default:
-          return "#"
-      }
-    
-}
+      case 1:
+        return history.push(paths.ADMIN_PRODUCTS);
+      case 2:
+        return history.push(paths.FACTORY_PRODUCTS);
+      case 3:
+        return history.push(paths.AGENCY_PRODUCTS);
+      case 4:
+        return history.push(paths.MAINTENANCE_PRODUCTS);
+      default:
+        return "#";
+    }
+  };
 
   const getRole = (roleId) => {
     switch (roleId) {
@@ -80,38 +79,42 @@ const Message = () => {
         </span>
       </a>
       <div
-        className="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+        className=" dropdown-list dropdown-menu dropdown-menu-right shadow force-scroll"
         aria-labelledby="alertsDropdown"
+        role="menu"
+        style={{height: "350px"}}
       >
         <h6 className="dropdown-header">Alerts</h6>
+
         {messages.list.map((message) => {
           return (
             <>
-              <div className="dropdown-item d-flex align-items-center">
+              <a
+                className="dropdown-item d-flex align-items-center "
+                style={{ cursor: "pointer" }}
+              >
                 <div>
                   <div className="small text-gray-500">
                     {message.date.substring(0, 10)}
                   </div>
                   <span className="font-weight-bold">
-                    {getRole(message.content.from.role)}{" "}
-                    {message.content.from.name} {typeMessage(message)}{" "}
-                    
-                            <a href="#" onClick={() => {
-                                onClickProducts()
-                            }}>
-                            Xem chi tiết
-                            </a>
+                    {`${getRole(message.content.from.role)}
+                    ${message.content.from.name} ${typeMessage(message)}`}
 
-                    
+                    <a
+                      href="#"
+                      onClick={() => {
+                        onClickProducts();
+                      }}
+                    >
+                      Xem chi tiết
+                    </a>
                   </span>
                 </div>
-              </div>
+              </a>
             </>
           );
         })}
-        <button className="dropdown-item text-center small text-gray-500">
-          Show All Alerts
-        </button>
       </div>
     </li>
   );
