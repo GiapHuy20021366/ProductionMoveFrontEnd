@@ -114,6 +114,7 @@ const MaintenanceModels = (probs) => {
             modelCopy.factory = model?.factory.name
             transModels.push(modelCopy)
         })
+        transModels.sort((p1, p2) => Date.parse(p2.birth) - Date.parse(p1.birth))
         setArrayModels(transModels)
     }, [subLang, listModels])
 

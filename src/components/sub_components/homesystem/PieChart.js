@@ -3,24 +3,13 @@ import "../../../styles/sb-admin-2.min.css";
 import { PieChart, Pie, ResponsiveContainer } from "recharts";
 import { Chart } from "react-google-charts";
 
-const Piee = () => {
-  const data = [
-    ["Đại lý", "Số lượng"],
-    ["DL1", 11],
-    ["DL2", 2],
-    ["DL2", 2],
-    ["DL2", 2],
-    ["DL2", 7],
-  ];
+const Piee = ({ data, options, title }) => {
 
-  const options = {
-    title: "Doanh số",
-  };
   return (
     <div className="col-xl-4 col-lg-5">
       <div className="card shadow mb-4">
         <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-          <h6 className="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+          <h6 className="m-0 font-weight-bold text-primary">{title}</h6>
         </div>
         <div className="card-body">
           <div className="chart-pie pt-4 pb-2">

@@ -73,12 +73,16 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
                 setErrorMessage(messageResponse)
             })
         }
-        
+
         await useCallApi(
             apiUrls.CREATE_MODEL,
             newModel
-        ).then((data) => {
+        ).then(async (data) => {
             console.log(data)
+
+            newModel.factory = {
+                name: account.name
+            }
 
             handleResult && handleResult({
                 ...newModel,
@@ -123,44 +127,44 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
                     <Form.Group as={Row} className="mb-3" controlId="name">
                         <Form.Label column sm="4">{subLang.name}*</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text" ref={modelNameRef}/>
+                            <Form.Control type="text" ref={modelNameRef} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="sign_name">
                         <Form.Label column sm="4">{subLang.sign_name}*</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text"ref={signNameRef}/>
+                            <Form.Control type="text" ref={signNameRef} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="generation" >
                         <Form.Label column sm="4">{subLang.generation}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text" ref={generationRef}/>
+                            <Form.Control type="text" ref={generationRef} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="produced_factory" >
                         <Form.Label column sm="4">{subLang.produced_factory}</Form.Label>
                         <Col sm="8">
-                            <Form.Control plaintext readOnly defaultValue={account.name}/>
+                            <Form.Control plaintext readOnly defaultValue={account.name} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="birth">
                         <Form.Label column sm="4">{subLang.birth}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="date" ref={birthRef}/>
+                            <Form.Control type="date" ref={birthRef} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="series">
                         <Form.Label column sm="4">{subLang.series}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text" ref={seriesRef}/>
+                            <Form.Control type="text" ref={seriesRef} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="length">
                         <Form.Label column sm="4">{subLang.length}</Form.Label>
                         <Col sm="8">
                             <InputGroup>
-                                <Form.Control type="number" ref={lengthRef}/>
+                                <Form.Control type="number" ref={lengthRef} />
                                 <InputGroup.Text>mm</InputGroup.Text>
                             </InputGroup>
                         </Col>
@@ -169,7 +173,7 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
                         <Form.Label column sm="4">{subLang.width}</Form.Label>
                         <Col sm="8">
                             <InputGroup>
-                                <Form.Control type="number" ref={widthRef}/>
+                                <Form.Control type="number" ref={widthRef} />
                                 <InputGroup.Text>mm</InputGroup.Text>
                             </InputGroup>
                         </Col>
@@ -178,7 +182,7 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
                         <Form.Label column sm="4">{subLang.height}</Form.Label>
                         <Col sm="8">
                             <InputGroup>
-                                <Form.Control type="number" ref={heightRef}/>
+                                <Form.Control type="number" ref={heightRef} />
                                 <InputGroup.Text>mm</InputGroup.Text>
                             </InputGroup>
                         </Col>
@@ -186,20 +190,20 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
                     <Form.Group as={Row} className="mb-3" controlId="body_type">
                         <Form.Label column sm="4">{subLang.body_type}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text" ref={bodyTypeRef}/>
+                            <Form.Control type="text" ref={bodyTypeRef} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="engine_type">
                         <Form.Label column sm="4">{subLang.engine_type}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="text" ref={engineTypeRef}/>
+                            <Form.Control type="text" ref={engineTypeRef} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="max_speed">
                         <Form.Label column sm="4">{subLang.max_speed}</Form.Label>
                         <Col sm="8">
                             <InputGroup>
-                                <Form.Control type="number" ref={maxSpeedRef}/>
+                                <Form.Control type="number" ref={maxSpeedRef} />
                                 <InputGroup.Text>km/h</InputGroup.Text>
                             </InputGroup>
                         </Col>
@@ -208,10 +212,10 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
                         <Form.Label column sm="4">{subLang.acceleration}</Form.Label>
                         <Col sm="8">
                             <InputGroup>
-                                <Form.Control type="number" ref={accelerationRef}/>
+                                <Form.Control type="number" ref={accelerationRef} />
                                 <InputGroup.Text>
                                     <MathJax.Provider>
-                                        <MathJax.Node inline formula='m/s^2'/>
+                                        <MathJax.Node inline formula='m/s^2' />
                                     </MathJax.Provider>
                                 </InputGroup.Text>
                             </InputGroup>
@@ -221,10 +225,10 @@ const FactoryAddModel = ({ handleResult, handleClose, show }) => {
                         <Form.Label column sm="4">{subLang.city_fuel}</Form.Label>
                         <Col sm="8">
                             <InputGroup>
-                                <Form.Control type="number" ref={cityFuelRef}/>
+                                <Form.Control type="number" ref={cityFuelRef} />
                                 <InputGroup.Text>
                                     <MathJax.Provider>
-                                        <MathJax.Node inline formula='l/100km'/>
+                                        <MathJax.Node inline formula='l/100km' />
                                     </MathJax.Provider>
                                 </InputGroup.Text>
                             </InputGroup>

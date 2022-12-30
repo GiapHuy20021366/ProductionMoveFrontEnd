@@ -85,7 +85,7 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, c
               // aria-expanded={open}
               onClick={() => {
                 clickActions && clickActions(choosedRows)
-                handleOpenModalExport && handleOpenModalExport(choosedRows)
+                // handleOpenModalExport && handleOpenModalExport(choosedRows)
                 // setOpen(!open)
               }}
               disabled={choose ? false : true}
