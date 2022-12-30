@@ -23,6 +23,19 @@ const langOfSystemHome = {
     home: 'Trang chủ'
 }
 
+const langOfMessage = {
+    ...langOfAccountInfo,
+    export_confirm: numOfProduct => {
+        return `xác nhận đã xuất đi ${numOfProduct} sản phẩm.`
+    },
+    export: numOfProduct => {
+        return `cần xác nhận đã xuất đi ${numOfProduct} sản phẩm.`
+    },
+    alerts: 'Thông báo',
+    details: 'Xem chi tiết',
+    show_all_alerts: 'Hiển thị toàn bộ thồng báo'
+}
+
 const langOfAccountInfo = {
     account_info: 'Thông tin tài khoản',
     name: 'Tên',
@@ -325,6 +338,7 @@ const vi = {
 
     SystemTopBar: langOfSystemTopBar,
     SystemHome: langOfSystemHome,
+    Message: langOfMessage,
     AccountInfo: langOfAccountInfo,
     LanguageChooser: langOfLanguageChooser,
 

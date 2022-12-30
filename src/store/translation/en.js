@@ -23,6 +23,19 @@ const langOfSystemHome = {
     home: 'Home'
 }
 
+const langOfMessage = {
+    ...langOfAccountInfo,
+    export_confirm: numOfProduct => {
+        return `confirmed that ${numOfProduct} ${numOfProduct <= 1 ? 'has' : 'have'} been exported.`
+    },
+    export: numOfProduct => {
+        return `need to confirm that ${numOfProduct} ${numOfProduct <= 1 ? 'has' : 'have'} been exported.`
+    },
+    alerts: 'Alerts',
+    details: 'More details',
+    show_all_alerts: 'Show All Alerts'
+}
+
 const langOfAccountInfo = {
     account_info: 'Account Infomation',
     name: 'Name',
@@ -327,6 +340,7 @@ const en = {
 
     SystemTopBar: langOfSystemTopBar,
     SystemHome: langOfSystemHome,
+    Message: langOfMessage,
     AccountInfo: langOfAccountInfo,
     LanguageChooser: langOfLanguageChooser,
 
