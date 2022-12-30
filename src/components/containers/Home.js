@@ -4,7 +4,8 @@ import TruckBtn from '../sub_components/TruckBtn'
 import '../../styles/Home.scss'
 import { useSelector } from 'react-redux';
 import { paths } from './../../untils/constant';
-import { MDBAnimation } from 'mdbreact';
+import { Animation, MDBAnimation } from 'mdbreact';
+import { animated } from 'react-spring'
 
 const Home = (probs) => {
     const subLang = useSelector(state => state.lang)
@@ -36,7 +37,6 @@ const Home = (probs) => {
         <div className="homeContainer">
             <div className="navBar" onChange={(e) => onScrollNavBar(e)}>
                 <span className="home title">BigCorp</span>
-
                 <div className="logoContainer">
                     <img className="logo" src="/logo.png" alt="BigCorp Logo" />
                 </div>
@@ -51,20 +51,15 @@ const Home = (probs) => {
             <div className="featureContainer">
                 <span className="title center">Our features</span>
                 <div className="featureDescription">
-                    {/* <MDBAnimation 
-                        start='onScroll'
-                        type="slide-out-right"
-                        reset={true}
-                        duration={500}
-                    >
-                        hi
-                    </MDBAnimation> */}
-                        <Feature
-                            className="one"
-                            img="/car.png"
-                            title="Outstanding design"
-                            desc="Designed to be flexible according to all your needs. Create your site with all module position."
-                        />
+                {/* <MDBAnimation type="zoomOut">
+                    <img src="https://mdbootstrap.com/img/logo.webp" alt="Transparent MDB Logo"/>
+                </MDBAnimation> */}
+                    <Feature
+                        className="one"
+                        img="/car.png"
+                        title="Outstanding design"
+                        desc="Designed to be flexible according to all your needs. Create your site with all module position."
+                    />
                     <Feature
                         className="two"
                         img="/electric-car.png"

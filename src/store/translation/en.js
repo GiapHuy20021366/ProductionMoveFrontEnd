@@ -10,6 +10,10 @@ const langOfLogin = {
     login: 'LOGIN'
 }
 
+const langOfTable = {
+    actions_btnName: 'Thêm hành động',
+}
+
 const langOfSystemTopBar = {
     account: 'Account',
     logout: 'Logout'
@@ -268,7 +272,7 @@ const langOfProductActions = {
     ...langOfAdminProducts,
     actions_title: 'Actions', 
     cancel: 'Cancel',
-    submit: 'Submit',
+    submit: 'Action',
 }
 
 const langOfFactoryActions = {
@@ -295,6 +299,7 @@ const en = {
     _NAME_: 'EN',
     TruckBtn: langOfTruckBtn,
     Login: langOfLogin,
+    Table: langOfTable,
 
     SystemTopBar: langOfSystemTopBar,
     SystemHome: langOfSystemHome,
