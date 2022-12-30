@@ -139,7 +139,7 @@ const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
                     <Modal.Title>{subLang.actions_title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <strong>{subLang.selected_num(rows)}</strong>
+                    Các sản phẩm đã chọn
                     <BootstrapTable
                         bootstrap4
                         keyField="id"
@@ -164,7 +164,9 @@ const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>{subLang.cancel}</Button>
+                    <Button variant="secondary" onClick={handleClose}>
+                        {subLang.cancel}
+                    </Button>
                     <Button variant="primary" onClick={handleAction}>{subLang.submit}</Button>
                 </Modal.Footer>
             </Modal>
