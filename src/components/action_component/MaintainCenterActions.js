@@ -16,18 +16,13 @@ import PurchaseProduct from './PurchaseProduct';
 
 
 
-const AgencyActions = ({ products, regisAction }) => {
+const MaintainCenterActions = ({ products, regisAction }) => {
     const subLang = useSelector(state => state.lang.AgencyActions)
     const account = useSelector(state => state.user.account)
     const actionRef = useRef()
 
-    const [actionKey, setActionKey] = useState('MAINTAIN')
-    // const resources = useSelector(state => state.resources)
+    const [actionKey, setActionKey] = useState('EXPORT')
 
-    // useEffect(() => {
-    //     console.log(actionRef)
-    // }, [actionRef.current])
-    // console.log(products)
 
     const onChangeAction = (e) => {
         setActionKey(e.target.value)
@@ -42,40 +37,16 @@ const AgencyActions = ({ products, regisAction }) => {
 
     const actions = [
         {
-            key: 'MAINTAIN',
-            title: 'Bắt đầu bảo hành',
-            type: 'MAINTAIN',
-            valid: canMaintain(products)
-        },
-        {
-            key: 'RECALL',
-            title: 'Thu hồi sản phẩm',
-            type: 'RECALL',
-            valid: canRecall(products)
-        },
-        {
             key: 'EXPORT',
             type: 'EXPORT',
             valid: canExport(products, account),
             title: 'Xuất sản phẩm đến nơi khác'
         },
         {
-            key: 'RETURN',
-            type: 'RETURN',
-            valid: canReturn(products, account),
-            title: 'Chuyển sản phẩm cho khách hàng sau bảo hành'
-        },
-        {
             key: 'CONFIRM',
             type: 'CONFIRM',
             valid: canConfirm(products, account),
             title: 'Xác nhận sản phẩm'
-        },
-        {
-            key: 'PURCHASE',
-            type: 'PURCHASE',
-            valid: canPurchase(products, account),
-            title: 'Bán sản phẩm cho khách hàng'
         }
     ]
 
@@ -98,34 +69,18 @@ const AgencyActions = ({ products, regisAction }) => {
                 </Col>
             </Form.Group>
             {
-                actionKey == 'MAINTAIN' &&
-                <MaintainStart regisAction={regisAction} products={products} />
-            }
-            {
                 actionKey == 'EXPORT' &&
                 <ExportProducts regisAction={regisAction} products={products} />
-            }
-            {
-                actionKey == 'RECALL' &&
-                <RecallStart regisAction={regisAction} products={products} />
-            }
-            {
-                actionKey == 'RETURN' &&
-                <ReturnProduct regisAction={regisAction} products={products} />
             }
             {
                 actionKey == 'CONFIRM' &&
                 <ConfirmProduct regisAction={regisAction} products={products} />
             }
-            {
-                actionKey == 'PURCHASE' &&
-                <PurchaseProduct regisAction={regisAction} products={products} />
-            }
         </Form>
     )
 }
 
-export default AgencyActions
+export default MaintainCenterActions
 
 
 

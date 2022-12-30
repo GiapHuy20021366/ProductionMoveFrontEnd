@@ -42,7 +42,9 @@ export const apiUrls = {
     RECALL_PRODUCTS: '/api/recall-products',
     RETURN_PRODUCT: '/api/return-products-to-customer',
     CONFIRM_PRODUCT: '/api/confirm-export-products',
-    GET_NEWEST_EXPORTS: '/api/get-newest-exports'
+    GET_NEWEST_EXPORTS: '/api/get-newest-exports',
+    GET_CUSTOMER: '/api/get-customers-by-query',
+    SOLD_PRODUCT: '/api/sold-product'
 }
 
 export const roles = {

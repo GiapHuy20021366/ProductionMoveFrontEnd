@@ -3,7 +3,8 @@ import axios from '../../axios'
 
 const initialState = {
     list: [],
-    ids: []
+    ids: [],
+
 }
 
 export const getMessages = createAsyncThunk(

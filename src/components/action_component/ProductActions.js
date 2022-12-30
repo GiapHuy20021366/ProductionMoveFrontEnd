@@ -11,6 +11,7 @@ import AgencyActions from './AgencyActions';
 import { async } from "q";
 import ToastUtil from '../../untils/toastUtil';
 import { Button, Modal, Form, Col, Row } from "react-bootstrap";
+import MaintainCenterActions from './MaintainCenterActions';
 
 const pagination = paginationFactory({
     page: 1,
@@ -155,6 +156,10 @@ const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
                     {
                         account.role === roles.AGENCY &&
                         <AgencyActions products={rows} regisAction={regisAction} />
+                    }
+                    {
+                        account.role === roles.MAINTERNANCE &&
+                        <MaintainCenterActions products={rows} regisAction={regisAction} />
                     }
 
                 </Modal.Body>
