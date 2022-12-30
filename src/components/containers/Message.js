@@ -51,8 +51,6 @@ const Message = () => {
         return subLang.unknown;
     }
   };
-  length = messages.list.length;
-  console.log(length);
   const typeMessage = (message) => {
     if (message.content.type == "EXPORT_CONFIRM_NOTIFICATION") {
       return `đã xác nhận ${message.content.exports.length} sản phẩm được xuất đi.`;
