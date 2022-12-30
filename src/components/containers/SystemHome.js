@@ -11,17 +11,18 @@ import { roles } from "../../untils/constant";
 import { useEffect } from "react";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
+import { parseMonths, parseModels } from "../../untils/parseData";
 
-const parseMonths = (products) => {
-  const times = []
-  products.forEach((product) => {
-    console.log(new Date(product.purchase.date))
-  })
-}
+
 
 const AgencyStatistic = () => {
   const account = useSelector(state => state.user.account)
   const [purchases, setPurchases] = useState([])
+  const [models, setModels] = useState(['Model', 'Total'])
+
+  const options = {
+    title: "Productlines",
+  };
 
   useEffect(async () => {
     const purchasesRes = await useCallApi(
@@ -31,7 +32,8 @@ const AgencyStatistic = () => {
           purchase: {
             customer: true,
             dealer: true
-          }
+          },
+          model: true
         }
       }
     ).then(({ data }) => {
@@ -40,30 +42,17 @@ const AgencyStatistic = () => {
         return product?.purchase && product.purchase.dealer.id === account.id
       })
       // console.log(productsFilter)
-      parseMonths(productsFilter)
+      setPurchases(parseMonths(productsFilter))
+      setModels(parseModels(productsFilter))
     }).catch((err) => {
       console.log(err)
     })
   }, [])
 
-  const data = [
-    { name: "01/2022", total: 1200 },
-    { name: "02/2022", total: 3000 },
-    { name: "03/2022", total: 1002 },
-    { name: "04/2022", total: 900 },
-    { name: "05/2022", total: 500 },
-    { name: "06/2022", total: 3200 },
-    { name: "07/2022", total: 1200 },
-    { name: "08/2022", total: 2300 },
-    { name: "09/2022", total: 1300 },
-    { name: "10/2022", total: 1700 },
-    { name: "112022", total: 200 },
-    { name: "12/2022", total: 700 },
-  ];
   return (
     <>
       <Chart data={purchases} />
-      <Piee />
+      <Piee data={models} title={'Productlines'} />
     </>
   )
 }

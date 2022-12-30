@@ -90,6 +90,7 @@ const AdminProducts = () => {
             })()
             transProducts.push(productCopy)
         })
+        transProducts.sort((p1, p2) => Date.parse(p2.birth) - Date.parse(p1.birth))
         setArrayProducts(transProducts)
     }, [subLang, listProducts])
 

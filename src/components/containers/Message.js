@@ -18,10 +18,6 @@ const Message = () => {
   const account = useSelector((state) => state.user.account);
 
   const history = useHistory();
-
-  console.log(messages);
-  console.log(subLang);
-
   const onClickProducts = () => {
     switch (account.role) {
       case 1:
@@ -81,7 +77,7 @@ const Message = () => {
         className=" dropdown-list dropdown-menu dropdown-menu-right shadow force-scroll"
         aria-labelledby="alertsDropdown"
         role="menu"
-        style={{height: "350px"}}
+        style={{ height: "350px" }}
       >
         <h6 className="dropdown-header">Alerts</h6>
 

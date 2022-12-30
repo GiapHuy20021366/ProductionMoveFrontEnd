@@ -31,51 +31,49 @@ const AdminAddAccount = ({ handleResult, handleClose, show }) => {
             role: roleRef.current.value
         }
 
-        const testAPI = () => {
-            Promise.resolve(newAcc).then((data) => {
-                userNameRef.current.value = ''
-                passwordRef.current.value = ''
-                emailRef.current.value = ''
-                nameRef.current.value = ''
-                addressRef.current.value = ''
-                phoneRef.current.value = ''
+        // const testAPI = () => {
+        //     Promise.resolve(newAcc).then((data) => {
+        //         userNameRef.current.value = ''
+        //         passwordRef.current.value = ''
+        //         emailRef.current.value = ''
+        //         nameRef.current.value = ''
+        //         addressRef.current.value = ''
+        //         phoneRef.current.value = ''
 
-                ToastUtil.success(subLang.create_success, 1000);
-                handleClose && handleClose()
-            }).catch((error) => {
-                const messageResponse = error.response.data.message
-                setErrorMessage(messageResponse)
-            })
-        }
-
-        testAPI()
-        // await useCallApi(
-        //     apiUrls.CREATE_PARTNER,
-        //     newAcc
-        // ).then((data) => {
-        //     handleResult && handleResult({
-        //         ...newAcc,
-        //         id: data.data.id
+        //         ToastUtil.success(subLang.create_success, 1000);
+        //         handleClose && handleClose()
+        //     }).catch((error) => {
+        //         const messageResponse = error.response.data.message
+        //         setErrorMessage(messageResponse)
         //     })
+        // }
 
-        //     userNameRef.current.value = ''
-        //     passwordRef.current.value = ''
-        //     emailRef.current.value = ''
-        //     nameRef.current.value = ''
-        //     addressRef.current.value = ''
-        //     phoneRef.current.value = ''
+        // testAPI()
+        await useCallApi(
+            apiUrls.CREATE_PARTNER,
+            newAcc
+        ).then((data) => {
+            handleResult && handleResult({
+                ...newAcc,
+                id: data.data.id,
+                createdAt: (new Date()).toString()
+            })
 
-        //     ToastUtil.success(subLang.create_success, 1000);
-        //     handleClose && handleClose(e)
-        //     window.document.body.querySelector('.modal-backdrop').remove()
-        //     window.document.body.classList.remove('modal-open')
-        //     window.document.body.style = null
-        //     // console.log(data)
-        // }).catch((error) => {
-        //     // console.log(error)
-        //     const messageResponse = error.response.data.message
-        //     setErrorMessage(messageResponse)
-        // })
+            userNameRef.current.value = ''
+            passwordRef.current.value = ''
+            emailRef.current.value = ''
+            nameRef.current.value = ''
+            addressRef.current.value = ''
+            phoneRef.current.value = ''
+
+            ToastUtil.success(subLang.create_success, 1000);
+            handleClose && handleClose(e)
+            // console.log(data)
+        }).catch((error) => {
+            // console.log(error)
+            const messageResponse = error.response.data.message
+            setErrorMessage(messageResponse)
+        })
     }
 
     const getRole = (roleId) => {
@@ -107,37 +105,37 @@ const AdminAddAccount = ({ handleResult, handleClose, show }) => {
                     <Form.Group as={Row} className="mb-3">
                         <Form.Label column sm="4">{subLang.userName}*</Form.Label>
                         <Col sm="8">
-                            <Form.Control placeholder={subLang.userName} required ref={userNameRef}/>
+                            <Form.Control placeholder={subLang.userName} required ref={userNameRef} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3">
                         <Form.Label column sm="4">{subLang.password}*</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="password" placeholder={subLang.password} required ref={passwordRef}/>
+                            <Form.Control type="password" placeholder={subLang.password} required ref={passwordRef} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3">
                         <Form.Label column sm="4">{subLang.email}*</Form.Label>
                         <Col sm="8">
-                            <Form.Control placeholder={subLang.email} ref={emailRef}/>
+                            <Form.Control placeholder={subLang.email} ref={emailRef} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3">
                         <Form.Label column sm="4">{subLang.name}</Form.Label>
                         <Col sm="8">
-                            <Form.Control placeholder={subLang.name} ref={nameRef}/>
+                            <Form.Control placeholder={subLang.name} ref={nameRef} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3">
                         <Form.Label column sm="4">{subLang.phone}</Form.Label>
                         <Col sm="8">
-                            <Form.Control placeholder={subLang.phone} ref={phoneRef}/>
+                            <Form.Control placeholder={subLang.phone} ref={phoneRef} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3">
                         <Form.Label column sm="4">{subLang.address}</Form.Label>
                         <Col sm="8">
-                            <Form.Control placeholder={subLang.address} ref={addressRef}/>
+                            <Form.Control placeholder={subLang.address} ref={addressRef} />
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3">

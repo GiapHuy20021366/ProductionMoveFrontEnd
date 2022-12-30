@@ -81,6 +81,7 @@ const AdminAccounts = () => {
                 role: getRole(partner.role)
             })
         })
+        transPartners.sort((p1, p2) => Date.parse(p2.createdAt) - Date.parse(p1.createdAt))
         setArrayPartners(transPartners)
     }, [subLang, listPartners])
 
@@ -126,6 +127,8 @@ const AdminAccounts = () => {
         const listCopy = { ...listPartners }
         listCopy[newAccount.id] = newAccount
         setListPartners(listCopy)
+        // forceUpdate()
+        // console.log(newAccount)
     }
 
     const closeModalCreateAccount = (e) => {

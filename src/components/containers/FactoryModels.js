@@ -50,7 +50,7 @@ const FactoryModels = (probs) => {
 
                 attributes: {
                     factoryId: {
-                        eq : account.id
+                        eq: account.id
                     }
                 }
             }
@@ -79,7 +79,7 @@ const FactoryModels = (probs) => {
             name: { dataField: 'name', text: subLang.name },
             signName: { dataField: 'signName', text: subLang.sign_name },
             generation: { dataField: 'generation', text: subLang.generation },
-            factory: { dataField: 'factory', text: subLang.produced_factory},
+            factory: { dataField: 'factory', text: subLang.produced_factory },
             birth: { dataField: 'birth', text: subLang.birth },
             series: { dataField: 'series', text: subLang.series },
             length: { dataField: 'length', text: subLang.length },
@@ -103,6 +103,7 @@ const FactoryModels = (probs) => {
             modelCopy.factory = model?.factory.name
             transModels.push(modelCopy)
         })
+        transModels.sort((p1, p2) => Date.parse(p2.birth) - Date.parse(p1.birth))
         setArrayModels(transModels)
     }, [subLang, listModels])
 
@@ -131,7 +132,7 @@ const FactoryModels = (probs) => {
 
     const onClickModalBtn = () => {
         setShowModal(true)
-    }    
+    }
 
     return (
         <div className="container-fluid">
@@ -147,10 +148,10 @@ const FactoryModels = (probs) => {
                 <FactoryAddModel
                     handleResult={handleResult}
                     handleClose={handleCloseModal}
-                    show={showModal} 
+                    show={showModal}
                 />
             }
-            
+
             <ModelDisplay
                 show={showDetail}
                 row={choosedRow}
