@@ -56,7 +56,8 @@ const AdminAddAccount = ({ handleResult, handleClose, show }) => {
             handleResult && handleResult({
                 ...newAcc,
                 id: data.data.id,
-                createdAt: (new Date()).toString()
+                createdAt: (new Date()).toString(),
+                role: parseInt(roleRef.current.value)
             })
 
             userNameRef.current.value = ''
@@ -142,10 +143,10 @@ const AdminAddAccount = ({ handleResult, handleClose, show }) => {
                         <Form.Label column sm="4">{subLang.role}</Form.Label>
                         <Col sm="8">
                             <Form.Select ref={roleRef}>
-                                <option value={getRole(1)}>{getRole(1)}</option>
-                                <option value={getRole(2)}>{getRole(2)}</option>
-                                <option value={getRole(3)}>{getRole(3)}</option>
-                                <option value={getRole(4)}>{getRole(4)}</option>
+                                <option value={'1'}>{getRole(1)}</option>
+                                <option value={'2'}>{getRole(2)}</option>
+                                <option value={'3'}>{getRole(3)}</option>
+                                <option value={'4'}>{getRole(4)}</option>
                             </Form.Select>
                         </Col>
                     </Form.Group>
