@@ -13,11 +13,8 @@ import ReturnProduct from "./ReturnProduct";
 import ConfirmProduct from './ConfirmProducts';
 import PurchaseProduct from './PurchaseProduct';
 
-
-
-
 const MaintainCenterActions = ({ products, regisAction }) => {
-    const subLang = useSelector(state => state.lang.AgencyActions)
+    const subLang = useSelector(state => state.lang.MaintenanceActions)
     const account = useSelector(state => state.user.account)
     const actionRef = useRef()
 
@@ -40,13 +37,13 @@ const MaintainCenterActions = ({ products, regisAction }) => {
             key: 'EXPORT',
             type: 'EXPORT',
             valid: canExport(products, account),
-            title: 'Xuất sản phẩm đến nơi khác'
+            title: subLang.action_one
         },
         {
             key: 'CONFIRM',
             type: 'CONFIRM',
             valid: canConfirm(products, account),
-            title: 'Xác nhận sản phẩm'
+            title: subLang.action_two
         }
     ]
 

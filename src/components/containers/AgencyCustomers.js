@@ -14,7 +14,6 @@ import TableBase from "../sub_components/Table";
 import { textFilter, selectFilter } from "react-bootstrap-table2-filter";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
-import AgencyAddCustomer from "../sub_components/AgencyAddCustomer"
 import AccountDisplay from "../display/AccountDisplay";
 
 const AgencyCustomers = () => {
@@ -155,17 +154,6 @@ const AgencyCustomers = () => {
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 className="h3 mb-0 text-gray-800">{subLang.manage_customers}</h1>
             </div>
-
-            {/* Button Create Account */}
-            <button className="btn btn-primary" onClick={() => openModalCreateAccount()}>{subLang.add_new_customer}</button>
-
-            {/* Popup Form **************************************************************** */}
-            {
-                <AgencyAddCustomer
-                    handleResult={handleResult}
-                    handleClose={closeModalCreateAccount}
-                    show={showAddCustomer} />
-            }
 
             {/* <AccountDisplay
                 handleClose={closeModalAccountDetail}
