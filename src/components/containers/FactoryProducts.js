@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import "../../js/sb-admin-2.min";
@@ -30,9 +30,10 @@ const FactoryProducts = () => {
     const [showProductActions, setShowProductActions] = useState(false)
     const [choosedRow, setChoosedRow] = useState({})
     const [choosedRows, setChoosedRows] = useState([])
+    const dispatch = useDispatch()
 
     const indexMessage = useSelector(state => state.message.index)
-
+    const message = useSelector(state => state.message)
     // *** prevent another role from accessing to link which just only for admin ***
     if (account?.role !== roles.FACTORY) {
         return (
@@ -66,7 +67,7 @@ const FactoryProducts = () => {
                 products[product.id] = product
             }
             setListProducts({
-                ...listProducts,
+                // ...listProducts,
                 ...products
             })
         }).catch((error) => {
@@ -120,6 +121,7 @@ const FactoryProducts = () => {
         //     listCopy[product.id] = product
         // })
         setListProducts({ ...listProducts, ...listNewProducts })
+
     }
 
     const handleCloseModal = (e) => {
@@ -198,7 +200,7 @@ const FactoryProducts = () => {
                 getBtn={undefined}
                 rowEvents={rowEvents}
                 clickActions={clickAtions}
-                handleOpenModalExport = {handleOpenModalExport}
+                handleOpenModalExport={handleOpenModalExport}
                 choosed={true}
             />
         </div>

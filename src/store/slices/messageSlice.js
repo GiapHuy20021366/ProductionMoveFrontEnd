@@ -47,6 +47,10 @@ export const messageSlice = createSlice({
         clearMessage(state, action) {
             state.list = []
             state.ids = []
+        },
+        pushEmptyMessage(state, action) {
+            state.index += 1
+            return state
         }
     },
     extraReducers: (builder) => {
@@ -69,5 +73,5 @@ export const messageSlice = createSlice({
     }
 })
 
-export const { addMessage, clearMessage } = messageSlice.actions
+export const { addMessage, clearMessage, pushEmptyMessage } = messageSlice.actions
 export default messageSlice.reducer

@@ -12,6 +12,7 @@ import { async } from "q";
 import ToastUtil from "../../untils/toastUtil";
 import { Button, Modal, Form, Col, Row } from "react-bootstrap";
 import MaintainCenterActions from './MaintainCenterActions';
+import { pushEmptyMessage } from "../../store/slices/messageSlice";
 
 const pagination = paginationFactory({
     page: 1,
@@ -27,13 +28,14 @@ const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
     const [selftColumns, setSelfColumns] = useState([...columns]);
     const [, updateState] = React.useState();
     const forceUpdate = React.useCallback(() => updateState({}), []);
+    const dispatch = useDispatch()
 
-    if (account.role === roles.FACTORY) {
-        subLang = useSelector((state) => state.lang.FactoryActions);
-    }
-    if (account.role === roles.AGENCY) {
-        subLang = useSelector((state) => state.lang.AgencyActions);
-    }
+    // if (account.role === roles.FACTORY) {
+    //     subLang = useSelector((state) => state.lang.FactoryActions);
+    // }
+    // if (account.role === roles.AGENCY) {
+    //     subLang = useSelector((state) => state.lang.AgencyActions);
+    // }
 
     const actionRef = useRef();
     const deleteActionRef = useRef();
@@ -114,6 +116,7 @@ const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
 
                         ToastUtil.success(message, 1000);
                         handleClose && handleClose();
+                        // dispatch(pushEmptyMessage())
                     });
                 })
                 .catch((error) => {
@@ -126,6 +129,7 @@ const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
     const regisAction = (actionR) => {
         actionRef.current = actionR;
     };
+    // selected_num
 
     return (
         <>
@@ -134,7 +138,7 @@ const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
                     <Modal.Title>{subLang.actions_title}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    Các sản phẩm đã chọn
+                    {subLang.selected_num(rows)}
                     <div className="table-responsive">
                         <BootstrapTable
                             bootstrap4
@@ -151,6 +155,11 @@ const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
                     {account.role === roles.AGENCY && (
                         <AgencyActions products={rows} regisAction={regisAction} />
                     )}
+                    {
+                        account.role === roles.MAINTERNANCE &&
+                        <MaintainCenterActions products={rows} regisAction={regisAction} />
+
+                    }
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>

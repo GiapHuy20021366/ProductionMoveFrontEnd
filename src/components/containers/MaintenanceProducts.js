@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-table2-paginator/dist/react-bootstrap-table2-paginator.min.css';
 import "../../js/sb-admin-2.min";
@@ -14,6 +14,8 @@ import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import TableBase from "../sub_components/Table"
 import ProductActions from './../action_component/ProductActions';
+import ProductDisplay from "../display/ProductDisplay";
+import { pushEmptyMessage } from "../../store/slices/messageSlice";
 
 const MaintenanceProducts = () => {
     const account = useSelector(state => state.user.account)
@@ -26,8 +28,10 @@ const MaintenanceProducts = () => {
     const [showProductDetail, setShowProductDetail] = useState(false)
     const [choosedRow, setChoosedRow] = useState({})
     const [choosedRows, setChoosedRows] = useState([])
+    // const dispatch = useDispatch()
 
     const indexMessage = useSelector(state => state.message.index)
+    // const messgae = 
 
     // *** prevent another role from accessing to link which just only for admin ***
     if (account?.role !== 4) {
@@ -110,10 +114,11 @@ const MaintenanceProducts = () => {
 
     const handleResult = (listNewProducts) => {
         const newList = {
-            ...listProducts,
+            // ...listProducts,
             ...listNewProducts
         }
         setListProducts(newList)
+        // dispatch(pushEmptyMessage())
     }
 
     const rowEvents = {
@@ -129,6 +134,10 @@ const MaintenanceProducts = () => {
         setShowProductActions(true)
     }
 
+    const closeModalProductDetail = () => {
+        setShowProductDetail(false)
+    }
+
     return (
         <div className="container-fluid">
             <div className="d-sm-flex align-items-center justify-content-between mb-4">
@@ -140,6 +149,11 @@ const MaintenanceProducts = () => {
                 columns={tableColumns}
                 handleResult={handleResult}
                 handleClose={() => setShowProductActions(false)}
+            />
+            <ProductDisplay
+                show={showProductDetail}
+                row={choosedRow}
+                handleClose={closeModalProductDetail}
             />
             <TableBase
                 title={subLang.sumary_re(arrayProducts.length)}
