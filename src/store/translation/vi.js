@@ -271,6 +271,7 @@ const langOfProductDisplay = {
 const langOfProductActions = {
     ...langOfAdminProducts,
     actions_title: 'Hành động',
+    actions_selection: 'Chọn hành động',
     cancel: 'Hủy',
     submit: 'Hành động',
 }
@@ -283,16 +284,19 @@ const langOfFactoryActions = {
     delivery_date: 'Ngày giao hàng',
     submit: 'Xuất',
     alert_success: 'Xuất lô sản phẩm thành công!',
+    action_one: 'Xuất sản phẩm đến nơi khác',
+    action_two: 'Xác nhận sản phẩm',
 }
 
 const langOfAgencyActions = {
     ...langOfProductActions,
-    actions_selection: 'Chọn hành động',
+    action_one: 'Bắt đầu bảo hành',
+    action_two: 'Thu hồi sản phẩm',
+    action_three: 'Xuất sản phẩm đến nơi khác',
 }
 
 const langOfMaintenanceActions = {
     ...langOfProductActions,
-    actions_selection: 'Chọn hành động',
 }
 
 const vi = {

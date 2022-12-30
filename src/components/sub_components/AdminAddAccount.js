@@ -4,8 +4,7 @@ import '../../styles/AdminAddAccount.scss'
 import ToastUtil from "../../untils/toastUtil";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
-import { Button, Modal } from "react-bootstrap";
-
+import { Button, Modal, Form, Row, Col } from "react-bootstrap";
 
 const AdminAddAccount = ({ handleResult, handleClose, show }) => {
     const subLang = useSelector(state => state.lang.AdminAddAccount)
@@ -104,48 +103,72 @@ const AdminAddAccount = ({ handleResult, handleClose, show }) => {
                 <Modal.Title>{subLang.add_new_account}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <div className="AdminAddAccount-popup">
-                    <ul>
-                        <li>
-                            <label htmlFor="userName">{subLang.userName}:</label>
-                            <input type='text' placeholder={subLang.userName} name="userName" ref={userNameRef} required></input>
-                        </li>
-                        <li>
-                            <label htmlFor="password">{subLang.password}:</label>
-                            <input type='password' placeholder={subLang.password} name="password" ref={passwordRef} required></input>
-                        </li>
-                        <li>
-                            <label htmlFor="email">{subLang.email}:</label>
-                            <input type='email' placeholder={subLang.email} name="email" ref={emailRef} required></input>
-                        </li>
-                        <li>
-                            <label htmlFor="displayName">{subLang.name}:</label>
-                            <input type='text' placeholder={subLang.name} name='displayName' ref={nameRef} required></input>
-                        </li>
-                        <li>
-                            <label htmlFor="phone">{subLang.phone}:</label>
-                            <input type='text' placeholder={subLang.phone} name='phone' ref={phoneRef} ></input>
-                        </li>
-                        <li>
-                            <label htmlFor="address">{subLang.address}:</label>
-                            <input type='text' placeholder={subLang.address} name='address' ref={addressRef}></input>
-                        </li>
-                        <li>
-                            <label>{subLang.role}:</label>
-                            <select ref={roleRef}>
-                                <option value="1">{getRole(1)}</option>
-                                <option value="2">{getRole(2)}</option>
-                                <option value="3">{getRole(3)}</option>
-                                <option value="4">{getRole(4)}</option>
-                            </select>
-                        </li>
-                    </ul>
+                <Form className="AdminAddAccount-popupz">
+                    <Form.Group as={Row} className="mb-3">
+                        <Form.Label column sm="4">{subLang.userName}*</Form.Label>
+                        <Col sm="8">
+                            <Form.Control placeholder={subLang.userName} required ref={userNameRef}/>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3">
+                        <Form.Label column sm="4">{subLang.password}*</Form.Label>
+                        <Col sm="8">
+                            <Form.Control type="password" placeholder={subLang.password} required ref={passwordRef}/>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3">
+                        <Form.Label column sm="4">{subLang.email}*</Form.Label>
+                        <Col sm="8">
+                            <Form.Control placeholder={subLang.email} ref={emailRef}/>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3">
+                        <Form.Label column sm="4">{subLang.name}</Form.Label>
+                        <Col sm="8">
+                            <Form.Control placeholder={subLang.name} ref={nameRef}/>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3">
+                        <Form.Label column sm="4">{subLang.phone}</Form.Label>
+                        <Col sm="8">
+                            <Form.Control placeholder={subLang.phone} ref={phoneRef}/>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3">
+                        <Form.Label column sm="4">{subLang.address}</Form.Label>
+                        <Col sm="8">
+                            <Form.Control placeholder={subLang.address} ref={addressRef}/>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3">
+                        <Form.Label column sm="4">{subLang.role}</Form.Label>
+                        <Col sm="8">
+                            <Form.Select ref={roleRef}>
+                                <option value={getRole(1)}>{getRole(1)}</option>
+                                <option value={getRole(2)}>{getRole(2)}</option>
+                                <option value={getRole(3)}>{getRole(3)}</option>
+                                <option value={getRole(4)}>{getRole(4)}</option>
+                            </Form.Select>
+                        </Col>
+                    </Form.Group>
                     <div className="errorMsg">{errorMessage}</div>
-                </div>
+                    {/* <Form.Group as={Row} className="mb-3" controlId="birth">
+                        <Form.Label column sm="4">{subLang.birth}</Form.Label>
+                        <Col sm="8">
+                            <Form.Control type="date" ref={birthRef} />
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="quantity">
+                        <Form.Label column sm="4">{subLang.quantity}</Form.Label>
+                        <Col sm="8">
+                            <Form.Control type="number" ref={quantityRef} />
+                        </Col>
+                    </Form.Group> */}
+                </Form>
             </Modal.Body>
             <Modal.Footer>
                 <Button variant="secondary" onClick={handleClose}>
-                    Cancel
+                    {subLang.cancel}
                 </Button>
                 <Button variant="primary" onClick={onClickAddAccount}>{subLang.add_new_account}</Button>
             </Modal.Footer>

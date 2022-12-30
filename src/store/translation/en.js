@@ -271,6 +271,7 @@ const langOfProductDisplay = {
 const langOfProductActions = {
     ...langOfAdminProducts,
     actions_title: 'Actions', 
+    actions_selection: 'Select Action',
     cancel: 'Cancel',
     submit: 'Action',
 }
@@ -283,16 +284,16 @@ const langOfFactoryActions = {
     delivery_date: 'Delivery Date',
     submit: 'Export',
     alert_success: 'Batch Export Products Successfully!',
+    action_one: 'Export to another location',
+    action_two: 'Confirm products',
 }
 
 const langOfAgencyActions = {
     ...langOfProductActions,
-    actions_selection: 'Select Action'
 }
 
 const langOfMaintenanceActions = {
     ...langOfProductActions,
-    actions_selection: 'Select Action',
 }
 
 const en = {
