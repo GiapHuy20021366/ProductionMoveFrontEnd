@@ -11,11 +11,9 @@ import "../../vendor/datatables/dataTables.bootstrap4.min.css";
 import { Redirect } from "react-router";
 import { paths } from "../../untils/constant";
 import useCallApi from "../../untils/fetch";
-import { apiUrls } from '../../untils/constant'
+import { apiUrls, roles } from '../../untils/constant'
 import TableBase from "../sub_components/Table"
 import FactoryImportProducts from "../sub_components/FactoryImportProducts";
-import FactoryExportProducts from "../sub_components/FactoryExportProducts";
-import ReceiveProduct from "../sub_components/ReceiveProduct";
 import ProductDisplay from "../display/ProductDisplay";
 import ProductActions from "../action_component/ProductActions";
 
@@ -29,13 +27,12 @@ const FactoryProducts = () => {
     const [showModalImport, setShowModalImport] = useState(false)
     const [showModalExport, setShowModalExport] = useState(false)
     const [showProductDetail, setShowProductDetail] = useState(false)
-    const [showReceiveProduct, setShowReceiveProduct] = useState(false)
-    const [choosedRow, setChoosedRow] = useState({})
     const [showProductActions, setShowProductActions] = useState(false)
+    const [choosedRow, setChoosedRow] = useState({})
     const [choosedRows, setChoosedRows] = useState([])
-    
+
     // *** prevent another role from accessing to link which just only for admin ***
-    if (account?.role !== 2) {
+    if (account?.role !== roles.FACTORY) {
         return (
             <Redirect to={paths.SYSTEM} />
         )
@@ -134,7 +131,7 @@ const FactoryProducts = () => {
         setChoosedRows(rows)
         // setShowModalExport(true)
     }
-    
+
     const closeModalProductDetail = () => {
         setShowProductDetail(false)
     }
@@ -162,24 +159,27 @@ const FactoryProducts = () => {
             {/* Popup Form **************************************************************** */}
             {
                 <FactoryImportProducts
-                handleResult={handleResult}
-                handleClose={handleCloseModal}
-                show={showModalImport}
+                    handleResult={handleResult}
+                    handleClose={handleCloseModal}
+                    show={showModalImport}
                 />
             }
             {/* Button Export Products Data */}
-            <button className="btn btn-primary" onClick={() => handleOpenModalExport()}>{subLang.export_products_btn}</button>
+            {/* <button className="btn btn-primary" onClick={() => handleOpenModalExport()}>{subLang.export_products_btn}</button> */}
             {/* Popup Form **************************************************************** */}
-            
-
-
-
-            {/* Popup Form **************************************************************** */}
+            {/* {
+                <FactoryExportProducts
+                handleResult={handleResult}
+                handleClose={handleCloseModal}
+                show={showModalExport}
+                />
+            } */}
 
             <ProductActions
                 show={showProductActions}
                 rows={choosedRows}
                 columns={tableColumns}
+                handleResult={handleResult}
                 handleClose={() => setShowProductActions(false)}
                 export = {
                     <FactoryExportProducts

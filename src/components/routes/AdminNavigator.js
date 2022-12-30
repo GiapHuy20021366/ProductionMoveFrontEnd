@@ -51,6 +51,9 @@ const AdminNavigator = (probs) => {
                 pathname={paths.ADMIN_CUSTOMERS}
                 onClickFunc={onClickCustomers}
                 title={subLang.view_customers}
+                Icon = {() => { return (
+                    <i className="fa-solid fa-eye"></i>
+                )}}
             />
         </>
     )

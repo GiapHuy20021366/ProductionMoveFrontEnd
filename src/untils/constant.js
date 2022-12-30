@@ -30,10 +30,24 @@ export const apiUrls = {
     CREATE_PARTNER: '/api/create-partner',
     CREATE_MODEL: '/api/create-model',
     CREATE_PRODUCTS: '/api/create-products',
+    EXPORT_PRODUCTS: '/api/export-products',
     GET_MODELS_BY_QUERY: '/api/get-models-by-query',
     GET_MODELS_BY_IDS: '/api/get-models-by-ids',
     GET_PRODUCTS_BY_QUERY: '/api/get-products-by-query',
     GET_CUSTOMERS_BY_QUERY: '/api/get-customers-by-query',
     GET_CURRENT_PRODUCTS_BY_QUERY: '/api/get-current-products-by-query',
-    GET_RESOURCES: '/api/get-resources'
+    GET_RESOURCES: '/api/get-resources',
+    MAINTENANCE_PRODUCTS: '/api/maintain-products',
+    EXPORT_PRODUCTS: '/api/export-products',
+    RECALL_PRODUCTS: '/api/recall-products',
+    RETURN_PRODUCT: '/api/return-products-to-customer',
+    CONFIRM_PRODUCT: '/api/confirm-export-products',
+    GET_NEWEST_EXPORTS: '/api/get-newest-exports'
+}
+
+export const roles = {
+    ADMIN: 1,
+    FACTORY: 2,
+    AGENCY: 3,
+    MAINTERNANCE: 4
 }

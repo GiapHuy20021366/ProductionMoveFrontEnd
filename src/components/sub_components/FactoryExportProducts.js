@@ -16,24 +16,25 @@ const FactoryExportProducts = ({rows}) => {
     const quantityRef = useRef()
     const modelIdRef = useRef()
     const birthRef = useRef()
-    
     const agencyIdRef = useRef()
 
-    const [errorMsgCreateProducts, setErrorMsgCreateProducts] = useState('')
-    const [errorMsgGetModels, setErrorMsgGetModels] = useState('')
+    
+    const [errorMsgExportProducts, setErrorMsgExportProducts] = useState('')
+    const [choosedRow, setChoosedRow] = useState({})
+    const [choosedRows, setChoosedRows] = useState([])
+    const [listExportedProducts, setListExportedProducts] = useState([])
+
+    const clickActions = (rows) => {
+        setChoosedRows(rows)
+    }
 
     // *** call API to export products
     const onClickSubmit = async (e) => {
-        setErrorMsgCreateProducts('')
-        const quantity = quantityRef.current.value
-        const newProduct = {
-            modelId: modelIdRef.current.value,
-            birth: birthRef.current.value,
-        }
-        let listNewProducts = []
-        for (let i = 0; i < quantity; i++) {
-            listNewProducts.push(newProduct)
-        }
+        setErrorMsgExportProducts('')
+        // let listNewProducts = []
+        // for (let i = 0; i < quantity; i++) {
+        //     listNewProducts.push(newProduct)
+        // }
 
         // const testAPI = () => {
         //     Promise.resolve(listNewProducts).then((data) => {
@@ -50,56 +51,31 @@ const FactoryExportProducts = ({rows}) => {
         // console.log(modelIdRef.current)
 
         await useCallApi(
-            apiUrls.CREATE_PRODUCTS,
+            apiUrls.EXPORT_PRODUCTS,
             {
-                products: listNewProducts
+                listId: listProducts, 
+                // toPartnerId: Number, 
+                // type: Number, 
+                // note:String
             }
-        ).then(async (data) => {
-            const products = data.data
-            const ids = []
-            products.forEach((product) => { ids.push(product.id) })
-            await useCallApi(
-                apiUrls.GET_CURRENT_PRODUCTS_BY_QUERY,
-                {
-                    associates: {
-                        product: {
-                            model: { factory: true }
-                        },
-                        nowAt: true,
-                        willAt: true,
-                        customer: true
-                    },
-                    attributes: {
-                        id: { 
-                            or: ids
-                        }
-                    }
-                }
-            ).then((data) => {
-                const holdersRequest = data.data.rows
-                const products = {}
-                for (const holder of holdersRequest) {
-                    const { product, nowAt, willAt, customer } = holder
-                    product.holders = { nowAt, willAt, customer }
-                    products[product.id] = product
-                }
-                handleResult && handleResult(products)
-    
-                modelIdRef.current.value = ''
-                birthRef.current.value = ''
-    
-                ToastUtil.success(subLang.import_success, 1000);
-                handleClose && handleClose(e)
-
+        ).then((data) => {
+            handleResult && handleResult({
+                ...listProducts,
             })
+    
+            // modelIdRef.current.value = ''
+            // birthRef.current.value = ''
+    
+            ToastUtil.success(subLang.import_success, 1000);
+            handleClose && handleClose(e)
             // console.log(data)
         }).catch((error) => {
             console.log(error)
             const messageResponse = error.response.data.message
-            setErrorMsgCreateProducts(messageResponse)
+            setErrorMsgExportProducts(messageResponse)
         })
-
-        testAPI()
+    
+        // testAPI()
     }
 
     {

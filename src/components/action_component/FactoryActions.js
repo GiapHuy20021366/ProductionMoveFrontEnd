@@ -1,32 +1,18 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { paths } from "../../untils/constant";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import { Button, Modal, Form, Col, Row } from "react-bootstrap";
-import MaintainStart from './MaintainStart';
+import { canMaintain, canExport, canRecall, canReturn } from "../../untils/actionAuth";
 import ExportProducts from "./ExportProducts";
 
-import { canMaintain, canExport, canRecall, canReturn, canConfirm } from "../../untils/actionAuth";
-import RecallStart from "./RecallStart";
-import ReturnProduct from "./ReturnProduct";
-import ConfirmProduct from './ConfirmProducts';
-
-
-
-
-const AgencyActions = ({ products, regisAction }) => {
+const FactoryActions = ({ products, regisAction }) => {
     const subLang = useSelector(state => state.lang.AgencyActions)
     const account = useSelector(state => state.user.account)
     const actionRef = useRef()
 
-    const [actionKey, setActionKey] = useState('MAINTAIN')
-    // const resources = useSelector(state => state.resources)
-
-    // useEffect(() => {
-    //     console.log(actionRef)
-    // }, [actionRef.current])
-    // console.log(products)
+    const [actionKey, setActionKey] = useState('EXPORT')
 
     const onChangeAction = (e) => {
         setActionKey(e.target.value)
@@ -41,39 +27,15 @@ const AgencyActions = ({ products, regisAction }) => {
 
     const actions = [
         {
-            key: 'MAINTAIN',
-            title: 'Bắt đầu bảo hành',
-            type: 'MAINTAIN',
-            valid: canMaintain(products)
-        },
-        {
-            key: 'RECALL',
-            title: 'Thu hồi sản phẩm',
-            type: 'RECALL',
-            valid: canRecall(products)
-        },
-        {
             key: 'EXPORT',
             type: 'EXPORT',
             valid: canExport(products, account),
             title: 'Xuất sản phẩm đến nơi khác'
         },
         {
-            key: 'RETURN',
-            type: 'RETURN',
-            valid: canReturn(products, account),
-            title: 'Chuyển sản phẩm cho khách hàng sau bảo hành'
-        },
-        {
             key: 'CONFIRM',
             type: 'CONFIRM',
-            valid: canConfirm(products, account),
             title: 'Xác nhận sản phẩm'
-        },
-        {
-            key: 'PURCHASE',
-            type: 'PURCHASE',
-            title: 'Bán sản phẩm cho khách hàng'
         }
     ]
 
@@ -96,30 +58,11 @@ const AgencyActions = ({ products, regisAction }) => {
                 </Col>
             </Form.Group>
             {
-                actionKey == 'MAINTAIN' &&
-                <MaintainStart regisAction={regisAction} products={products} />
-            }
-            {
                 actionKey == 'EXPORT' &&
                 <ExportProducts regisAction={regisAction} products={products} />
-            }
-            {
-                actionKey == 'RECALL' &&
-                <RecallStart regisAction={regisAction} products={products} />
-            }
-            {
-                actionKey == 'RETURN' &&
-                <ReturnProduct regisAction={regisAction} products={products} />
-            }
-            {
-                actionKey == 'CONFIRM' &&
-                <ConfirmProduct regisAction={regisAction} products={products} />
             }
         </Form>
     )
 }
 
-export default AgencyActions
-
-
-
+export default FactoryActions

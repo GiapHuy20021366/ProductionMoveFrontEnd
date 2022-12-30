@@ -55,6 +55,10 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, c
       } else {
         setChoosedRows(choosedRows.filter((rowc) => rowc.id != row.id))
       }
+
+      // Check row already reject choosen in another component
+      // const rowCheck = 
+
     },
     onSelectAll: (isSelect, rows, e) => {
       const uniqueRows = {}
@@ -75,16 +79,16 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, c
           choosed &&
           <OverlayTrigger placement="right" overlay={<Tooltip>{btnName}</Tooltip>}>
             <Button variant="outline-primary"
-            // aria-controls="example-collapse-text"
-            // aria-expanded={open}
-            onClick={() => {
+              // aria-controls="example-collapse-text"
+              // aria-expanded={open}
+              onClick={() => {
                 clickActions && clickActions(choosedRows)
                 handleOpenModalExport && handleOpenModalExport(choosedRows)
                 // setOpen(!open)
               }}
               disabled={choose ? false : true}
-              >
-              <i class="fa-solid fa-car-side"></i>
+            >
+              <i className="fa-solid fa-car-side"></i>
             </Button>
           </OverlayTrigger>
         }

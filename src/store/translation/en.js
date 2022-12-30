@@ -174,8 +174,7 @@ const langOfFactoryAddModel = {
 
 const langOfFactoryProducts = {
     ...langOfAdminProducts,
-    import_products_btn: 'Import Products',
-    export_products_btn: 'Export Products',
+    import_products_btn: 'Batch Import Products',
 }
 
 const langOfFactoryImportProducts = {
@@ -184,19 +183,7 @@ const langOfFactoryImportProducts = {
     quantity: 'Quantity',
     cancel: 'Cancel',
     submit: 'Import',
-    import_success: 'Import Products Successfully!',
-    export_products: "Batch Export Products",
-}
-
-const langOfFactoryExportProducts = {
-    ...langOfAdminProducts,
-    export_products: "Batch Export Products",
-    quantity: 'Quantity',
-    cancel: 'Cancel',
-    submit: 'Export',
-    import_success: 'Export Products Successfully!',
-    destination_agency: 'Destination Agency',
-    delivery_date: 'Delivery Date',
+    import_success: 'Batch Import Products Successfully!',
 }
 
 const langOfAgencyModels = {
@@ -218,12 +205,6 @@ const langOfAgencyCustomers = {
 const langOfAgencyAddCustomer = {
     ...langOfAccountInfo,
     add_new_customer: 'New customer information',
-}
-
-const langOfAgencySendWarrantyOrder = {
-    ...langOfAccountInfo,
-    send_warr: 'Send warranty order',
-    reason: 'Reason'
 }
 
 const langOfMaintenanceModels = {
@@ -285,7 +266,28 @@ const langOfProductDisplay = {
 
 const langOfProductActions = {
     ...langOfAdminProducts,
+    actions_title: 'Actions', 
+    cancel: 'Cancel',
+    submit: 'Submit',
+}
 
+const langOfFactoryActions = {
+    ...langOfProductActions,
+    actions_title: "Batch Export Products",
+    destination_agency: 'Destination Agency',
+    delivery_date: 'Delivery Date',
+    submit: 'Export',
+    alert_success: 'Batch Export Products Successfully!',
+}
+
+const langOfAgencyActions = {
+    ...langOfProductActions,
+    actions_selection: 'Select Action',
+}
+
+const langOfMaintenanceActions = {
+    ...langOfProductActions,
+    actions_selection: 'Select Action',
 }
 
 const en = {
@@ -315,18 +317,19 @@ const en = {
     AdminCustomers: langOfAdminCustomers,
 
     ProductActions: langOfProductActions,
+    FactoryActions: langOfFactoryActions,
+    AgencyActions: langOfAgencyActions,
+    MaintenanceActions: langOfMaintenanceActions,
 
     FactoryModels: langOfFactoryModels,
     FactoryAddModel: langOfFactoryAddModel,
     FactoryProducts: langOfFactoryProducts,
     FactoryImportProducts: langOfFactoryImportProducts,
-    FactoryExportProducts: langOfFactoryExportProducts,
 
     AgencyModels: langOfAgencyModels,
     AgencyProducts: langOfAgencyProducts,
     AgencyCustomers: langOfAgencyCustomers,
     AgencyAddCustomer: langOfAgencyAddCustomer,
-    AgencySendWarrantyOrder: langOfAgencySendWarrantyOrder,
 
     MaintenanceModels: langOfMaintenanceModels,
     MaintenanceProducts: langOfMaintenanceProducts,
