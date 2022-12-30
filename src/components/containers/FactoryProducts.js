@@ -130,8 +130,9 @@ const FactoryProducts = () => {
     const handleOpenModalImport = () => {
         setShowModalImport(true)
     }
-    const handleOpenModalExport = () => {
-        setShowModalExport(true)
+    const handleOpenModalExport = (rows) => {
+        setChoosedRows(rows)
+        // setShowModalExport(true)
     }
     
     const closeModalProductDetail = () => {
@@ -169,13 +170,7 @@ const FactoryProducts = () => {
             {/* Button Export Products Data */}
             <button className="btn btn-primary" onClick={() => handleOpenModalExport()}>{subLang.export_products_btn}</button>
             {/* Popup Form **************************************************************** */}
-            {
-                <FactoryExportProducts
-                handleResult={handleResult}
-                handleClose={handleCloseModal}
-                show={showModalExport}
-                />
-            }
+            
 
 
 
@@ -186,6 +181,14 @@ const FactoryProducts = () => {
                 rows={choosedRows}
                 columns={tableColumns}
                 handleClose={() => setShowProductActions(false)}
+                export = {
+                    <FactoryExportProducts
+                    handleResult={handleResult}
+                    handleClose={handleCloseModal}
+                    rows = {choosedRows}
+                    show={showModalExport}
+                    />
+                }
             />
             <ProductDisplay
                 show={showProductDetail}
@@ -200,6 +203,7 @@ const FactoryProducts = () => {
                 getBtn={undefined}
                 rowEvents={rowEvents}
                 clickActions={clickAtions}
+                handleOpenModalExport = {handleOpenModalExport}
                 choosed={true}
             />
         </div>

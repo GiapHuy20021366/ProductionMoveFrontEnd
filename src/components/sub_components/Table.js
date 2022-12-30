@@ -14,7 +14,7 @@ import filterFactory, { textFilter } from "react-bootstrap-table2-filter";
 import "react-bootstrap-table2-filter/dist/react-bootstrap-table2-filter.min.css";
 import { Button, OverlayTrigger, Tooltip, Collapse } from "react-bootstrap";
 
-const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, choosed, keyField, btnName = "More actions" }) => {
+const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, choosed, keyField, btnName = "More actions", handleOpenModalExport}) => {
   const [choose, setChoose] = useState(false)
   const [choosedRows, setChoosedRows] = useState([])
   const [open, setOpen] = useState(false);
@@ -79,6 +79,7 @@ const TableBase = ({ isLoading, data, columns, title, rowEvents, clickActions, c
             // aria-expanded={open}
             onClick={() => {
                 clickActions && clickActions(choosedRows)
+                handleOpenModalExport && handleOpenModalExport(choosedRows)
                 // setOpen(!open)
               }}
               disabled={choose ? false : true}

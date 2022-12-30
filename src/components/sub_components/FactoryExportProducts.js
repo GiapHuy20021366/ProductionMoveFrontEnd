@@ -6,12 +6,12 @@ import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import { Button, Modal, Form, Col, Row } from "react-bootstrap";
 
-const FactoryExportProducts = ({ handleResult, handleClose, show }) => {
+const FactoryExportProducts = ({rows}) => {
     const subLang = useSelector(state => state.lang.FactoryImportProducts)
     const account = useSelector(state => state.user.account)
     const listAgencies = useSelector(state => state.resources.holders.agencies)
-    console.log("Agencies")
-    console.log(listAgencies)
+    // console.log("Agencies")
+    // console.log(listAgencies)
 
     const quantityRef = useRef()
     const modelIdRef = useRef()
@@ -76,7 +76,6 @@ const FactoryExportProducts = ({ handleResult, handleClose, show }) => {
                     }
                 }
             ).then((data) => {
-                console.log(data)
                 const holdersRequest = data.data.rows
                 const products = {}
                 for (const holder of holdersRequest) {
@@ -114,15 +113,6 @@ const FactoryExportProducts = ({ handleResult, handleClose, show }) => {
     }
 
     return (
-        <Modal
-            size="lg"
-            show={show}
-            onHide={handleClose}
-        >
-            <Modal.Header closeButton>
-                <Modal.Title>{subLang.import_products}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
                 <Form>
                     <Form.Group as={Row} className="mb-3" controlId="produced_factory">
                         <Form.Label column sm="4">{subLang.produced_factory}</Form.Label>
@@ -151,18 +141,10 @@ const FactoryExportProducts = ({ handleResult, handleClose, show }) => {
                     <Form.Group as={Row} className="mb-3" controlId="quantity">
                         <Form.Label column sm="4">{subLang.quantity}</Form.Label>
                         <Col sm="8">
-                            <Form.Control type="number" ref={quantityRef} />
+                            <Form.Control value={rows.length} ref={quantityRef} />
                         </Col>
                     </Form.Group>
                 </Form>
-            </Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={handleClose}>
-                    Cancel
-                </Button>
-                <Button variant="primary" onClick={onClickSubmit}>{subLang.submit}</Button>
-            </Modal.Footer>
-        </Modal>
     )
 }
 

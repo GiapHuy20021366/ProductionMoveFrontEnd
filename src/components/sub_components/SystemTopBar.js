@@ -90,7 +90,7 @@ const SystemTopBar = () => {
                 onClickAccount();
               }}
             >
-              <i className="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+              <i className="fas fa-user-alt fa-sm fa-fw mr-2 text-gray-400"></i>
               {subLang.account}
             </a>
 
