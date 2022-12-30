@@ -12,7 +12,9 @@ import { useSelector } from 'react-redux';
 
 const Message = () => {
     const messages = useSelector(state => state.message)
-    console.log(messages)
+    if (messages.list.length > 0) {
+        console.log(messages.list[0].content)
+    }
     return (
         <li className="nav-item dropdown no-arrow mx-1">
             <a

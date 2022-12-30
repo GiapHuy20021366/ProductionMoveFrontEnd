@@ -66,7 +66,7 @@ const ExportProducts = ({ products, regisAction, hanldeResult }) => {
             setPartners(resources.holders.agencies)
         }
         if (account.role === roles.MAINTERNANCE) {
-            setPartners([...resources.holders.agencies, resources.holders.maintainCenters])
+            setPartners([...resources.holders.agencies, ...resources.holders.factories])
         }
         console.log(partners)
     }, [])
