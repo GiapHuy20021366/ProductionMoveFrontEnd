@@ -23,6 +23,19 @@ const langOfSystemHome = {
     home: 'Trang chủ'
 }
 
+const langOfMessage = {
+    ...langOfAccountInfo,
+    export_confirm: numOfProduct => {
+        return `xác nhận đã xuất đi ${numOfProduct} sản phẩm.`
+    },
+    export: numOfProduct => {
+        return `cần xác nhận đã xuất đi ${numOfProduct} sản phẩm.`
+    },
+    alerts: 'Thông báo',
+    details: 'Xem chi tiết',
+    show_all_alerts: 'Hiển thị toàn bộ thồng báo'
+}
+
 const langOfAccountInfo = {
     account_info: 'Thông tin tài khoản',
     name: 'Tên',
@@ -270,7 +283,11 @@ const langOfProductDisplay = {
 
 const langOfProductActions = {
     ...langOfAdminProducts,
+    selected_num: rows => {
+        return `Đã chọn ${rows.length} sản phẩm`
+    },
     actions_title: 'Hành động',
+    actions_selection: 'Chọn hành động',
     cancel: 'Hủy',
     submit: 'Hành động',
 }
@@ -283,16 +300,34 @@ const langOfFactoryActions = {
     delivery_date: 'Ngày giao hàng',
     submit: 'Xuất',
     alert_success: 'Xuất lô sản phẩm thành công!',
+    action_one: 'Xuất sản phẩm đến Đại lý',
+    action_two: 'Xác nhận sản phẩm',
 }
 
 const langOfAgencyActions = {
     ...langOfProductActions,
-    actions_selection: 'Chọn hành động',
+    action_one: 'Bảo hành tại đại lý',
+    action_two: 'Thu hồi sản phẩm',
+    action_three: 'Xuất sản phẩm đến Trung tâm bảo hành để bảo hành',
+    action_four: 'Chuyển sản phẩm cho khách hàng sau bảo hành',
+    action_five: 'Xác nhận sản phẩm',
+    action_six: 'Bán sản phẩm cho khách hàng'
 }
 
 const langOfMaintenanceActions = {
     ...langOfProductActions,
-    actions_selection: 'Chọn hành động',
+    action_one: 'Xuất sản phẩm',
+    action_two: 'Xác nhận sản phẩm',
+}
+
+const langOfExportProducts = {
+    destination: 'Điểm đến',
+    reason: 'Lý do',
+    reason_warranty: 'Bảo hành',
+    reason_recall: 'Thu hồi', 
+    reason_export: 'Xuất kho', 
+    reason_error_maintain: 'Lỗi trong quá trình bảo hành', 
+    note: 'Ghi chú',
 }
 
 const vi = {
@@ -303,6 +338,7 @@ const vi = {
 
     SystemTopBar: langOfSystemTopBar,
     SystemHome: langOfSystemHome,
+    Message: langOfMessage,
     AccountInfo: langOfAccountInfo,
     LanguageChooser: langOfLanguageChooser,
 
@@ -326,6 +362,7 @@ const vi = {
     FactoryActions: langOfFactoryActions,
     AgencyActions: langOfAgencyActions,
     MaintenanceActions: langOfMaintenanceActions,
+    ExportProducts: langOfExportProducts,
 
     FactoryModels: langOfFactoryModels,
     FactoryAddModel: langOfFactoryAddModel,

@@ -9,8 +9,8 @@ import { Button, Modal, Form, Col, Row } from "react-bootstrap";
 import { roles } from "../../untils/constant";
 import { canExport } from "../../untils/actionAuth";
 
-
 const ExportProducts = ({ products, regisAction, hanldeResult }) => {
+    const subLang = useSelector(state => state.lang.ExportProducts)
     const account = useSelector(state => state.user.account)
     const noteRef = useRef()
     const desRef = useRef()
@@ -24,11 +24,11 @@ const ExportProducts = ({ products, regisAction, hanldeResult }) => {
             setReasons([
                 {
                     id: 1,
-                    title: 'Bảo hành'
+                    title: subLang.reason_warranty
                 },
                 {
                     id: 3,
-                    title: 'Thu hồi'
+                    title: subLang.reason_recall
                 }
             ])
         }
@@ -36,7 +36,7 @@ const ExportProducts = ({ products, regisAction, hanldeResult }) => {
             setReasons([
                 {
                     id: 0,
-                    title: 'Xuất kho'
+                    title: subLang.reason_export
                 }
             ])
         }
@@ -44,15 +44,15 @@ const ExportProducts = ({ products, regisAction, hanldeResult }) => {
             setReasons([
                 {
                     id: 1,
-                    title: 'Bảo hành'
+                    title: subLang.reason_warranty
                 },
                 {
                     id: 3,
-                    title: 'Thu hồi'
+                    title: subLang.reason_recall
                 },
                 {
                     id: 2,
-                    title: 'Lỗi'
+                    title: subLang.reason_error_maintain
                 }
             ])
         }
@@ -66,7 +66,7 @@ const ExportProducts = ({ products, regisAction, hanldeResult }) => {
             setPartners(resources.holders.agencies)
         }
         if (account.role === roles.MAINTERNANCE) {
-            setPartners([...resources.holders.agencies, resources.holders.maintainCenters])
+            setPartners([...resources.holders.agencies, ...resources.holders.factories])
         }
         console.log(partners)
     }, [])
@@ -95,12 +95,12 @@ const ExportProducts = ({ products, regisAction, hanldeResult }) => {
                     // })
                     resolve({
                         updatedIds: productIds,
-                        message: 'Sucess message'
+                        message: subLang.success_message
                     })
                     // resolve({ updatedIds: [40], message: 'Sucess message' })
                 }).catch((err) => {
                     console.log(err)
-                    reject('Error Message')
+                    reject(subLang.error_message)
                 })
             })
         }
@@ -111,12 +111,11 @@ const ExportProducts = ({ products, regisAction, hanldeResult }) => {
 
     return (
         <>
-
             {
                 isExport &&
                 <>
                     <Form.Group as={Row} className="mb-3" controlId="model">
-                        <Form.Label column sm="2">{'Điểm đến'}</Form.Label>
+                        <Form.Label column sm="2">{subLang.destination}</Form.Label>
                         <Col sm="10">
                             <Form.Select ref={desRef}>
                                 {
@@ -132,7 +131,7 @@ const ExportProducts = ({ products, regisAction, hanldeResult }) => {
                         </Col>
                     </Form.Group>
                     <Form.Group as={Row} className="mb-3" controlId="model">
-                        <Form.Label column sm="2">{'Lý do'}</Form.Label>
+                        <Form.Label column sm="2">{subLang.reason}</Form.Label>
                         <Col sm="10">
                             <Form.Select ref={reasonRef}>
                                 {
@@ -147,8 +146,8 @@ const ExportProducts = ({ products, regisAction, hanldeResult }) => {
                             </Form.Select>
                         </Col>
                     </Form.Group>
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                        <Form.Label>Note</Form.Label>
+                    <Form.Group className="mb-3">
+                        <Form.Label>{subLang.note}</Form.Label>
                         <Form.Control as="textarea" ref={noteRef} rows={3} />
                     </Form.Group>
                 </>

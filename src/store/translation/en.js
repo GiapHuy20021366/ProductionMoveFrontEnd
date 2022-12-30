@@ -11,7 +11,7 @@ const langOfLogin = {
 }
 
 const langOfTable = {
-    actions_btnName: 'Thêm hành động',
+    actions_btnName: 'More actions',
 }
 
 const langOfSystemTopBar = {
@@ -21,6 +21,19 @@ const langOfSystemTopBar = {
 
 const langOfSystemHome = {
     home: 'Home'
+}
+
+const langOfMessage = {
+    ...langOfAccountInfo,
+    export_confirm: numOfProduct => {
+        return `confirmed that ${numOfProduct} ${numOfProduct <= 1 ? 'has' : 'have'} been exported.`
+    },
+    export: numOfProduct => {
+        return `need to confirm that ${numOfProduct} ${numOfProduct <= 1 ? 'has' : 'have'} been exported.`
+    },
+    alerts: 'Alerts',
+    details: 'More details',
+    show_all_alerts: 'Show All Alerts'
 }
 
 const langOfAccountInfo = {
@@ -270,7 +283,11 @@ const langOfProductDisplay = {
 
 const langOfProductActions = {
     ...langOfAdminProducts,
+    selected_num: rows => {
+        return `${rows.length} ${rows.length <= 1 ? 'selected product' : 'selected products'}`
+    },
     actions_title: 'Actions', 
+    actions_selection: 'Select Action',
     cancel: 'Cancel',
     submit: 'Action',
 }
@@ -283,16 +300,36 @@ const langOfFactoryActions = {
     delivery_date: 'Delivery Date',
     submit: 'Export',
     alert_success: 'Batch Export Products Successfully!',
+    action_one: 'Export to agency',
+    action_two: 'Confirm products',
 }
 
 const langOfAgencyActions = {
     ...langOfProductActions,
-    actions_selection: 'Select Action'
+    action_one: 'Warranty at agency',
+    action_two: 'Recall products',
+    action_three: 'Export to warranty at maintenance center',
+    action_four: 'Return product(s) to customer after warranty',
+    action_five: 'Confirm product(s)',
+    action_six: 'Sell product to customer'
 }
 
 const langOfMaintenanceActions = {
     ...langOfProductActions,
-    actions_selection: 'Select Action',
+    action_one: 'Export product(s)',
+    action_two: 'Confirm product(s)',
+}
+
+const langOfExportProducts = {
+    destination: 'Destination',
+    reason: 'Reason',
+    reason_warranty: 'Warranty',
+    reason_recall: 'Recall', 
+    reason_export: 'Export', 
+    reason_error_maintain: 'Error during warranty', 
+    note: 'Note',
+    success_message: 'Successfully!',
+    error_message: 'Error'
 }
 
 const en = {
@@ -303,6 +340,7 @@ const en = {
 
     SystemTopBar: langOfSystemTopBar,
     SystemHome: langOfSystemHome,
+    Message: langOfMessage,
     AccountInfo: langOfAccountInfo,
     LanguageChooser: langOfLanguageChooser,
 
@@ -326,6 +364,7 @@ const en = {
     FactoryActions: langOfFactoryActions,
     AgencyActions: langOfAgencyActions,
     MaintenanceActions: langOfMaintenanceActions,
+    ExportProducts: langOfExportProducts,
 
     FactoryModels: langOfFactoryModels,
     FactoryAddModel: langOfFactoryAddModel,

@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 
 const Message = () => {
   const messages = useSelector((state) => state.message);
-  const subLang = useSelector((state) => state.lang.AdminAccounts);
+  const subLang = useSelector((state) => state.lang.Message);
   const account = useSelector((state) => state.user.account);
 
   const history = useHistory();
@@ -53,10 +53,11 @@ const Message = () => {
   };
   const typeMessage = (message) => {
     if (message.content.type == "EXPORT_CONFIRM_NOTIFICATION") {
-      return `đã xác nhận ${message.content.exports.length} sản phẩm được xuất đi.`;
+      return subLang.export_confirm(message.content.exports.length)
     }
     if (message.content.type == "EXPORT_NOTIFICATION") {
-      return `đã xuất ${message.content.exports.length} sản phẩm cần xác nhận.`;
+      return subLang.export(message.content.exports.length)
+      
     }
   };
 

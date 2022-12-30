@@ -8,7 +8,7 @@ import { canMaintain, canExport, canRecall, canReturn } from "../../untils/actio
 import ExportProducts from "./ExportProducts";
 
 const FactoryActions = ({ products, regisAction }) => {
-    const subLang = useSelector(state => state.lang.AgencyActions)
+    const subLang = useSelector(state => state.lang.FactoryActions)
     const account = useSelector(state => state.user.account)
     const actionRef = useRef()
 
@@ -30,12 +30,12 @@ const FactoryActions = ({ products, regisAction }) => {
             key: 'EXPORT',
             type: 'EXPORT',
             valid: canExport(products, account),
-            title: 'Xuất sản phẩm đến nơi khác'
+            title: subLang.action_one
         },
         {
             key: 'CONFIRM',
             type: 'CONFIRM',
-            title: 'Xác nhận sản phẩm'
+            title: subLang.action_two
         }
     ]
 

@@ -30,6 +30,8 @@ const AgencyProducts = () => {
     const [choosedRow, setChoosedRow] = useState({})
     const [choosedRows, setChoosedRows] = useState([])
 
+    const indexMessage = useSelector(state => state.message.index)
+
     // *** prevent another role from accessing to link which just only for admin ***
     if (account?.role !== 3) {
         return (
@@ -70,7 +72,7 @@ const AgencyProducts = () => {
             console.log(error)
             setErrorMessage('Some error occur, please try again!')
         })
-    }, [])
+    }, [indexMessage])
 
     // *** update table of list products when numOfProduct or language is changed ***
     useEffect(() => {

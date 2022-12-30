@@ -13,21 +13,13 @@ import ReturnProduct from "./ReturnProduct";
 import ConfirmProduct from './ConfirmProducts';
 import PurchaseProduct from './PurchaseProduct';
 
-
-
-
-const AgencyActions = ({ products, regisAction }) => {
-    const subLang = useSelector(state => state.lang.AgencyActions)
+const MaintainCenterActions = ({ products, regisAction }) => {
+    const subLang = useSelector(state => state.lang.MaintenanceActions)
     const account = useSelector(state => state.user.account)
     const actionRef = useRef()
 
-    const [actionKey, setActionKey] = useState('MAINTAIN')
-    // const resources = useSelector(state => state.resources)
+    const [actionKey, setActionKey] = useState('EXPORT')
 
-    // useEffect(() => {
-    //     console.log(actionRef)
-    // }, [actionRef.current])
-    // console.log(products)
 
     const onChangeAction = (e) => {
         setActionKey(e.target.value)
@@ -42,40 +34,16 @@ const AgencyActions = ({ products, regisAction }) => {
 
     const actions = [
         {
-            key: 'MAINTAIN',
-            type: 'MAINTAIN',
-            valid: canMaintain(products),
-            title: subLang.action_one,
-        },
-        {
-            key: 'RECALL',
-            type: 'RECALL',
-            valid: canRecall(products),
-            title: subLang.action_two,
-        },
-        {
             key: 'EXPORT',
             type: 'EXPORT',
             valid: canExport(products, account),
-            title: subLang.action_three,
-        },
-        {
-            key: 'RETURN',
-            type: 'RETURN',
-            valid: canReturn(products, account),
-            title: subLang.action_four,
+            title: subLang.action_one
         },
         {
             key: 'CONFIRM',
             type: 'CONFIRM',
             valid: canConfirm(products, account),
-            title: subLang.action_five,
-        },
-        {
-            key: 'PURCHASE',
-            type: 'PURCHASE',
-            valid: canPurchase(products, account),
-            title: subLang.action_six,
+            title: subLang.action_two
         }
     ]
 
@@ -98,34 +66,18 @@ const AgencyActions = ({ products, regisAction }) => {
                 </Col>
             </Form.Group>
             {
-                actionKey == 'MAINTAIN' &&
-                <MaintainStart regisAction={regisAction} products={products} />
-            }
-            {
                 actionKey == 'EXPORT' &&
                 <ExportProducts regisAction={regisAction} products={products} />
-            }
-            {
-                actionKey == 'RECALL' &&
-                <RecallStart regisAction={regisAction} products={products} />
-            }
-            {
-                actionKey == 'RETURN' &&
-                <ReturnProduct regisAction={regisAction} products={products} />
             }
             {
                 actionKey == 'CONFIRM' &&
                 <ConfirmProduct regisAction={regisAction} products={products} />
             }
-            {
-                actionKey == 'PURCHASE' &&
-                <PurchaseProduct regisAction={regisAction} products={products} />
-            }
         </Form>
     )
 }
 
-export default AgencyActions
+export default MaintainCenterActions
 
 
 
