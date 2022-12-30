@@ -181,14 +181,6 @@ const FactoryProducts = () => {
                 columns={tableColumns}
                 handleResult={handleResult}
                 handleClose={() => setShowProductActions(false)}
-                export = {
-                    <FactoryExportProducts
-                    handleResult={handleResult}
-                    handleClose={handleCloseModal}
-                    rows = {choosedRows}
-                    show={showModalExport}
-                    />
-                }
             />
             <ProductDisplay
                 show={showProductDetail}
