@@ -17,13 +17,13 @@ const Piee = () => {
     title: "Doanh số",
   };
   return (
-    <div class="col-xl-4 col-lg-5">
-      <div class="card shadow mb-4">
-        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-          <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+    <div className="col-xl-4 col-lg-5">
+      <div className="card shadow mb-4">
+        <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h6 className="m-0 font-weight-bold text-primary">Revenue Sources</h6>
         </div>
-        <div class="card-body">
-          <div class="chart-pie pt-4 pb-2">
+        <div className="card-body">
+          <div className="chart-pie pt-4 pb-2">
             <Chart
               chartType="PieChart"
               data={data}
@@ -32,15 +32,15 @@ const Piee = () => {
               height={"300px"}
             />
           </div>
-          <div class="mt-4 text-center small">
-            <span class="mr-2">
-              <i class="fas fa-circle text-primary"></i> Direct
+          <div className="mt-4 text-center small">
+            <span className="mr-2">
+              <i className="fas fa-circle text-primary"></i> Direct
             </span>
-            <span class="mr-2">
-              <i class="fas fa-circle text-success"></i> Social
+            <span className="mr-2">
+              <i className="fas fa-circle text-success"></i> Social
             </span>
-            <span class="mr-2">
-              <i class="fas fa-circle text-info"></i> Referral
+            <span className="mr-2">
+              <i className="fas fa-circle text-info"></i> Referral
             </span>
           </div>
         </div>

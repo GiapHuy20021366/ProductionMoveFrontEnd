@@ -44,7 +44,7 @@ export const apiUrls = {
     CONFIRM_PRODUCT: '/api/confirm-export-products',
     GET_NEWEST_EXPORTS: '/api/get-newest-exports',
     GET_CUSTOMER: '/api/get-customers-by-query',
-    SOLD_PRODUCT: '/api/sold-product'
+    SOLD_PRODUCT: '/api/sold-product',
 }
 
 export const roles = {

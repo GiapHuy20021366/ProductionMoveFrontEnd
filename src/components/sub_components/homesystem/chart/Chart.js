@@ -12,30 +12,16 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-const data = [
-  { name: "01/2022", total: 1200 },
-  { name: "02/2022", total: 3000 },
-  { name: "03/2022", total: 1002 },
-  { name: "04/2022", total: 900 },
-  { name: "05/2022", total: 500 },
-  { name: "06/2022", total: 3200 },
-  { name: "07/2022", total: 1200 },
-  { name: "08/2022", total: 2300 },
-  { name: "09/2022", total: 1300 },
-  { name: "10/2022", total: 1700 },
-  { name: "112022", total: 200 },
-  { name: "12/2022", total: 700 },
-];
 
-const Chart = () => {
+const Chart = ({ data }) => {
   return (
-    <div class="col-xl-8 col-lg-7">
-      <div class="card shadow mb-4">
-        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-          <h6 class="m-0 font-weight-bold text-primary">Sales</h6>
-          <div class="dropdown no-arrow">
+    <div className="col-xl-8 col-lg-7">
+      <div className="card shadow mb-4">
+        <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+          <h6 className="m-0 font-weight-bold text-primary">Sales</h6>
+          <div className="dropdown no-arrow">
             <a
-              class="dropdown-toggle"
+              className="dropdown-toggle"
               href="#"
               role="button"
               id="dropdownMenuLink"
@@ -43,28 +29,28 @@ const Chart = () => {
               aria-haspopup="true"
               aria-expanded="false"
             >
-              <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+              <i className="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
             </a>
             <div
-              class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+              className="dropdown-menu dropdown-menu-right shadow animated--fade-in"
               aria-labelledby="dropdownMenuLink"
             >
-              <div class="dropdown-header">Dropdown Header:</div>
-              <a class="dropdown-item" href="#">
+              <div className="dropdown-header">Dropdown Header:</div>
+              <a className="dropdown-item" href="#">
                 Action
               </a>
-              <a class="dropdown-item" href="#">
+              <a className="dropdown-item" href="#">
                 Another action
               </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">
+              <div className="dropdown-divider"></div>
+              <a className="dropdown-item" href="#">
                 Something else here
               </a>
             </div>
           </div>
         </div>
-        <div class="card-body">
-          <div class="chart-area">
+        <div className="card-body">
+          <div className="chart-area">
             <ResponsiveContainer width="100%" aspect={4 / 1}>
               <AreaChart
                 width={"100%"}
