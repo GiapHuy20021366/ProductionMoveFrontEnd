@@ -23,18 +23,6 @@ const langOfSystemHome = {
     home: 'Trang chủ'
 }
 
-const langOfMessage = {
-    ...langOfAccountInfo,
-    export_confirm: numOfProduct => {
-        return `xác nhận đã xuất đi ${numOfProduct} sản phẩm.`
-    },
-    export: numOfProduct => {
-        return `cần xác nhận đã xuất đi ${numOfProduct} sản phẩm.`
-    },
-    alerts: 'Thông báo',
-    details: 'Xem chi tiết',
-    show_all_alerts: 'Hiển thị toàn bộ thồng báo'
-}
 
 const langOfAccountInfo = {
     account_info: 'Thông tin tài khoản',
@@ -54,6 +42,19 @@ const langOfAccountInfo = {
     status: 'Trạng thái',
     status_enable: 'Kích hoạt',
     status_disable: 'Vô hiệu',
+}
+
+const langOfMessage = {
+    ...langOfAccountInfo,
+    export_confirm: numOfProduct => {
+        return `xác nhận đã xuất đi ${numOfProduct} sản phẩm.`
+    },
+    export: numOfProduct => {
+        return `cần xác nhận đã xuất đi ${numOfProduct} sản phẩm.`
+    },
+    alerts: 'Thông báo',
+    details: 'Xem chi tiết',
+    show_all_alerts: 'Hiển thị toàn bộ thồng báo'
 }
 
 const langOfLanguageChooser = {
@@ -324,9 +325,9 @@ const langOfExportProducts = {
     destination: 'Điểm đến',
     reason: 'Lý do',
     reason_warranty: 'Bảo hành',
-    reason_recall: 'Thu hồi', 
-    reason_export: 'Xuất kho', 
-    reason_error_maintain: 'Lỗi trong quá trình bảo hành', 
+    reason_recall: 'Thu hồi',
+    reason_export: 'Xuất kho',
+    reason_error_maintain: 'Lỗi trong quá trình bảo hành',
     note: 'Ghi chú',
 }
 

@@ -32,16 +32,6 @@ export const parseMonths = (products) => {
 }
 
 
-const data = [
-    ["Đại lý", "Số lượng"],
-    ["DL1", 11],
-    ["DL2", 2],
-    ["DL2", 2],
-    ["DL2", 2],
-    ["DL2", 7],
-];
-
-
 export const parseModels = (products) => {
     const models = []
     products.forEach((product) => {
@@ -58,6 +48,26 @@ export const parseModels = (products) => {
     const parseData = [['Model', 'Total']]
     models.forEach((model) => {
         parseData.push([model.name, model.count])
+    })
+    return parseData
+}
+
+export const statisAgency = (products) => {
+    const agencies = []
+    products.forEach((product) => {
+        const index = agencies.findIndex((agency) => agency.name == product.purchase.dealer.name)
+        if (index !== -1) {
+            agencies[index].count += 1
+        } else {
+            agencies.push({
+                name: product.purchase.dealer.name,
+                count: 1
+            })
+        }
+    })
+    const parseData = [['Agency', 'Total']]
+    agencies.forEach((agency) => {
+        parseData.push([agency.name, agency.count])
     })
     return parseData
 }

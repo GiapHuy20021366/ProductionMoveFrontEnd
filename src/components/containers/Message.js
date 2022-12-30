@@ -31,7 +31,7 @@ const Message = () => {
       default:
         return "#";
     }
-  };
+  }
 
   const getRole = (roleId) => {
     switch (roleId) {
@@ -53,7 +53,7 @@ const Message = () => {
     }
     if (message.content.type == "EXPORT_NOTIFICATION") {
       return subLang.export(message.content.exports.length)
-      
+
     }
   };
 
@@ -79,12 +79,11 @@ const Message = () => {
         role="menu"
         style={{ height: "350px" }}
       >
-        <h6 className="dropdown-header">Alerts</h6>
-
+        <h6 className="dropdown-header">{subLang.alerts}</h6>
         {messages.list.map((message) => {
           return (
-            <>
-              <a
+            <div key={message.id}>
+              <div
                 className="dropdown-item d-flex align-items-center "
                 style={{ cursor: "pointer" }}
               >
@@ -96,20 +95,20 @@ const Message = () => {
                     {`${getRole(message.content.from.role)}
                     ${message.content.from.name} ${typeMessage(message)}`}
 
-                    <a
-                      href="#"
-                      onClick={() => {
-                        onClickProducts();
-                      }}
-                    >
-                      Xem chi tiết
+                    <a href="#" onClick={() => {
+                      onClickProducts()
+                    }}>
+                      {subLang.details}
                     </a>
                   </span>
                 </div>
-              </a>
-            </>
+              </div>
+            </div>
           );
         })}
+        <button className="dropdown-item text-center small text-gray-500">
+          {subLang.show_all_alerts}
+        </button>
       </div>
     </li>
   );
