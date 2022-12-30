@@ -53,9 +53,15 @@ const AgencyActions = ({ products, regisAction }) => {
             valid: canRecall(products)
         },
         {
+            key: 'RECALL',
+            title: 'Thu hồi sản phẩm',
+            type: 'RECALL',
+            valid: canRecall(products)
+        },
+        {
             key: 'EXPORT',
             type: 'EXPORT',
-            valid: canExport(products, account),
+            valid: true,
             title: 'Xuất sản phẩm đến nơi khác'
         },
         {

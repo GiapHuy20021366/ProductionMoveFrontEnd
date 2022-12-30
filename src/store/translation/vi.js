@@ -10,6 +10,10 @@ const langOfLogin = {
     login: 'ĐĂNG NHẬP'
 }
 
+const langOfTable = {
+    actions_btnName: 'Thực hiện hành động',
+}
+
 const langOfSystemTopBar = {
     account: 'Tài khoản',
     logout: 'Đăng xuất'
@@ -275,6 +279,7 @@ const langOfFactoryActions = {
     ...langOfProductActions,
     actions_title: "Xuất lô sản phẩm",
     destination_agency: 'Tới Đại lý',
+    quantity: 'Số lượng',
     delivery_date: 'Ngày giao hàng',
     submit: 'Xuất',
     alert_success: 'Xuất lô sản phẩm thành công!',
@@ -282,16 +287,19 @@ const langOfFactoryActions = {
 
 const langOfAgencyActions = {
     ...langOfProductActions,
+    actions_selection: 'Chọn hành động',
 }
 
 const langOfMaintenanceActions = {
     ...langOfProductActions,
+    actions_selection: 'Chọn hành động',
 }
 
 const vi = {
     _NAME_: 'VI',
     TruckBtn: langOfTruckBtn,
     Login: langOfLogin,
+    Login: langOfTable,
 
     SystemTopBar: langOfSystemTopBar,
     SystemHome: langOfSystemHome,
