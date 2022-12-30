@@ -126,6 +126,7 @@ const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
                 <Modal.Body>
                     Các sản phẩm đã chọn
                     <BootstrapTable
+                        bootstrap4
                         keyField="id"
                         hover
                         data={rows}

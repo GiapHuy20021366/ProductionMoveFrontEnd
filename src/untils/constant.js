@@ -40,7 +40,9 @@ export const apiUrls = {
     MAINTENANCE_PRODUCTS: '/api/maintain-products',
     EXPORT_PRODUCTS: '/api/export-products',
     RECALL_PRODUCTS: '/api/recall-products',
-    RETURN_PRODUCT: '/api/return-products-to-customer'
+    RETURN_PRODUCT: '/api/return-products-to-customer',
+    CONFIRM_PRODUCT: '/api/confirm-export-products',
+    GET_NEWEST_EXPORTS: '/api/get-newest-exports'
 }
 
 export const roles = {

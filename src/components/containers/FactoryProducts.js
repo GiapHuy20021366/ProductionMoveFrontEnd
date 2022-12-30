@@ -30,7 +30,7 @@ const FactoryProducts = () => {
     const [showProductActions, setShowProductActions] = useState(false)
     const [choosedRow, setChoosedRow] = useState({})
     const [choosedRows, setChoosedRows] = useState([])
-    
+
     // *** prevent another role from accessing to link which just only for admin ***
     if (account?.role !== roles.FACTORY) {
         return (
@@ -130,7 +130,7 @@ const FactoryProducts = () => {
     const handleOpenModalExport = () => {
         setShowModalExport(true)
     }
-    
+
     const closeModalProductDetail = () => {
         setShowProductDetail(false)
     }
@@ -158,9 +158,9 @@ const FactoryProducts = () => {
             {/* Popup Form **************************************************************** */}
             {
                 <FactoryImportProducts
-                handleResult={handleResult}
-                handleClose={handleCloseModal}
-                show={showModalImport}
+                    handleResult={handleResult}
+                    handleClose={handleCloseModal}
+                    show={showModalImport}
                 />
             }
             {/* Button Export Products Data */}
@@ -178,6 +178,7 @@ const FactoryProducts = () => {
                 show={showProductActions}
                 rows={choosedRows}
                 columns={tableColumns}
+                handleResult={handleResult}
                 handleClose={() => setShowProductActions(false)}
             />
             <ProductDisplay

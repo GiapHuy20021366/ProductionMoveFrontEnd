@@ -29,7 +29,7 @@ export const canReturn = (products, account) => {
 }
 
 export const canPurchase = (products, account) => {
-    if (products.length === 0) return false
+    if (products.length === 0 || products.length > 1) return false
     return products.every((product) => {
         const holders = product.holders
         const isSold = holders.customer
@@ -53,5 +53,13 @@ export const canExport = (products, account) => {
         const isIn = holders?.nowAt && holders?.nowAt.id === account.id
 
         return !isEndLife && !isShipping && isIn
+    })
+}
+
+export const canConfirm = (products, account) => {
+    if (products.length === 0) return false
+    return products.every((product) => {
+        const holders = product.holders
+        return holders?.willAt && holders.willAt.id === account.id
     })
 }

@@ -4,34 +4,63 @@ import { paths } from "../../untils/constant";
 import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import { Button, Modal, Form, Col, Row } from "react-bootstrap";
+import { canMaintain, canExport, canRecall, canReturn } from "../../untils/actionAuth";
+import ExportProducts from "./ExportProducts";
 
-const FactoryActions = () => {
-    const subLang = useSelector(state => state.lang.FactoryActions)
-    const listAgencies = useSelector(state => state.resources.holders.agencies)
-    console.log("Agencies")
-    console.log(listAgencies)
+const FactoryActions = ({ products, regisAction }) => {
+    const subLang = useSelector(state => state.lang.AgencyActions)
+    const account = useSelector(state => state.user.account)
+    const actionRef = useRef()
+
+    const [actionKey, setActionKey] = useState('EXPORT')
+
+    const onChangeAction = (e) => {
+        setActionKey(e.target.value)
+        console.log(e.target.value)
+    }
+
+    useEffect(() => {
+        if (actionRef.current) {
+            setActionKey(actionRef.current.value)
+        }
+    }, [actionRef.current])
+
+    const actions = [
+        {
+            key: 'EXPORT',
+            type: 'EXPORT',
+            valid: canExport(products, account),
+            title: 'Xuất sản phẩm đến nơi khác'
+        },
+        {
+            key: 'CONFIRM',
+            type: 'CONFIRM',
+            title: 'Xác nhận sản phẩm'
+        }
+    ]
 
     return (
         <Form>
-            <Form.Group as={Row} className="mb-3" controlId="agency">
-                <Form.Label column sm="4">{subLang.destination_agency}</Form.Label>
-                <Col sm="8">
-                    <Form.Select>
-                        {listAgencies.map(agency => (
-                            <option value={agency.id} key={agency.id}>
-                                {agency.id + " - " + agency.name}
-                            </option>
-                        ))}
+            <Form.Group as={Row} className="mb-3" controlId="model">
+                <Form.Label column sm="2">{subLang.actions_selection}</Form.Label>
+                <Col sm="10">
+                    <Form.Select onChange={(e) => { onChangeAction(e) }} ref={actionRef}>
+                        {
+                            actions.map((action) =>
+                                <option value={action.key} key={action.key} disabled={action.valid ? false : true}>
+                                    {
+                                        action.title
+                                    }
+                                </option>
+                            )
+                        }
                     </Form.Select>
                 </Col>
             </Form.Group>
-
-            <Form.Group as={Row} className="mb-3">
-                <Form.Label column sm="4">{subLang.delivery_date}</Form.Label>
-                <Col sm="8">
-                    <Form.Control type="date"/>
-                </Col>
-            </Form.Group>
+            {
+                actionKey == 'EXPORT' &&
+                <ExportProducts regisAction={regisAction} products={products} />
+            }
         </Form>
     )
 }

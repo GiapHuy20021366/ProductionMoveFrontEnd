@@ -7,9 +7,10 @@ import { Button, Modal, Form, Col, Row } from "react-bootstrap";
 import MaintainStart from './MaintainStart';
 import ExportProducts from "./ExportProducts";
 
-import { canMaintain, canExport, canRecall, canReturn } from "../../untils/actionAuth";
+import { canMaintain, canExport, canRecall, canReturn, canConfirm } from "../../untils/actionAuth";
 import RecallStart from "./RecallStart";
 import ReturnProduct from "./ReturnProduct";
+import ConfirmProduct from './ConfirmProducts';
 
 
 
@@ -51,21 +52,6 @@ const AgencyActions = ({ products, regisAction }) => {
             type: 'RECALL',
             valid: canRecall(products)
         },
-        // {
-        //     key: 'MAINTAIN_MOVING',
-        //     type: 'EXPORT',
-        //     title: 'Chuyển sản phẩm bảo hành đến Trung tâm bảo hành'
-        // },
-        // {
-        //     key: 'RECALL_START',
-        //     type: 'EXPORT',
-        //     title: 'Xác nhận thu hồi sản phẩm'
-        // },
-        // {
-        //     key: 'RECALL_MOVING',
-        //     type: 'EXPORT',
-        //     title: 'Chuyển sản phẩm thu hồi về trung tâm bảo hành'
-        // },
         {
             key: 'EXPORT',
             type: 'EXPORT',
@@ -81,6 +67,7 @@ const AgencyActions = ({ products, regisAction }) => {
         {
             key: 'CONFIRM',
             type: 'CONFIRM',
+            valid: canConfirm(products, account),
             title: 'Xác nhận sản phẩm'
         },
         {
@@ -123,6 +110,10 @@ const AgencyActions = ({ products, regisAction }) => {
             {
                 actionKey == 'RETURN' &&
                 <ReturnProduct regisAction={regisAction} products={products} />
+            }
+            {
+                actionKey == 'CONFIRM' &&
+                <ConfirmProduct regisAction={regisAction} products={products} />
             }
         </Form>
     )

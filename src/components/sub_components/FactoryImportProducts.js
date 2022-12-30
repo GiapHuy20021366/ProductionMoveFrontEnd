@@ -9,7 +9,7 @@ import { Button, Modal, Form, Col, Row } from "react-bootstrap";
 const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
     const subLang = useSelector(state => state.lang.FactoryImportProducts)
     const account = useSelector(state => state.user.account)
-    
+
     const quantityRef = useRef()
     const modelIdRef = useRef()
     const birthRef = useRef()
@@ -52,73 +52,73 @@ const FactoryImportProducts = ({ handleResult, handleClose, show }) => {
             listNewProducts.push(newProduct)
         }
 
-        const testAPI = () => {
-            Promise.resolve(listNewProducts).then((data) => {
-                modelIdRef.current.value = ''
-                birthRef.current.value = ''
-
-                ToastUtil.success(subLang.import_success, 1000);
-                handleClose && handleClose()
-            }).catch((error) => {
-                const messageResponse = error.response.data.message
-                setErrorMessage(messageResponse)
-            })
-        }
-        console.log(modelIdRef.current)
-
-        // *** call API to import products
-        // await useCallApi(
-        //     apiUrls.CREATE_PRODUCTS,
-        //     {
-        //         products: listNewProducts
-        //     }
-        // ).then(async (data) => {
-        //     const products = data.data
-        //     const ids = []
-        //     products.forEach((product) => { ids.push(product.id) })
-        //     await useCallApi(
-        //         apiUrls.GET_CURRENT_PRODUCTS_BY_QUERY,
-        //         {
-        //             associates: {
-        //                 product: {
-        //                     model: { factory: true }
-        //                 },
-        //                 nowAt: true,
-        //                 willAt: true,
-        //                 customer: true
-        //             },
-        //             attributes: {
-        //                 id: {
-        //                     or: ids
-        //                 }
-        //             }
-        //         }
-        //     ).then((data) => {
-        //         console.log(data)
-        //         const holdersRequest = data.data.rows
-        //         const products = {}
-        //         for (const holder of holdersRequest) {
-        //             const { product, nowAt, willAt, customer } = holder
-        //             product.holders = { nowAt, willAt, customer }
-        //             products[product.id] = product
-        //         }
-        //         handleResult && handleResult(products)
-
+        // const testAPI = () => {
+        //     Promise.resolve(listNewProducts).then((data) => {
         //         modelIdRef.current.value = ''
         //         birthRef.current.value = ''
 
         //         ToastUtil.success(subLang.import_success, 1000);
-        //         handleClose && handleClose(e)
-
+        //         handleClose && handleClose()
+        //     }).catch((error) => {
+        //         const messageResponse = error.response.data.message
+        //         setErrorMessage(messageResponse)
         //     })
-        //     // console.log(data)
-        // }).catch((error) => {
-        //     console.log(error)
-        //     const messageResponse = error.response.data.message
-        //     setErrorMessage(messageResponse)
-        // })
+        // }
+        // console.log(modelIdRef.current)
 
-        testAPI()
+        // *** call API to import products
+        await useCallApi(
+            apiUrls.CREATE_PRODUCTS,
+            {
+                products: listNewProducts
+            }
+        ).then(async (data) => {
+            const products = data.data
+            const ids = []
+            products.forEach((product) => { ids.push(product.id) })
+            await useCallApi(
+                apiUrls.GET_CURRENT_PRODUCTS_BY_QUERY,
+                {
+                    associates: {
+                        product: {
+                            model: { factory: true }
+                        },
+                        nowAt: true,
+                        willAt: true,
+                        customer: true
+                    },
+                    attributes: {
+                        id: {
+                            or: ids
+                        }
+                    }
+                }
+            ).then((data) => {
+                console.log(data)
+                const holdersRequest = data.data.rows
+                const products = {}
+                for (const holder of holdersRequest) {
+                    const { product, nowAt, willAt, customer } = holder
+                    product.holders = { nowAt, willAt, customer }
+                    products[product.id] = product
+                }
+                handleResult && handleResult(products)
+
+                modelIdRef.current.value = ''
+                birthRef.current.value = ''
+
+                ToastUtil.success(subLang.import_success, 1000);
+                handleClose && handleClose(e)
+
+            })
+            // console.log(data)
+        }).catch((error) => {
+            console.log(error)
+            const messageResponse = error.response.data.message
+            setErrorMessage(messageResponse)
+        })
+
+        // testAPI()
     }
 
     {
