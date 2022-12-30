@@ -136,6 +136,7 @@ const AgencyProducts = () => {
         onClick: (e, row, rowIndex) => {
             setShowProductDetail(true)
             setChoosedRow(row)
+
         }
     };
 

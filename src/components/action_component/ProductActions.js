@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { paths } from "../../untils/constant";
 import useCallApi from "../../untils/fetch";
@@ -23,12 +23,55 @@ const pagination = paginationFactory({
 const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
     const subLang = useSelector(state => state.lang.ProductActions) // Language here
     const account = useSelector(state => state.user.account)
+    const [selftColumns, setSelfColumns] = useState([...columns])
+    const [, updateState] = React.useState();
+    const forceUpdate = React.useCallback(() => updateState({}), []);
+
     const actionRef = useRef()
+    const deleteActionRef = useRef()
+
+
+    useEffect(() => {
+        deleteActionRef.current = (row) => {
+            // console.log(rows)
+            const indexRow = rows.findIndex((rowF) => {
+                return rowF.id == row.id
+            })
+            console.log(rows)
+            if (indexRow !== -1) {
+                // setS
+                rows.splice(indexRow, 1)
+                forceUpdate()
+            }
+            // console.log(indexRow)
+            // console.log(row)
+            // console.log(rowId, name);
+            //1 YourCellName
+        };
+    }, [rows])
+
+    useEffect(() => {
+        const deleteRow = {
+            dataField: "remove",
+            text: "Delete",
+            formatter: (cellContent, row) => {
+                return (
+                    <button
+                        className="btn btn-danger btn-xs"
+                        onClick={() => deleteActionRef.current(row)}
+                    >
+                        X
+                    </button>
+                );
+            },
+        }
+        setSelfColumns([deleteRow, ...selftColumns])
+    }, [])
 
     const handleAction = async () => {
         if (actionRef.current) {
-            await actionRef.current().then(async (productIds, successMessage) => {
-                console.log(productIds)
+            await actionRef.current().then(async ({ updatedIds, message }) => {
+                // console.log(updatedIds, message)
                 await useCallApi(
                     apiUrls.GET_CURRENT_PRODUCTS_BY_QUERY,
                     {
@@ -42,7 +85,7 @@ const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
                         },
                         attributes: {
                             id: {
-                                or: productIds
+                                or: updatedIds
                             }
                         }
                     }
@@ -56,7 +99,7 @@ const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
                     }
                     handleResult && handleResult(products)
 
-                    ToastUtil.success(successMessage, 1000);
+                    ToastUtil.success(message, 1000);
                     handleClose && handleClose()
                 })
             }).catch((error) => {
@@ -86,7 +129,7 @@ const ProductActions = ({ show, handleClose, rows, columns, handleResult }) => {
                         keyField="id"
                         hover
                         data={rows}
-                        columns={columns}
+                        columns={selftColumns}
                         pagination={pagination}
                     />
 

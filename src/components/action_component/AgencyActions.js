@@ -7,20 +7,18 @@ import { Button, Modal, Form, Col, Row } from "react-bootstrap";
 import MaintainStart from './MaintainStart';
 import ExportProducts from "./ExportProducts";
 
-const canMaintain = (products) => {
-    return products.every((product) => {
-        const holders = product.holders
-        return !holders.nowAt && !holders.willAt
-    })
-}
-
+import { canMaintain, canExport, canRecall, canReturn } from "../../untils/actionAuth";
+import RecallStart from "./RecallStart";
+import ReturnProduct from "./ReturnProduct";
 
 
 
 
 const AgencyActions = ({ products, regisAction }) => {
     const subLang = useSelector(state => state.lang.AgencyActions)
+    const account = useSelector(state => state.user.account)
     const actionRef = useRef()
+
     const [actionKey, setActionKey] = useState('MAINTAIN')
     // const resources = useSelector(state => state.resources)
 
@@ -47,6 +45,12 @@ const AgencyActions = ({ products, regisAction }) => {
             type: 'MAINTAIN',
             valid: canMaintain(products)
         },
+        {
+            key: 'RECALL',
+            title: 'Thu hồi sản phẩm',
+            type: 'RECALL',
+            valid: canRecall(products)
+        },
         // {
         //     key: 'MAINTAIN_MOVING',
         //     type: 'EXPORT',
@@ -65,18 +69,24 @@ const AgencyActions = ({ products, regisAction }) => {
         {
             key: 'EXPORT',
             type: 'EXPORT',
-            valid: true,
+            valid: canExport(products, account),
             title: 'Xuất sản phẩm đến nơi khác'
         },
         {
             key: 'RETURN',
             type: 'RETURN',
+            valid: canReturn(products, account),
             title: 'Chuyển sản phẩm cho khách hàng sau bảo hành'
         },
         {
             key: 'CONFIRM',
             type: 'CONFIRM',
             title: 'Xác nhận sản phẩm'
+        },
+        {
+            key: 'PURCHASE',
+            type: 'PURCHASE',
+            title: 'Bán sản phẩm cho khách hàng'
         }
     ]
 
@@ -105,6 +115,14 @@ const AgencyActions = ({ products, regisAction }) => {
             {
                 actionKey == 'EXPORT' &&
                 <ExportProducts regisAction={regisAction} products={products} />
+            }
+            {
+                actionKey == 'RECALL' &&
+                <RecallStart regisAction={regisAction} products={products} />
+            }
+            {
+                actionKey == 'RETURN' &&
+                <ReturnProduct regisAction={regisAction} products={products} />
             }
         </Form>
     )

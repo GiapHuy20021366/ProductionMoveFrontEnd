@@ -7,6 +7,7 @@ import useCallApi from "../../untils/fetch";
 import { apiUrls } from '../../untils/constant'
 import { Button, Modal, Form, Col, Row } from "react-bootstrap";
 import { roles } from "../../untils/constant";
+import { canExport } from "../../untils/actionAuth";
 
 
 const ExportProducts = ({ products, regisAction, hanldeResult }) => {
@@ -92,7 +93,11 @@ const ExportProducts = ({ products, regisAction, hanldeResult }) => {
                     // res.data.forEach((export_) => {
                     //     productIds.push(export_.productId)
                     // })
-                    resolve(productIds, 'Sucess message')
+                    resolve({
+                        updatedIds: productIds,
+                        message: 'Sucess message'
+                    })
+                    // resolve({ updatedIds: [40], message: 'Sucess message' })
                 }).catch((err) => {
                     console.log(err)
                     reject('Error Message')
@@ -102,44 +107,52 @@ const ExportProducts = ({ products, regisAction, hanldeResult }) => {
         regisAction(action)
     }, [products])
 
+    const isExport = canExport(products, account)
+
     return (
         <>
-            <Form.Group as={Row} className="mb-3" controlId="model">
-                <Form.Label column sm="2">{'Điểm đến'}</Form.Label>
-                <Col sm="10">
-                    <Form.Select ref={desRef}>
-                        {
-                            partners.map((partner) =>
-                                <option value={partner.id} key={partner.id}>
-                                    {
-                                        partner.name
-                                    }
-                                </option>
-                            )
-                        }
-                    </Form.Select>
-                </Col>
-            </Form.Group>
-            <Form.Group as={Row} className="mb-3" controlId="model">
-                <Form.Label column sm="2">{'Lý do'}</Form.Label>
-                <Col sm="10">
-                    <Form.Select ref={reasonRef}>
-                        {
-                            reasons.map((reason) =>
-                                <option value={reason.id} key={reason.id}>
-                                    {
-                                        reason.title
-                                    }
-                                </option>
-                            )
-                        }
-                    </Form.Select>
-                </Col>
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
-                <Form.Label>Note</Form.Label>
-                <Form.Control as="textarea" ref={noteRef} rows={3} />
-            </Form.Group>
+
+            {
+                isExport &&
+                <>
+                    <Form.Group as={Row} className="mb-3" controlId="model">
+                        <Form.Label column sm="2">{'Điểm đến'}</Form.Label>
+                        <Col sm="10">
+                            <Form.Select ref={desRef}>
+                                {
+                                    partners.map((partner) =>
+                                        <option value={partner.id} key={partner.id}>
+                                            {
+                                                partner.name
+                                            }
+                                        </option>
+                                    )
+                                }
+                            </Form.Select>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group as={Row} className="mb-3" controlId="model">
+                        <Form.Label column sm="2">{'Lý do'}</Form.Label>
+                        <Col sm="10">
+                            <Form.Select ref={reasonRef}>
+                                {
+                                    reasons.map((reason) =>
+                                        <option value={reason.id} key={reason.id}>
+                                            {
+                                                reason.title
+                                            }
+                                        </option>
+                                    )
+                                }
+                            </Form.Select>
+                        </Col>
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
+                        <Form.Label>Note</Form.Label>
+                        <Form.Control as="textarea" ref={noteRef} rows={3} />
+                    </Form.Group>
+                </>
+            }
         </>
     )
 }
