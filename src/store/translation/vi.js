@@ -284,6 +284,10 @@ const langOfAgencyActions = {
     ...langOfProductActions,
 }
 
+const langOfMaintenanceActions = {
+    ...langOfProductActions,
+}
+
 const vi = {
     _NAME_: 'VI',
     TruckBtn: langOfTruckBtn,
@@ -313,6 +317,7 @@ const vi = {
     ProductActions: langOfProductActions,
     FactoryActions: langOfFactoryActions,
     AgencyActions: langOfAgencyActions,
+    MaintenanceActions: langOfMaintenanceActions,
 
     FactoryModels: langOfFactoryModels,
     FactoryAddModel: langOfFactoryAddModel,

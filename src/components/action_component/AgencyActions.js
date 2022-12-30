@@ -18,7 +18,8 @@ const canMaintain = (products) => {
 
 
 
-const FactoryActions = ({ products, regisAction }) => {
+const AgencyActions = ({ products, regisAction }) => {
+    const subLang = useSelector(state => state.lang.AgencyActions)
     const actionRef = useRef()
     const [actionKey, setActionKey] = useState('MAINTAIN')
     // const resources = useSelector(state => state.resources)
@@ -82,7 +83,7 @@ const FactoryActions = ({ products, regisAction }) => {
     return (
         <Form>
             <Form.Group as={Row} className="mb-3" controlId="model">
-                <Form.Label column sm="2">{'Hành động'}</Form.Label>
+                <Form.Label column sm="2">{subLang.actions_selection}</Form.Label>
                 <Col sm="10">
                     <Form.Select onChange={(e) => { onChangeAction(e) }} ref={actionRef}>
                         {
@@ -109,7 +110,7 @@ const FactoryActions = ({ products, regisAction }) => {
     )
 }
 
-export default FactoryActions
+export default AgencyActions
 
 
 

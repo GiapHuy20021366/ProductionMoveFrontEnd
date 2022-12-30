@@ -31,6 +31,9 @@ const MaintenanceNavigator = (probs) => {
                 pathname = {paths.MAINTENANCE_MODELS}
                 onClickFunc = {onClickModels}
                 title = {subLang.maintenance_models}
+                Icon = {() => { return (
+                    <i className="fa-solid fa-eye"></i>
+                )}}
             />
             <NavItem
                 pathname = {paths.MAINTENANCE_PRODUCTS}

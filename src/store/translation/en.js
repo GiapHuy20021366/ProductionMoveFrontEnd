@@ -174,8 +174,7 @@ const langOfFactoryAddModel = {
 
 const langOfFactoryProducts = {
     ...langOfAdminProducts,
-    import_products_btn: 'Import Products',
-    export_products_btn: 'Export Products',
+    import_products_btn: 'Batch Import Products',
 }
 
 const langOfFactoryImportProducts = {
@@ -184,8 +183,7 @@ const langOfFactoryImportProducts = {
     quantity: 'Quantity',
     cancel: 'Cancel',
     submit: 'Import',
-    import_success: 'Import Products Successfully!',
-    export_products: "Batch Export Products",
+    import_success: 'Batch Import Products Successfully!',
 }
 
 const langOfAgencyModels = {
@@ -268,7 +266,7 @@ const langOfProductDisplay = {
 
 const langOfProductActions = {
     ...langOfAdminProducts,
-    actions_title: 'Actions Title', 
+    actions_title: 'Actions', 
     cancel: 'Cancel',
     submit: 'Submit',
 }
@@ -284,6 +282,12 @@ const langOfFactoryActions = {
 
 const langOfAgencyActions = {
     ...langOfProductActions,
+    actions_selection: 'Select Action',
+}
+
+const langOfMaintenanceActions = {
+    ...langOfProductActions,
+    actions_selection: 'Select Action',
 }
 
 const en = {
@@ -315,6 +319,7 @@ const en = {
     ProductActions: langOfProductActions,
     FactoryActions: langOfFactoryActions,
     AgencyActions: langOfAgencyActions,
+    MaintenanceActions: langOfMaintenanceActions,
 
     FactoryModels: langOfFactoryModels,
     FactoryAddModel: langOfFactoryAddModel,

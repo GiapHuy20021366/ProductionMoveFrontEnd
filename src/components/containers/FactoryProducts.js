@@ -164,7 +164,7 @@ const FactoryProducts = () => {
                 />
             }
             {/* Button Export Products Data */}
-            <button className="btn btn-primary" onClick={() => handleOpenModalExport()}>{subLang.export_products_btn}</button>
+            {/* <button className="btn btn-primary" onClick={() => handleOpenModalExport()}>{subLang.export_products_btn}</button> */}
             {/* Popup Form **************************************************************** */}
             {/* {
                 <FactoryExportProducts
