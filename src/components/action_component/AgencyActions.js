@@ -43,39 +43,39 @@ const AgencyActions = ({ products, regisAction }) => {
     const actions = [
         {
             key: 'MAINTAIN',
-            title: 'Bắt đầu bảo hành',
             type: 'MAINTAIN',
-            valid: canMaintain(products)
+            valid: canMaintain(products),
+            title: subLang.action_one,
         },
         {
             key: 'RECALL',
-            title: 'Thu hồi sản phẩm',
             type: 'RECALL',
-            valid: canRecall(products)
+            valid: canRecall(products),
+            title: subLang.action_two,
         },
         {
             key: 'EXPORT',
             type: 'EXPORT',
             valid: canExport(products, account),
-            title: 'Xuất sản phẩm đến nơi khác'
+            title: subLang.action_three,
         },
         {
             key: 'RETURN',
             type: 'RETURN',
             valid: canReturn(products, account),
-            title: 'Chuyển sản phẩm cho khách hàng sau bảo hành'
+            title: subLang.action_four,
         },
         {
             key: 'CONFIRM',
             type: 'CONFIRM',
             valid: canConfirm(products, account),
-            title: 'Xác nhận sản phẩm'
+            title: subLang.action_five,
         },
         {
             key: 'PURCHASE',
             type: 'PURCHASE',
             valid: canPurchase(products, account),
-            title: 'Bán sản phẩm cho khách hàng'
+            title: subLang.action_six,
         }
     ]
 
